@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import React from "react";
+import PropTypes from "prop-types";
+import { Link, graphql } from "gatsby";
+import styled from "styled-components";
 
-import { Layout, Article, Wrapper, Button, SectionTitle } from '../components'
+import { Layout, Article, Wrapper, SectionTitle } from "../components";
 
 const Content = styled.div`
   grid-column: 2;
@@ -17,7 +17,7 @@ const Content = styled.div`
     padding: 2rem 1.5rem;
   }
   overflow: hidden;
-`
+`;
 
 const Hero = styled.div`
   grid-column: 2;
@@ -39,73 +39,77 @@ const Hero = styled.div`
       font-size: 1.25rem;
     }
   }
-`
+`;
 
 const IndexPage = ({
   data: {
-    allMdx: { nodes: posts },
-  },
+    allMdx: { edges: postEdges }
+  }
 }) => (
   <Layout>
     <Wrapper>
       <Hero>
-        <h1>Hi.</h1>
+        <h1>Hi!</h1>
         <p>
-          I&apos;m John Doe, a Senior UX Developer with five years of industry experience, specializing in developing
-          React apps with the best UX users can get.
+          I am Bouwe, an enthusiastic and experienced software engineer at{" "}
+          <a href="https://newnexus.nl">New Nexus</a> in the Groningen area, The Netherlands.
         </p>
-        <Link to="/contact">
-          <Button big>
-            <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1764 11q33 24 27 64l-256 1536q-5 29-32 45-14 8-31 8-11 0-24-5l-453-185-242 295q-18 23-49 23-13 0-22-4-19-7-30.5-23.5t-11.5-36.5v-349l864-1059-1069 925-395-162q-37-14-40-55-2-40 32-59l1664-960q15-9 32-9 20 0 36 11z" />
-            </svg>
-            Contact
-          </Button>
-        </Link>
+        <p>
+          Besides my daily job of developing .NET applications in C#, I am learning{" "}
+          <Link to="/react">React.js</Link> by{" "}
+          <Link to="/categories/workshops">teaching it to others</Link>.
+        </p>
+        <p>
+          You can contact me on <a href="https://twitter.com/bouwe">Twitter</a> or find my code
+          on <a href="https://github.com/bouwe77">GitHub</a>.
+        </p>
       </Hero>
       <Content>
-        <SectionTitle>Latest stories</SectionTitle>
-        {posts.map(post => (
+        <SectionTitle>Latest blog posts</SectionTitle>
+        {postEdges.slice(0, 3).map(post => (
           <Article
-            title={post.frontmatter.title}
-            date={post.frontmatter.date}
-            excerpt={post.excerpt}
-            timeToRead={post.timeToRead}
-            slug={post.fields.slug}
-            categories={post.frontmatter.categories}
-            key={post.fields.slug}
+            title={post.node.frontmatter.title}
+            date={post.node.frontmatter.date}
+            excerpt={post.node.excerpt}
+            timeToRead={post.node.timeToRead}
+            slug={post.node.fields.slug}
+            categories={post.node.frontmatter.categories}
+            key={post.node.fields.slug}
           />
         ))}
+        Or check out my other blog posts on the <Link to="/categories">Categories</Link> page.
       </Content>
     </Wrapper>
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
-      nodes: PropTypes.array.isRequired,
-    }),
-  }).isRequired,
-}
+      edges: PropTypes.array.isRequired
+    })
+  }).isRequired
+};
 
 export const IndexQuery = graphql`
   query IndexQuery {
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        fields {
-          slug
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date(formatString: "MM/DD/YYYY")
+            categories
+          }
+          excerpt(pruneLength: 200)
+          timeToRead
         }
-        frontmatter {
-          title
-          date(formatString: "MM/DD/YYYY")
-          categories
-        }
-        excerpt(pruneLength: 200)
-        timeToRead
       }
     }
   }
-`
+`;

@@ -1,18 +1,18 @@
 {
-  "name": "gatsby-starter-minimal-blog",
-  "description": "Typography driven blog, focus on the content & minimal style. Powered by MDX. Live Preview with react-live.",
-  "version": "3.0.0",
-  "author": "LekoArts <hello@lekoarts.de> (https://www.lekoarts.de)",
+  "name": "bouweio",
+  "description": "bouwe.io",
+  "version": "1.0",
+  "author": "Bouwe",
   "dependencies": {
-    "@mdx-js/mdx": "^1.4.5",
-    "@mdx-js/react": "^1.4.5",
+    "@mdx-js/mdx": "^1.5.0",
+    "@mdx-js/react": "^1.5.0",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.15.20",
     "gatsby-plugin-catch-links": "^2.1.10",
     "gatsby-plugin-google-analytics": "^2.1.17",
     "gatsby-plugin-lodash": "^3.1.8",
     "gatsby-plugin-manifest": "^2.2.18",
-    "gatsby-plugin-mdx": "^1.0.43",
+    "gatsby-plugin-mdx": "^1.0.44",
     "gatsby-plugin-netlify": "^2.1.15",
     "gatsby-plugin-offline": "^3.0.8",
     "gatsby-plugin-react-helmet": "^3.1.8",
@@ -32,15 +32,12 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-live": "^2.2.0",
+    "react-markdown": "^4.2.2",
     "styled-components": "^4.3.2",
     "typeface-bitter": "^0.0.71",
     "typeface-open-sans": "^0.0.75"
   },
-  "keywords": [
-    "gatsby",
-    "gatsby-starter",
-    "lekoarts"
-  ],
+  "keywords": [],
   "license": "MIT",
   "main": "n/a",
   "scripts": {

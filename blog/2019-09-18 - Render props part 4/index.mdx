@@ -1,0 +1,69 @@
+---
+date: "2019-09-"
+title: "Render Props Part IV - Keep it simple stupid"
+categories:
+  - "React"
+  - "render props"
+---
+
+**Introduction**
+I wrote several blog posts about my learning process of the render props pattern.
+With every blog post I learned something new, but also made mistakes. But that's
+what learning is about. And because I am learning in public, it kind of forces
+me to fix things that could be better.
+
+In my [previous post] (part 3) about the render props pattern, I thought I kind of
+finished my implementation of the Toggle component. However, I used the useEffect
+hook, which is a great learning experience, but now, a few months later, I realized
+in this case, it is not necessary to use useEffect for what I wanted to achieve.
+
+In this blog post I will explain you why.
+
+**Do you haz teh codez?**
+
+Sure, this is my Toggle component from [part 3]:
+
+```js
+```
+
+Note how I set the new on value in ... with `setOn`.
+
+**Why useEffect?**
+As soon as the `on` state value changes, I use the useEffect to pass the new state
+value to the callback function so the parent component also can use that new value.
+
+However, at the moment I set the new `on` value with `setOn`, I already know the
+new value! It's the inverse of the current boolean value I pass to `setOn`! 8-|
+
+ANIMATED GIF "DOH!!!"
+
+So why not call the callback right away with that same inverse boolean value:
+
+```js
+```
+
+> **Oh, and by the way...**
+> There was also a bug in my useEffect code. The useEffect is calling the `...`
+> callback function which makes it a dependency and therefore should be added to
+> the dependency array. Which would lead to several other problems forcing you to
+> use the useCallback hook. But let's get not into this now, that's something for
+> another time.
+
+**How I figured this out**
+After writing [part 3] it kept on disturbing me I had to use such a complicated
+solution for such a common and simple problem. So I started googling arround and
+stumbled upon [this Reddit post].
+
+There Mr Dan Abramov himself explains why you can not have the new state value right
+away. And also that this is not a problem most of the times as you define the new state
+value yourself and then can do with it whatever you want.
+
+He explains with code that looks something like this:
+
+```js
+```
+
+Note how ... ... ...
+
+**Conclusion**
+... ... ...

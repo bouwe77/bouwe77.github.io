@@ -51,7 +51,7 @@ Here is an example of such a function, a checkbox that let's the user indicate w
 to subscribe to a newsletter:
 
 ```js
-function renderCheckbox(toggle, on) {
+function renderCheckbox(toggle) {
   return (
     <>
       <input type="checkbox" onChange={toggle} />
@@ -78,7 +78,7 @@ function App() {
 
   return (
     <form onSubmit={save}>
-      <Toggle render={renderToggleCheckbox} />
+      <Toggle render={renderCheckbox} />
       <br />
       <button type="submit">Save</button>
     </form>
@@ -105,11 +105,11 @@ function Toggle({ render, onToggle }) {
   const [on, setOn] = useState(false);
 
   function toggle() {
-    setOn(on => !on);
+    setOn(!on);
     if (onToggle) onToggle(on);
   }
 
-  return <>{render(toggle, on)}</>;
+  return <>{render(toggle)}</>;
 }
 
 Toggle.propTypes = {
@@ -178,16 +178,15 @@ setOn back to where we call the render function:
 function Toggle({ render, onToggle }) {
   const [on, setOn] = useState(false);
 
-  useEffect(
-    // Call the onToggle callback function from props
-    () => {
-      if (onToggle) onToggle(on);
-    },
-    // When the on variable changes
-    [on]
-  );
+  function doToggle() {
+    setOn(!on);
+  }
 
-  return <>{render(() => setOn(on => !on), on)}</>;
+  useEffect(() => {
+    if (onToggle) onToggle(on);
+  }, [on]);
+
+  return <>{render(doToggle)}</>;
 }
 ```
 

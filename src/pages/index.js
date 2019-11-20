@@ -52,16 +52,17 @@ const IndexPage = ({
         <h1>Hi!</h1>
         <p>
           I am Bouwe, an enthusiastic and experienced software engineer at{" "}
-          <a href="https://newnexus.nl">New Nexus</a> in the Groningen area, The Netherlands.
+          <a href="https://newnexus.nl">New Nexus</a> in the Groningen area, The
+          Netherlands.
         </p>
         <p>
-          Besides my daily job of developing .NET applications in C#, I am learning{" "}
-          <Link to="/react">React.js</Link> by{" "}
-          <Link to="/categories/workshops">teaching it to others</Link>.
+          Besides my daily job of developing .NET applications in C#, I am
+          learning <Link to="/react">React.js</Link> by{" "}
+          <Link to="/workshops">teaching it to others</Link>.
         </p>
         <p>
-          You can contact me on <a href="https://twitter.com/bouwe">Twitter</a> or find my code
-          on <a href="https://github.com/bouwe77">GitHub</a>.
+          You can contact me on <a href="https://twitter.com/bouwe">Twitter</a>{" "}
+          or find my code on <a href="https://github.com/bouwe77">GitHub</a>.
         </p>
       </Hero>
       <Content>
@@ -77,7 +78,8 @@ const IndexPage = ({
             key={post.node.fields.slug}
           />
         ))}
-        Or check out my other blog posts on the <Link to="/categories">Categories</Link> page.
+        Or check out my other blog posts on the{" "}
+        <Link to="/categories">Categories</Link> page.
       </Content>
     </Wrapper>
   </Layout>

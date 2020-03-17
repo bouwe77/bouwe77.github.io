@@ -182,9 +182,12 @@ And the easiest way to achieve that is to pass an _empty_ dependencies array bec
 So the only thing we have to add in our code is an empty array as the second argument to our `useEffect` call:
 
 ```js
-useEffect(function getTextFromApi() {
-  getRandomText().then(text => setText(text));
-}, []); // <=== See the empty array here?
+useEffect(
+  function getTextFromApi() {
+    getRandomText().then(text => setText(text));
+  },
+  [] // <=== Empty dependencies array
+);
 ```
 
 **A `useEffect` _with_ dependencies**

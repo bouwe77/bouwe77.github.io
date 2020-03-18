@@ -8,10 +8,10 @@ categories:
 
 **Introduction**
 
-React offers several hooks and one of them you'll encounter almost certainly, even when building
-the most basic app, and that is the `useEffect` hook.
+React offers several hooks and one you'll encounter almost certainly, even when building
+the most basic app, is the `useEffect` hook.
 
-It is not only very commonly used, it's also quite challenging to really grasp it.
+However, it is not only very commonly used, it's also quite challenging to really grasp it.
 
 Although there are many other blog posts explaining this hook, I still write my own because I am sure
 it will help me to grasp it even better and I hope it does the same for you too.
@@ -165,7 +165,7 @@ This array must contain all variables where the side effect implementation in th
 In other words: which variables are _used_ in the implementation.
 
 Possible candidates for such a dependency are variables that are an argument to the component function, better known as `props`,
-or variables (so functions too) that are defined _inside_ the component.
+and variables (so functions too) that are defined _inside_ the component.
 
 The `getRandomText` function we use in our effect is imported, so it is defined _outside_ the component, and therefore is _not_
 a dependency. If it would be a local function, it would have been a dependency.
@@ -195,7 +195,7 @@ useEffect(
 Let's change our app so I can demonstrate how `useEffect` works when you do have a dependency.
 
 Instead of getting a random text for the API I will call the so-called [Numbers API]. This API returns trivia about numbers.
-I'll import the `getNumberText` which handles calling the Numbers API and I remove the import of `getRandomText`.
+I'll import the `getNumberText` function which handles calling the Numbers API and I remove the import of `getRandomText`.
 
 Inside my `getTextFromApi` function I now call `getNumberText` and pass a number, which is the `clicked` state variable I already had.
 

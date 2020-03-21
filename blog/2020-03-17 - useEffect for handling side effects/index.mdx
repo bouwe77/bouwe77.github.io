@@ -156,10 +156,10 @@ rendered for the first time.
 > A great blog post about fetching data with `useEffect` is Robin Wieruch's [How to fetch data with React Hooks?]. It also covers
 > working with `async` and `await`.
 
-**The dependencies array**
+**The dependency array**
 
 Now that we know _how_ to handle and implement side effects with the first argument to the `useEffect` call, let's look at controlling
-_when_ to execute these side effects. This is done by supplying a _second_ argument to `useEffect`, which is the so-called _dependencies array_.
+_when_ to execute these side effects. This is done by supplying a _second_ argument to `useEffect`, which is the so-called _dependency array_.
 
 This array must contain all variables where the side effect implementation in the first `useEffect` argument depends on.
 In other words: which variables are _used_ in the implementation.
@@ -170,14 +170,14 @@ and variables (so functions too) that are defined _inside_ the component.
 The `getRandomText` function we use in our effect is imported, so it is defined _outside_ the component, and therefore is _not_
 a dependency. If it would be a local function, it would have been a dependency.
 
-So our side effect has no dependencies, but how can we use the dependencies array to make sure the effect is only called once?
+So our side effect has no dependencies, but how can we use the dependency array to make sure the effect is only called once?
 
-Before the side effect inside `useEffect` is executed, React checks first whether the variables in the dependencies array have
+Before the side effect inside `useEffect` is executed, React checks first whether the variables in the dependency array have
 a different value since the previous render. If not, it is not necessary to execute the effect again, because executing the effect
 with the same values would yield the same result anyway.
 
-So to make sure an effect is only executed once, you just make sure the values inside the dependencies array _never_ change.
-And the easiest way to achieve that is to pass an _empty_ dependencies array because an empty array will never change! 😄
+So to make sure an effect is only executed once, you just make sure the values inside the dependency array _never_ change.
+And the easiest way to achieve that is to pass an _empty_ dependency array because an empty array will never change! 😄
 
 So the only thing we have to add in our code is an empty array as the second argument to our `useEffect` call:
 
@@ -186,7 +186,7 @@ useEffect(
   function getTextFromApi() {
     getRandomText().then(text => setText(text));
   },
-  [] // <=== Empty dependencies array
+  [] // <=== Empty dependency array
 );
 ```
 
@@ -200,7 +200,7 @@ I'll import the `getNumberText` function which handles calling the Numbers API a
 Inside my `getTextFromApi` function I now call `getNumberText` and pass a number, which is the `clicked` state variable I already had.
 
 If I would run my app now the effect would only be called the first time, while I also want to call it when `clicked` changes. This is
-the moment to add the `clicked` variable to the dependencies array:
+the moment to add the `clicked` variable to the dependency array:
 
 ```js
 useEffect(

@@ -52,7 +52,7 @@ const IndexPage = ({
         <h1>Hi!</h1>
         <p>
           I am Bouwe, an enthusiastic and experienced software engineer at{" "}
-          <a href="https://newnexus.nl">New Nexus</a> in the Groningen area, The
+          <a href="https://newnexus.nl">New Nexus</a> in The
           Netherlands.
         </p>
         <p>

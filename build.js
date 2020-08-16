@@ -75,7 +75,10 @@ function getHtmlTemplate(body) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    ${body}
+    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
+    <div>
+        ${body}
+    </div>
   </body>
 </html>
   `;

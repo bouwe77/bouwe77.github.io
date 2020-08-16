@@ -33,6 +33,7 @@ async function go() {
   let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
   await Promise.all(
     pages.map(async (filename) => {
+      if (filename.startsWith(".")) return;
       let page = path.join(__dirname, pagesDirectory, filename);
       let body = await createPage(page);
       await fs.writeFile(

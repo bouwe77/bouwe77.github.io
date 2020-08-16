@@ -8,12 +8,28 @@ import report from "vfile-reporter";
 
 const __dirname = path.resolve();
 const pagesDirectory = "pages";
+const staticDirectory = "static";
+const buildDirectory = "build";
 
 go();
 
 async function go() {
   shell.rm("-rf", "build");
   shell.mkdir("build");
+
+  // Copy all files from the static folder to the build folder.
+  let statics = await fs.readdir(path.join(__dirname, staticDirectory));
+  await Promise.all(
+    statics.map(async (filename) => {
+      await fs.copyFile(
+        path.join(__dirname, staticDirectory, filename),
+        path.join(__dirname, buildDirectory, filename)
+      );
+      console.log("›", filename);
+    })
+  );
+
+  // Publish all markdown files from the pages folder as HTML pages and copy them to the build folder.
   let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
   await Promise.all(
     pages.map(async (filename) => {

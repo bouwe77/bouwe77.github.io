@@ -17,3 +17,12 @@ a:hover {
   text-decoration: underline;
   color: #d02e77;
 }
+
+.footer-link {
+  color: "#ffffff";
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}

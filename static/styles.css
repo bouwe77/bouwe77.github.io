@@ -8,7 +8,7 @@ h5 {
   color: "#000000b3";
 }
 
-.website-title a {
+a .website-title {
   text-decoration: none;
 }
 
@@ -26,11 +26,11 @@ a:hover {
   color: #d02e77;
 }
 
-.footer-link a {
+a .footer-link {
   color: #ffffff;
   text-decoration: none;
 }
 
-.footer-link a:hover {
+a .footer-link:hover {
   text-decoration: underline;
 }

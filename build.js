@@ -35,7 +35,7 @@ async function go() {
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
       let page = path.join(__dirname, pagesDirectory, filename);
-      let body = await createPage(page);
+      let body = await markdownToHtml(page);
       await fs.writeFile(
         path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
         body
@@ -46,7 +46,7 @@ async function go() {
   console.log("Done!");
 }
 
-async function createPage(filePath) {
+async function markdownToHtml(filePath) {
   let markdown = await fs.readFile(filePath);
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
@@ -57,13 +57,13 @@ async function createPage(filePath) {
           console.error(report(err));
           reject(err);
         }
-        let page = getPage(String(markup));
+        let page = getHtmlTemplate(String(markup));
         resolve(page);
       });
   });
 }
 
-function getPage(body) {
+function getHtmlTemplate(body) {
   let $ = cheerio.load(body);
   let title = $("h1").text();
   return `
@@ -73,8 +73,6 @@ function getPage(body) {
     <title>${title}</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://unpkg.com/@exampledev/new.css@1.1.3/new.css" />
-    <style>body { font-family: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif; }</style>
   </head>
   <body>
     ${body}

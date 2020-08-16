@@ -15,7 +15,7 @@ uploaded to a web host.
 
 - generate HTML from the blog folder.
 - call build.js on Netlify instead of locally.
-- robots.txt + sitemap.xml -> Figure out how this works
 - create categories page
 - automate creating new page or blog, specify categories also
 - automate updating categories page.
+- robots.txt + sitemap.xml -> Figure out how this works

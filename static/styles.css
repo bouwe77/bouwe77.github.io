@@ -8,7 +8,9 @@ h5 {
   color: "#000000b3";
 }
 
-a .website-title {
+.website-title a:link,
+.website-title a:visited,
+.website-title a:active {
   text-decoration: none;
 }
 
@@ -16,7 +18,9 @@ a .website-title {
   text-decoration: none;
 }
 
-a {
+a:link,
+a:visited,
+a:active {
   text-decoration: none;
   color: #d02e77;
 }
@@ -26,11 +30,13 @@ a:hover {
   color: #d02e77;
 }
 
-a .footer-link {
+.footer-link a:link,
+.footer-link a:visited,
+.footer-link a:active {
   color: #ffffff;
   text-decoration: none;
 }
 
-a .footer-link:hover {
+.footer-link a:hover {
   text-decoration: underline;
 }

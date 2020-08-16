@@ -8,16 +8,6 @@ h5 {
   color: "#000000b3";
 }
 
-.website-title a:link,
-.website-title a:visited,
-.website-title a:active {
-  text-decoration: none;
-}
-
-.website-title a:hover {
-  text-decoration: none;
-}
-
 a:link,
 a:visited,
 a:active {
@@ -28,6 +18,16 @@ a:active {
 a:hover {
   text-decoration: underline;
   color: #d02e77;
+}
+
+.website-title a:link,
+.website-title a:visited,
+.website-title a:active {
+  text-decoration: none;
+}
+
+.website-title a:hover {
+  text-decoration: none;
 }
 
 .footer-link a:link,

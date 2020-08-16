@@ -8,6 +8,14 @@ h5 {
   color: "#000000b3";
 }
 
+.website-title a {
+  text-decoration: none;
+}
+
+.website-title a:hover {
+  text-decoration: none;
+}
+
 a {
   text-decoration: none;
   color: #d02e77;
@@ -18,11 +26,11 @@ a:hover {
   color: #d02e77;
 }
 
-.footer-link {
+.footer-link a {
   color: "#ffffff";
   text-decoration: none;
 }
 
-.footer-link:hover {
+.footer-link a:hover {
   text-decoration: underline;
 }

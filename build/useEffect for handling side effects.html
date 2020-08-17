@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
+    <div>
+        <p><strong>Introduction</strong></p>
+<p>React offers several hooks and one you'll encounter almost certainly, even when building
+the most basic app, is the <code>useEffect</code> hook.</p>
+<p>However, it is not only very commonly used, it's also quite challenging to really grasp it.</p>
+<p>Although there are many other blog posts explaining this hook, I still write my own because I am sure
+it will help me to grasp it even better and I hope it does the same for you too.</p>
+<p><strong>Side effects</strong></p>
+<p>The <code>useEffect</code> hook is for handling <em>side effects</em> of React components. But what are side effects?</p>
+<blockquote>
+<p>In computer science, an operation, function or expression is said to have a side effect if it modifies
+some state variable value(s) outside its local environment, that is to say has an observable effect
+besides returning a value (the main effect) to the invoker of the operation.</p>
+<p>-- Wikipedia</p>
+</blockquote>
+<p>This general definition is very applicable to React components. It describes that next to <em>side effects</em>, there
+are also <em>main effects</em>. So before going to side effects, the question is: What is the <em>main effect</em> of React
+components?</p>
+<p>Well, a React component actually has two main effects, the first is <em>rendering</em> UIs, i.e. defining what the component
+looks like in the browser, which is expressed in JSX.</p>
+<p>The second one is <em>handling events</em>, which are triggered by the user that interacts with your app. Handling these
+events most of the times result in a state update, which in turn causes a render again.</p>
+<p>This cycle of rendering, handling events, updating state, rendering again etc. is the common lifecycle of
+most React components. It makes them pure: Given the same input, you always get the same output. This is how you
+make reusable and testable UI components. They have no behavior other than rendering and handling user events.</p>
+<p>However, to make your app really dynamic and useful, you often need to fetch and send data from/to a server. Or
+maybe you need to start a timer which does something recurring. If these kind of things won't be triggered by
+a user (event), it is a <em>side effect</em> for a React component.</p>
+<p><strong>Do You Haz Teh Codez?</strong></p>
+<p>Well, certainly. Let's create a very contrived and simple React app so we can really focus on side effects
+and <code>useEffect</code>. Our app consists of one component:</p>
+<pre><code class="language-js">function App() {
+  return &#x3C;h1>Hello World&#x3C;/h1>;
+}
+</code></pre>
+<p>The <code>App</code> component gets rendered by our app and no matter how often we call it, it always returns a
+heading containing the text <em>Hello World</em>.</p>
+<p>Let's add a <code>button</code> to keep track of how many times it was clicked and display that value. This makes
+our component dynamic, so we need to use the <code>useState</code> hook to make sure React will always render
+the current <code>clicked</code> value:</p>
+<pre><code class="language-js">function App() {
+  const [clicked, setClicked] = useState(0);
+  return (
+    &#x3C;>
+      &#x3C;h1>Hello World&#x3C;/h1>
+      &#x3C;p>{clicked}&#x3C;/p>
+      &#x3C;button onClick={() => setClicked(clicked + 1)}>Click Me&#x3C;/button>
+    &#x3C;/>
+  );
+}
+</code></pre>
+<p>What we've implemented here is a regular UI component. It renders some kind of UI and as soon as the
+user clicks the button, <code>clicked</code> is incremented and the component is rendered again. It is still pure,
+it always returns the same UI. Even when you click the button, the UI is very predictable.</p>
+<p><strong>Let's add a side effect</strong></p>
+<p>While our app is really cool already, we decide to spice it up a bit. Instead of the <em>Hello World</em> text,
+we want to display some random text we fetch from an API.</p>
+<p>To keep it simple, it doesn't matter which API we call and whether that API is REST or GraphQL.
+What <em>does</em> matter though is <em>how</em> and <em>when</em> we call the API.</p>
+<p>Every time someone opens our app, the <code>App</code> component's <em>main effect</em> is executed, which renders the UI. What
+we <em>also</em> want to do is call the API to fetch the text. This is a side effect, so we'll use the <code>useEffect</code>
+hook in our component.</p>
+<p>The <code>useEffect</code> hook is a function, provided by React. For each side effect you want to implement, you call
+this function, <em>inside</em> your component. You pass at least one argument and that is the <em>function</em> that contains
+the implementation of your actual side effect. In our case that is calling the API to fetch a random text. What
+React will do is call this function argument <em>after</em> each render.</p>
+<p>In the code below, I've added the <code>useEffect</code> call and pass the <code>getTextFromApi</code> function. Every time the
+<code>App</code> component is rendered the <code>getTextFromApi</code> is called, even though it doesn't do anything yet:</p>
+<pre><code class="language-js">function App() {
+  const [clicked, setClicked] = useState(0);
+
+  useEffect(function getTextFromApi() {
+    //TODO: call the API...
+  });
+
+  // &#x3C;--- unchanged return statement ommitted ---> //
+}
+</code></pre>
+<blockquote>
+<p>It is common to pass an arrow function to <code>useEffect</code>, but by explicitely naming the function <code>getTextFromApi</code>
+like I do here, it is much clearer what this side effect implementation actually does.</p>
+</blockquote>
+<p><strong>Calling an API inside <code>useEffect</code></strong></p>
+<p>The current <em>Hello World</em> text must be replaced by a text coming from the API, so we'll create a state variable for this called
+<code>text</code> and the function <code>setText</code> to update it. In the JSX we render this <code>text</code> variable instead of the hard-coded <em>Hello World</em>.</p>
+<p>Furthermore, we'll import the <code>getRandomText</code> function which does the actual API call.</p>
+<p>Finally, inside the <code>getTextFromApi</code> function. inside the <code>useEffect</code>, we call <code>getRandomText</code> and then <code>setText</code> to
+update the <code>text</code> state.</p>
+<p>Now, our code looks like this:</p>
+<pre><code class="language-js">function App() {
+  const [clicked, setClicked] = useState(0);
+  const [text, setText] = useState();
+
+  useEffect(function getTextFromApi() {
+    getRandomText().then(text => setText(text));
+  });
+
+  return (
+    &#x3C;>
+      &#x3C;h1>{text}&#x3C;/h1>
+      &#x3C;p>{clicked}&#x3C;/p>
+      &#x3C;button onClick={() => setClicked(clicked + 1)}>Click Me&#x3C;/button>
+    &#x3C;/>
+  );
+}
+</code></pre>
+<p>Every time the component is rendered, <code>text</code> is updated with the text coming from the API. This happens when the component
+is rendered for the first time but also when clicking the button, because then the <code>clicked</code> state is updated which also causes
+a render.</p>
+<p>However, there is no reason to call the API after each <code>button</code> click. We only want to call it when the component is
+rendered for the first time.</p>
+<blockquote>
+<p>A great blog post about fetching data with <code>useEffect</code> is Robin Wieruch's <a href="https://www.robinwieruch.de/react-hooks-fetch-data">How to fetch data with React Hooks?</a>. It also covers
+working with <code>async</code> and <code>await</code>.</p>
+</blockquote>
+<p><strong>The dependency array</strong></p>
+<p>Now that we know <em>how</em> to handle and implement side effects with the first argument to the <code>useEffect</code> call, let's look at controlling
+<em>when</em> to execute these side effects. This is done by supplying a <em>second</em> argument to <code>useEffect</code>, which is the so-called <em>dependency array</em>.</p>
+<p>This array must contain all variables where the side effect implementation in the first <code>useEffect</code> argument depends on.
+In other words: which variables are <em>used</em> in the implementation.</p>
+<p>Possible candidates for such a dependency are variables that are an argument to the component function, better known as <code>props</code>,
+and variables (so functions too) that are defined <em>inside</em> the component.</p>
+<p>The <code>getRandomText</code> function we use in our effect is imported, so it is defined <em>outside</em> the component, and therefore is <em>not</em>
+a dependency. If it would be a local function, it would have been a dependency.</p>
+<p>So our side effect has no dependencies, but how can we use the dependency array to make sure the effect is only called once?</p>
+<p>Before the side effect inside <code>useEffect</code> is executed, React checks first whether the variables in the dependency array have
+a different value since the previous render. If not, it is not necessary to execute the effect again, because executing the effect
+with the same values would yield the same result anyway.</p>
+<p>So to make sure an effect is only executed once, you just make sure the values inside the dependency array <em>never</em> change.
+And the easiest way to achieve that is to pass an <em>empty</em> dependency array because an empty array will never change! 😄</p>
+<p>So the only thing we have to add in our code is an empty array as the second argument to our <code>useEffect</code> call:</p>
+<pre><code class="language-js">useEffect(
+  function getTextFromApi() {
+    getRandomText().then(text => setText(text));
+  },
+  [] // &#x3C;=== Empty dependency array
+);
+</code></pre>
+<p><strong>A <code>useEffect</code> <em>with</em> dependencies</strong></p>
+<p>Let's change our app so I can demonstrate how <code>useEffect</code> works when you do have a dependency.</p>
+<p>Instead of getting a random text for the API I will call the so-called <a href="http://numbersapi.com">Numbers API</a>. This API returns trivia about numbers.
+I'll import the <code>getNumberText</code> function which handles calling the Numbers API and I remove the import of <code>getRandomText</code>.</p>
+<p>Inside my <code>getTextFromApi</code> function I now call <code>getNumberText</code> and pass a number, which is the <code>clicked</code> state variable I already had.</p>
+<p>If I would run my app now the effect would only be called the first time, while I also want to call it when <code>clicked</code> changes. This is
+the moment to add the <code>clicked</code> variable to the dependency array:</p>
+<pre><code class="language-js">useEffect(
+  function getTextFromApi() {
+    getNumberText(clicked).then(text => setText(text));
+  },
+  [clicked]
+);
+</code></pre>
+<p><strong>Closing note</strong></p>
+<p>This post covered the basics of handling side effects in React with the <code>useEffect</code> hook. I learned a lot from it
+and I hope you did too.</p>
+<blockquote>
+<p><strong>Want a real deep dive into <code>useEffect</code>?</strong></p>
+<p>Then read Dan Abramov's very long blog post (or mini-book, as he calls it)
+<a href="https://overreacted.io/a-complete-guide-to-useeffect">A Complete Guide To useEffect</a>.</p>
+</blockquote>
+<p>Please contact me on <a href="https://twitter.com/bouwe">Twitter</a> if you have questions or remarks.</p>
+
+    </div>
+  </body>
+</html>
+  

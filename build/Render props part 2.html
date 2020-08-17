@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
+    <div>
+        <p><strong>Introduction</strong></p>
+<p>In my first <a href="https://bouwe.io/day-4-render-props">blog post about the render props pattern</a> I created a Toggle component.
+This component contains all the logic to turn <em>something</em> on or off.</p>
+<p>I also implemented two components that use that toggle functionality but each
+render their own UI: a button and checkbox respectively.</p>
+<p>This implementation shows the purpose of the render props pattern: to <em>separate logic from layout
+so we can reuse the logic for different layouts</em>.</p>
+<p><strong>Is it ON or OFF?</strong></p>
+<p>Now we will use the Toggle component in our app.</p>
+<p>Let's render a <code>form</code> with a checkbox toggle in the <code>App</code> component so a user can save the
+toggle state:</p>
+<pre><code class="language-js">function App() {
+  return (
+    &#x3C;form onSubmit={save}>
+      &#x3C;Toggle render={renderToggleCheckbox} />
+      &#x3C;br />
+      &#x3C;button type="submit">Save&#x3C;/button>
+    &#x3C;/form>
+  );
+}
+</code></pre>
+<blockquote>
+<p>When a user submits the form, the save function is called. This function somehow saves the
+current toggle state. To keep things simple this is out of scope for this blog post.</p>
+</blockquote>
+<p>The problem with the current Toggle implementation, however, is that there is no way for
+the App component to <em>know</em> what the current toggle state is. And we do need that state
+to be able to persist it.</p>
+<p>The state of the current toggle value is being managed by the Toggle component. What we
+could do is <em>also</em> keep that same state in the App component. But that means you have
+the same state in two components, which should make you think twice before doing that.</p>
+<p>Also, it's good practice to have as little stateful components as possible, because these come
+with a cost, both in complexity and maybe even performance.</p>
+<p>So let's look at <em>responsibilities</em>. Is it really necessary for the Toggle component to have
+state? It's responsibility is to toggle and whether that is stateful or not is not really
+important for the component to do its thing.</p>
+<blockquote>
+<p>The reason Toggle was stateful until now was because we just wanted to toggle, nothing more.
+For that the Toggle component was closest to the place where we needed state.</p>
+</blockquote>
+<p>What needs to be done is what in the React documentation is called <a href="https://reactjs.org/docs/lifting-state-up.html">lifting state up</a>.</p>
+<p>What that means is that we move the state from the Toggle component to the App component.
+And because App is now responsible for the state it has to tell the Toggle component
+what's the current state and give a way to update the state. That's why we pass both <code>setOn</code>
+and <code>on</code> as props to Toggle.</p>
+<p>With these modifications the App component now looks like this:</p>
+<pre><code class="language-js">function App() {
+  const [on, setOn] = useState(false);
+
+  return (
+    &#x3C;form onSubmit={save}>
+      &#x3C;Toggle render={renderToggleCheckbox} toggle={setOn} on={on} />
+      &#x3C;br />
+      &#x3C;button type="submit">Save&#x3C;/button>
+    &#x3C;/form>
+  );
+}
+</code></pre>
+<p>And the Toggle component is becoming even simpler as it already was because it has no state anymore
+but instead receives the state and a way to update it via props:</p>
+<pre><code class="language-js">function Toggle(props) {
+  return &#x3C;>{props.render(() => props.toggle(!props.on), props.on)}&#x3C;/>;
+}
+</code></pre>
+<p>In this code <em>props</em> is mentioned a lot. Let's refactor this by using <em>object destructuring</em>.
+Also, I'll add some <code>propTypes</code> to make it clear which props this component expects:</p>
+<pre><code class="language-js">function Toggle({ render, toggle, on = false }) {
+  return &#x3C;>{render(() => toggle(!on), on)}&#x3C;/>;
+}
+
+Toggle.propTypes = {
+  render: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  on: PropTypes.bool
+};
+</code></pre>
+<blockquote>
+<p>You might ask yourself, is this Toggle component doing anything at all? It so ridiculously simple.
+Yes it is, but that's because toggling is very simple. The only thing the Toggle
+component is doing is inverting a boolean: <code>toggle(!on)</code>. I chose this example to keep things simple. But in
+real world apps your logic is probably a bit more complex (or at least has more lines of code) and
+then you are glad something like the render props pattern exists.</p>
+</blockquote>
+<p><strong>Conclusion</strong></p>
+<p>Long story short, basically we only moved the toggle state from the Toggle component to the App
+component. We didn't touch the render methods that render the toggle UI.</p>
+<p>What we have done is separated the responsibilities even more:</p>
+<ol>
+<li>The Toggle component turns <em>something</em> on or off.</li>
+<li>The button and checkbox render functions define how the toggle functionality <em>looks</em>.</li>
+<li>The App component actually <em>uses</em> the toggle now and is responsible for the state.</li>
+</ol>
+<p>For a working example, please check out <a href="https://codesandbox.io/s/nqksb">this CodeSandbox</a> or the <a href="https://github.com/bouwe77/react-render-props-2">Github repo</a>.</p>
+
+    </div>
+  </body>
+</html>
+  

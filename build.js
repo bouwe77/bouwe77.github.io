@@ -5,8 +5,10 @@ import cheerio from "cheerio";
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
+import fm from "front-matter";
 
 const __dirname = path.resolve();
+const blogDirectory = "blog";
 const pagesDirectory = "pages";
 const staticDirectory = "static";
 const buildDirectory = "build";
@@ -17,7 +19,7 @@ async function go() {
   shell.rm("-rf", "build");
   shell.mkdir("build");
 
-  // Copy all files from the static folder to the build folder.
+  // Copy all files from the static folder as-is to the build folder.
   let statics = await fs.readdir(path.join(__dirname, staticDirectory));
   await Promise.all(
     statics.map(async (filename) => {
@@ -29,25 +31,45 @@ async function go() {
     })
   );
 
-  // Publish all markdown files from the pages folder as HTML pages and copy them to the build folder.
+  // Convert all markdown files from the pages folder to HTML pages and copy them to the build folder.
   let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
       let page = path.join(__dirname, pagesDirectory, filename);
-      let body = await markdownToHtml(page);
+      let markdown = await fs.readFile(page);
+      let html = await markdownToHtml(markdown);
       await fs.writeFile(
         path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
-        body
+        html
       );
       console.log("›", filename);
     })
   );
+
+  // Convert all markdown files with front matter to HTML pages and copy them to the build folder.
+  let blogSubFolders = await fs.readdir(path.join(__dirname, blogDirectory));
+  await Promise.all(
+    blogSubFolders.map(async (subFolder) => {
+      if (subFolder.startsWith(".")) return;
+      const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
+      let files = await fs.readdir(subFolderPath);
+      const filename = files[0];
+      let fileContents = await fs.readFile(path.join(subFolderPath, filename));
+      const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+      let html = await markdownToHtml(parsedFrontMatterAndMarkdown.body);
+      await fs.writeFile(
+        path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
+        html
+      );
+      console.log("›", filename);
+    })
+  );
+
   console.log("Done!");
 }
 
-async function markdownToHtml(filePath) {
-  let markdown = await fs.readFile(filePath);
+async function markdownToHtml(markdown) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()

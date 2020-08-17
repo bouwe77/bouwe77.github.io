@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
+    <div>
+        <p><strong>Introduction</strong></p>
+<p>I wrote several blog posts about my learning process of the render props pattern.
+With every blog post I learned something new, but also made mistakes. But that's
+what learning is about. And because I am learning in public, it kind of forces
+me to fix things that could be better.</p>
+<p>In my <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">previous post</a> (part 3) about the render props pattern, I thought I kind of
+finished my implementation of the <code>Toggle</code> component. However, I used the <code>useEffect</code>
+hook, which is a great learning experience, but now, a few months later, I realized
+in this case, it is not necessary to use <code>useEffect</code> for what I wanted to achieve.</p>
+<p>In this blog post I will explain you why.</p>
+<p><strong>Do you haz teh codez?</strong></p>
+<p>Sure, this is my <code>Toggle</code> component from <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a>:</p>
+<pre><code class="language-js">function Toggle({ render, onToggle }) {
+  const [on, setOn] = useState(false);
+
+  function doToggle() {
+    setOn(!on);
+  }
+
+  useEffect(() => {
+    if (onToggle) onToggle(on);
+  }, [on]);
+
+  return &#x3C;>{render(doToggle)}&#x3C;/>;
+}
+</code></pre>
+<p>The <code>Toggle</code> component receives two props. The first is the <code>render</code> prop, which
+is the function that renders the UI. That <code>render</code> function is returned by the
+<code>Toggle</code> component, because that is what React components do, they always return
+a piece of UI.</p>
+<p>When calling the <code>render</code> function in the return the <code>doToggle</code> function is passed.
+That function is called when the user toggles the UI. When a toggle takes place
+the <code>on</code> state of the <code>Toggle</code> component is inversed, true becomes false and false
+becomes true.</p>
+<p>The <code>useEffect</code> responds to the fact the value of the <code>on</code> state and calls the second
+prop that is passed in the <code>Toggle</code> component: the <code>onToggle</code>. This is a callback
+function passed by the component that uses the <code>Toggle</code> component. What typically happens
+when calling the <code>onToggle</code> is that there happens some kind of state change in the
+component that uses the <code>Toggle</code> component.</p>
+<p><strong>Why useEffect?</strong></p>
+<p>As soon as the <code>on</code> state value changes, I use the <code>useEffect</code> to pass that new state
+value to the callback function so the parent component also can use that new value.</p>
+<p>I thought I had to "wait" for the state change to really have happened before I
+could call the callback function, because that's the moment I know the new state
+value for sure.</p>
+<p>However, at the moment I set the new <code>on</code> value with <code>setOn</code>, I already know the
+new value! It's right there in the code where I pass it to <code>setOn</code>! 8-|</p>
+<p>DOH!!!</p>
+<p>So why not call the callback right away with that same value:</p>
+<pre><code class="language-js">function Toggle({ render, onToggle }) {
+  const [on, setOn] = useState(false);
+
+  function doToggle() {
+    setOn(!on);
+    onToggle(!on);
+  }
+
+  return &#x3C;>{render(doToggle)}&#x3C;/>;
+}
+</code></pre>
+<blockquote>
+<p><strong>Oh, and by the way...</strong>
+There was also a bug in my <code>useEffect</code> code. The <code>useEffect</code> is calling the <code>onToggle</code>
+callback function which makes it a dependency and therefore should be added to
+the dependency array. However, we've removed the <code>useEffect</code> entirely, so that's
+not an issue anymore.</p>
+</blockquote>
+<p><strong>How I figured this out</strong></p>
+<p>After writing <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a> it kept on disturbing me I had to use such a complicated
+solution for such a common and simple problem. So I started googling arround and
+stumbled upon <a href="https://www.reddit.com/r/reactjs/comments/a3y76f/react_hooks_setstate_gotcha/eba1fh0/">this Reddit post</a>.</p>
+<p>There Mr Dan Abramov himself explains why you can not have the new state value right
+away. And also that this is not a problem most of the times as you define the new state
+value yourself and then can do with it whatever you want.</p>
+<p>He explains with code that looks something like this:</p>
+<pre><code class="language-js">const [count, setCount] = useState(0);
+
+function handleClick() {
+  setCount(42);
+  // you can't expect this to somehow immediately change the count, we even declared it with const :-)
+  console.log(count); // 0
+  // but on next render, count will be 42
+}
+</code></pre>
+<p>I think the code comments explain a lot. :)</p>
+<p><strong>Conclusion</strong></p>
+<p>By writing this blog I not only learned something new, I also fixed crappy code and, last
+but not least, have a better understanding of the <code>useState</code> and <code>useEffect</code> hooks.</p>
+<p>And I realized that learning in public can be a bit awkward, but more importantly, learning
+by sharing is a great way to solidify what you learn.</p>
+<p>To see the code, check out <a href="https://codesandbox.io/s/github/bouwe77/react-render-props-4/tree/master/">this CodeSandbox</a> or the <a href="https://github.com/bouwe77/react-render-props-4">Github repo</a>.</p>
+
+    </div>
+  </body>
+</html>
+  

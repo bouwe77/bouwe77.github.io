@@ -19,24 +19,3 @@ a:hover {
   text-decoration: underline;
   color: #d02e77;
 }
-
-.website-title a:link,
-.website-title a:visited,
-.website-title a:active {
-  text-decoration: none;
-}
-
-.website-title a:hover {
-  text-decoration: none;
-}
-
-.footer-link a:link,
-.footer-link a:visited,
-.footer-link a:active {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.footer-link a:hover {
-  text-decoration: underline;
-}

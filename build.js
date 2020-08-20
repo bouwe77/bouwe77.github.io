@@ -12,6 +12,7 @@ const blogDirectory = "blog";
 const pagesDirectory = "pages";
 const staticDirectory = "static";
 const buildDirectory = "build";
+const templatesDirectory = "templates";
 
 go();
 
@@ -31,6 +32,10 @@ async function go() {
     })
   );
 
+  const pageTemplate = await fs.readFile(
+    path.join(__dirname, templatesDirectory, "page.html")
+  );
+
   // Convert all markdown files from the pages folder to HTML pages and copy them to the build folder.
   let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
   await Promise.all(
@@ -39,12 +44,18 @@ async function go() {
       let page = path.join(__dirname, pagesDirectory, filename);
       let markdown = await fs.readFile(page);
       let html = await markdownToHtml(markdown);
+      html =
+        "TODO: code refactoren zodat Pages en Blogs dezelfde ombutsacties gebruiken";
       await fs.writeFile(
         path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
         html
       );
       console.log("›", filename);
     })
+  );
+
+  const blogTemplate = await fs.readFile(
+    path.join(__dirname, templatesDirectory, "blog.html")
   );
 
   // Convert all markdown files with front matter to HTML pages and copy them to the build folder.
@@ -57,7 +68,11 @@ async function go() {
       const filename = files[0];
       let fileContents = await fs.readFile(path.join(subFolderPath, filename));
       const parsedFrontMatterAndMarkdown = fm(String(fileContents));
-      let html = await markdownToHtml(parsedFrontMatterAndMarkdown.body);
+      let html = await markdownToHtml(
+        parsedFrontMatterAndMarkdown.attributes.title,
+        parsedFrontMatterAndMarkdown.body,
+        blogTemplate
+      );
       await fs.writeFile(
         path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
         html
@@ -69,7 +84,7 @@ async function go() {
   console.log("Done!");
 }
 
-async function markdownToHtml(markdown) {
+async function markdownToHtml(title, markdown, template) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -79,29 +94,23 @@ async function markdownToHtml(markdown) {
           console.error(report(err));
           reject(err);
         }
-        let page = getHtmlTemplate(String(markup));
-        resolve(page);
+
+        //TODO Content1 and Content2
+        const content1 = markup;
+        const content2 = "";
+
+        let htmlPage = String(template);
+        htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), title);
+        htmlPage = htmlPage.replace(
+          new RegExp("{{ content1 }}", "g"),
+          content1
+        );
+        htmlPage = htmlPage.replace(
+          new RegExp("{{ content2 }}", "g"),
+          content2
+        );
+
+        resolve(htmlPage);
       });
   });
-}
-
-function getHtmlTemplate(body) {
-  let $ = cheerio.load(body);
-  let title = $("h1").text();
-  return `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>${title}</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <body>
-    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
-    <div>
-        ${body}
-    </div>
-  </body>
-</html>
-  `;
 }

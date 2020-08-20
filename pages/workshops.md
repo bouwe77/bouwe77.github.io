@@ -1,4 +1,6 @@
-# Workshops and talks
+---
+title: "Workshops and talks"
+---
 
 #### Introduction
 

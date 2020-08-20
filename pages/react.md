@@ -1,4 +1,6 @@
-# React
+---
+title: "React"
+---
 
 #### Introduction
 

@@ -1,15 +1,36 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <body>
-    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
-    <div>
-        <p>Today I is my first day of this coding challenge and I will build a blog so I can share my
+<html>
+  <title>Day 1 - Setting up a Gatsby blog on Netlify</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="w3.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Bitter"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <body class="w3-light-grey">
+    <!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content. -->
+    <div class="w3-content" style="max-width: 1400px;">
+      <!-- Header -->
+      <header class="w3-container w3-center w3-padding-32">
+        <h1>
+          <b><a href="/">bouwe.io</a></b>
+        </h1>
+      </header>
+
+      <!-- Grid -->
+      <div class="w3-row">
+        <div class="w3-col l8 s12">
+          <!-- Blog entry -->
+          <div class="w3-card-4 w3-margin w3-white">
+            <div class="w3-container">
+              <h3>
+                <b><a href="#">Day 1 - Setting up a Gatsby blog on Netlify</a></b>
+              </h3>
+            </div>
+            <div class="w3-container"><p>Today I is my first day of this coding challenge and I will build a blog so I can share my
 100 Days of Code experiences with you.</p>
 <p>As I am typing this I still use a Google Drive text document and that doesn’t feel good. I really need a blog.</p>
 <p>First I have to make some architectural decisions.</p>
@@ -28,8 +49,73 @@ which is an important feature for me.</p>
 Netlify and imported the Github repo in CodeSandbox to start coding. Nice!</p>
 <p>Unfortunately the day is over and although my blog is live now, the demo content has yet to be replaced by my own. However,
 I started experimenting with Gatsby which has been on my to do list for a long time.</p>
+</div>
+          </div>
+          <hr />
+        </div>
 
+        <!-- Introduction menu -->
+        <div class="w3-col l4">
+          <!-- Labels / tags -->
+          <div class="w3-card w3-margin">
+            <div class="w3-container w3-white">
+              <h4><b>Blog categories</b></h4>
+              <p>
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/100-days-of-code"
+                    >100 days of code</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/blogging">Blogging</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/gatsby">Gatsby</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/nederlands">Nederlands</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/netlify">Netlify</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/personal">Personal</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/react-workshops"
+                    >React Workshops</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/render-props">render props</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/useeffect">useEffect</a></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <!-- END Introduction Menu -->
+        </div>
+
+        <!-- END GRID -->
+      </div>
+      <br />
+
+      <!-- END w3-content -->
     </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+      <div class="w3-content" style="max-width: 1400px;">
+        <div class="w3-row">
+          <div class="w3-col l8 s12">
+            <a href="/workshops">Workshops</a> |
+            <a href="/react">React</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
-  

@@ -1,15 +1,36 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <body>
-    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
-    <div>
-        <p>This is day zero of my <a href="https://www.100daysofcode.com/">100 Days of Code</a> challenge!</p>
+<html>
+  <title>Day 0 - A new challenge - 100 Days of Code</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="w3.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Bitter"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <body class="w3-light-grey">
+    <!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content. -->
+    <div class="w3-content" style="max-width: 1400px;">
+      <!-- Header -->
+      <header class="w3-container w3-center w3-padding-32">
+        <h1>
+          <b><a href="/">bouwe.io</a></b>
+        </h1>
+      </header>
+
+      <!-- Grid -->
+      <div class="w3-row">
+        <div class="w3-col l8 s12">
+          <!-- Blog entry -->
+          <div class="w3-card-4 w3-margin w3-white">
+            <div class="w3-container">
+              <h3>
+                <b><a href="#">Day 0 - A new challenge - 100 Days of Code</a></b>
+              </h3>
+            </div>
+            <div class="w3-container"><p>This is day zero of my <a href="https://www.100daysofcode.com/">100 Days of Code</a> challenge!</p>
 <p>On this day I introduce myself and my goals for this challenge.</p>
 <p>I am a software developer, so coding every day is not a big challenge for me.
 However, sharing with others <em>what</em> I code, is.
@@ -35,8 +56,73 @@ is to make a blog website and share my findings with you. I want to start bloggi
 has to be working right away after day 1. I need a MVP (minimal viable product) that just works. How it
 looks comes next, which I will also share on my blog ofcourse.</p>
 <p>Stay tuned for day 1 of my coding challenge!</p>
+</div>
+          </div>
+          <hr />
+        </div>
 
+        <!-- Introduction menu -->
+        <div class="w3-col l4">
+          <!-- Labels / tags -->
+          <div class="w3-card w3-margin">
+            <div class="w3-container w3-white">
+              <h4><b>Blog categories</b></h4>
+              <p>
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/100-days-of-code"
+                    >100 days of code</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/blogging">Blogging</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/gatsby">Gatsby</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/nederlands">Nederlands</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/netlify">Netlify</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/personal">Personal</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/react-workshops"
+                    >React Workshops</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/render-props">render props</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/useeffect">useEffect</a></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <!-- END Introduction Menu -->
+        </div>
+
+        <!-- END GRID -->
+      </div>
+      <br />
+
+      <!-- END w3-content -->
     </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+      <div class="w3-content" style="max-width: 1400px;">
+        <div class="w3-row">
+          <div class="w3-col l8 s12">
+            <a href="/workshops">Workshops</a> |
+            <a href="/react">React</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
-  

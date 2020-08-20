@@ -1,15 +1,36 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <body>
-    <nav><a href="/"><h1>bouwe.io</h1></a></nav>
-    <div>
-        <p><strong> Introduction </strong></p>
+<html>
+  <title>Render Props Part III - A flexible and reusable Toggle component</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="w3.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Bitter"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <body class="w3-light-grey">
+    <!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content. -->
+    <div class="w3-content" style="max-width: 1400px;">
+      <!-- Header -->
+      <header class="w3-container w3-center w3-padding-32">
+        <h1>
+          <b><a href="/">bouwe.io</a></b>
+        </h1>
+      </header>
+
+      <!-- Grid -->
+      <div class="w3-row">
+        <div class="w3-col l8 s12">
+          <!-- Blog entry -->
+          <div class="w3-card-4 w3-margin w3-white">
+            <div class="w3-container">
+              <h3>
+                <b><a href="#">Render Props Part III - A flexible and reusable Toggle component</a></b>
+              </h3>
+            </div>
+            <div class="w3-container"><p><strong> Introduction </strong></p>
 <p>This is my third post about the <a href="https://bouwe.io/categories/render-props">render props</a> pattern. I am still learning this pattern and to
 really solidify what I learn I am blogging about it as it forces me to explain the what,
 why and how.</p>
@@ -174,8 +195,73 @@ App component.</li>
 <p>To watch or play around with the full code of this blog post, please check out this <a href="https://codesandbox.io/s/ksjne">CodeSandbox</a> or the <a href="https://github.com/bouwe77/react-render-props-3">Github repo</a>.</p>
 <p>Although I am very satisfied with this solution and even more what I learned from it, there are still some
 improvements to make, so stay tuned for yet another (and hopefully last) blog post about the render props pattern.</p>
+</div>
+          </div>
+          <hr />
+        </div>
 
+        <!-- Introduction menu -->
+        <div class="w3-col l4">
+          <!-- Labels / tags -->
+          <div class="w3-card w3-margin">
+            <div class="w3-container w3-white">
+              <h4><b>Blog categories</b></h4>
+              <p>
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/100-days-of-code"
+                    >100 days of code</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/blogging">Blogging</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/gatsby">Gatsby</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/nederlands">Nederlands</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/netlify">Netlify</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/personal">Personal</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/react-workshops"
+                    >React Workshops</a
+                  ></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/render-props">render props</a></span
+                >
+                <span class="w3-tag w3-light-grey w3-margin-bottom"
+                  ><a href="categories/useeffect">useEffect</a></span
+                >
+              </p>
+            </div>
+          </div>
+
+          <!-- END Introduction Menu -->
+        </div>
+
+        <!-- END GRID -->
+      </div>
+      <br />
+
+      <!-- END w3-content -->
     </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+      <div class="w3-content" style="max-width: 1400px;">
+        <div class="w3-row">
+          <div class="w3-col l8 s12">
+            <a href="/workshops">Workshops</a> |
+            <a href="/react">React</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
-  

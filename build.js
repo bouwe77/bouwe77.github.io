@@ -20,6 +20,21 @@ async function go() {
   shell.mkdir("build");
 
   // Copy all files from the static folder as-is to the build folder.
+  await copyStaticFiles();
+
+  // Create the HOME page, which is a combination of an HTML template and subtemplates.
+  await createHomePage();
+
+  // Convert all PAGE markdown files with front matter to HTML pages and copy them to the build folder.
+  await createPages();
+
+  // Convert all BLOG markdown files with front matter to HTML pages and copy them to the build folder.
+  await createBlogPages();
+
+  console.log("Done!");
+}
+
+async function copyStaticFiles() {
   let staticFiles = await fs.readdir(path.join(__dirname, staticDirectory));
   await Promise.all(
     staticFiles.map(async (filename) => {
@@ -30,13 +45,15 @@ async function go() {
       console.log("›", filename);
     })
   );
+}
 
-  // Create the HOME page, which is a combination of an HTML template and subtemplates.
+async function createHomePage() {
   const html = await readTemplate("home.html");
   await fs.writeFile(path.join(__dirname, "build", "index.html"), String(html));
   console.log("›", "index.html");
+}
 
-  // Convert all PAGE markdown files with front matter to HTML pages and copy them to the build folder.
+async function createPages() {
   const readPageTemplate = async () => {
     return await readTemplate("page.html");
   };
@@ -53,8 +70,9 @@ async function go() {
       console.log("›", filename);
     })
   );
+}
 
-  // Convert all BLOG markdown files with front matter to HTML pages and copy them to the build folder.
+async function createBlogPages() {
   const readBlogTemplate = async () => {
     return await readTemplate("blog.html");
   };
@@ -70,23 +88,21 @@ async function go() {
       console.log("›", filename);
     })
   );
+}
 
-  console.log("Done!");
-
-  async function createHtmlPage(directory, filename, readTemplate) {
-    const blogTemplate = await readTemplate();
-    let fileContents = await fs.readFile(path.join(directory, filename));
-    const parsedFrontMatterAndMarkdown = fm(String(fileContents));
-    let html = await toHtml(
-      parsedFrontMatterAndMarkdown.attributes.title,
-      parsedFrontMatterAndMarkdown.body,
-      blogTemplate
-    );
-    await fs.writeFile(
-      path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
-      html
-    );
-  }
+async function createHtmlPage(directory, filename, readTemplate) {
+  const blogTemplate = await readTemplate();
+  let fileContents = await fs.readFile(path.join(directory, filename));
+  const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+  let html = await toHtml(
+    parsedFrontMatterAndMarkdown.attributes.title,
+    parsedFrontMatterAndMarkdown.body,
+    blogTemplate
+  );
+  await fs.writeFile(
+    path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
+    html
+  );
 }
 
 async function toHtml(title, markdown, template) {

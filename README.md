@@ -13,8 +13,6 @@ uploaded to a web host.
 
 # TO DO
 
-- generate HTML from the blog folder.
-- Have 1 HTML template for both static index.html and generated pages/blogs from markdown. Or create HTML body for the homepage and let build.js insert that into the template instead of markdown.
 - call build.js on Netlify instead of locally.
 - create categories page
 - automate creating new page or blog, specify categories also

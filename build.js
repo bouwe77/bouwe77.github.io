@@ -1,7 +1,6 @@
 import path from "path";
 import { promises as fs } from "fs";
 import shell from "shelljs";
-import cheerio from "cheerio";
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
@@ -21,9 +20,9 @@ async function go() {
   shell.mkdir("build");
 
   // Copy all files from the static folder as-is to the build folder.
-  let statics = await fs.readdir(path.join(__dirname, staticDirectory));
+  let staticFiles = await fs.readdir(path.join(__dirname, staticDirectory));
   await Promise.all(
-    statics.map(async (filename) => {
+    staticFiles.map(async (filename) => {
       await fs.copyFile(
         path.join(__dirname, staticDirectory, filename),
         path.join(__dirname, buildDirectory, filename)
@@ -32,11 +31,12 @@ async function go() {
     })
   );
 
-  const pageTemplate = await fs.readFile(
-    path.join(__dirname, templatesDirectory, "page.html")
-  );
+  // Create the HOME page, which is a combination of an HTML template and subtemplates.
+  const html = await readTemplate("home.html");
+  await fs.writeFile(path.join(__dirname, "build", "index.html"), String(html));
+  console.log("›", "index.html");
 
-  // Convert all markdown files from the pages folder to HTML pages and copy them to the build folder.
+  // Convert all PAGE markdown files with front matter to HTML pages and copy them to the build folder.
   const readPageTemplate = async () => {
     return await readTemplate("page.html");
   };
@@ -45,7 +45,7 @@ async function go() {
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
-      hatseflats(
+      createHtmlPage(
         path.join(__dirname, pagesDirectory),
         filename,
         readPageTemplate
@@ -54,7 +54,7 @@ async function go() {
     })
   );
 
-  // Convert all markdown files with front matter to HTML pages and copy them to the build folder.
+  // Convert all BLOG markdown files with front matter to HTML pages and copy them to the build folder.
   const readBlogTemplate = async () => {
     return await readTemplate("blog.html");
   };
@@ -66,18 +66,18 @@ async function go() {
       const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
       let files = await fs.readdir(subFolderPath);
       const filename = files[0];
-      await hatseflats(subFolderPath, filename, readBlogTemplate);
+      await createHtmlPage(subFolderPath, filename, readBlogTemplate);
       console.log("›", filename);
     })
   );
 
   console.log("Done!");
 
-  async function hatseflats(directory, filename, readTemplate) {
+  async function createHtmlPage(directory, filename, readTemplate) {
     const blogTemplate = await readTemplate();
     let fileContents = await fs.readFile(path.join(directory, filename));
     const parsedFrontMatterAndMarkdown = fm(String(fileContents));
-    let html = await createHtmlPage(
+    let html = await toHtml(
       parsedFrontMatterAndMarkdown.attributes.title,
       parsedFrontMatterAndMarkdown.body,
       blogTemplate
@@ -89,7 +89,7 @@ async function go() {
   }
 }
 
-async function createHtmlPage(title, markdown, template) {
+async function toHtml(title, markdown, template) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -100,20 +100,9 @@ async function createHtmlPage(title, markdown, template) {
           reject(err);
         }
 
-        //TODO Content1 and Content2
-        const content1 = markup;
-        const content2 = "";
-
         let htmlPage = String(template);
         htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), title);
-        htmlPage = htmlPage.replace(
-          new RegExp("{{ content1 }}", "g"),
-          content1
-        );
-        htmlPage = htmlPage.replace(
-          new RegExp("{{ content2 }}", "g"),
-          content2
-        );
+        htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), markup);
 
         resolve(htmlPage);
       });

@@ -37,28 +37,28 @@ async function go() {
   );
 
   // Convert all markdown files from the pages folder to HTML pages and copy them to the build folder.
+  const readPageTemplate = async () => {
+    return await readTemplate("page.html");
+  };
+
   let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
-      let page = path.join(__dirname, pagesDirectory, filename);
-      let markdown = await fs.readFile(page);
-      let html = await markdownToHtml(markdown);
-      html =
-        "TODO: code refactoren zodat Pages en Blogs dezelfde ombutsacties gebruiken";
-      await fs.writeFile(
-        path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
-        html
+      hatseflats(
+        path.join(__dirname, pagesDirectory),
+        filename,
+        readPageTemplate
       );
       console.log("›", filename);
     })
   );
 
-  const blogTemplate = await fs.readFile(
-    path.join(__dirname, templatesDirectory, "blog.html")
-  );
-
   // Convert all markdown files with front matter to HTML pages and copy them to the build folder.
+  const readBlogTemplate = async () => {
+    return await readTemplate("blog.html");
+  };
+
   let blogSubFolders = await fs.readdir(path.join(__dirname, blogDirectory));
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
@@ -66,25 +66,30 @@ async function go() {
       const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
       let files = await fs.readdir(subFolderPath);
       const filename = files[0];
-      let fileContents = await fs.readFile(path.join(subFolderPath, filename));
-      const parsedFrontMatterAndMarkdown = fm(String(fileContents));
-      let html = await markdownToHtml(
-        parsedFrontMatterAndMarkdown.attributes.title,
-        parsedFrontMatterAndMarkdown.body,
-        blogTemplate
-      );
-      await fs.writeFile(
-        path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
-        html
-      );
+      await hatseflats(subFolderPath, filename, readBlogTemplate);
       console.log("›", filename);
     })
   );
 
   console.log("Done!");
+
+  async function hatseflats(directory, filename, readTemplate) {
+    const blogTemplate = await readTemplate();
+    let fileContents = await fs.readFile(path.join(directory, filename));
+    const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+    let html = await createHtmlPage(
+      parsedFrontMatterAndMarkdown.attributes.title,
+      parsedFrontMatterAndMarkdown.body,
+      blogTemplate
+    );
+    await fs.writeFile(
+      path.join(__dirname, "build", filename.replace(/\.md$/, ".html")),
+      html
+    );
+  }
 }
 
-async function markdownToHtml(title, markdown, template) {
+async function createHtmlPage(title, markdown, template) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -113,4 +118,10 @@ async function markdownToHtml(title, markdown, template) {
         resolve(htmlPage);
       });
   });
+}
+
+async function readTemplate(templateFile) {
+  return await fs.readFile(
+    path.join(__dirname, templatesDirectory, templateFile)
+  );
 }

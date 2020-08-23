@@ -13,10 +13,10 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- Aug 25, 2020 **Tech talk** Live Coding a Game in React @ KPN GroSkills
 - Sep 11, 2020 **Tech talk** [Live Coding a Game in React] @ New Nexus Summer Bootcamp
 - Sep 11, 2020 **Tech talk** [Power to the Client with GraphQL] @ New Nexus Summer Bootcamp
 - Sep 11, 2020 **Talk** [Leren is delen, delen is leren] (Learning by Teaching) @ New Nexus Summer Bootcamp
+- Sep 15, 2020 **Tech talk** [Live Coding a Game in React] @ KPN GroSkills
 - Oct 16, 2020 React Hooks **training** @ Huis ter Hansouwe, Peize https://newnexus.nl/react-hooks
 - TBD "Travelling Through Space with React" React beginner **workshop** (private event)
 - TBD React + Gatsby + Drupal + GraphQL **training** (private event)
@@ -38,7 +38,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 - May 9, 2019 React beginner **workshop** @ New Nexus
 - Mar 12, 2019 React beginner **workshop** @ New Nexus (private event)
 
-#### Attend or organize a workshop?
+#### Interested in a workshop or talk?
 
 That would be awesome! 😃 Contact me on [Twitter]!
 

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "babel-node build.js"
+    "build": "babel-node build.js"
   },
   "repository": {
     "type": "git",

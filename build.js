@@ -1,8 +1,3 @@
-// Hier was ik gebleven:
-// - Ik was de HTML aan het genereren voor de blog categories op de homepage, zie partials/blogCategories.js
-// - Deze HTML/CSS is cleaner dan die W3.css grid meuk: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_blog_layout
-// - blogDirectory.js maken zodat ik met het commando "node blog" via wat vragen een blog post kan genereren
-
 import path from "path";
 import { promises as fs } from "fs";
 import shell, { cat } from "shelljs";
@@ -81,6 +76,15 @@ async function getBlogData() {
         }
       );
     })
+  );
+
+  // Sort the blogs on date descending.
+  blogData.pages = blogData.pages.sort((a, b) =>
+    a.attributes.date > b.attributes.date
+      ? -1
+      : b.attributes.date > a.attributes.date
+      ? 1
+      : 0
   );
 
   return blogData;

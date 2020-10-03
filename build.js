@@ -142,8 +142,14 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(categories) {
+  const template = await readTemplate("page.html");
+
   categories.forEach(async (cat) => {
-    const html = "Page for category <h1>" + cat.name + "</h1>";
+    let html = await toHtml(
+      cat.name,
+      `Page for category <b>${cat.name}</b>`,
+      template
+    );
     await fs.writeFile(
       path.join(__dirname, "build/categories", createSlug(cat.name) + ".html"),
       html

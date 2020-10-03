@@ -13,7 +13,5 @@ export function getBlogCategoriesHtml(blogCategories) {
       .replace("###count###", cat.count);
   });
 
-  console.log(meuk);
-
   return meuk;
 }

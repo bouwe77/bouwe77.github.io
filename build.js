@@ -5,7 +5,7 @@
 
 import path from "path";
 import { promises as fs } from "fs";
-import shell from "shelljs";
+import shell, { cat } from "shelljs";
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
@@ -25,6 +25,7 @@ go();
 async function go() {
   shell.rm("-rf", "build");
   shell.mkdir("build");
+  shell.mkdir("build/categories");
 
   // Copy all files from the static folder as-is to the build folder.
   await copyStaticFiles();
@@ -41,6 +42,9 @@ async function go() {
 
   // Convert all BLOG markdown files with front matter to HTML pages and copy them to the build folder.
   await createPages(blogData);
+
+  // Create a page for each blog category.
+  await createCategoryPages(blogData.categories);
 }
 
 async function getBlogData() {
@@ -134,6 +138,17 @@ async function createPages(data) {
       html
     );
     console.log("›", page.filename);
+  });
+}
+
+async function createCategoryPages(categories) {
+  categories.forEach(async (cat) => {
+    const html = "Page for category <h1>" + cat.name + "</h1>";
+    await fs.writeFile(
+      path.join(__dirname, "build/categories", createSlug(cat.name) + ".html"),
+      html
+    );
+    console.log("›", cat.name);
   });
 }
 

@@ -40,7 +40,7 @@ async function go() {
   await createPages(blogData);
 
   // Create a page for each blog category.
-  await createCategoryPages(blogData.categories);
+  await createCategoryPages(blogData);
 }
 
 async function getBlogData() {
@@ -158,17 +158,16 @@ async function createPages(data) {
   });
 }
 
-async function createCategoryPages(categories) {
+async function createCategoryPages(blogData) {
   const template = await readTemplate("page.html");
 
-  categories.forEach(async (cat) => {
-    const slug = createSlug(cat.name);
-    let html = await toHtml(
-      cat.name,
-      `Page for category <b>${cat.name}</b>`,
-      slug,
-      template
+  blogData.categories.forEach(async (cat) => {
+    const blogsHtml = getBlogsHtml(
+      blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
     );
+
+    const slug = createSlug(cat.name);
+    let html = await toHtml(cat.name, blogsHtml, slug, template);
     await fs.writeFile(
       path.join(__dirname, "build/categories", slug + ".html"),
       html

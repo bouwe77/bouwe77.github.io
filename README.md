@@ -14,8 +14,6 @@ uploaded to a web host.
 
 # TO DO
 
-- call build.js on Netlify instead of locally.
-- create categories page
+- call build.js on Netlify instead of locally???
 - automate creating new page or blog, specify categories also
-- automate updating categories page.
 - robots.txt + sitemap.xml -> Figure out how this works

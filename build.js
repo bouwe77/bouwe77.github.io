@@ -98,6 +98,7 @@ async function getPageData() {
       );
       const parsedFrontMatterAndMarkdown = fm(String(fileContents));
       parsedFrontMatterAndMarkdown.filename = filename;
+      parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
       pageData.pages.push(parsedFrontMatterAndMarkdown);
     })
   );
@@ -139,7 +140,12 @@ async function createPages(data) {
   const template = await readTemplate(data.template);
 
   data.pages.forEach(async (page) => {
-    let html = await toHtml(page.attributes.title, page.body, template);
+    let html = await toHtml(
+      page.attributes.title,
+      page.body,
+      page.slug,
+      template
+    );
     await fs.writeFile(
       path.join(__dirname, "build", page.filename.replace(/\.md$/, ".html")),
       html
@@ -152,20 +158,22 @@ async function createCategoryPages(categories) {
   const template = await readTemplate("page.html");
 
   categories.forEach(async (cat) => {
+    const slug = createSlug(cat.name);
     let html = await toHtml(
       cat.name,
       `Page for category <b>${cat.name}</b>`,
+      slug,
       template
     );
     await fs.writeFile(
-      path.join(__dirname, "build/categories", createSlug(cat.name) + ".html"),
+      path.join(__dirname, "build/categories", slug + ".html"),
       html
     );
     console.log("›", cat.name);
   });
 }
 
-async function toHtml(title, markdown, template) {
+async function toHtml(title, markdown, slug, template) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -179,6 +187,7 @@ async function toHtml(title, markdown, template) {
         let htmlPage = String(template);
         htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), title);
         htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), markup);
+        htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
 
         resolve(htmlPage);
       });

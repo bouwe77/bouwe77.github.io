@@ -1,6 +1,7 @@
 ---
 date: "2019-05-15"
 title: "My React workshops"
+summary: ""
 categories:
   - "React"
   - "Workshops"

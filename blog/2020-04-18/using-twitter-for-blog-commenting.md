@@ -1,6 +1,7 @@
 ---
 date: "2020-04-18"
 title: "Using Twitter for blog commenting"
+summary: ""
 categories:
   - "Blogging"
 ---
@@ -42,5 +43,3 @@ https://twitter.com/search?q=https://URL_TO_YOUR_BLOG_POST
 And you'll see the tweet you've just posted in step 1.
 
 Now add this link to your blog post too and name it "Discuss on Twitter". When someone clicks the link and replies to one of the tweets in the search result, that reply will also appear in that search result and this way your are building a discussion thread on your blog post.
-
-

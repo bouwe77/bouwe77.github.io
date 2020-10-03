@@ -3,16 +3,16 @@
   <title>Render Props Part III - A flexible and reusable Toggle component</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="w3.css" />
+  <link rel="stylesheet" href="/w3.css" />
+  <link rel="stylesheet" href="/styles.css" />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Bitter"
   />
-  <link rel="stylesheet" href="styles.css" />
   <body class="w3-light-grey">
     <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content. -->
-    <div class="w3-content" style="max-width: 1400px;">
+    <div class="w3-content" style="max-width: 1400px">
       <!-- Header -->
       <header class="w3-container w3-padding-32">
         <h1>
@@ -117,7 +117,7 @@ prop is not required as you can see in the <a href="https://reactjs.org/docs/typ
 
 Toggle.propTypes = {
   render: PropTypes.func.isRequired,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
 };
 </code></pre>
 <p>Nice, the Toggle component seems ready to receive an extra function which allows components that use the
@@ -214,7 +214,7 @@ improvements to make, so stay tuned for yet another (and hopefully last) blog po
 
     <!-- Footer -->
     <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-      <div class="w3-content" style="max-width: 1400px;">
+      <div class="w3-content" style="max-width: 1400px">
         <div class="w3-row">
           <div class="w3-col l8 s12">
             <a href="/workshops">Workshops</a> |

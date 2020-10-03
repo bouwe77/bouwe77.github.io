@@ -1,6 +1,7 @@
 ---
 date: "2019-05-20"
 title: "Render Props Part II: using the Toggle component"
+summary: ""
 categories:
   - "React"
   - "render props"
@@ -100,7 +101,7 @@ function Toggle({ render, toggle, on = false }) {
 Toggle.propTypes = {
   render: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
-  on: PropTypes.bool
+  on: PropTypes.bool,
 };
 ```
 

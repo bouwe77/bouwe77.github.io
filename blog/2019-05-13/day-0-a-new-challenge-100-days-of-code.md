@@ -1,6 +1,7 @@
 ---
 date: "2019-05-13"
 title: "Day 0 - A new challenge - 100 Days of Code"
+summary: "miep miep zoef"
 categories:
   - "100 days of code"
   - "Personal"

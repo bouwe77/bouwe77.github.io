@@ -1,6 +1,7 @@
 ---
 date: "2019-09-25"
 title: "Wat je leert in mijn React Foundation training"
+summary: ""
 categories:
   - "React"
   - "Workshops"

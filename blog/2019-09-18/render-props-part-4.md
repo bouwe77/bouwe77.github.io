@@ -1,6 +1,7 @@
 ---
 date: "2019-09-18"
 title: "Render Props Part IV - Keep It Simple Stupid"
+summary: ""
 categories:
   - "React"
   - "render props"

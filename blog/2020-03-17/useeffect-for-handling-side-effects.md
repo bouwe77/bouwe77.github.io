@@ -1,6 +1,7 @@
 ---
 date: "2020-03-17"
 title: "useEffect for handling side effects"
+summary: ""
 categories:
   - "React"
   - "useEffect"
@@ -132,7 +133,7 @@ function App() {
   const [text, setText] = useState();
 
   useEffect(function getTextFromApi() {
-    getRandomText().then(text => setText(text));
+    getRandomText().then((text) => setText(text));
   });
 
   return (
@@ -183,7 +184,7 @@ So the only thing we have to add in our code is an empty array as the second arg
 ```js
 useEffect(
   function getTextFromApi() {
-    getRandomText().then(text => setText(text));
+    getRandomText().then((text) => setText(text));
   },
   [] // <=== Empty dependency array
 );
@@ -204,7 +205,7 @@ the moment to add the `clicked` variable to the dependency array:
 ```js
 useEffect(
   function getTextFromApi() {
-    getNumberText(clicked).then(text => setText(text));
+    getNumberText(clicked).then((text) => setText(text));
   },
   [clicked]
 );

@@ -3,16 +3,16 @@
   <title>My own React presentation tool</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="w3.css" />
+  <link rel="stylesheet" href="/w3.css" />
+  <link rel="stylesheet" href="/styles.css" />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Bitter"
   />
-  <link rel="stylesheet" href="styles.css" />
   <body class="w3-light-grey">
     <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content. -->
-    <div class="w3-content" style="max-width: 1400px;">
+    <div class="w3-content" style="max-width: 1400px">
       <!-- Header -->
       <header class="w3-container w3-padding-32">
         <h1>
@@ -118,9 +118,13 @@ export default () => null;
 <p>Nice, let's add some navigation to the <code>App</code> component. For now, I'll add <em>prev</em> and
 <em>next</em> buttons, and functions that will handle clicking these buttons:</p>
 <pre><code class="language-js">function App() {
-  function goToPrev() { /* TODO: go to previous slide */ }
+  function goToPrev() {
+    /* TODO: go to previous slide */
+  }
 
-  function goToNext() { /* TODO: go to next slide */ }
+  function goToNext() {
+    /* TODO: go to next slide */
+  }
 
   function Navigation() {
     return (
@@ -238,7 +242,7 @@ for another blog post.</p>
 
     <!-- Footer -->
     <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-      <div class="w3-content" style="max-width: 1400px;">
+      <div class="w3-content" style="max-width: 1400px">
         <div class="w3-row">
           <div class="w3-col l8 s12">
             <a href="/workshops">Workshops</a> |

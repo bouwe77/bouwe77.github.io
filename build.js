@@ -12,6 +12,7 @@ import report from "vfile-reporter";
 import fm from "front-matter";
 
 import { getBlogCategoriesHtml } from "./partials/blogCategories";
+import { getBlogsHtml } from "./partials/blogs";
 
 const __dirname = path.resolve();
 const blogDirectory = "blog";
@@ -35,7 +36,7 @@ async function go() {
   const blogData = await getBlogData();
 
   // Create the HOME page, which is a combination of an HTML template and subtemplates.
-  await createHomePage(blogData.categories);
+  await createHomePage(blogData);
 
   // Convert all PAGE markdown files with front matter to HTML pages and copy them to the build folder.
   await createPages(pageData);
@@ -62,6 +63,9 @@ async function getBlogData() {
       const parsedFrontMatterAndMarkdown = fm(String(fileContents));
 
       parsedFrontMatterAndMarkdown.filename = filename;
+      parsedFrontMatterAndMarkdown.slug = createSlug(
+        parsedFrontMatterAndMarkdown.attributes.title
+      );
       blogData.pages.push(parsedFrontMatterAndMarkdown);
 
       parsedFrontMatterAndMarkdown.attributes.categories.forEach(
@@ -116,12 +120,17 @@ async function copyStaticFiles() {
   );
 }
 
-async function createHomePage(blogCategories) {
+async function createHomePage(blogData) {
   let html = await readTemplate("home.html");
 
   html = String(html).replace(
+    new RegExp("{{ blogs }}", "g"),
+    getBlogsHtml(blogData.pages)
+  );
+
+  html = String(html).replace(
     new RegExp("{{ blogCategories }}", "g"),
-    getBlogCategoriesHtml(blogCategories)
+    getBlogCategoriesHtml(blogData.categories)
   );
 
   await fs.writeFile(path.join(__dirname, "build", "index.html"), String(html));

@@ -1,17 +1,17 @@
 export function getBlogCategoriesHtml(blogCategories) {
   const template = `<span class="w3-tag w3-light-grey w3-margin-bottom"
-  ><a href="categories/###slug###"
-    >###name### (###count###)</a
+  ><a href="categories/{{ slug }}"
+    >{{ name }} ({{ count }})</a
   ></span
   > `;
 
-  let meuk = "";
+  let html = "";
   blogCategories.forEach((cat) => {
-    meuk += template
-      .replace("###slug###", cat.slug)
-      .replace("###name###", cat.name)
-      .replace("###count###", cat.count);
+    html += template
+      .replace(new RegExp("{{ slug }}", "g"), cat.slug)
+      .replace(new RegExp("{{ name }}", "g"), cat.name)
+      .replace(new RegExp("{{ count }}", "g"), cat.count);
   });
 
-  return meuk;
+  return html;
 }

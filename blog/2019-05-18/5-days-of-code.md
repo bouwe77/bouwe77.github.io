@@ -1,6 +1,7 @@
 ---
 date: "2019-05-18"
 title: "5 Days of Code"
+summary: ""
 categories:
   - "100 days of code"
   - "Personal"

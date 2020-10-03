@@ -1,6 +1,7 @@
 ---
 date: "2019-05-30"
 title: "Render Props Part III - A flexible and reusable Toggle component"
+summary: ""
 categories:
   - "React"
   - "render props"
@@ -114,7 +115,7 @@ function Toggle({ render, onToggle }) {
 
 Toggle.propTypes = {
   render: PropTypes.func.isRequired,
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
 };
 ```
 

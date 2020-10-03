@@ -1,6 +1,7 @@
 ---
 date: "2019-05-17"
 title: "Day 4 - Render props"
+summary: ""
 categories:
   - "100 days of code"
   - "React"
@@ -22,7 +23,7 @@ So what is render props?
 > Render props is a pattern you can use to separate how a component _works_ from how it _looks_.
 
 If you make this separation you can reuse the component's functionality in
-other components that each define their own UI for that functionality. It also can be a nice 
+other components that each define their own UI for that functionality. It also can be a nice
 way to just separate the functionality from the UI when either one is complicated and you want
 your code to be more readable or easier testable.
 

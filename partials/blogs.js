@@ -6,17 +6,6 @@ export function getBlogsHtml(blogs) {
         <b><a href="/{{ slug }}">{{ title }}</a></b>
     </h3>
     </div>
-    <div class="w3-container">
-    <p>{{ summary }}</p>
-    <div class="w3-row">
-        <div class="w3-col m8 s12">
-        <p>
-            <a href="/{{ slug }}">read more »</a>
-        </p>
-        </div>
-        <div class="w3-col m4 w3-hide-small"></div>
-    </div>
-    </div>
 </div>
 <hr />`;
 

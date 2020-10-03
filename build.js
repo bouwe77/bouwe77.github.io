@@ -63,9 +63,7 @@ async function getBlogData() {
       const parsedFrontMatterAndMarkdown = fm(String(fileContents));
 
       parsedFrontMatterAndMarkdown.filename = filename;
-      parsedFrontMatterAndMarkdown.slug = createSlug(
-        parsedFrontMatterAndMarkdown.attributes.title
-      );
+      parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
       blogData.pages.push(parsedFrontMatterAndMarkdown);
 
       parsedFrontMatterAndMarkdown.attributes.categories.forEach(

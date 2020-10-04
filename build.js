@@ -149,12 +149,24 @@ async function createPages(data) {
   const template = await readTemplate(data.template);
 
   data.pages.forEach(async (page) => {
-    let html = await toHtml(
-      page.attributes.title,
-      page.body,
-      page.slug,
-      template
-    );
+    const makeHtmlPage = (content) => {
+      let htmlPage = String(template);
+      htmlPage = htmlPage.replace(
+        new RegExp("{{ title }}", "g"),
+        page.attributes.title
+      );
+
+      if (page.attributes.date)
+        htmlPage = htmlPage.replace(
+          new RegExp("{{ date }}", "g"),
+          formatDate(page.attributes.date)
+        );
+      htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
+      htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), page.slug);
+      return htmlPage;
+    };
+
+    let html = await toHtml(makeHtmlPage, page.body);
     await fs.writeFile(
       path.join(__dirname, "build", page.filename.replace(/\.md$/, ".html")),
       html
@@ -172,7 +184,16 @@ async function createCategoryPages(blogData) {
     );
 
     const slug = createSlug(cat.name);
-    let html = await toHtml(cat.name, blogsHtml, slug, template);
+
+    const makeHtmlPage = (content) => {
+      let htmlPage = String(template);
+      htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), cat.name);
+      htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
+      htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
+      return htmlPage;
+    };
+
+    let html = await toHtml(makeHtmlPage, blogsHtml);
     await fs.writeFile(
       path.join(__dirname, "build/categories", slug + ".html"),
       html
@@ -181,7 +202,7 @@ async function createCategoryPages(blogData) {
   });
 }
 
-async function toHtml(title, markdown, slug, template) {
+async function toHtml(makeHtmlPage, markdown) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -192,10 +213,7 @@ async function toHtml(title, markdown, slug, template) {
           reject(err);
         }
 
-        let htmlPage = String(template);
-        htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), title);
-        htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), markup);
-        htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
+        const htmlPage = makeHtmlPage(markup);
 
         resolve(htmlPage);
       });
@@ -215,4 +233,25 @@ function createSlug(text) {
     .replace(/[^\w-]+/g, "");
 
   return slug;
+}
+
+function formatDate(date) {
+  const dateSegments = date.split("-");
+
+  const months = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ];
+
+  return `${dateSegments[2]} ${months[dateSegments[1] - 1]} ${dateSegments[0]}`;
 }

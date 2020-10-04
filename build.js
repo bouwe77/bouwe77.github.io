@@ -1,6 +1,4 @@
 // Waar ik was gebleven:
-// 1. Datum tonen bij een blog post detail pagina
-// 2. Discuss en Share on Twitter links onder elke blog
 // 3. Toch maar een ander, simpeler template, dus al die W3Schools meuk eruit slopen...
 
 import path from "path";

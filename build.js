@@ -251,5 +251,7 @@ function formatDate(date) {
     "dec",
   ];
 
-  return `${dateSegments[2]} ${months[dateSegments[1] - 1]} ${dateSegments[0]}`;
+  return `${months[dateSegments[1] - 1]} ${dateSegments[2]}, ${
+    dateSegments[0]
+  }`;
 }

@@ -44,6 +44,15 @@ async function go() {
 
   // Create a page for each blog category.
   await createCategoryPages(blogData);
+
+  console.log(" _                                _");
+  console.log("| |                              (_)");
+  console.log("| |__   ___  _   ___      _____   _  ___");
+  console.log("| '_ \\ / _ \\| | | \\ \\ /\\ / / _ \\ | |/ _ \\");
+  console.log("| |_) | (_) | |_| |\\ V  V /  __/_| | (_) |");
+  console.log("|_.__/ \\___/ \\__,_| \\_/\\_/ \\___(_)_|\\___/");
+
+  console.log("\nDone!\n");
 }
 
 async function getBlogData() {
@@ -121,7 +130,7 @@ async function copyStaticFiles() {
         path.join(__dirname, staticDirectory, filename),
         path.join(__dirname, buildDirectory, filename)
       );
-      console.log("›", filename);
+      //console.log("›", filename);
     })
   );
 }
@@ -140,7 +149,7 @@ async function createHomePage(blogData) {
   );
 
   await fs.writeFile(path.join(__dirname, "build", "index.html"), String(html));
-  console.log("›", "index.html");
+  //console.log("›", "index.html");
 }
 
 async function createPages(data) {
@@ -169,7 +178,7 @@ async function createPages(data) {
       path.join(__dirname, "build", page.filename.replace(/\.md$/, ".html")),
       html
     );
-    console.log("›", page.filename);
+    //console.log("›", page.filename);
   });
 }
 
@@ -196,7 +205,7 @@ async function createCategoryPages(blogData) {
       path.join(__dirname, "build/categories", slug + ".html"),
       html
     );
-    console.log("›", cat.name);
+    //console.log("›", cat.name);
   });
 }
 

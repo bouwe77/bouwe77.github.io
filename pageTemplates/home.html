@@ -3,38 +3,37 @@
   <title>bouwe.io</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/w3.css" />
   <link rel="stylesheet" href="/styles.css" />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Bitter"
   />
-  <body class="w3-light-grey">
+  <body>
     <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content. -->
-    <div class="w3-content" style="max-width: 1400px">
+    <div>
       <!-- Header -->
-      <header class="w3-container w3-padding-32">
+      <header>
         <h1>
           <b><a href="/">bouwe.io</a></b>
         </h1>
       </header>
 
       <!-- Grid -->
-      <div class="w3-row">
+      <div>
         <!-- Blog entries -->
-        <div class="w3-col l8 s12">
+        <div>
           {{ blogs }}
 
           <!-- END BLOG ENTRIES -->
         </div>
 
         <!-- Introduction menu -->
-        <div class="w3-col l4">
+        <div>
           <!-- About Card -->
-          <div class="w3-card w3-margin w3-margin-top">
+          <div>
             <img src="/bouwe-react-amsterdam.png" style="width: 100%" />
-            <div class="w3-container w3-white">
+            <div>
               <h4><b>Hi, I am Bouwe</b></h4>
               <p>
                 I am Bouwe, an enthusiastic and experienced software engineer at
@@ -50,8 +49,8 @@ and is wrapped around the whole page content. -->
           <hr />
 
           <!-- Labels / tags -->
-          <div class="w3-card w3-margin">
-            <div class="w3-container w3-white">
+          <div>
+            <div>
               <h4><b>Blog categories</b></h4>
               <p>{{ blogCategories }}</p>
             </div>
@@ -68,10 +67,10 @@ and is wrapped around the whole page content. -->
     </div>
 
     <!-- Footer -->
-    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-      <div class="w3-content" style="max-width: 1400px">
-        <div class="w3-row">
-          <div class="w3-col l8 s12">
+    <footer>
+      <div>
+        <div>
+          <div>
             <a href="/workshops">Workshops</a> |
             <a href="/react">React</a>
           </div>

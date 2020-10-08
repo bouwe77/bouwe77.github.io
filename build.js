@@ -52,7 +52,7 @@ async function go() {
   console.log("| |_) | (_) | |_| |\\ V  V /  __/_| | (_) |");
   console.log("|_.__/ \\___/ \\__,_| \\_/\\_/ \\___(_)_|\\___/");
 
-  console.log("\nDone!\n");
+  console.log("\n✓ Done!\n");
 }
 
 async function getBlogData() {

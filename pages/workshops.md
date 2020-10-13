@@ -15,6 +15,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 - Oct 23, 2020 React Foundation **training** @ Zoom (online) https://newnexus.nl/react-foundation
 - Nov 6, 2020 React Hooks **training** @ Zoom (online) https://newnexus.nl/react-hooks
+- Dec 3, 2020 "Travelling Through Space with React" React beginner **workshop** @ Zoom (online)
 
 #### Past events
 

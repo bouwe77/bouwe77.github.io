@@ -1,13 +1,12 @@
 export function getBlogsHtml(blogs) {
   const template = `
-<div class="w3-card-4 w3-margin w3-white">
-    <div class="w3-container">
+<div>
+    <div>
     <h3>
         <b><a href="/{{ slug }}">{{ title }}</a></b>
     </h3>
     </div>
-</div>
-<hr />`;
+</div>`;
 
   let html = "";
   blogs.forEach((blog) => {

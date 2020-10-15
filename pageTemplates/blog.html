@@ -10,60 +10,37 @@
   />
   <body>
     <div>
-      <!-- Header -->
       <header>
         <h1>
           <b><a href="/">bouwe.io</a></b>
         </h1>
       </header>
 
-      <!-- Grid -->
       <div>
         <div>
-          <!-- Blog entry -->
-          <div>
-            <div>
-              {{ date }}
-              <h3>
-                <b><a href="/{{ slug }}">{{ title }}</a></b>
-              </h3>
-            </div>
-            <div>{{ content }}</div>
-            <div>
-              <a
-                href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
-                >Share on Twitter</a
-              >
-              -
-              <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
-                >Discuss on Twitter</a
-              >
-            </div>
-          </div>
-          <hr />
+          {{ date }}
+          <h3>
+            <b><a href="/{{ slug }}">{{ title }}</a></b>
+          </h3>
         </div>
-
-        <!-- Right side bar -->
+        <div>{{ content }}</div>
         <div>
-          <!-- END right side bar -->
+          <a
+            href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
+            >Share on Twitter</a
+          >
+          -
+          <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
+            >Discuss on Twitter</a
+          >
         </div>
-
-        <!-- END GRID -->
       </div>
-      <br />
-
-      <!-- END content -->
     </div>
 
-    <!-- Footer -->
     <footer>
       <div>
-        <div>
-          <div>
-            <a href="/workshops">Workshops</a> |
-            <a href="/react">React</a>
-          </div>
-        </div>
+        <a href="/workshops">Workshops</a> |
+        <a href="/react">React</a>
       </div>
     </footer>
   </body>

@@ -10,71 +10,39 @@
   />
   <body>
     <div>
-      <!-- Header -->
       <header>
         <h1>
           <b><a href="/">bouwe.io</a></b>
         </h1>
       </header>
 
-      <!-- Grid -->
       <div>
-        <!-- Blog entries -->
-        <div>
-          {{ blogs }}
-
-          <!-- END BLOG ENTRIES -->
-        </div>
-
-        <!-- Introduction menu -->
-        <div>
-          <!-- About Card -->
-          <div>
-            <!--
-            <img src="/bouwe-react-amsterdam.png" style="width: 100%" />
-          -->
-            <div>
-              <h4><b>Hi, I am Bouwe</b></h4>
-              <p>
-                I am Bouwe, an enthusiastic and experienced software engineer at
-                <a href="https://newnexus.nl">New Nexus</a> in The Netherlands.
-                Besides my daily job of developing .NET applications in C#, I am
-                learning <a href="/react">React.js</a> by
-                <a href="/workshops">teaching it to others</a>. You can contact
-                me on <a href="https://twitter.com/bouwe">Twitter</a> or find my
-                code on <a href="https://github.com/bouwe77">GitHub</a>.
-              </p>
-            </div>
-          </div>
-          <hr />
-
-          <!-- Labels / tags -->
-          <div>
-            <div>
-              <h4><b>Blog categories</b></h4>
-              <p>{{ blogCategories }}</p>
-            </div>
-          </div>
-
-          <!-- END Introduction Menu -->
-        </div>
-
-        <!-- END GRID -->
+        <!--
+          <img src="/bouwe-react-amsterdam.png" style="width: 100%" />
+        -->
+        <p>
+          Hi, I am Bouwe, an enthusiastic and experienced software engineer at
+          <a href="https://newnexus.nl">New Nexus</a> in The Netherlands.
+          Besides my daily job of developing .NET applications in C#, I am
+          learning <a href="/react">React.js</a> by
+          <a href="/workshops">teaching it to others</a>. You can contact me on
+          <a href="https://twitter.com/bouwe">Twitter</a> or find my code on
+          <a href="https://github.com/bouwe77">GitHub</a>.
+        </p>
       </div>
-      <br />
 
-      <!-- END content -->
+      <div>{{ blogs }}</div>
+
+      <div>
+        <h4><b>Blog categories</b></h4>
+        <p>{{ blogCategories }}</p>
+      </div>
     </div>
 
-    <!-- Footer -->
     <footer>
       <div>
-        <div>
-          <div>
-            <a href="/workshops">Workshops</a> |
-            <a href="/react">React</a>
-          </div>
-        </div>
+        <a href="/workshops">Workshops</a> |
+        <a href="/react">React</a>
       </div>
     </footer>
   </body>

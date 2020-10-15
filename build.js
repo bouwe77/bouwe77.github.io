@@ -1,3 +1,6 @@
+
+// TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
+
 import path from "path";
 import { promises as fs } from "fs";
 import shell from "shelljs";

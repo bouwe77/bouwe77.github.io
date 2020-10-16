@@ -10,22 +10,23 @@ import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
 
-import { getBlogCategoriesHtml } from "./templates/blogCategories";
-import { getBlogsHtml } from "./templates/blogs";
+import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
+import { getBlogsHtml } from "./templates/partials/blogs";
 
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";
 const pagesDirectory = "content/pages";
 const staticDirectory = "templates/static";
 const publishDirectory = "publish";
+const publishCategoriesDirectory = publishDirectory + "/categories"
 const templatesDirectory = "templates";
 
 go();
 
 async function go() {
-  shell.rm("-rf", "publish");
-  shell.mkdir("publish");
-  shell.mkdir("publish/categories");
+  shell.rm("-rf", publishDirectory);
+  shell.mkdir(publishDirectory);
+  shell.mkdir(publishCategoriesDirectory);
 
   // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
@@ -149,7 +150,7 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtml(blogData.categories)
   );
 
-  await fs.writeFile(path.join(__dirname, "publish", "index.html"), String(html));
+  await fs.writeFile(path.join(__dirname, publishDirectory, "index.html"), String(html));
   //console.log("›", "index.html");
 }
 
@@ -176,7 +177,7 @@ async function createPages(data) {
 
     let html = await toHtml(makeHtmlPage, page.body);
     await fs.writeFile(
-      path.join(__dirname, "publish", page.filename.replace(/\.md$/, ".html")),
+      path.join(__dirname, publishDirectory, page.filename.replace(/\.md$/, ".html")),
       html
     );
     //console.log("›", page.filename);
@@ -203,7 +204,7 @@ async function createCategoryPages(blogData) {
 
     let html = await toHtml(makeHtmlPage, blogsHtml);
     await fs.writeFile(
-      path.join(__dirname, "publish/categories", slug + ".html"),
+      path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
       html
     );
     //console.log("›", cat.name);

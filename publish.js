@@ -1,5 +1,6 @@
 
 // TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
+//TODO favicon en dergelijke overnemen van bouwe.io
 
 import path from "path";
 import { promises as fs } from "fs";
@@ -9,24 +10,24 @@ import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
 
-import { getBlogCategoriesHtml } from "./partials/blogCategories";
-import { getBlogsHtml } from "./partials/blogs";
+import { getBlogCategoriesHtml } from "./templates/blogCategories";
+import { getBlogsHtml } from "./templates/blogs";
 
 const __dirname = path.resolve();
-const blogDirectory = "blog";
-const pagesDirectory = "pages";
-const staticDirectory = "static";
-const buildDirectory = "build";
-const templatesDirectory = "pageTemplates";
+const blogDirectory = "content/blog";
+const pagesDirectory = "content/pages";
+const staticDirectory = "templates/static";
+const publishDirectory = "publish";
+const templatesDirectory = "templates";
 
 go();
 
 async function go() {
-  shell.rm("-rf", "build");
-  shell.mkdir("build");
-  shell.mkdir("build/categories");
+  shell.rm("-rf", "publish");
+  shell.mkdir("publish");
+  shell.mkdir("publish/categories");
 
-  // Copy all files from the static folder as-is to the build folder.
+  // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
 
   // Get front matter and markdown content for all pages and blogs.
@@ -36,10 +37,10 @@ async function go() {
   // Create the HOME page, which is a combination of an HTML template and subtemplates.
   await createHomePage(blogData);
 
-  // Convert all PAGE markdown files with front matter to HTML pages and copy them to the build folder.
+  // Convert all PAGE markdown files with front matter to HTML pages and copy them to the publish folder.
   await createPages(pageData);
 
-  // Convert all BLOG markdown files with front matter to HTML pages and copy them to the build folder.
+  // Convert all BLOG markdown files with front matter to HTML pages and copy them to the publish folder.
   await createPages(blogData);
 
   // Create a page for each blog category.
@@ -128,7 +129,7 @@ async function copyStaticFiles() {
     staticFiles.map(async (filename) => {
       await fs.copyFile(
         path.join(__dirname, staticDirectory, filename),
-        path.join(__dirname, buildDirectory, filename)
+        path.join(__dirname, publishDirectory, filename)
       );
       //console.log("›", filename);
     })
@@ -148,7 +149,7 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtml(blogData.categories)
   );
 
-  await fs.writeFile(path.join(__dirname, "build", "index.html"), String(html));
+  await fs.writeFile(path.join(__dirname, "publish", "index.html"), String(html));
   //console.log("›", "index.html");
 }
 
@@ -175,7 +176,7 @@ async function createPages(data) {
 
     let html = await toHtml(makeHtmlPage, page.body);
     await fs.writeFile(
-      path.join(__dirname, "build", page.filename.replace(/\.md$/, ".html")),
+      path.join(__dirname, "publish", page.filename.replace(/\.md$/, ".html")),
       html
     );
     //console.log("›", page.filename);
@@ -202,7 +203,7 @@ async function createCategoryPages(blogData) {
 
     let html = await toHtml(makeHtmlPage, blogsHtml);
     await fs.writeFile(
-      path.join(__dirname, "build/categories", slug + ".html"),
+      path.join(__dirname, "publish/categories", slug + ".html"),
       html
     );
     //console.log("›", cat.name);

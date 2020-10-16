@@ -58,3 +58,5 @@ I will keep updating this list as it is a note to self in the first place.
 [using composition in react to avoid "prop drilling"]: https://youtu.be/3XaXKiXtNjw
 [the beginner's guide to react]: https://egghead.io/courses/the-beginner-s-guide-to-react
 [a complete guide to useeffect]: https://overreacted.io/a-complete-guide-to-useeffect
+[react category]: /categories/react
+[workshops page]: /workshops

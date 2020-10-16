@@ -2,6 +2,7 @@ body {
   max-width: 1080px;
   margin: 0 auto !important;
   float: none !important;
+  font-size: 12pt;
 }
 
 body,
@@ -12,6 +13,26 @@ h4,
 h5 {
   font-family: "Roboto Mono", serif;
   color: "#000000b3";
+}
+
+h1 {
+  font-size: 22pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 16pt;
+}
+
+h4 {
+  font-size: 12pt;
+}
+
+h5 {
+  font-size: 14pt;
 }
 
 a:link,

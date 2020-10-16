@@ -45,3 +45,5 @@ That would be awesome! 😃 Contact me on [Twitter]!
 [live coding a game in react]: https://newnexus.nl/webinar/live-coding-a-game-in-react/
 [leren is delen, delen is leren]: https://newnexus.nl/webinar/leren-is-delen-delen-is-leren/
 [power to the client with graphql]: https://newnexus.nl/webinar/power-to-the-client-with-graphql/
+[workshops category]: /categories/workshops
+[twitter]: https://twitter.com/bouwe

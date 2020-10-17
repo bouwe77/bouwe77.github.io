@@ -1,5 +1,6 @@
 
-// TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
+//TODO CSS headings, tekst, code samples e.d. netjes maken
+//TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 //TODO favicon en dergelijke overnemen van bouwe.io
 
 import path from "path";

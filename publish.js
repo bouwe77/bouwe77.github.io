@@ -206,7 +206,7 @@ async function createCategoryPages(blogData) {
 
     const makeHtmlPage = (content) => {
       let htmlPage = String(template);
-      htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), cat.name);
+      htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), `Blog posts about "${cat.name}"`);
       htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
       htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
       return htmlPage;

@@ -5,6 +5,7 @@ summary: ""
 categories:
   - "React"
   - "render props"
+  - "useEffect"
 ---
 
 ** Introduction **

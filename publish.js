@@ -1,4 +1,3 @@
-
 //TODO CSS headings, tekst, code samples e.d. netjes maken
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 //TODO favicon en dergelijke overnemen van bouwe.io
@@ -13,13 +12,14 @@ import fm from "front-matter";
 
 import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
 import { getBlogsHtml } from "./templates/partials/blogs";
+import { createSlug } from "./utils";
 
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";
 const pagesDirectory = "content/pages";
 const staticDirectory = "templates/static";
 const publishDirectory = "publish";
-const publishCategoriesDirectory = publishDirectory + "/categories"
+const publishCategoriesDirectory = publishDirectory + "/categories";
 const templatesDirectory = "templates";
 
 go();
@@ -93,12 +93,8 @@ async function getBlogData() {
 
       // Sort the categories alphabetically.
       blogData.categories = blogData.categories.sort((a, b) =>
-      a.name > b.name
-        ? 1
-        : b.name > a.name
-        ? -1
-        : 0
-    );
+        a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+      );
     })
   );
 
@@ -160,7 +156,10 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtml(blogData.categories)
   );
 
-  await fs.writeFile(path.join(__dirname, publishDirectory, "index.html"), String(html));
+  await fs.writeFile(
+    path.join(__dirname, publishDirectory, "index.html"),
+    String(html)
+  );
   //console.log("›", "index.html");
 }
 
@@ -187,7 +186,11 @@ async function createPages(data) {
 
     let html = await toHtml(makeHtmlPage, page.body);
     await fs.writeFile(
-      path.join(__dirname, publishDirectory, page.filename.replace(/\.md$/, ".html")),
+      path.join(
+        __dirname,
+        publishDirectory,
+        page.filename.replace(/\.md$/, ".html")
+      ),
       html
     );
     //console.log("›", page.filename);
@@ -206,7 +209,10 @@ async function createCategoryPages(blogData) {
 
     const makeHtmlPage = (content) => {
       let htmlPage = String(template);
-      htmlPage = htmlPage.replace(new RegExp("{{ title }}", "g"), `Blog posts about "${cat.name}"`);
+      htmlPage = htmlPage.replace(
+        new RegExp("{{ title }}", "g"),
+        `Blog posts about "${cat.name}"`
+      );
       htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
       htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
       return htmlPage;
@@ -243,15 +249,6 @@ async function readTemplate(templateFile) {
   return await fs.readFile(
     path.join(__dirname, templatesDirectory, templateFile)
   );
-}
-
-function createSlug(text) {
-  let slug = text
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
-
-  return slug;
 }
 
 function formatDate(date) {

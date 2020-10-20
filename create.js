@@ -30,7 +30,10 @@ function askGeneralQuestions() {
       name: "title",
       type: "input",
       message: "Title:",
-      //TODO Required, not empty!
+      validate: (title) => {
+        if (title && title.length > 0) return true;
+        return "Please enter a title";
+      },
     },
   ];
 
@@ -39,7 +42,6 @@ function askGeneralQuestions() {
     .then(async (answers) => {
       if (answers.type === "Blog post") askBlogQuestions(answers);
       else {
-        console.log(answers);
         await createPage(answers);
       }
     })
@@ -84,10 +86,10 @@ title: ${pageData.title}
 This is a page about ${pageData.title}...
   `;
 
-  await fs.writeFile(
-    path.join(__dirname, pagesDirectory, filename),
-    String(text)
-  );
+  const filePath = path.join(__dirname, pagesDirectory, filename);
 
-  console.log(" ========= P A G E    C R E A T E D    S U C C E S S F U L L Y");
+  // The "wx" flag makes sure existing files are not overwritten.
+  await fs.writeFile(filePath, String(text), { flag: "wx" });
+
+  console.log("\n✓ Done!\n");
 }

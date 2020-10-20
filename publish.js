@@ -1,6 +1,7 @@
-//TODO CSS headings, tekst, code samples e.d. netjes maken
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 //TODO favicon en dergelijke overnemen van bouwe.io
+//TODO automate creating new page or blog, specify categories also
+//TODO robots.txt + sitemap.xml -> Figure out how this works
 
 import path from "path";
 import { promises as fs } from "fs";

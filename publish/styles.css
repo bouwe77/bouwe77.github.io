@@ -70,13 +70,3 @@ a:hover {
   text-align: right;
   padding: 10px;
 }
-
-pre {
-  padding: 0.75rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  overflow: scroll;
-  font-family: monospace;
-  color: rgb(156, 220, 254);
-  background-color: rgb(30, 30, 30);
-}

@@ -5,7 +5,7 @@
   "scripts": {
     "publish": "babel-node publish.js",
     "preview": "babel-node preview.js",
-    "blog": "babel-node blog.js"
+    "create": "babel-node create.js"
   },
   "repository": {
     "type": "git",

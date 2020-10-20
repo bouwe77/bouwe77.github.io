@@ -30,6 +30,7 @@ function askGeneralQuestions() {
       name: "title",
       type: "input",
       message: "Title:",
+      //TODO Required, not empty!
     },
   ];
 

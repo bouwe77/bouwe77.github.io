@@ -99,14 +99,13 @@ async function getBlogData() {
     })
   );
 
-  // Sort the blogs on date descending.
-  blogData.pages = blogData.pages.sort((a, b) =>
-    a.attributes.date > b.attributes.date
-      ? -1
-      : b.attributes.date > a.attributes.date
-      ? 1
-      : 0
-  );
+  // Sort the blogs on date descending and then by title ascending.
+  blogData.pages = blogData.pages.sort(function (a, b) {
+    if (a.attributes.date === b.attributes.date) {
+      return a.attributes.title > b.attributes.title ? 1 : -1;
+    }
+    return b.attributes.date > a.attributes.date ? 1 : -1;
+  });
 
   return blogData;
 }

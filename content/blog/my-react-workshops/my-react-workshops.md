@@ -50,7 +50,7 @@ suggestions on how to improve the workshop even further.
 
 Last week I read [Kent C. Dodds]' inspiring blog post about [solidifying what you learn]. Based on my
 experience so far, I realized that he is right when he says you can learn things by teaching others.
-Ofcourse, you have to have some knowledge about the subject, but don't wait too long to start sharing
+Of course, you have to have some knowledge about the subject, but don't wait too long to start sharing
 that. Because as soon as you start sharing it you gain knowledge even faster.
 
 So in June I will give my workshop for the third time and this time there are some people coming I do

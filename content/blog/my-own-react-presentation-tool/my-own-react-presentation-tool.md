@@ -245,7 +245,7 @@ To check out the code, go to this [CodeSandbox] or to the [Github repo]
 
 ** What's next? **
 
-This prototype has convinced me I can build my new presentation tool with it. Ofcourse
+This prototype has convinced me I can build my new presentation tool with it. Of course
 a few things have to be done before it's ready for using it in my workshops. Things like
 keyboard arrow navigation, CSS styling, code refactoring, etcetera. But that's something
 for another blog post.

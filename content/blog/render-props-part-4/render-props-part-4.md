@@ -8,7 +8,7 @@ categories:
   - "useEffect"
 ---
 
-**Introduction**
+### Introduction
 
 I wrote several blog posts about my learning process of the render props pattern.
 With every blog post I learned something new, but also made mistakes. But that's
@@ -22,7 +22,7 @@ in this case, it is not necessary to use `useEffect` for what I wanted to achiev
 
 In this blog post I will explain you why.
 
-**Do you haz teh codez?**
+### Do you haz teh codez?
 
 Sure, this is my `Toggle` component from [part 3]:
 
@@ -58,7 +58,7 @@ function passed by the component that uses the `Toggle` component. What typicall
 when calling the `onToggle` is that there happens some kind of state change in the
 component that uses the `Toggle` component.
 
-**Why useEffect?**
+### Why useEffect?
 
 As soon as the `on` state value changes, I use the `useEffect` to pass that new state
 value to the callback function so the parent component also can use that new value.
@@ -93,7 +93,7 @@ function Toggle({ render, onToggle }) {
 > the dependency array. However, we've removed the `useEffect` entirely, so that's
 > not an issue anymore.
 
-**How I figured this out**
+### How I figured this out
 
 After writing [part 3] it kept on disturbing me I had to use such a complicated
 solution for such a common and simple problem. So I started googling arround and
@@ -118,7 +118,7 @@ function handleClick() {
 
 I think the code comments explain a lot. :)
 
-**Conclusion**
+### Conclusion
 
 By writing this blog I not only learned something new, I also fixed crappy code and, last
 but not least, have a better understanding of the `useState` and `useEffect` hooks.

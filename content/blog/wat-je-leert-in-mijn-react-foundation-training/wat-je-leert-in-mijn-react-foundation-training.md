@@ -8,7 +8,7 @@ categories:
   - "Nederlands"
 ---
 
-**Waarom deze training?**
+### Waarom deze training?
 
 Alhoewel React al bestaat sinds 2013 is het de laatste jaren enorm in opkomst.
 Dat komt niet alleen omdat er een grote tech company achter zit. Ontwikkelaars
@@ -20,7 +20,7 @@ software gebouwd kan worden. In de praktijk rol je als developer van de ene
 in de andere techniek en is er vaak weinig tijd om er even goed in te duiken
 en een **goed fundament** te leggen. Deze training geeft jou dat fundament.
 
-**Waarom React?**
+### Waarom React?
 
 Wat je als ontwikkelaar in React doet, is verschillende bouwstenen maken die
 samen een webapplicatie vormen. Het voordeel van die bouwstenen is dat ze
@@ -33,7 +33,7 @@ gebouwd. Deze bouwstenen noemen we components.
 > van React en React Native zijn hetzelfde. De training is dus ook een goed
 > startpunt voor mobiele app ontwikkeling met React Native.
 
-**Wat zijn components?**
+### Wat zijn components?
 
 Een webapp bestaat uit allerlei UI onderdelen, denk aan een header, navigatie,
 content, formulieren, enzovoorts. Al deze onderdelen zijn components. Wat je
@@ -48,7 +48,7 @@ flexibiliteit om ze zowel los als samen te (her)gebruiken.
 Daarom kun je niet alleen een complete React app maken, maar ook een of meer
 components gebruiken in bijvoorbeeld een Wordpress website.
 
-**Maar wat doet React dan voor mij?**
+### Maar wat doet React dan voor mij?
 
 In de components die je bouwt, beschrijf je hoe de UI eruitziet en welke data
 getoond moet worden. Ook beschrijf je waar de data vandaan komt en hoe deze kan
@@ -65,7 +65,7 @@ de UI eruitziet en vooral ook _hoe_ elke verandering op de UI toegepast moet wor
 > **Meer weten?**
 > Kom dan naar de [React Foundation training] en ik vertel je er alles over!
 
-**Is React moeilijk te leren?**
+### Is React moeilijk te leren?
 
 Ja en nee. Nee, omdat je geen geavanceerde concepten zoals objectgeoriënteerd
 programmeren hoeft te beheersen. Daardoor is het erg **toegankelijk** voor frontend
@@ -96,7 +96,7 @@ geavanceerde concepten van React.
 > Denk aan de wat **complexere hooks** die React biedt en het maken van je eigen,
 > **custom hooks**.
 
-**Hoe verloopt de training?**
+### Hoe verloopt de training?
 
 We gaan een webapp bouwen vanaf scratch. Ik introduceer telkens een bepaald React
 onderdeel door middel van uitleg en voorbeeldcode. Vervolgens geef ik een opdracht

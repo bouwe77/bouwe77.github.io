@@ -8,7 +8,7 @@ categories:
   - "useEffect"
 ---
 
-** Introduction **
+### Introduction
 
 This is my third post about the [render props] pattern. I am still learning this pattern and to
 really solidify what I learn I am blogging about it as it forces me to explain the what,
@@ -34,7 +34,7 @@ So for this post my goal is to make the Toggle component stateful again (like I 
 [Part 1]) but also be able to update the current toggle state in the component that renders
 the Toggle component.
 
-** Plumbing **
+### Plumbing
 
 First, let's create a starting point. This is the stateful Toggle component I created in [Part 1]:
 
@@ -95,7 +95,7 @@ re-rendered.
 However, the App component wants to know the toggle state too so it knows whether the user wants to
 subscribe or not.
 
-** Callback props to the rescue **
+### Callback props to the rescue
 
 So therefore I let the Toggle component receive a second prop: an `onToggle` callback function.
 This function is called when a toggle occurs. I refactored the Toggle component so the toggle function
@@ -146,7 +146,7 @@ function App() {
 }
 ```
 
-** Testing **
+### Testing
 
 With this in place the current state of the Toggle should be reflected in the current subscription
 state in the App component.
@@ -164,7 +164,7 @@ finished updating that state. However, when using the useState hook this callbac
 exist. The fact that you want to do something with an updated state value is considered a side effect and
 therefore you have to use the `useEffect` hook.
 
-** Using the useEffect hook **
+### Using the useEffect hook
 
 [UseEffect] hooks are called initially after mounting the component and then after each render. It receives
 two arguments, the first is required and is the function that must be called by React for that side effect.
@@ -194,7 +194,7 @@ function Toggle({ render, onToggle }) {
 
 And whad'ya know, it works!
 
-** Conclusion **
+### Conclusion
 
 What we have achieved with this solution is that the on state in the Toggle component is always in sync
 with the subscribe state in the App component. However, keeping state in sync is optional, we have made

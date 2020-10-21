@@ -72,7 +72,7 @@
           </h2>
         </div>
 
-        <div><p><strong>Introduction</strong></p>
+        <div><h3>Introduction</h3>
 <p>I wrote several blog posts about my learning process of the render props pattern.
 With every blog post I learned something new, but also made mistakes. But that's
 what learning is about. And because I am learning in public, it kind of forces
@@ -82,7 +82,7 @@ finished my implementation of the <code>Toggle</code> component. However, I used
 hook, which is a great learning experience, but now, a few months later, I realized
 in this case, it is not necessary to use <code>useEffect</code> for what I wanted to achieve.</p>
 <p>In this blog post I will explain you why.</p>
-<p><strong>Do you haz teh codez?</strong></p>
+<h3>Do you haz teh codez?</h3>
 <p>Sure, this is my <code>Toggle</code> component from <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a>:</p>
 <pre><code class="language-js">function Toggle({ render, onToggle }) {
   const [on, setOn] = useState(false);
@@ -111,7 +111,7 @@ prop that is passed in the <code>Toggle</code> component: the <code>onToggle</co
 function passed by the component that uses the <code>Toggle</code> component. What typically happens
 when calling the <code>onToggle</code> is that there happens some kind of state change in the
 component that uses the <code>Toggle</code> component.</p>
-<p><strong>Why useEffect?</strong></p>
+<h3>Why useEffect?</h3>
 <p>As soon as the <code>on</code> state value changes, I use the <code>useEffect</code> to pass that new state
 value to the callback function so the parent component also can use that new value.</p>
 <p>I thought I had to "wait" for the state change to really have happened before I
@@ -139,7 +139,7 @@ callback function which makes it a dependency and therefore should be added to
 the dependency array. However, we've removed the <code>useEffect</code> entirely, so that's
 not an issue anymore.</p>
 </blockquote>
-<p><strong>How I figured this out</strong></p>
+<h3>How I figured this out</h3>
 <p>After writing <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a> it kept on disturbing me I had to use such a complicated
 solution for such a common and simple problem. So I started googling arround and
 stumbled upon <a href="https://www.reddit.com/r/reactjs/comments/a3y76f/react_hooks_setstate_gotcha/eba1fh0/">this Reddit post</a>.</p>
@@ -157,7 +157,7 @@ function handleClick() {
 }
 </code></pre>
 <p>I think the code comments explain a lot. :)</p>
-<p><strong>Conclusion</strong></p>
+<h3>Conclusion</h3>
 <p>By writing this blog I not only learned something new, I also fixed crappy code and, last
 but not least, have a better understanding of the <code>useState</code> and <code>useEffect</code> hooks.</p>
 <p>And I realized that learning in public can be a bit awkward, but more importantly, learning

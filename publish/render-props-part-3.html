@@ -72,7 +72,7 @@
           </h2>
         </div>
 
-        <div><p><strong> Introduction </strong></p>
+        <div><h3>Introduction</h3>
 <p>This is my third post about the <a href="https://bouwe.io/categories/render-props">render props</a> pattern. I am still learning this pattern and to
 really solidify what I learn I am blogging about it as it forces me to explain the what,
 why and how.</p>
@@ -92,7 +92,7 @@ it to NPM.</p>
 <p>So for this post my goal is to make the Toggle component stateful again (like I did in
 <a href="https://bouwe.io/day-4-render-props">Part 1</a>) but also be able to update the current toggle state in the component that renders
 the Toggle component.</p>
-<p><strong> Plumbing </strong></p>
+<h3>Plumbing</h3>
 <p>First, let's create a starting point. This is the stateful Toggle component I created in <a href="https://bouwe.io/day-4-render-props">Part 1</a>:</p>
 <pre><code class="language-js">function Toggle(props) {
   const [on, setOn] = useState(false);
@@ -141,7 +141,7 @@ component is updated and both the Toggle component and its children (the checkbo
 re-rendered.</p>
 <p>However, the App component wants to know the toggle state too so it knows whether the user wants to
 subscribe or not.</p>
-<p><strong> Callback props to the rescue </strong></p>
+<h3>Callback props to the rescue</h3>
 <p>So therefore I let the Toggle component receive a second prop: an <code>onToggle</code> callback function.
 This function is called when a toggle occurs. I refactored the Toggle component so the toggle function
 does both updating the local on state and calling the onToggle with this on state. Note that the onToggle
@@ -184,7 +184,7 @@ subscribe state. That function is passed to the Toggle component via the onToggl
   );
 }
 </code></pre>
-<p><strong> Testing </strong></p>
+<h3>Testing</h3>
 <p>With this in place the current state of the Toggle should be reflected in the current subscription
 state in the App component.</p>
 <p><em>However, it does not work!</em></p>
@@ -197,7 +197,7 @@ passing the state you want to change you can also pass a callback function that 
 finished updating that state. However, when using the useState hook this callback mechanism does no longer
 exist. The fact that you want to do something with an updated state value is considered a side effect and
 therefore you have to use the <code>useEffect</code> hook.</p>
-<p><strong> Using the useEffect hook </strong></p>
+<h3>Using the useEffect hook</h3>
 <p><a href="https://reactjs.org/docs/hooks-effect.html">UseEffect</a> hooks are called initially after mounting the component and then after each render. It receives
 two arguments, the first is required and is the function that must be called by React for that side effect.
 The second argument is optional and is an array of all variables the side effect is dependent on. That means
@@ -221,7 +221,7 @@ setOn back to where we call the render function:</p>
 }
 </code></pre>
 <p>And whad'ya know, it works!</p>
-<p><strong> Conclusion </strong></p>
+<h3>Conclusion</h3>
 <p>What we have achieved with this solution is that the on state in the Toggle component is always in sync
 with the subscribe state in the App component. However, keeping state in sync is optional, we have made
 the Toggle more flexible and reusable.</p>

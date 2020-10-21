@@ -18,7 +18,7 @@ to learn and solidify new things.
 
 However, the 100 Days of Code challenge is, well, challenging. As I said before,
 I code almost every day, so the only thing I have to do now is write about it.
-But that takes quite some time. Maybe my blog post are too long... 😊And too
+But that takes quite some time. Maybe my blog post are too long... 😊 And too
 detailed perhaps, but that's what I want. And also, having to write every day
 feels like an obligation and I don't want too many obligations.
 

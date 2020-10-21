@@ -14,7 +14,7 @@ Furthermore, depending on the platform you use for your blog it might even mean 
 
 So why not use Twitter for this? My workflow for using Twitter as my promotion and commenting platform is as follows:
 
-**Step 1 - Write and share your blog post**
+### Step 1 - Write and share your blog post
 
 First, I write a blog post (duh). Then, I share that post to Twitter. You can do this by hand by typing a tweet, but better is to add a "Share on Twitter" link to your blog post:
 
@@ -30,7 +30,7 @@ To share your blog post, you press the link yourself, and voila, a tweet is post
 
 And the nice thing is that everyone else who is reading your blog post can also click that same link and promote your blog post too! 💯
 
-**Step 2 - Comment on your blog via Twitter**
+### Step 2 - Comment on your blog via Twitter
 
 Now that your blog post is live you want readers to be able to comment on it and start a lively discussion. Let's use Twitter for that, because it's something Twitter is good at.
 

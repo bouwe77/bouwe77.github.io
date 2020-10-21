@@ -7,7 +7,7 @@ categories:
   - "useEffect"
 ---
 
-**Introduction**
+### Introduction
 
 React offers several hooks and one you'll encounter almost certainly, even when building
 the most basic app, is the `useEffect` hook.
@@ -17,7 +17,7 @@ However, it is not only very commonly used, it's also quite challenging to reall
 Although there are many other blog posts explaining this hook, I still write my own because I am sure
 it will help me to grasp it even better and I hope it does the same for you too.
 
-**Side effects**
+### Side effects
 
 The `useEffect` hook is for handling _side effects_ of React components. But what are side effects?
 
@@ -45,7 +45,7 @@ However, to make your app really dynamic and useful, you often need to fetch and
 maybe you need to start a timer which does something recurring. If these kind of things won't be triggered by
 a user (event), it is a _side effect_ for a React component.
 
-**Do You Haz Teh Codez?**
+### Do You Haz Teh Codez?
 
 Well, certainly. Let's create a very contrived and simple React app so we can really focus on side effects
 and `useEffect`. Our app consists of one component:
@@ -80,7 +80,7 @@ What we've implemented here is a regular UI component. It renders some kind of U
 user clicks the button, `clicked` is incremented and the component is rendered again. It is still pure,
 it always returns the same UI. Even when you click the button, the UI is very predictable.
 
-**Let's add a side effect**
+### Let's add a side effect
 
 While our app is really cool already, we decide to spice it up a bit. Instead of the _Hello World_ text,
 we want to display some random text we fetch from an API.
@@ -115,7 +115,7 @@ function App() {
 > It is common to pass an arrow function to `useEffect`, but by explicitely naming the function `getTextFromApi`
 > like I do here, it is much clearer what this side effect implementation actually does.
 
-**Calling an API inside `useEffect`**
+### Calling an API inside `useEffect`
 
 The current _Hello World_ text must be replaced by a text coming from the API, so we'll create a state variable for this called
 `text` and the function `setText` to update it. In the JSX we render this `text` variable instead of the hard-coded _Hello World_.
@@ -156,7 +156,7 @@ rendered for the first time.
 > A great blog post about fetching data with `useEffect` is Robin Wieruch's [How to fetch data with React Hooks?]. It also covers
 > working with `async` and `await`.
 
-**The dependency array**
+### The dependency array
 
 Now that we know _how_ to handle and implement side effects with the first argument to the `useEffect` call, let's look at controlling
 _when_ to execute these side effects. This is done by supplying a _second_ argument to `useEffect`, which is the so-called _dependency array_.
@@ -190,7 +190,7 @@ useEffect(
 );
 ```
 
-**A `useEffect` _with_ dependencies**
+### A `useEffect` _with_ dependencies
 
 Let's change our app so I can demonstrate how `useEffect` works when you do have a dependency.
 
@@ -211,7 +211,7 @@ useEffect(
 );
 ```
 
-**Closing note**
+### Closing note
 
 This post covered the basics of handling side effects in React with the `useEffect` hook. I learned a lot from it
 and I hope you did too.

@@ -8,7 +8,7 @@ categories:
   - "render props"
 ---
 
-**Render what?**
+### Render what?
 
 Render props is one of the React patterns that was on my "React To Do list" for some time.
 So today I decided to check out what the pattern is and to experiment with it.
@@ -27,7 +27,7 @@ other components that each define their own UI for that functionality. It also c
 way to just separate the functionality from the UI when either one is complicated and you want
 your code to be more readable or easier testable.
 
-**Toggle component**
+### Toggle component
 
 Let's create a very simple component, a Toggle component. Its functionality is that you can turn something on or off.
 And the component renders a button to allow that:
@@ -64,7 +64,7 @@ which in turn results in the button showing the current state.
 
 What we have now is just a Toggle component, we haven't done anything with render props.
 
-**Let's refactor first**
+### Let's refactor first
 
 The toggle button is fine, but wouldn't it be nice to optionally replace it with a checkbox?
 To make this possible the first step to take is moving the button out of the Toggle component into a function:
@@ -124,7 +124,7 @@ function Toggle() {
 The Toggle functionality still works, but _looks different_. We have verified our Toggle component has become _independent_ from
 the UI.
 
-**Render props at last**
+### Render props at last
 
 The final step we have to take is to tell the Toggle component which UI it has to render. And we'll do that by passing in that UI.
 And as we already created two functions that return the toggle UI, we need to change the Toggle component so it can receive one of

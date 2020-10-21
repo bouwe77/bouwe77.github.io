@@ -7,7 +7,7 @@ categories:
   - "render props"
 ---
 
-**Introduction**
+### Introduction
 
 In my first [blog post about the render props pattern] I created a Toggle component.
 This component contains all the logic to turn _something_ on or off.
@@ -18,7 +18,7 @@ render their own UI: a button and checkbox respectively.
 This implementation shows the purpose of the render props pattern: to _separate logic from layout
 so we can reuse the logic for different layouts_.
 
-**Is it ON or OFF?**
+### Is it ON or OFF?
 
 Now we will use the Toggle component in our app.
 
@@ -111,7 +111,7 @@ Toggle.propTypes = {
 > real world apps your logic is probably a bit more complex (or at least has more lines of code) and
 > then you are glad something like the render props pattern exists.
 
-**Conclusion**
+### Conclusion
 
 Long story short, basically we only moved the toggle state from the Toggle component to the App
 component. We didn't touch the render methods that render the toggle UI.

@@ -72,7 +72,7 @@
           </h2>
         </div>
 
-        <div><p><strong>Render what?</strong></p>
+        <div><h3>Render what?</h3>
 <p>Render props is one of the React patterns that was on my "React To Do list" for some time.
 So today I decided to check out what the pattern is and to experiment with it.</p>
 <p>As soon as I started reading what the pattern was it became clear to me it's not a thing I will
@@ -87,7 +87,7 @@ props into practice.</p>
 other components that each define their own UI for that functionality. It also can be a nice
 way to just separate the functionality from the UI when either one is complicated and you want
 your code to be more readable or easier testable.</p>
-<p><strong>Toggle component</strong></p>
+<h3>Toggle component</h3>
 <p>Let's create a very simple component, a Toggle component. Its functionality is that you can turn something on or off.
 And the component renders a button to allow that:</p>
 <pre><code class="language-js">function App() {
@@ -115,7 +115,7 @@ the value of the on variable.</p>
 <p>With the button's <code>onClick</code> we call the setOn function, which makes React re-render the component
 which in turn results in the button showing the current state.</p>
 <p>What we have now is just a Toggle component, we haven't done anything with render props.</p>
-<p><strong>Let's refactor first</strong></p>
+<h3>Let's refactor first</h3>
 <p>The toggle button is fine, but wouldn't it be nice to optionally replace it with a checkbox?
 To make this possible the first step to take is moving the button out of the Toggle component into a function:</p>
 <pre><code class="language-js">function renderToggleButton(toggle, on) {
@@ -158,7 +158,7 @@ But the UI is totally different.</p>
 </code></pre>
 <p>The Toggle functionality still works, but <em>looks different</em>. We have verified our Toggle component has become <em>independent</em> from
 the UI.</p>
-<p><strong>Render props at last</strong></p>
+<h3>Render props at last</h3>
 <p>The final step we have to take is to tell the Toggle component which UI it has to render. And we'll do that by passing in that UI.
 And as we already created two functions that return the toggle UI, we need to change the Toggle component so it can receive one of
 these functions. The way you pass in a function (or any value for that matter) to a component is by using props. And what we will

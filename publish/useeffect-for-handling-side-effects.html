@@ -72,13 +72,13 @@
           </h2>
         </div>
 
-        <div><p><strong>Introduction</strong></p>
+        <div><h3>Introduction</h3>
 <p>React offers several hooks and one you'll encounter almost certainly, even when building
 the most basic app, is the <code>useEffect</code> hook.</p>
 <p>However, it is not only very commonly used, it's also quite challenging to really grasp it.</p>
 <p>Although there are many other blog posts explaining this hook, I still write my own because I am sure
 it will help me to grasp it even better and I hope it does the same for you too.</p>
-<p><strong>Side effects</strong></p>
+<h3>Side effects</h3>
 <p>The <code>useEffect</code> hook is for handling <em>side effects</em> of React components. But what are side effects?</p>
 <blockquote>
 <p>In computer science, an operation, function or expression is said to have a side effect if it modifies
@@ -99,7 +99,7 @@ make reusable and testable UI components. They have no behavior other than rende
 <p>However, to make your app really dynamic and useful, you often need to fetch and send data from/to a server. Or
 maybe you need to start a timer which does something recurring. If these kind of things won't be triggered by
 a user (event), it is a <em>side effect</em> for a React component.</p>
-<p><strong>Do You Haz Teh Codez?</strong></p>
+<h3>Do You Haz Teh Codez?</h3>
 <p>Well, certainly. Let's create a very contrived and simple React app so we can really focus on side effects
 and <code>useEffect</code>. Our app consists of one component:</p>
 <pre><code class="language-js">function App() {
@@ -125,7 +125,7 @@ the current <code>clicked</code> value:</p>
 <p>What we've implemented here is a regular UI component. It renders some kind of UI and as soon as the
 user clicks the button, <code>clicked</code> is incremented and the component is rendered again. It is still pure,
 it always returns the same UI. Even when you click the button, the UI is very predictable.</p>
-<p><strong>Let's add a side effect</strong></p>
+<h3>Let's add a side effect</h3>
 <p>While our app is really cool already, we decide to spice it up a bit. Instead of the <em>Hello World</em> text,
 we want to display some random text we fetch from an API.</p>
 <p>To keep it simple, it doesn't matter which API we call and whether that API is REST or GraphQL.
@@ -153,7 +153,7 @@ React will do is call this function argument <em>after</em> each render.</p>
 <p>It is common to pass an arrow function to <code>useEffect</code>, but by explicitely naming the function <code>getTextFromApi</code>
 like I do here, it is much clearer what this side effect implementation actually does.</p>
 </blockquote>
-<p><strong>Calling an API inside <code>useEffect</code></strong></p>
+<h3>Calling an API inside <code>useEffect</code></h3>
 <p>The current <em>Hello World</em> text must be replaced by a text coming from the API, so we'll create a state variable for this called
 <code>text</code> and the function <code>setText</code> to update it. In the JSX we render this <code>text</code> variable instead of the hard-coded <em>Hello World</em>.</p>
 <p>Furthermore, we'll import the <code>getRandomText</code> function which does the actual API call.</p>
@@ -186,7 +186,7 @@ rendered for the first time.</p>
 <p>A great blog post about fetching data with <code>useEffect</code> is Robin Wieruch's <a href="https://www.robinwieruch.de/react-hooks-fetch-data">How to fetch data with React Hooks?</a>. It also covers
 working with <code>async</code> and <code>await</code>.</p>
 </blockquote>
-<p><strong>The dependency array</strong></p>
+<h3>The dependency array</h3>
 <p>Now that we know <em>how</em> to handle and implement side effects with the first argument to the <code>useEffect</code> call, let's look at controlling
 <em>when</em> to execute these side effects. This is done by supplying a <em>second</em> argument to <code>useEffect</code>, which is the so-called <em>dependency array</em>.</p>
 <p>This array must contain all variables where the side effect implementation in the first <code>useEffect</code> argument depends on.
@@ -209,7 +209,7 @@ And the easiest way to achieve that is to pass an <em>empty</em> dependency arra
   [] // &#x3C;=== Empty dependency array
 );
 </code></pre>
-<p><strong>A <code>useEffect</code> <em>with</em> dependencies</strong></p>
+<h3>A <code>useEffect</code> <em>with</em> dependencies</h3>
 <p>Let's change our app so I can demonstrate how <code>useEffect</code> works when you do have a dependency.</p>
 <p>Instead of getting a random text for the API I will call the so-called <a href="http://numbersapi.com">Numbers API</a>. This API returns trivia about numbers.
 I'll import the <code>getNumberText</code> function which handles calling the Numbers API and I remove the import of <code>getRandomText</code>.</p>
@@ -223,7 +223,7 @@ the moment to add the <code>clicked</code> variable to the dependency array:</p>
   [clicked]
 );
 </code></pre>
-<p><strong>Closing note</strong></p>
+<h3>Closing note</h3>
 <p>This post covered the basics of handling side effects in React with the <code>useEffect</code> hook. I learned a lot from it
 and I hope you did too.</p>
 <blockquote>

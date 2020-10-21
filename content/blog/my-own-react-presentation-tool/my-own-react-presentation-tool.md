@@ -7,7 +7,7 @@ categories:
   - "Workshops"
 ---
 
-** Introduction **
+### Introduction
 
 For my [React workshops] I use [MDX-Deck] as my presentation tool. MDX-Deck is
 a React application which let's you write your slides in MDX, a combination
@@ -30,7 +30,7 @@ Today I decided to make my own solution for being able to both show presentation
 slides and example code in one web app in CodeSandbox. This seems like a nice project
 to build myself and I like the idea of eating my own dog food during my workshops.
 
-** Usage **
+### Usage
 
 Let's start with describing how I want to use the app during my workshops, so I know
 what to build.
@@ -58,7 +58,7 @@ navigate to the next slide and continue my presentation. Then, after a few slide
 hit an example code slide again, swipe to code view, do my coding and talking, return back
 to presentation mode, and so on.
 
-** Prototype **
+### Prototype
 
 I'll start with a very minimal, but working prototype so I can check my solution
 as soon as possible and can make decisions on whether or how I will proceed.
@@ -111,7 +111,7 @@ that returns nothing:
 export default () => null;
 ```
 
-** Navigating between slides **
+### Navigating between slides
 
 Nice, let's add some navigation to the `App` component. For now, I'll add _prev_ and
 _next_ buttons, and functions that will handle clicking these buttons:
@@ -199,7 +199,7 @@ function App() {
 }
 ```
 
-** Storing the current slide between renders and browser tabs **
+### Storing the current slide between renders and browser tabs
 
 These are two very important features. Let me clarify what they mean.
 
@@ -228,7 +228,7 @@ const useCurrentSlideIndexState = createPersistedState("currentSlideIndex");
 const [currentSlideIndex, setCurrentSlideIndex] = useCurrentSlideIndexState(0);
 ```
 
-** Demos **
+### Demos
 
 See how the code view (left) and presentation view (right) are kept in sync, both when
 moving to the next slide as well as when live coding:
@@ -243,7 +243,7 @@ Done! :)
 
 To check out the code, go to this [CodeSandbox] or to the [Github repo]
 
-** What's next? **
+### What's next?
 
 This prototype has convinced me I can build my new presentation tool with it. Of course
 a few things have to be done before it's ready for using it in my workshops. Things like

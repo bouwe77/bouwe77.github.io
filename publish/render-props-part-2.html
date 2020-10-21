@@ -72,14 +72,14 @@
           </h2>
         </div>
 
-        <div><p><strong>Introduction</strong></p>
+        <div><h3>Introduction</h3>
 <p>In my first <a href="https://bouwe.io/day-4-render-props">blog post about the render props pattern</a> I created a Toggle component.
 This component contains all the logic to turn <em>something</em> on or off.</p>
 <p>I also implemented two components that use that toggle functionality but each
 render their own UI: a button and checkbox respectively.</p>
 <p>This implementation shows the purpose of the render props pattern: to <em>separate logic from layout
 so we can reuse the logic for different layouts</em>.</p>
-<p><strong>Is it ON or OFF?</strong></p>
+<h3>Is it ON or OFF?</h3>
 <p>Now we will use the Toggle component in our app.</p>
 <p>Let's render a <code>form</code> with a checkbox toggle in the <code>App</code> component so a user can save the
 toggle state:</p>
@@ -155,7 +155,7 @@ component is doing is inverting a boolean: <code>toggle(!on)</code>. I chose thi
 real world apps your logic is probably a bit more complex (or at least has more lines of code) and
 then you are glad something like the render props pattern exists.</p>
 </blockquote>
-<p><strong>Conclusion</strong></p>
+<h3>Conclusion</h3>
 <p>Long story short, basically we only moved the toggle state from the Toggle component to the App
 component. We didn't touch the render methods that render the toggle UI.</p>
 <p>What we have done is separated the responsibilities even more:</p>

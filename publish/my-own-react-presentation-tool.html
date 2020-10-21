@@ -72,7 +72,7 @@
           </h2>
         </div>
 
-        <div><p><strong> Introduction </strong></p>
+        <div><h3>Introduction</h3>
 <p>For my <a href="https://bouwe.io/categories/workshops">React workshops</a> I use <a href="https://github.com/jxnblk/mdx-deck">MDX-Deck</a> as my presentation tool. MDX-Deck is
 a React application which let's you write your slides in MDX, a combination
 of <strong>M</strong>ark<strong>D</strong>own and JS<strong>X</strong>.</p>
@@ -89,7 +89,7 @@ and the example code I build in CodeSandbox.</p>
 <p>Today I decided to make my own solution for being able to both show presentation
 slides and example code in one web app in CodeSandbox. This seems like a nice project
 to build myself and I like the idea of eating my own dog food during my workshops.</p>
-<p><strong> Usage </strong></p>
+<h3>Usage</h3>
 <p>Let's start with describing how I want to use the app during my workshops, so I know
 what to build.</p>
 <p>First of all, as I said, I want to use CodeSandbox. So during my workshop I will open
@@ -112,7 +112,7 @@ are immediately visible in the browser pane.</p>
 navigate to the next slide and continue my presentation. Then, after a few slides I'll
 hit an example code slide again, swipe to code view, do my coding and talking, return back
 to presentation mode, and so on.</p>
-<p><strong> Prototype </strong></p>
+<h3>Prototype</h3>
 <p>I'll start with a very minimal, but working prototype so I can check my solution
 as soon as possible and can make decisions on whether or how I will proceed.</p>
 <p>My proof of concept consists of 3 slides: a <em>presentation</em> slide, a <em>example code</em> slide
@@ -156,7 +156,7 @@ that returns nothing:</p>
 <pre><code class="language-js">// ./examples/HelloWorld.js
 export default () => null;
 </code></pre>
-<p><strong> Navigating between slides </strong></p>
+<h3>Navigating between slides</h3>
 <p>Nice, let's add some navigation to the <code>App</code> component. For now, I'll add <em>prev</em> and
 <em>next</em> buttons, and functions that will handle clicking these buttons:</p>
 <pre><code class="language-js">function App() {
@@ -232,7 +232,7 @@ it in the JSX as if it were a normal component:</p>
   );
 }
 </code></pre>
-<p><strong> Storing the current slide between renders and browser tabs </strong></p>
+<h3>Storing the current slide between renders and browser tabs</h3>
 <p>These are two very important features. Let me clarify what they mean.</p>
 <p>During the workshop I will edit example code, which results in the app being
 recompiled and restarted, which means the presentation will start at the first slide again.
@@ -252,7 +252,7 @@ hook that you can use instead of <code>useState</code> so the library can take c
 <pre><code class="language-js">const useCurrentSlideIndexState = createPersistedState("currentSlideIndex");
 const [currentSlideIndex, setCurrentSlideIndex] = useCurrentSlideIndexState(0);
 </code></pre>
-<p><strong> Demos </strong></p>
+<h3>Demos</h3>
 <p>See how the code view (left) and presentation view (right) are kept in sync, both when
 moving to the next slide as well as when live coding:</p>
 <img alt="Both browser windows are kept in sync" src="/react-slides-prototype-1.gif" width="672"/>
@@ -260,7 +260,7 @@ moving to the next slide as well as when live coding:</p>
 <img alt="Both browser windows are kept in sync" src="/react-slides-prototype-2.gif" width="672"/>
 <p>Done! :)</p>
 <p>To check out the code, go to this <a href="https://codesandbox.io/s/react-slides-prototype-8gobx">CodeSandbox</a> or to the <a href="https://github.com/bouwe77/react-slides-prototype">Github repo</a></p>
-<p><strong> What's next? </strong></p>
+<h3>What's next?</h3>
 <p>This prototype has convinced me I can build my new presentation tool with it. Of course
 a few things have to be done before it's ready for using it in my workshops. Things like
 keyboard arrow navigation, CSS styling, code refactoring, etcetera. But that's something

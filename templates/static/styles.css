@@ -77,3 +77,9 @@ blockquote {
   padding: 1px 10px;
   font-style: italic;
 }
+
+code {
+  background-color: #f4f3fa;
+  color: Black;
+  padding: 2px 4px;
+}

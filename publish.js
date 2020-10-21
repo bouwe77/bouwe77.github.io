@@ -1,7 +1,4 @@
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
-//TODO favicon en dergelijke overnemen van bouwe.io
-//TODO automate creating new page or blog, specify categories also
-//TODO robots.txt + sitemap.xml -> Figure out how this works
 
 import path from "path";
 import { promises as fs } from "fs";
@@ -70,20 +67,22 @@ async function getBlogData() {
       const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
       let files = await fs.readdir(subFolderPath);
 
-      files.forEach(async (filename) => {
+      for (const filename of files) {
         const filePath = path.join(subFolderPath, filename);
 
         var fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
+
+        // If it's not an .md file it is considered a static file that just needs to be copied as-is.
         if (fileExtension !== "md") {
-          // It's not an .md file so it is considered a static file that just needs to be copied as-is.
           await fs.copyFile(
             filePath,
             path.join(__dirname, publishDirectory, filename)
           );
-          return;
+
+          continue;
         }
 
-        // If we end up here it's an .md file.
+        // If we end up here it's an .md file for which the meta data is added to the blogData array.
         let fileContents = await fs.readFile(filePath);
         const parsedFrontMatterAndMarkdown = fm(String(fileContents));
 
@@ -105,7 +104,7 @@ async function getBlogData() {
               });
           }
         );
-      });
+      }
 
       // Sort the categories alphabetically.
       blogData.categories = blogData.categories.sort((a, b) =>

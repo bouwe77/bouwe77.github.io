@@ -1,3 +1,1 @@
 User-agent: *
-
-sitemap: https://bouwe.io/sitemap.xml

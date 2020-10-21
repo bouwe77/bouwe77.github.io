@@ -66,31 +66,46 @@ async function getBlogData() {
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
       if (subFolder.startsWith(".")) return;
+
       const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
       let files = await fs.readdir(subFolderPath);
-      const filename = files[0];
 
-      let fileContents = await fs.readFile(path.join(subFolderPath, filename));
-      const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+      files.forEach(async (filename) => {
+        const filePath = path.join(subFolderPath, filename);
 
-      parsedFrontMatterAndMarkdown.filename = filename;
-      parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
-      blogData.pages.push(parsedFrontMatterAndMarkdown);
-
-      parsedFrontMatterAndMarkdown.attributes.categories.forEach(
-        (categoryName) => {
-          var existingCategory = blogData.categories.find(
-            (category) => category.name === categoryName
+        var fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
+        if (fileExtension !== "md") {
+          // It's not an .md file so it is considered a static file that just needs to be copied as-is.
+          await fs.copyFile(
+            filePath,
+            path.join(__dirname, publishDirectory, filename)
           );
-          if (existingCategory) existingCategory.count++;
-          else
-            blogData.categories.push({
-              name: categoryName,
-              count: 1,
-              slug: createSlug(categoryName),
-            });
+          return;
         }
-      );
+
+        // If we end up here it's an .md file.
+        let fileContents = await fs.readFile(filePath);
+        const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+
+        parsedFrontMatterAndMarkdown.filename = filename;
+        parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
+        blogData.pages.push(parsedFrontMatterAndMarkdown);
+
+        parsedFrontMatterAndMarkdown.attributes.categories.forEach(
+          (categoryName) => {
+            var existingCategory = blogData.categories.find(
+              (category) => category.name === categoryName
+            );
+            if (existingCategory) existingCategory.count++;
+            else
+              blogData.categories.push({
+                name: categoryName,
+                count: 1,
+                slug: createSlug(categoryName),
+              });
+          }
+        );
+      });
 
       // Sort the categories alphabetically.
       blogData.categories = blogData.categories.sort((a, b) =>

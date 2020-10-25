@@ -1,6 +1,8 @@
 import inquirer from "inquirer";
 import path from "path";
-import { promises as fs } from "fs";
+import fs from "fs";
+
+import allCategories from "./allCategories.json";
 
 import { createSlug } from "./utils";
 
@@ -66,15 +68,62 @@ function askBlogQuestions(generalAnswers) {
     },
     {
       name: "categories",
-      type: "input",
+      type: "checkbox",
       message: "Categories:",
+      choices: allCategories.map((category) => {
+        return {
+          name: category,
+        };
+      }),
+    },
+    {
+      name: "additionalCategories",
+      type: "input",
+      message: "Additional categories:",
     },
   ];
 
-  inquirer.prompt(blogQuestions).then((answers) => {
-    const stuff = { ...generalAnswers, ...answers };
-    console.log(stuff);
+  inquirer.prompt(blogQuestions).then(async (answers) => {
+    const blogData = { ...generalAnswers, ...answers };
+    blogData.categories = [
+      ...blogData.categories,
+      ...blogData.additionalCategories.split(","),
+    ];
+    blogData.additionalCategories = undefined;
+    await createBlog(blogData);
   });
+}
+
+async function createBlog(blogData) {
+  const slug = createSlug(blogData.title.trim());
+  const filename = slug + ".md";
+
+  let categories = "";
+  blogData.categories.forEach(
+    (category) => (categories += '  - "' + category.trim() + '"\n')
+  );
+
+  const text = `---
+date: "${blogData.date}"
+title: "${blogData.title}"
+summary: "${blogData.summary}"
+categories:
+${categories}---
+
+This is a blog about ${blogData.title}...`;
+
+  const folderPath = path.join(__dirname, blogDirectory, slug);
+  const filePath = path.join(folderPath, filename);
+
+  if (fs.existsSync(folderPath)) {
+    throw new Error(`Folder ${folderPath} already exists`);
+  }
+
+  fs.mkdirSync(folderPath);
+
+  await fs.promises.writeFile(filePath, String(text));
+
+  console.log("\n✓ Done!\n");
 }
 
 async function createPage(pageData) {
@@ -83,13 +132,12 @@ async function createPage(pageData) {
 title: ${pageData.title}
 ---
 
-This is a page about ${pageData.title}...
-  `;
+This is a page about ${pageData.title}...`;
 
   const filePath = path.join(__dirname, pagesDirectory, filename);
 
   // The "wx" flag makes sure existing files are not overwritten.
-  await fs.writeFile(filePath, String(text), { flag: "wx" });
+  await fs.promises.writeFile(filePath, String(text), { flag: "wx" });
 
   console.log("\n✓ Done!\n");
 }

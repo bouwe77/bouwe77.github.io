@@ -214,7 +214,11 @@ async function createPages(data) {
 async function createCategoryPages(blogData) {
   const template = await readTemplate("page.html");
 
+  const allCategories = [];
+
   blogData.categories.forEach(async (cat) => {
+    allCategories.push(cat.name);
+
     const blogsHtml = getBlogsHtml(
       blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
     );
@@ -239,6 +243,12 @@ async function createCategoryPages(blogData) {
     );
     //console.log("›", cat.name);
   });
+
+  const categoriesJson = JSON.stringify(allCategories);
+  await fs.writeFile(
+    path.join(__dirname, "allCategories.json"),
+    categoriesJson
+  );
 }
 
 async function toHtml(makeHtmlPage, markdown) {

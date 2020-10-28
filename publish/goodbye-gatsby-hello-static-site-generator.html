@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Goodbye Gatsby, hello static site generator</title>
+  <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+  <meta name="image" content="/bouwe-react-amsterdam.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="bouwe.io" />
+  <meta property="og:url" content="https://bouwe.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="bouwe.io" />
+  <meta
+    property="og:description"
+    content="bouwe.io, a blog by Bouwe Westerdijk"
+  />
+  <meta
+    property="og:image"
+    content="https://bouwe.io/bouwe-react-amsterdam.png"
+  />
+  <meta property="og:image:alt" content="Bouwe Westerdijk" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@bouwe" />
+  <meta name="twitter:url" content="https://bouwe.io" />
+  <meta name="twitter:title" content="Goodbye Gatsby, hello static site generator" />
+  <meta
+    name="twitter:description"
+    content="bouwe.io, a blog by Bouwe Westerdijk"
+  />
+  <meta name="twitter:image" content="https://bouwe.io/bouwe-react-amsterdam" />
+  <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Open Sans"
+  />
+  <link
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+  />
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <h1>
+            <a href="/">bouwe.io</a>
+          </h1>
+        </div>
+        <div class="nav">
+          <!-- 
+          <a href="#">about me</a> · <a href="#">speaking</a>
+          -->
+        </div>
+      </header>
+
+      <div>
+        <div>
+          <h2>
+            <a href="/goodbye-gatsby-hello-static-site-generator">Goodbye Gatsby, hello static site generator</a>
+          </h2>
+          oct 28, 2020
+        </div>
+
+        <div><p>Until now, my blog was powered by <a href="https://www.gatsbyjs.com">Gatsby</a>. What I liked about it is that I could write blog posts and pages as Markdown documents, push to GitHub and you're done. However, I didn't understand Gatsby and, in contrast to my expectations, I was not motivated to learn it. This decreased my motivation to improve my website and write blog posts.</p>
+<p>Then I read <a href="https://twitter.com/ryanflorence/status/1294303054007635973">a tweet by Ryan Florence</a> where he showed <a href="https://gist.github.com/ryanflorence/fb3fe3209877e7a37700a20251804cca">a gist</a> of a very simple static site generator script. It generated HTML pages from a folder of Markdown documents. It inspired me to use it as the starting point for creating my own static site generator.</p>
+<blockquote>
+<p>A static site generator is a piece of software that generates a bunch of HTML documents and links them together. The result is a barebones static HTML website, just like in the olden days, which you publish to a hosting provider or cloud service provider. Your live website doesn't need a database or any other hosting facilities, all pages are generated in advance.</p>
+</blockquote>
+<p>Static site generators are very suitable for websites which have no or little dynamic functionality. My blog, for example, are just some pages and blog posts. There is no dynamic content that needs to change on the fly and there are no possibilities for user interaction, like liking and commenting, because <a href="/using-twitter-for-blog-commenting">I use Twitter for that</a>.</p>
+<h3>The general idea</h3>
+<p>I have a <code>content</code> folder which contains Markdown documents for all pages and blog posts. So when writing a blog post or page I add a new Markdown document to that folder. Then I run a JavaScript file, based on Ryan Florence's gist, that creates HTML pages for all Markdown files and puts them in a folder called <code>publish</code>.</p>
+<p>I created HTML templates so all pages have the same header and CSS styling is applied. When generating HTML pages, the template and Markdown content are merged. Also static files, like CSS, images and favicons are published, but that is merely a copy action.</p>
+<p>Both the <code>content</code> and <code>publish</code> folders are pushed to the same GitHub repo. As soon as I push to the <code>master</code> branch, a deploy of my website on <a href="https://netlify.com">Netlify</a> is triggered, which only hosts the <code>publish</code> folder.</p>
+<h3>Front matter</h3>
+<p>Every blog post Markdown document contains <em>front matter</em>, which is meta data about the blog post. Front matter is not only supported by <a href="https://www.gatsbyjs.com">Gatsby</a>, but also by static site generators such as <a href="https://jekyllrb.com">Jekyll</a> and <a href="https://gohugo.io">Hugo</a>. Front matter is formatted in <a href="https://yaml.org">YAML</a> and added on top of every Markdown document. This is the front matter for the blog post you are reading now:</p>
+<pre><code>---
+date: "2020-10-28"
+title: "Goodbye Gatsby, hello static site generator"
+categories:
+  - "Blogging"
+  - "Gatsby"
+  - "JavaScript"
+---
+
+Until now, my blog was powered by [Gatsby]. What I liked about it is ... ... ...
+</code></pre>
+<p>The most important meta data are the categories for each blog post. The publish script contains custom code to gather category information from all blog posts to generate category pages that list the blog posts per category. It is also used to create a list of categories on the homepage, which link to the cateogry pages and show the number of blog posts for each category.</p>
+<h3>Automation</h3>
+<p>Creating Markdown files in the correct folder, with the right name, specifying front matter etc. is sensitive to errors, so I created a script to automate that. It asks me some questions and then creates everything for me. Of course I still have to write the blog post, but the plumbing is done.</p>
+<p>The script is a CLI built with JavaScript and <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer</a> and using it looks kind of like this:</p>
+<img alt="Automated creation of a blog post" src="/ssg.gif" width="672"/>
+<h3>Conclusion</h3>
+<p>After migrating my site from Gatsby to my own SSR solution, the blog post you are reading now is the first I created with it. I am very happy with the convenience of creating content and the feeling of having control and exactly knowing what's going on.</p>
+<p>Although everything of my site, including my SSR scripts, are open source, I don't think it is usable for someone else. The functionality is quite specific for my use case and the JavaScript I wrote is pretty messy.</p>
+<p>But as I use it, of course I will improve a lot along the way.</p>
+</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Goodbye Gatsby, hello static site generator&url=https://bouwe.io/goodbye-gatsby-hello-static-site-generator&via=bouwe"
+            >Share on Twitter</a
+          >
+          -
+          <a href="https://twitter.com/search?q=https://bouwe.io/goodbye-gatsby-hello-static-site-generator"
+            >Discuss on Twitter</a
+          >
+        </div>
+      </div>
+
+      <footer>
+        <!--
+          <a href="/workshops">Workshops</a> |
+          <a href="/react">React</a>
+          -->
+      </footer>
+    </div>
+  </body>
+</html>

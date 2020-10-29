@@ -53,9 +53,9 @@ The script is a CLI built with JavaScript and [Inquirer] and using it looks kind
 
 ### Conclusion
 
-After migrating my site from Gatsby to my own SSR solution, the blog post you are reading now is the first I created with it. I am very happy with the convenience of creating content and the feeling of having control and exactly knowing what's going on.
+After migrating my site from Gatsby to my own SSG solution, the blog post you are reading now is the first I created with it. I am very happy with the convenience of creating content and the feeling of having control and exactly knowing what's going on.
 
-Although everything of my site, including my SSR scripts, are open source, I don't think it is usable for someone else. The functionality is quite specific for my use case and the JavaScript I wrote is pretty messy.
+Although everything of my site, including my SSG scripts, are open source, I don't think it is usable for someone else. The functionality is quite specific for my use case and the JavaScript I wrote is pretty messy.
 
 But as I use it, of course I will improve a lot along the way.
 

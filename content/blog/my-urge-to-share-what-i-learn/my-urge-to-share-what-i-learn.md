@@ -1,6 +1,6 @@
 ---
 date: "2020-11-04"
-title: "The urge to share what I learn"
+title: "My urge to share what I learn"
 summary: ""
 categories:
   - "Blogging"

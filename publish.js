@@ -357,7 +357,7 @@ async function createRssFeed(blogData) {
           link: "https://bouwe.io",
         },
       ],
-      date: new Date(), //TODO post.attributes.date,
+      date: new Date(Date.parse(post.attributes.date)),
     });
   });
 

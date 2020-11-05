@@ -7,6 +7,7 @@ import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
+import { Feed } from "feed";
 
 import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
 import { getBlogsHtml } from "./templates/partials/blogs";
@@ -15,7 +16,7 @@ import { createSlug } from "./utils";
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";
 const pagesDirectory = "content/pages";
-const staticDirectory = "templates/static";
+const staticDirectory = "content/static";
 const publishDirectory = "publish";
 const publishCategoriesDirectory = publishDirectory + "/categories";
 const templatesDirectory = "templates";
@@ -45,6 +46,8 @@ async function go() {
 
   // Create a page for each blog category.
   await createCategoryPages(blogData);
+
+  await createRssFeed(blogData);
 
   console.log(" _                                _");
   console.log("| |                              (_)");
@@ -89,9 +92,14 @@ async function getBlogData() {
         const slug = filename.replace(".md", "");
         parsedFrontMatterAndMarkdown.filename = filename;
         parsedFrontMatterAndMarkdown.slug = slug;
+        parsedFrontMatterAndMarkdown.url = `https://bouwe.io/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
           path.join(blogDirectory, slug, filename)
         );
+
+        if (!parsedFrontMatterAndMarkdown.attributes.categories)
+          parsedFrontMatterAndMarkdown.attributes.categories = [];
+
         blogData.pages.push(parsedFrontMatterAndMarkdown);
 
         parsedFrontMatterAndMarkdown.attributes.categories.forEach(
@@ -317,4 +325,53 @@ function formatDate(date) {
 
 function getEditOnGitHubUrl(relativeFilePath) {
   return `https://github.com/bouwe77/bouwe.io/edit/master/${relativeFilePath}`;
+}
+
+async function createRssFeed(blogData) {
+  const feed = new Feed({
+    title: "bouwe.io",
+    description: "bouwe.io, a blog by Bouwe Westerdijk",
+    id: "https://bouwe.io/",
+    link: "https://bouwe.io/",
+    language: "en",
+    image: "https://bouwe.io/bouwe-react-amsterdam.png",
+    favicon: "https://bouwe.io/favicon.ico",
+    copyright: `All rights reserved 2019 - ${new Date().getFullYear()}, Bouwe Westerdijk`,
+    feedLinks: {
+      json: "https://bouwe.io/json",
+      atom: "https://bouwe.io/atom",
+    },
+    author: {
+      name: "Bouwe Westerdijk",
+      email: "bouwe@bouwe.nl",
+      link: "https://bouwe.io",
+    },
+  });
+
+  blogData.pages.forEach((post) => {
+    feed.addItem({
+      title: post.attributes.title,
+      id: post.url,
+      link: post.url,
+      description: post.attributes.summary,
+      author: [
+        {
+          name: "Bouwe Westerdijk",
+          email: "bouwe@bouwe.nl",
+          link: "https://bouwe.io",
+        },
+      ],
+      date: new Date(Date.parse(post.attributes.date)),
+    });
+  });
+
+  await fs.writeFile(
+    path.join(__dirname, publishDirectory, "rss2.xml"),
+    String(feed.rss2())
+  );
+
+  await fs.writeFile(
+    path.join(__dirname, publishDirectory, "atom.xml"),
+    String(feed.atom1())
+  );
 }

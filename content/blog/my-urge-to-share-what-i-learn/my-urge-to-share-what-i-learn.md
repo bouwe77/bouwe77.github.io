@@ -10,7 +10,7 @@ categories:
 
 ### Learn by sharing
 
-I gave my first React workshop one and a half years ago. Around that time I also read (and experienced) that _sharing while you learn_ is very beneficial for your learning process. These things have had a big impact on how I approach learning new things ever since.
+I gave my first React workshop one and a half years ago. Around that time I also read (and experienced) that _sharing while you learn_ is very beneficial for your learning process. These things have had a big impact on how I approached learning new things ever since.
 
 The idea of sharing what you learn is that as soon as you start learning something new you also start sharing that with others. So imagine you are in the office (yes, I know, that's sooo 2019), you have read your first blog posts or watched some videos about some new technology, you turn you chair towards your colleague and share what you've just learned.
 

@@ -237,7 +237,7 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(blogData) {
-  const template = await readTemplate("page.html");
+  const template = await readTemplate("category.html");
 
   const allCategories = [];
 

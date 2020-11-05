@@ -96,6 +96,10 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
           path.join(blogDirectory, slug, filename)
         );
+
+        if (!parsedFrontMatterAndMarkdown.attributes.categories)
+          parsedFrontMatterAndMarkdown.attributes.categories = [];
+
         blogData.pages.push(parsedFrontMatterAndMarkdown);
 
         parsedFrontMatterAndMarkdown.attributes.categories.forEach(

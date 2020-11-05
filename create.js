@@ -85,11 +85,15 @@ function askBlogQuestions(generalAnswers) {
 
   inquirer.prompt(blogQuestions).then(async (answers) => {
     const blogData = { ...generalAnswers, ...answers };
-    blogData.categories = [
-      ...blogData.categories,
-      ...blogData.additionalCategories.split(","),
-    ];
+
+    const additionalCategories =
+      blogData.additionalCategories.length > 0
+        ? blogData.additionalCategories.split(",")
+        : [];
+
+    blogData.categories = [...blogData.categories, ...additionalCategories];
     blogData.additionalCategories = undefined;
+
     await createBlog(blogData);
   });
 }

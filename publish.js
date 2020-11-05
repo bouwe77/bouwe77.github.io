@@ -86,8 +86,12 @@ async function getBlogData() {
         let fileContents = await fs.readFile(filePath);
         const parsedFrontMatterAndMarkdown = fm(String(fileContents));
 
+        const slug = filename.replace(".md", "");
         parsedFrontMatterAndMarkdown.filename = filename;
-        parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
+        parsedFrontMatterAndMarkdown.slug = slug;
+        parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
+          path.join(blogDirectory, slug, filename)
+        );
         blogData.pages.push(parsedFrontMatterAndMarkdown);
 
         parsedFrontMatterAndMarkdown.attributes.categories.forEach(
@@ -131,12 +135,19 @@ async function getPageData() {
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
+
       let fileContents = await fs.readFile(
         path.join(__dirname, pagesDirectory, filename)
       );
+
+      const slug = filename.replace(".md", "");
       const parsedFrontMatterAndMarkdown = fm(String(fileContents));
       parsedFrontMatterAndMarkdown.filename = filename;
-      parsedFrontMatterAndMarkdown.slug = filename.replace(".md", "");
+      parsedFrontMatterAndMarkdown.slug = slug;
+      parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
+        path.join(pagesDirectory, filename)
+      );
+
       pageData.pages.push(parsedFrontMatterAndMarkdown);
     })
   );
@@ -193,8 +204,14 @@ async function createPages(data) {
           new RegExp("{{ date }}", "g"),
           formatDate(page.attributes.date)
         );
+
       htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
       htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), page.slug);
+      htmlPage = htmlPage.replace(
+        new RegExp("{{ editOnGitHubUrl }}", "g"),
+        page.editOnGitHubUrl
+      );
+
       return htmlPage;
     };
 
@@ -296,4 +313,8 @@ function formatDate(date) {
   return `${months[dateSegments[1] - 1]} ${dateSegments[2]}, ${
     dateSegments[0]
   }`;
+}
+
+function getEditOnGitHubUrl(relativeFilePath) {
+  return `https://github.com/bouwe77/bouwe.io/edit/master/${relativeFilePath}`;
 }

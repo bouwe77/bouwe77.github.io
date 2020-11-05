@@ -337,6 +337,7 @@ async function createRssFeed(blogData) {
     image: "https://bouwe.io/bouwe-react-amsterdam.png",
     favicon: "https://bouwe.io/favicon.ico",
     copyright: `All rights reserved 2019 - ${new Date().getFullYear()}, Bouwe Westerdijk`,
+    updated: new Date(new Date().setUTCHours(0, 0, 0, 0)),
     feedLinks: {
       json: "https://bouwe.io/json",
       atom: "https://bouwe.io/atom",

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "publish": "babel-node publish.js",
-    "preview": "babel-node preview.js",
-    "create": "babel-node create.js"
+    "publish": "babel-node src/publish.js",
+    "preview": "babel-node src/preview.js",
+    "create": "babel-node src/create.js"
   },
   "repository": {
     "type": "git",

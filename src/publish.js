@@ -1,3 +1,6 @@
+//TODO Alle JS code naar een src folder, ook de template .js files.
+//TODO publish.js verdelen in meerdere files.
+//TODO Display categories on the blog post page.
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 
 import path from "path";
@@ -9,10 +12,10 @@ import report from "vfile-reporter";
 import fm from "front-matter";
 import { Feed } from "feed";
 
-import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
-import { getBlogsHtml } from "./templates/partials/blogs";
+import { getBlogCategoriesHtml } from "../templates/partials/blogCategories";
+import { getBlogsHtml } from "../templates/partials/blogs";
 import { createSlug } from "./utils";
-import { getContainerHtml } from "./templates/container";
+import { getContainerHtml } from "../templates/container";
 
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";
@@ -279,7 +282,7 @@ async function createCategoryPages(blogData) {
 
   const categoriesJson = JSON.stringify(allCategories);
   await fs.writeFile(
-    path.join(__dirname, "allCategories.json"),
+    path.join(__dirname, "src", "allCategories.json"),
     categoriesJson
   );
 }

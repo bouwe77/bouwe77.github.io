@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>bouwe.io</title>
-        <link>https://bouwe.io/</link>
+        <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
         <lastBuildDate>Fri, 06 Nov 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -11,7 +11,7 @@
         <image>
             <title>bouwe.io</title>
             <url>https://bouwe.io/bouwe-react-amsterdam.png</url>
-            <link>https://bouwe.io/</link>
+            <link>https://bouwe.io</link>
         </image>
         <copyright>All rights reserved 2019 - 2020, Bouwe Westerdijk</copyright>
         <item>

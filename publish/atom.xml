@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://bouwe.io/</id>
+    <id>https://bouwe.io</id>
     <title>bouwe.io</title>
     <updated>2020-11-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
@@ -9,7 +9,7 @@
         <email>bouwe@bouwe.nl</email>
         <uri>https://bouwe.io</uri>
     </author>
-    <link rel="alternate" href="https://bouwe.io/"/>
+    <link rel="alternate" href="https://bouwe.io"/>
     <link rel="self" href="https://bouwe.io/atom"/>
     <subtitle>bouwe.io, a blog by Bouwe Westerdijk</subtitle>
     <logo>https://bouwe.io/bouwe-react-amsterdam.png</logo>

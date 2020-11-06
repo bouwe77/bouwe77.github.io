@@ -10,27 +10,21 @@ import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
-import { Feed } from "feed";
 
 import { getBlogCategoriesHtml } from "../templates/partials/blogCategories";
 import { getBlogsHtml } from "../templates/partials/blogs";
-import { createSlug } from "./utils";
-import { getContainerHtml } from "../templates/container";
+import { createSlug, formatDate } from "./utils";
+import { createFeeds } from "./feeds";
+import { constants } from "./constants";
 
-const __dirname = path.resolve();
-const blogDirectory = "content/blog";
-const pagesDirectory = "content/pages";
-const staticDirectory = "content/static";
-const publishDirectory = "publish";
-const publishCategoriesDirectory = publishDirectory + "/categories";
-const templatesDirectory = "templates";
+const __dirname = constants.rootDirectory;
 
 go();
 
 async function go() {
-  shell.rm("-rf", publishDirectory);
-  shell.mkdir(publishDirectory);
-  shell.mkdir(publishCategoriesDirectory);
+  shell.rm("-rf", constants.publishDirectory);
+  shell.mkdir(constants.publishDirectory);
+  shell.mkdir(constants.publishCategoriesDirectory);
 
   // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
@@ -51,7 +45,7 @@ async function go() {
   // Create a page for each blog category.
   await createCategoryPages(blogData);
 
-  await createRssFeed(blogData);
+  await createFeeds(blogData);
 
   console.log(" _                                _");
   console.log("| |                              (_)");
@@ -66,12 +60,18 @@ async function go() {
 async function getBlogData() {
   const blogData = { template: "blog.html", pages: [], categories: [] };
 
-  let blogSubFolders = await fs.readdir(path.join(__dirname, blogDirectory));
+  let blogSubFolders = await fs.readdir(
+    path.join(__dirname, constants.blogDirectory)
+  );
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
       if (subFolder.startsWith(".")) return;
 
-      const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
+      const subFolderPath = path.join(
+        __dirname,
+        constants.blogDirectory,
+        subFolder
+      );
       let files = await fs.readdir(subFolderPath);
 
       for (const filename of files) {
@@ -83,7 +83,7 @@ async function getBlogData() {
         if (fileExtension !== "md") {
           await fs.copyFile(
             filePath,
-            path.join(__dirname, publishDirectory, filename)
+            path.join(__dirname, constants.publishDirectory, filename)
           );
 
           continue;
@@ -96,9 +96,9 @@ async function getBlogData() {
         const slug = filename.replace(".md", "");
         parsedFrontMatterAndMarkdown.filename = filename;
         parsedFrontMatterAndMarkdown.slug = slug;
-        parsedFrontMatterAndMarkdown.url = `https://bouwe.io/${slug}`;
+        parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-          path.join(blogDirectory, slug, filename)
+          path.join(constants.blogDirectory, slug, filename)
         );
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
@@ -143,13 +143,13 @@ async function getBlogData() {
 async function getPageData() {
   const pageData = { template: "page.html", pages: [] };
 
-  let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
+  let pages = await fs.readdir(path.join(__dirname, constants.pagesDirectory));
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
 
       let fileContents = await fs.readFile(
-        path.join(__dirname, pagesDirectory, filename)
+        path.join(__dirname, constants.pagesDirectory, filename)
       );
 
       const slug = filename.replace(".md", "");
@@ -157,7 +157,7 @@ async function getPageData() {
       parsedFrontMatterAndMarkdown.filename = filename;
       parsedFrontMatterAndMarkdown.slug = slug;
       parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-        path.join(pagesDirectory, filename)
+        path.join(constants.pagesDirectory, filename)
       );
 
       pageData.pages.push(parsedFrontMatterAndMarkdown);
@@ -168,12 +168,14 @@ async function getPageData() {
 }
 
 async function copyStaticFiles() {
-  let staticFiles = await fs.readdir(path.join(__dirname, staticDirectory));
+  let staticFiles = await fs.readdir(
+    path.join(__dirname, constants.staticDirectory)
+  );
   await Promise.all(
     staticFiles.map(async (filename) => {
       await fs.copyFile(
-        path.join(__dirname, staticDirectory, filename),
-        path.join(__dirname, publishDirectory, filename)
+        path.join(__dirname, constants.staticDirectory, filename),
+        path.join(__dirname, constants.publishDirectory, filename)
       );
       //console.log("›", filename);
     })
@@ -193,13 +195,10 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtml(blogData.categories)
   );
 
-  const html = await getContainerHtml(
-    htmlBody,
-    "bouwe.io, a blog by Bouwe Westerdijk"
-  );
+  const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
   await fs.writeFile(
-    path.join(__dirname, publishDirectory, "index.html"),
+    path.join(__dirname, constants.publishDirectory, "index.html"),
     String(html)
   );
   //console.log("›", "index.html");
@@ -238,7 +237,7 @@ async function createPages(data) {
     await fs.writeFile(
       path.join(
         __dirname,
-        publishDirectory,
+        constants.publishDirectory,
         page.filename.replace(/\.md$/, ".html")
       ),
       html
@@ -260,7 +259,7 @@ async function createCategoryPages(blogData) {
     );
 
     const slug = createSlug(cat.name);
-    const title = `Blog posts about "${cat.name}"`;
+    const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
     const makeHtmlBody = (content) => {
       let htmlBody = String(template);
@@ -274,7 +273,11 @@ async function createCategoryPages(blogData) {
     const html = await getContainerHtml(body, title);
 
     await fs.writeFile(
-      path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
+      path.join(
+        __dirname,
+        constants.publishCategoriesDirectory,
+        slug + ".html"
+      ),
       html
     );
     //console.log("›", cat.name);
@@ -307,85 +310,23 @@ async function toHtml(makeHtmlBody, markdown) {
 
 async function readTemplate(templateFile) {
   return await fs.readFile(
-    path.join(__dirname, templatesDirectory, templateFile)
+    path.join(__dirname, constants.templatesDirectory, templateFile)
   );
 
   //TODO Kan dit ook? return String(template)
 }
 
-function formatDate(date) {
-  const dateSegments = date.split("-");
-
-  const months = [
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec",
-  ];
-
-  return `${months[dateSegments[1] - 1]} ${dateSegments[2]}, ${
-    dateSegments[0]
-  }`;
-}
-
 function getEditOnGitHubUrl(relativeFilePath) {
-  return `https://github.com/bouwe77/bouwe.io/edit/master/${relativeFilePath}`;
+  return `${constants.gitHubEditUrl}${relativeFilePath}`;
 }
 
-async function createRssFeed(blogData) {
-  const feed = new Feed({
-    title: "bouwe.io",
-    description: "bouwe.io, a blog by Bouwe Westerdijk",
-    id: "https://bouwe.io/",
-    link: "https://bouwe.io/",
-    language: "en",
-    image: "https://bouwe.io/bouwe-react-amsterdam.png",
-    favicon: "https://bouwe.io/favicon.ico",
-    copyright: `All rights reserved 2019 - ${new Date().getFullYear()}, Bouwe Westerdijk`,
-    updated: new Date(new Date().setUTCHours(0, 0, 0, 0)),
-    feedLinks: {
-      json: "https://bouwe.io/json",
-      atom: "https://bouwe.io/atom",
-    },
-    author: {
-      name: "Bouwe Westerdijk",
-      email: "bouwe@bouwe.nl",
-      link: "https://bouwe.io",
-    },
-  });
+async function getContainerHtml(body, title) {
+  let template = await readTemplate("container.html");
+  template = String(template);
 
-  blogData.pages.forEach((post) => {
-    feed.addItem({
-      title: post.attributes.title,
-      id: post.url,
-      link: post.url,
-      description: post.attributes.summary,
-      author: [
-        {
-          name: "Bouwe Westerdijk",
-          email: "bouwe@bouwe.nl",
-          link: "https://bouwe.io",
-        },
-      ],
-      date: new Date(Date.parse(post.attributes.date)),
-    });
-  });
+  let html = template
+    .replace(new RegExp("{{ title }}", "g"), title)
+    .replace(new RegExp("{{ body }}", "g"), body);
 
-  await fs.writeFile(
-    path.join(__dirname, publishDirectory, "rss2.xml"),
-    String(feed.rss2())
-  );
-
-  await fs.writeFile(
-    path.join(__dirname, publishDirectory, "atom.xml"),
-    String(feed.atom1())
-  );
+  return html;
 }

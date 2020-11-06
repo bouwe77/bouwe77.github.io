@@ -12,6 +12,7 @@ import { Feed } from "feed";
 import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
 import { getBlogsHtml } from "./templates/partials/blogs";
 import { createSlug } from "./utils";
+import { getContainerHtml } from "./templates/container";
 
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";
@@ -177,16 +178,21 @@ async function copyStaticFiles() {
 }
 
 async function createHomePage(blogData) {
-  let html = await readTemplate("home.html");
+  let htmlBody = await readTemplate("home.html");
 
-  html = String(html).replace(
+  htmlBody = String(htmlBody).replace(
     new RegExp("{{ blogs }}", "g"),
     getBlogsHtml(blogData.pages)
   );
 
-  html = String(html).replace(
+  htmlBody = htmlBody.replace(
     new RegExp("{{ blogCategories }}", "g"),
     getBlogCategoriesHtml(blogData.categories)
+  );
+
+  const html = await getContainerHtml(
+    htmlBody,
+    "bouwe.io, a blog by Bouwe Westerdijk"
   );
 
   await fs.writeFile(
@@ -200,30 +206,32 @@ async function createPages(data) {
   const template = await readTemplate(data.template);
 
   data.pages.forEach(async (page) => {
-    const makeHtmlPage = (content) => {
-      let htmlPage = String(template);
-      htmlPage = htmlPage.replace(
+    const makeHtmlBody = (content) => {
+      let htmlBody = String(template);
+      htmlBody = htmlBody.replace(
         new RegExp("{{ title }}", "g"),
         page.attributes.title
       );
 
       if (page.attributes.date)
-        htmlPage = htmlPage.replace(
+        htmlBody = htmlBody.replace(
           new RegExp("{{ date }}", "g"),
           formatDate(page.attributes.date)
         );
 
-      htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
-      htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), page.slug);
-      htmlPage = htmlPage.replace(
+      htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
+      htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), page.slug);
+      htmlBody = htmlBody.replace(
         new RegExp("{{ editOnGitHubUrl }}", "g"),
         page.editOnGitHubUrl
       );
 
-      return htmlPage;
+      return htmlBody;
     };
 
-    let html = await toHtml(makeHtmlPage, page.body);
+    let body = await toHtml(makeHtmlBody, page.body);
+    let html = await getContainerHtml(body, page.attributes.title);
+
     await fs.writeFile(
       path.join(
         __dirname,
@@ -237,7 +245,7 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(blogData) {
-  const template = await readTemplate("page.html");
+  const template = await readTemplate("category.html");
 
   const allCategories = [];
 
@@ -249,19 +257,19 @@ async function createCategoryPages(blogData) {
     );
 
     const slug = createSlug(cat.name);
+    const title = `Blog posts about "${cat.name}"`;
 
-    const makeHtmlPage = (content) => {
-      let htmlPage = String(template);
-      htmlPage = htmlPage.replace(
-        new RegExp("{{ title }}", "g"),
-        `Blog posts about "${cat.name}"`
-      );
-      htmlPage = htmlPage.replace(new RegExp("{{ content }}", "g"), content);
-      htmlPage = htmlPage.replace(new RegExp("{{ slug }}", "g"), slug);
-      return htmlPage;
+    const makeHtmlBody = (content) => {
+      let htmlBody = String(template);
+      htmlBody = htmlBody.replace(new RegExp("{{ title }}", "g"), title);
+      htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
+      htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
+      return htmlBody;
     };
 
-    let html = await toHtml(makeHtmlPage, blogsHtml);
+    const body = await toHtml(makeHtmlBody, blogsHtml);
+    const html = await getContainerHtml(body, title);
+
     await fs.writeFile(
       path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
       html
@@ -276,7 +284,7 @@ async function createCategoryPages(blogData) {
   );
 }
 
-async function toHtml(makeHtmlPage, markdown) {
+async function toHtml(makeHtmlBody, markdown) {
   return new Promise(async (resolve, reject) => {
     // add remark plugins here for syntax highlighting, etc.
     remark()
@@ -287,9 +295,9 @@ async function toHtml(makeHtmlPage, markdown) {
           reject(err);
         }
 
-        const htmlPage = makeHtmlPage(markup);
+        const htmlBody = makeHtmlBody(markup);
 
-        resolve(htmlPage);
+        resolve(htmlBody);
       });
   });
 }
@@ -298,6 +306,8 @@ async function readTemplate(templateFile) {
   return await fs.readFile(
     path.join(__dirname, templatesDirectory, templateFile)
   );
+
+  //TODO Kan dit ook? return String(template)
 }
 
 function formatDate(date) {

@@ -46,6 +46,14 @@
       href="https://fonts.googleapis.com/css?family=Open Sans"
     />
     <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
       href="/rss2.xml"
       type="application/rss+xml"
       rel="alternate"
@@ -60,35 +68,49 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <div class="logo">
-          <h1>
-            <a href="/">bouwe.io</a>
-          </h1>
-        </div>
-        <div class="nav">
-          <!-- 
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <h1>
+          <a href="/">bouwe.io</a>
+        </h1>
+      </div>
+      <div class="nav">
+        <!-- 
           <a href="#">about me</a> · <a href="#">speaking</a>
           -->
-        </div>
-      </header>
+      </div>
+    </header>
 
+    <div>
       <div>
-        <div>
-          <h2>Uses</h2>
-        </div>
-
-        <div><p>Things I use...</p>
-</div>
+        <h2>Uses</h2>
       </div>
 
-      <footer>
-        <!--
+      <div><p>Things I use...</p>
+</div>
+
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Uses&url=https://bouwe.io/uses&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/uses"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/uses.md">Edit on GitHub</a>
+      </div>
+    </div>
+
+    <footer>
+      <!--
           <a href="/workshops">Workshops</a> |
           <a href="/react">React</a>
           -->
-      </footer>
-    </div>
-  </body>
+    </footer>
+  </div>
+</body>
+
 </html>

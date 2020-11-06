@@ -1,17 +1,16 @@
 //TODO Display categories on the blog post page.
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 
-import path from "path";
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
 
-import { getBlogCategoriesHtml } from "../templates/partials/blogCategories";
-import { getBlogsHtml } from "../templates/partials/blogs";
+import { getBlogCategoriesHtml } from "./blogCategories";
+import { getBlogsHtml } from "./blogs";
 import { createSlug, formatDate } from "./utils";
 import { createFeeds } from "./feeds";
-import { constants } from "./constants";
+import { constants, filepaths } from "./constants";
 import {
   readFileContents,
   readFilesInFolder,
@@ -26,9 +25,9 @@ const __dirname = constants.rootDirectory;
 go();
 
 async function go() {
-  deleteFolder(constants.publishDirectory);
-  createFolder(constants.publishDirectory);
-  createFolder(constants.publishCategoriesDirectory);
+  deleteFolder(filepaths.getPublishDirectory());
+  createFolder(filepaths.getPublishDirectory());
+  createFolder(filepaths.getPublishCategoriesDirectory());
 
   // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
@@ -64,32 +63,22 @@ async function go() {
 async function getBlogData() {
   const blogData = { template: "blog.html", pages: [], categories: [] };
 
-  let blogSubFolders = await readFilesInFolder(
-    path.join(__dirname, constants.blogDirectory)
-  );
+  let blogSubFolders = await readFilesInFolder(filepaths.getBlogDirectory());
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
       if (subFolder.startsWith(".")) return;
 
-      const subFolderPath = path.join(
-        __dirname,
-        constants.blogDirectory,
-        subFolder
-      );
+      const subFolderPath = getBlogSubfolder(subFolder);
       let files = await readFilesInFolder(subFolderPath);
 
       for (const filename of files) {
-        const filePath = path.join(subFolderPath, filename);
+        const filePath = filepaths.getBlogContentFilePath(subFolder);
 
         var fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
 
         // If it's not an .md file it is considered a static file that just needs to be copied as-is.
         if (fileExtension !== "md") {
-          await copyFile(
-            filePath,
-            path.join(__dirname, constants.publishDirectory, filename)
-          );
-
+          await copyFile(filePath, filepaths.getPublishFilePath(filename));
           continue;
         }
 
@@ -102,7 +91,7 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.slug = slug;
         parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-          path.join(constants.blogDirectory, slug, filename)
+          filepaths.getBlogContentFilePath()
         );
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
@@ -147,15 +136,13 @@ async function getBlogData() {
 async function getPageData() {
   const pageData = { template: "page.html", pages: [] };
 
-  let pages = await readFilesInFolder(
-    path.join(__dirname, constants.pagesDirectory)
-  );
+  let pages = await readFilesInFolder(filepaths.getPagesDirectory());
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
 
       let fileContents = await readFileContents(
-        path.join(__dirname, constants.pagesDirectory, filename)
+        filepaths.getPageContentFilePath(filename)
       );
 
       const slug = filename.replace(".md", "");
@@ -163,7 +150,7 @@ async function getPageData() {
       parsedFrontMatterAndMarkdown.filename = filename;
       parsedFrontMatterAndMarkdown.slug = slug;
       parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-        path.join(constants.pagesDirectory, filename)
+        filepaths.getPageContentFilePath(filename)
       );
 
       pageData.pages.push(parsedFrontMatterAndMarkdown);
@@ -174,14 +161,12 @@ async function getPageData() {
 }
 
 async function copyStaticFiles() {
-  let staticFiles = await readFilesInFolder(
-    path.join(__dirname, constants.staticDirectory)
-  );
+  let staticFiles = await readFilesInFolder(filepaths.getStaticDirectory());
   await Promise.all(
     staticFiles.map(async (filename) => {
       await copyFile(
-        path.join(__dirname, constants.staticDirectory, filename),
-        path.join(__dirname, constants.publishDirectory, filename)
+        filepaths.getStaticContentFilePath(filename),
+        filepaths.getPublishFilePath(filename)
       );
       //console.log("›", filename);
     })
@@ -203,10 +188,7 @@ async function createHomePage(blogData) {
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
-  await createFile(
-    path.join(__dirname, constants.publishDirectory, "index.html"),
-    html
-  );
+  await createFile(filepaths.getHomePublishFilePath(), html);
   //console.log("›", "index.html");
 }
 
@@ -240,11 +222,7 @@ async function createPages(data) {
     let html = await getContainerHtml(body, page.attributes.title);
 
     await createFile(
-      path.join(
-        __dirname,
-        constants.publishDirectory,
-        page.filename.replace(/\.md$/, ".html")
-      ),
+      filepaths.getPublishFilePathForMarkdown(page.filename),
       html
     );
     //console.log("›", page.filename);

@@ -1,33 +1,31 @@
+//TODO Display categories on the blog post page.
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 
-import path from "path";
-import { promises as fs } from "fs";
-import shell from "shelljs";
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
-import { Feed } from "feed";
 
-import { getBlogCategoriesHtml } from "./templates/partials/blogCategories";
-import { getBlogsHtml } from "./templates/partials/blogs";
-import { createSlug } from "./utils";
-import { getContainerHtml } from "./templates/container";
+import { getBlogCategoriesHtml } from "./blogCategories";
+import { getBlogsHtml } from "./blogs";
+import { createSlug, formatDate } from "./utils";
+import { createFeeds } from "./feeds";
+import { constants, filepaths } from "./constants";
+import {
+  readFileContents,
+  readFilesInFolder,
+  copyFile,
+  createFile,
+  createFolder,
+  deleteFolder,
+} from "./fileSystem";
 
-const __dirname = path.resolve();
-const blogDirectory = "content/blog";
-const pagesDirectory = "content/pages";
-const staticDirectory = "content/static";
-const publishDirectory = "publish";
-const publishCategoriesDirectory = publishDirectory + "/categories";
-const templatesDirectory = "templates";
+publish();
 
-go();
-
-async function go() {
-  shell.rm("-rf", publishDirectory);
-  shell.mkdir(publishDirectory);
-  shell.mkdir(publishCategoriesDirectory);
+async function publish() {
+  deleteFolder(filepaths.getPublishDirectory());
+  createFolder(filepaths.getPublishDirectory());
+  createFolder(filepaths.getPublishCategoriesDirectory());
 
   // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
@@ -48,7 +46,7 @@ async function go() {
   // Create a page for each blog category.
   await createCategoryPages(blogData);
 
-  await createRssFeed(blogData);
+  await createFeeds(blogData);
 
   console.log(" _                                _");
   console.log("| |                              (_)");
@@ -61,41 +59,46 @@ async function go() {
 }
 
 async function getBlogData() {
-  const blogData = { template: "blog.html", pages: [], categories: [] };
+  const blogData = {
+    template: filepaths.getBlogTemplateFilePath(),
+    pages: [],
+    categories: [],
+  };
 
-  let blogSubFolders = await fs.readdir(path.join(__dirname, blogDirectory));
+  let blogSubFolders = await readFilesInFolder(filepaths.getBlogDirectory());
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
       if (subFolder.startsWith(".")) return;
 
-      const subFolderPath = path.join(__dirname, blogDirectory, subFolder);
-      let files = await fs.readdir(subFolderPath);
+      const subFolderPath = filepaths.getBlogSubFolder(subFolder);
+      let files = await readFilesInFolder(subFolderPath);
 
       for (const filename of files) {
-        const filePath = path.join(subFolderPath, filename);
+        const filePath = filepaths.getBlogContentFilePath(subFolder, filename);
 
         var fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
-
+        console.log(fileExtension);
         // If it's not an .md file it is considered a static file that just needs to be copied as-is.
         if (fileExtension !== "md") {
-          await fs.copyFile(
-            filePath,
-            path.join(__dirname, publishDirectory, filename)
-          );
-
+          console.log({
+            from: filePath,
+            to: filepaths.getPublishFilePath(filename),
+          });
+          await copyFile(filePath, filepaths.getPublishFilePath(filename));
           continue;
         }
 
         // If we end up here it's an .md file for which the meta data is added to the blogData array.
-        let fileContents = await fs.readFile(filePath);
-        const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+        const markdownFilePath = filepaths.getMarkdownFilePath(subFolder);
+        let fileContents = await readFileContents(filePath);
+        const parsedFrontMatterAndMarkdown = fm(fileContents);
 
         const slug = filename.replace(".md", "");
         parsedFrontMatterAndMarkdown.filename = filename;
         parsedFrontMatterAndMarkdown.slug = slug;
-        parsedFrontMatterAndMarkdown.url = `https://bouwe.io/${slug}`;
+        parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-          path.join(blogDirectory, slug, filename)
+          filepaths.getRelativeBlogContentFilePath(subFolder)
         );
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
@@ -138,23 +141,23 @@ async function getBlogData() {
 }
 
 async function getPageData() {
-  const pageData = { template: "page.html", pages: [] };
+  const pageData = { template: filepaths.getPageTemplateFilePath(), pages: [] };
 
-  let pages = await fs.readdir(path.join(__dirname, pagesDirectory));
+  let pages = await readFilesInFolder(filepaths.getPagesDirectory());
   await Promise.all(
     pages.map(async (filename) => {
       if (filename.startsWith(".")) return;
 
-      let fileContents = await fs.readFile(
-        path.join(__dirname, pagesDirectory, filename)
+      let fileContents = await readFileContents(
+        filepaths.getPageContentFilePath(filename)
       );
 
       const slug = filename.replace(".md", "");
-      const parsedFrontMatterAndMarkdown = fm(String(fileContents));
+      const parsedFrontMatterAndMarkdown = fm(fileContents);
       parsedFrontMatterAndMarkdown.filename = filename;
       parsedFrontMatterAndMarkdown.slug = slug;
       parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-        path.join(pagesDirectory, filename)
+        filepaths.getRelativePageContentFilePath(filename)
       );
 
       pageData.pages.push(parsedFrontMatterAndMarkdown);
@@ -165,12 +168,12 @@ async function getPageData() {
 }
 
 async function copyStaticFiles() {
-  let staticFiles = await fs.readdir(path.join(__dirname, staticDirectory));
+  let staticFiles = await readFilesInFolder(filepaths.getStaticDirectory());
   await Promise.all(
     staticFiles.map(async (filename) => {
-      await fs.copyFile(
-        path.join(__dirname, staticDirectory, filename),
-        path.join(__dirname, publishDirectory, filename)
+      await copyFile(
+        filepaths.getStaticContentFilePath(filename),
+        filepaths.getPublishFilePath(filename)
       );
       //console.log("›", filename);
     })
@@ -178,9 +181,9 @@ async function copyStaticFiles() {
 }
 
 async function createHomePage(blogData) {
-  let htmlBody = await readTemplate("home.html");
+  let htmlBody = await readTemplate(filepaths.getHomeTemplateFilePath());
 
-  htmlBody = String(htmlBody).replace(
+  htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
     getBlogsHtml(blogData.pages)
   );
@@ -190,15 +193,9 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtml(blogData.categories)
   );
 
-  const html = await getContainerHtml(
-    htmlBody,
-    "bouwe.io, a blog by Bouwe Westerdijk"
-  );
+  const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
-  await fs.writeFile(
-    path.join(__dirname, publishDirectory, "index.html"),
-    String(html)
-  );
+  await createFile(filepaths.getHomePublishFilePath(), html);
   //console.log("›", "index.html");
 }
 
@@ -207,8 +204,7 @@ async function createPages(data) {
 
   data.pages.forEach(async (page) => {
     const makeHtmlBody = (content) => {
-      let htmlBody = String(template);
-      htmlBody = htmlBody.replace(
+      let htmlBody = template.replace(
         new RegExp("{{ title }}", "g"),
         page.attributes.title
       );
@@ -232,12 +228,8 @@ async function createPages(data) {
     let body = await toHtml(makeHtmlBody, page.body);
     let html = await getContainerHtml(body, page.attributes.title);
 
-    await fs.writeFile(
-      path.join(
-        __dirname,
-        publishDirectory,
-        page.filename.replace(/\.md$/, ".html")
-      ),
+    await createFile(
+      filepaths.getPublishFilePathForMarkdown(page.filename),
       html
     );
     //console.log("›", page.filename);
@@ -245,7 +237,7 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(blogData) {
-  const template = await readTemplate("category.html");
+  const template = await readTemplate(filepaths.getCategoryTemplateFilePath());
 
   const allCategories = [];
 
@@ -257,10 +249,10 @@ async function createCategoryPages(blogData) {
     );
 
     const slug = createSlug(cat.name);
-    const title = `Blog posts about "${cat.name}"`;
+    const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
     const makeHtmlBody = (content) => {
-      let htmlBody = String(template);
+      let htmlBody = template;
       htmlBody = htmlBody.replace(new RegExp("{{ title }}", "g"), title);
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
@@ -270,18 +262,12 @@ async function createCategoryPages(blogData) {
     const body = await toHtml(makeHtmlBody, blogsHtml);
     const html = await getContainerHtml(body, title);
 
-    await fs.writeFile(
-      path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
-      html
-    );
+    await createFile(filepaths.getCategoryPageFilePath(slug), html);
     //console.log("›", cat.name);
   });
 
   const categoriesJson = JSON.stringify(allCategories);
-  await fs.writeFile(
-    path.join(__dirname, "allCategories.json"),
-    categoriesJson
-  );
+  await createFile(filepaths.getAllCategoriesJsonFilePath(), categoriesJson);
 }
 
 async function toHtml(makeHtmlBody, markdown) {
@@ -302,87 +288,20 @@ async function toHtml(makeHtmlBody, markdown) {
   });
 }
 
-async function readTemplate(templateFile) {
-  return await fs.readFile(
-    path.join(__dirname, templatesDirectory, templateFile)
-  );
-
-  //TODO Kan dit ook? return String(template)
-}
-
-function formatDate(date) {
-  const dateSegments = date.split("-");
-
-  const months = [
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec",
-  ];
-
-  return `${months[dateSegments[1] - 1]} ${dateSegments[2]}, ${
-    dateSegments[0]
-  }`;
+async function readTemplate(templateFilePath) {
+  return await readFileContents(templateFilePath);
 }
 
 function getEditOnGitHubUrl(relativeFilePath) {
-  return `https://github.com/bouwe77/bouwe.io/edit/master/${relativeFilePath}`;
+  return `${constants.gitHubEditUrl}${relativeFilePath}`;
 }
 
-async function createRssFeed(blogData) {
-  const feed = new Feed({
-    title: "bouwe.io",
-    description: "bouwe.io, a blog by Bouwe Westerdijk",
-    id: "https://bouwe.io/",
-    link: "https://bouwe.io/",
-    language: "en",
-    image: "https://bouwe.io/bouwe-react-amsterdam.png",
-    favicon: "https://bouwe.io/favicon.ico",
-    copyright: `All rights reserved 2019 - ${new Date().getFullYear()}, Bouwe Westerdijk`,
-    updated: new Date(new Date().setUTCHours(0, 0, 0, 0)),
-    feedLinks: {
-      json: "https://bouwe.io/json",
-      atom: "https://bouwe.io/atom",
-    },
-    author: {
-      name: "Bouwe Westerdijk",
-      email: "bouwe@bouwe.nl",
-      link: "https://bouwe.io",
-    },
-  });
+async function getContainerHtml(body, title) {
+  let template = await readTemplate(filepaths.getContainerTemplateFilePath());
 
-  blogData.pages.forEach((post) => {
-    feed.addItem({
-      title: post.attributes.title,
-      id: post.url,
-      link: post.url,
-      description: post.attributes.summary,
-      author: [
-        {
-          name: "Bouwe Westerdijk",
-          email: "bouwe@bouwe.nl",
-          link: "https://bouwe.io",
-        },
-      ],
-      date: new Date(Date.parse(post.attributes.date)),
-    });
-  });
+  let html = template
+    .replace(new RegExp("{{ title }}", "g"), title)
+    .replace(new RegExp("{{ body }}", "g"), body);
 
-  await fs.writeFile(
-    path.join(__dirname, publishDirectory, "rss2.xml"),
-    String(feed.rss2())
-  );
-
-  await fs.writeFile(
-    path.join(__dirname, publishDirectory, "atom.xml"),
-    String(feed.atom1())
-  );
+  return html;
 }

@@ -1,7 +1,6 @@
-import path from "path";
 import { promises as fs } from "fs";
 import { Feed } from "feed";
-import { constants } from "./constants";
+import { constants, filepaths } from "./constants";
 
 export async function createFeeds(blogData) {
   const feed = new Feed({
@@ -42,15 +41,7 @@ export async function createFeeds(blogData) {
     });
   });
 
-  const __dirname = constants.rootDirectory;
+  await fs.writeFile(filepaths.getPublishRssFilePath(), String(feed.rss2()));
 
-  await fs.writeFile(
-    path.join(__dirname, constants.publishDirectory, "rss2.xml"),
-    String(feed.rss2())
-  );
-
-  await fs.writeFile(
-    path.join(__dirname, constants.publishDirectory, "atom.xml"),
-    String(feed.atom1())
-  );
+  await fs.writeFile(filepaths.getPublishAtomFilePath(), String(feed.atom1()));
 }

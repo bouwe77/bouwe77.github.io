@@ -20,11 +20,9 @@ import {
   deleteFolder,
 } from "./fileSystem";
 
-const __dirname = constants.rootDirectory;
+publish();
 
-go();
-
-async function go() {
+async function publish() {
   deleteFolder(filepaths.getPublishDirectory());
   createFolder(filepaths.getPublishDirectory());
   createFolder(filepaths.getPublishCategoriesDirectory());
@@ -61,28 +59,37 @@ async function go() {
 }
 
 async function getBlogData() {
-  const blogData = { template: "blog.html", pages: [], categories: [] };
+  const blogData = {
+    template: filepaths.getBlogTemplateFilePath(),
+    pages: [],
+    categories: [],
+  };
 
   let blogSubFolders = await readFilesInFolder(filepaths.getBlogDirectory());
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
       if (subFolder.startsWith(".")) return;
 
-      const subFolderPath = getBlogSubfolder(subFolder);
+      const subFolderPath = filepaths.getBlogSubFolder(subFolder);
       let files = await readFilesInFolder(subFolderPath);
 
       for (const filename of files) {
-        const filePath = filepaths.getBlogContentFilePath(subFolder);
+        const filePath = filepaths.getBlogContentFilePath(subFolder, filename);
 
         var fileExtension = filename.substr(filename.lastIndexOf(".") + 1);
-
+        console.log(fileExtension);
         // If it's not an .md file it is considered a static file that just needs to be copied as-is.
         if (fileExtension !== "md") {
+          console.log({
+            from: filePath,
+            to: filepaths.getPublishFilePath(filename),
+          });
           await copyFile(filePath, filepaths.getPublishFilePath(filename));
           continue;
         }
 
         // If we end up here it's an .md file for which the meta data is added to the blogData array.
+        const markdownFilePath = filepaths.getMarkdownFilePath(subFolder);
         let fileContents = await readFileContents(filePath);
         const parsedFrontMatterAndMarkdown = fm(fileContents);
 
@@ -91,7 +98,7 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.slug = slug;
         parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-          filepaths.getBlogContentFilePath()
+          filepaths.getRelativeBlogContentFilePath(subFolder)
         );
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
@@ -134,7 +141,7 @@ async function getBlogData() {
 }
 
 async function getPageData() {
-  const pageData = { template: "page.html", pages: [] };
+  const pageData = { template: filepaths.getPageTemplateFilePath(), pages: [] };
 
   let pages = await readFilesInFolder(filepaths.getPagesDirectory());
   await Promise.all(
@@ -150,7 +157,7 @@ async function getPageData() {
       parsedFrontMatterAndMarkdown.filename = filename;
       parsedFrontMatterAndMarkdown.slug = slug;
       parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-        filepaths.getPageContentFilePath(filename)
+        filepaths.getRelativePageContentFilePath(filename)
       );
 
       pageData.pages.push(parsedFrontMatterAndMarkdown);
@@ -174,7 +181,7 @@ async function copyStaticFiles() {
 }
 
 async function createHomePage(blogData) {
-  let htmlBody = await readTemplate("home.html");
+  let htmlBody = await readTemplate(filepaths.getHomeTemplateFilePath());
 
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
@@ -230,7 +237,7 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(blogData) {
-  const template = await readTemplate("category.html");
+  const template = await readTemplate(filepaths.getCategoryTemplateFilePath());
 
   const allCategories = [];
 
@@ -255,22 +262,12 @@ async function createCategoryPages(blogData) {
     const body = await toHtml(makeHtmlBody, blogsHtml);
     const html = await getContainerHtml(body, title);
 
-    await createFile(
-      path.join(
-        __dirname,
-        constants.publishCategoriesDirectory,
-        slug + ".html"
-      ),
-      html
-    );
+    await createFile(filepaths.getCategoryPageFilePath(slug), html);
     //console.log("›", cat.name);
   });
 
   const categoriesJson = JSON.stringify(allCategories);
-  await createFile(
-    path.join(__dirname, "src", "allCategories.json"),
-    categoriesJson
-  );
+  await createFile(filepaths.getAllCategoriesJsonFilePath(), categoriesJson);
 }
 
 async function toHtml(makeHtmlBody, markdown) {
@@ -291,10 +288,8 @@ async function toHtml(makeHtmlBody, markdown) {
   });
 }
 
-async function readTemplate(templateFile) {
-  return await readFileContents(
-    path.join(__dirname, constants.templatesDirectory, templateFile)
-  );
+async function readTemplate(templateFilePath) {
+  return await readFileContents(templateFilePath);
 }
 
 function getEditOnGitHubUrl(relativeFilePath) {
@@ -302,7 +297,7 @@ function getEditOnGitHubUrl(relativeFilePath) {
 }
 
 async function getContainerHtml(body, title) {
-  let template = await readTemplate("container.html");
+  let template = await readTemplate(filepaths.getContainerTemplateFilePath());
 
   let html = template
     .replace(new RegExp("{{ title }}", "g"), title)

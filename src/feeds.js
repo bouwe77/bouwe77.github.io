@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import { Feed } from "feed";
-import { constants, filepaths } from "./constants";
+import { constants } from "./constants";
+import { filepaths } from "./filepaths";
 
 export async function createFeeds(blogData) {
   const feed = new Feed({

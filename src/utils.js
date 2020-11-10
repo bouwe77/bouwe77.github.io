@@ -25,7 +25,9 @@ export function formatDate(date) {
     "dec",
   ];
 
-  return `${months[dateSegments[1] - 1]} ${dateSegments[2]}, ${
-    dateSegments[0]
-  }`;
+  const month = months[dateSegments[1] - 1];
+  const day = parseInt(dateSegments[2]);
+  const year = dateSegments[0];
+
+  return `${month} ${day}, ${year}`;
 }

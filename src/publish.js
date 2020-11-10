@@ -1,4 +1,3 @@
-//TODO Display categories on the blog post page.
 //TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
 
 import remark from "remark";

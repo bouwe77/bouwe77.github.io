@@ -3,7 +3,10 @@ import html from "remark-html";
 import report from "vfile-reporter";
 import fm from "front-matter";
 
-import { getBlogCategoriesHtml } from "./blogCategories";
+import {
+  getBlogCategoriesHtmlForHomepage,
+  getBlogCategoriesHtmlForBlogPost,
+} from "./blogCategories";
 import { getBlogsHtml } from "./blogs";
 import { createSlug, formatDate, getReadingTime } from "./utils";
 import { createFeeds } from "./feeds";
@@ -183,7 +186,7 @@ async function createHomePage(blogData) {
 
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogCategories }}", "g"),
-    getBlogCategoriesHtml(blogData.categories)
+    getBlogCategoriesHtmlForHomepage(blogData.categories)
   );
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
@@ -206,27 +209,16 @@ async function createPages(data) {
         formattedDate = formatDate(page.attributes.date);
       htmlBody = htmlBody.replace(new RegExp("{{ date }}", "g"), formattedDate);
 
-      let categoriesHtml = "";
-      if (page.attributes.categories) {
-        categoriesHtml += " · ";
-        let first = true;
-        page.attributes.categories.forEach((category) => {
-          if (!first) categoriesHtml += ", ";
-          first = false;
-          categoriesHtml += `<a href="/categories/${createSlug(
-            category
-          )}">${category}</a>`;
-        });
-      }
       htmlBody = htmlBody.replace(
         new RegExp("{{ categories }}", "g"),
-        categoriesHtml
+        getBlogCategoriesHtmlForBlogPost(page.attributes.categories)
       );
 
       htmlBody = htmlBody.replace(
         new RegExp("{{ readingTime }}", "g"),
         ` · ${page.readingTime} minute read`
       );
+
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), page.slug);
       htmlBody = htmlBody.replace(

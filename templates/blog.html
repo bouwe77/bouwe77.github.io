@@ -18,7 +18,9 @@
         <h2 class="blog-title">
           <a href="/{{ slug }}">{{ title }}</a>
         </h2>
-        <div class="blog-meta">{{ date }} {{ categories }}</div>
+        <div class="blog-meta">
+          {{ date }} {{ categories }} {{ readingTime }}
+        </div>
       </div>
 
       <div>{{ content }}</div>

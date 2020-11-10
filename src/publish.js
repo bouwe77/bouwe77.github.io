@@ -1,5 +1,3 @@
-//TODO Determine read time: http://www.craigabbott.co.uk/how-to-calculate-reading-time-like-medium
-
 import remark from "remark";
 import html from "remark-html";
 import report from "vfile-reporter";
@@ -7,7 +5,7 @@ import fm from "front-matter";
 
 import { getBlogCategoriesHtml } from "./blogCategories";
 import { getBlogsHtml } from "./blogs";
-import { createSlug, formatDate } from "./utils";
+import { createSlug, formatDate, getReadingTime } from "./utils";
 import { createFeeds } from "./feeds";
 import { constants } from "./constants";
 import { filepaths } from "./filepaths";
@@ -92,6 +90,9 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
           filepaths.getRelativeBlogContentFilePath(subFolder)
+        );
+        parsedFrontMatterAndMarkdown.readingTime = getReadingTime(
+          parsedFrontMatterAndMarkdown.body
         );
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
@@ -222,6 +223,10 @@ async function createPages(data) {
         categoriesHtml
       );
 
+      htmlBody = htmlBody.replace(
+        new RegExp("{{ readingTime }}", "g"),
+        ` · ${page.readingTime} minute read`
+      );
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), page.slug);
       htmlBody = htmlBody.replace(

@@ -10,7 +10,8 @@ import { getBlogCategoriesHtml } from "./blogCategories";
 import { getBlogsHtml } from "./blogs";
 import { createSlug, formatDate } from "./utils";
 import { createFeeds } from "./feeds";
-import { constants, filepaths } from "./constants";
+import { constants } from "./constants";
+import { filepaths } from "./filepaths";
 import {
   readFileContents,
   readFilesInFolder,
@@ -48,14 +49,19 @@ async function publish() {
 
   await createFeeds(blogData);
 
-  console.log(" _                                _");
-  console.log("| |                              (_)");
-  console.log("| |__   ___  _   ___      _____   _  ___");
-  console.log("| '_ \\ / _ \\| | | \\ \\ /\\ / / _ \\ | |/ _ \\");
-  console.log("| |_) | (_) | |_| |\\ V  V /  __/_| | (_) |");
-  console.log("|_.__/ \\___/ \\__,_| \\_/\\_/ \\___(_)_|\\___/");
+  // console.log(" _                                _");
+  // console.log("| |                              (_)");
+  // console.log("| |__   ___  _   ___      _____   _  ___");
+  // console.log("| '_ \\ / _ \\| | | \\ \\ /\\ / / _ \\ | |/ _ \\");
+  // console.log("| |_) | (_) | |_| |\\ V  V /  __/_| | (_) |");
+  // console.log("|_.__/ \\___/ \\__,_| \\_/\\_/ \\___(_)_|\\___/");
 
-  console.log("\n✓ Done!\n");
+  console.log("     ┌───────────────────┐");
+  console.log("     │                   │");
+  console.log("     │      ✓ Done!      │");
+  console.log("     │                   │");
+  console.log("     └───────────────────┘	");
+  console.log("\n\n");
 }
 
 async function getBlogData() {
@@ -85,7 +91,6 @@ async function getBlogData() {
         }
 
         // If we end up here it's an .md file for which the meta data is added to the blogData array.
-        const markdownFilePath = filepaths.getMarkdownFilePath(subFolder);
         let fileContents = await readFileContents(filePath);
         const parsedFrontMatterAndMarkdown = fm(fileContents);
 

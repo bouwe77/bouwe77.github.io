@@ -1,5 +1,3 @@
-//TODO container.html ook meenemen!
-
 export const constants = {
   siteName: "bouwe.io",
   siteUrl: "https://bouwe.io",

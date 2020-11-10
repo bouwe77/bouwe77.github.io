@@ -49,13 +49,6 @@ async function publish() {
 
   await createFeeds(blogData);
 
-  // console.log(" _                                _");
-  // console.log("| |                              (_)");
-  // console.log("| |__   ___  _   ___      _____   _  ___");
-  // console.log("| '_ \\ / _ \\| | | \\ \\ /\\ / / _ \\ | |/ _ \\");
-  // console.log("| |_) | (_) | |_| |\\ V  V /  __/_| | (_) |");
-  // console.log("|_.__/ \\___/ \\__,_| \\_/\\_/ \\___(_)_|\\___/");
-
   console.log("     ┌───────────────────┐");
   console.log("     │                   │");
   console.log("     │      ✓ Done!      │");
@@ -208,11 +201,27 @@ async function createPages(data) {
         page.attributes.title
       );
 
+      let formattedDate = "";
       if (page.attributes.date)
-        htmlBody = htmlBody.replace(
-          new RegExp("{{ date }}", "g"),
-          formatDate(page.attributes.date)
-        );
+        formattedDate = formatDate(page.attributes.date);
+      htmlBody = htmlBody.replace(new RegExp("{{ date }}", "g"), formattedDate);
+
+      let categoriesHtml = "";
+      if (page.attributes.categories) {
+        categoriesHtml += " · ";
+        let first = true;
+        page.attributes.categories.forEach((category) => {
+          if (!first) categoriesHtml += ", ";
+          first = false;
+          categoriesHtml += `<a href="/categories/${createSlug(
+            category
+          )}">${category}</a>`;
+        });
+      }
+      htmlBody = htmlBody.replace(
+        new RegExp("{{ categories }}", "g"),
+        categoriesHtml
+      );
 
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), page.slug);

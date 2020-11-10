@@ -8,14 +8,6 @@ body {
   color: rgba(0, 0, 0, 0.7);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  display: inline;
-}
-
 h1 {
   font-size: 22pt;
 }
@@ -85,6 +77,11 @@ code {
   background-color: #f4f3fa;
   color: Black;
   padding: 2px 4px;
+}
+
+.page-title,
+.blog-title {
+  display: inline;
 }
 
 .blog-meta {

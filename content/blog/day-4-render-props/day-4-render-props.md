@@ -29,7 +29,7 @@ your code to be more readable or easier testable.
 
 ### Toggle component
 
-Let's create a very simple component, a Toggle component. Its functionality is that you can turn something on or off.
+Let's create a very simple component, a toggle component. Its functionality is that you can turn something on or off.
 And the component renders a button to allow that:
 
 ```js
@@ -50,24 +50,24 @@ function Toggle() {
 
 Let's break this down.
 
-What happens here is that the `App` component just renders a `Toggle` component.
-In the Toggle component we render a button that you can press to turn it on or off. The button's
-text contains the current state of the component: "ON" when the on variable is true, otherwise "OFF".
+What happens here is that the `App` component renders a `Toggle` component.
+In the `Toggle` component we render a button that you can press to turn it on or off. The button's
+text contains the current state of the component: "ON" when the `on` variable is true, otherwise "OFF".
 
 What the component renders depends on the value of the `on` variable. That's why we call React's
-[useState hook]. The useState hook returns two things: the `on` variable that contains the current
+[useState hook]. The `useState` hook returns two things: the `on` variable that contains the current
 boolean value indicating the state is on or off and the `setOn` function which we must use to change
-the value of the on variable.
+the value of the `on` variable.
 
-With the button's `onClick` we call the setOn function, which makes React re-render the component
+With the button's `onClick` we call the `setOn` function, which makes React re-render the component
 which in turn results in the button showing the current state.
 
-What we have now is just a Toggle component, we haven't done anything with render props.
+What we have now is just a `Toggle` component, we haven't done anything with render props.
 
 ### Let's refactor first
 
 The toggle button is fine, but wouldn't it be nice to optionally replace it with a checkbox?
-To make this possible the first step to take is moving the button out of the Toggle component into a function:
+To make this possible the first step to take is moving the button out of the `Toggle` component into a function:
 
 ```js
 function renderToggleButton(toggle, on) {
@@ -75,13 +75,13 @@ function renderToggleButton(toggle, on) {
 }
 ```
 
-This function has two arguments: a toggle function and the current on boolean value. The function renders
-a button with an onClick that calls the toggle function. Note we do not pass anything to the toggle
+This function has two arguments: a `toggle` function and the current `on` boolean value. The function renders
+a button with an `onClick` that calls the `toggle` function. Note we do not pass anything to the `toggle`
 function. It's not this function's responsibility to do the actual toggling. It only defines the UI and
 _when_ toggling should take place.
 
-Now we update the Toggle component. It no longer renders the button, but it will call the `renderToggleButton`
-function we just created. It passes a function that calls setOn and we also pass the current on boolean value:
+Now we update the `Toggle` component. It no longer renders the button, but it will call the `renderToggleButton`
+function we just created. It passes a function that calls `setOn` and we also pass the current `on` boolean value:
 
 ```js
 function Toggle(props) {
@@ -108,10 +108,10 @@ function renderToggleCheckbox(toggle, on) {
 }
 ```
 
-Here we also get the toggle function passed in and call it when the checkbox is checked or unchecked.
+Here we also get the `toggle` function passed in and call it when the checkbox is checked or unchecked.
 But the UI is totally different.
 
-Now we can change the Toggle component so it renders a checkbox instead of a button:
+Now we can change the `Toggle` component so it renders a checkbox instead of a button:
 
 ```js
 function Toggle() {
@@ -121,17 +121,17 @@ function Toggle() {
 }
 ```
 
-The Toggle functionality still works, but _looks different_. We have verified our Toggle component has become _independent_ from
+The toggle functionality still works, but _looks different_. We have verified our `Toggle` component has become _independent_ from
 the UI.
 
 ### Render props at last
 
-The final step we have to take is to tell the Toggle component which UI it has to render. And we'll do that by passing in that UI.
-And as we already created two functions that return the toggle UI, we need to change the Toggle component so it can receive one of
-these functions. The way you pass in a function (or any value for that matter) to a component is by using props. And what we will
+The final step we have to take is to tell the `Toggle` component which UI it has to render. And we'll do that by passing in that UI.
+And as we already created two functions that return the toggle UI, we need to change the `Toggle` component so it can receive one of
+these functions. The way you pass in a function (or any value for that matter) to a component is by using _props_. And what we will
 pass via props is a render function hence the name _render props_.
 
-Let's render the Toggle component twice so we can pass in both render functions:
+Let's render the `Toggle` component twice so we can pass in both render functions:
 
 ```js
 function App() {
@@ -147,7 +147,7 @@ function App() {
 > Note that the name of the prop containing the render function is called `render`. However, this is not required,
 > it's just a _naming convention_, you can give it any name you like.
 
-The Toggle component should now receive props and call the render function from props:
+The `Toggle` component should now receive props and call the `render` function from props:
 
 ```js
 function Toggle(props) {
@@ -157,8 +157,8 @@ function Toggle(props) {
 }
 ```
 
-And that's it! We created a Toggle component that is responsible for the Toggle functionality. How the UI looks is not its concern.
-It gets passed in a render prop containing a function it calls to render a UI. What we can do now is create lots of different UIs
+And that's it! We created a `Toggle` component that is responsible for toggle functionality. How the UI looks is not its concern.
+It gets passed in a _render prop_ containing a function it calls to render a UI. What we can do now is create lots of different UIs
 that implement ways to toggle.
 
 I am really excited I have not only learned the basics of the render props pattern but

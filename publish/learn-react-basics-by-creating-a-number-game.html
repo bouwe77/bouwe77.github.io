@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Learn React basics by creating a number game</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Learn React basics by creating a number game" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <h1>
+          <a href="/">bouwe.io</a>
+        </h1>
+      </div>
+      <div class="nav">
+        <!-- 
+          <a href="#">about me</a> · <a href="#">speaking</a>
+          -->
+      </div>
+    </header>
+
+    <div>
+      <div>
+        <h2 class="blog-title">
+          <a href="/learn-react-basics-by-creating-a-number-game">Learn React basics by creating a number game</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 22, 2020  · <a href="/categories/react">React</a>  · 7 minute read
+        </div>
+      </div>
+
+      <div><p>This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
+<p>(samenvatting wat we gaan behandelen)</p>
+<h3>Demo</h3>
+<p>Check out this GIF to see what we are going to build:</p>
+<img alt="Demo" src="/demo.gif" width="640"/>
+<p>So the objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again, click the Reset button.</p>
+<p>Wanna give it a try yourself? <a href="https://react-number-game-v1.netlify.app">https://react-number-game-v1.netlify.app</a></p>
+<h3>Let's start building</h3>
+<p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css">on GitHub</a>.</p>
+<p>To keep it simple, the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
+<pre><code class="language-js">import React from "react";
+
+export default function App() {
+  const answer = 3;
+  const choices = [1, 2, 3, 4];
+  const chosen = [];
+
+  return (
+    &#x3C;div className="app">
+      &#x3C;div className="full-width">
+        Choose numbers that add up to:
+        &#x3C;br />
+        &#x3C;span className="answer">{answer}&#x3C;/span>
+      &#x3C;/div>
+
+      &#x3C;div className="side-by-side">
+        &#x3C;div className="numbers">
+          {/* this is the box on the left which will contain numbers to choose from */}
+        &#x3C;/div>
+        &#x3C;div className="numbers">
+          {/* this is the box on the right which will contain the chosen numbers */}
+        &#x3C;/div>
+      &#x3C;/div>
+
+      &#x3C;div className="full-width">
+        &#x3C;button className="action">Reset&#x3C;/button>
+        &#x3C;button className="action">Done&#x3C;/button>
+      &#x3C;/div>
+    &#x3C;/div>
+  );
+}
+</code></pre>
+<h3>Choosing numbers by clicking on them</h3>
+<p>Note how I created and display a variable named <code>answer</code> which contains the number we'll have to add up to. Also variables for the numbers to choose from (<code>choices</code>) and the chosen numbers (<code>chosen</code>) have been added. However, these are not displayed yet, so let's do that now by mapping over them and rendering a button for each number:</p>
+<pre><code class="language-js">&#x3C;div className="side-by-side">
+  &#x3C;div className="numbers">
+    {choices.map((number) => (
+      &#x3C;button key={number} className="number">
+        {number}
+      &#x3C;/button>
+    ))}
+  &#x3C;/div>
+  &#x3C;div className="numbers">
+    {chosen.map((number) => (
+      &#x3C;button key={number} className="number">
+        {number}
+      &#x3C;/button>
+    ))}
+  &#x3C;/div>
+&#x3C;/div>
+</code></pre>
+<blockquote>
+<p>Dynamic elements that are rendered with <code>map</code> should always contain a <code>key</code> prop with a unique identifier so React can keep track of which element is which.
+See ...</p>
+</blockquote>
+<p>Next, we want to click on a number so it moves from the left to the right box, or vice versa. Technically this means a number moves from the <code>choices</code> array to the <code>chosen</code> array, or vice versa. So to reflect changes to these arrays in the UI, we need to change these arrays from hard-coded contants to stateful values with the <code>useState</code> hook:</p>
+<pre><code class="language-js">const answer = 3;
+const [choices, setChoices] = useState([1, 2, 3, 4]);
+const [chosen, setChosen] = useState([]);
+</code></pre>
+<p>Note that we did not make <code>answer</code> stateful, because this value does not (yet) change.</p>
+<p>Now that we got the <code>setChoices</code> and <code>setChosen</code> functions from <code>useState</code> to update the state, let's implement functions to move numbers between these two arrays:</p>
+<pre><code class="language-js">function choose(number) {
+  setChoices(choices.filter((c) => c !== number));
+  setChosen([...chosen, number]);
+}
+
+function unchoose(number) {
+  setChoices([...choices, number]);
+  setChosen(chosen.filter((c) => c !== number));
+}
+</code></pre>
+<p>To the number buttons in the left box we add an <code>onClick</code> handler and call the <code>choose</code> function:</p>
+<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => choose(number)}>
+  {number}
+&#x3C;/button>
+</code></pre>
+<p>Same for the right box, but then we call the <code>unchoose</code> function:</p>
+<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => unchoose(number)}>
+  {number}
+&#x3C;/button>
+</code></pre>
+<h3>Submitting an answer</h3>
+<p>Now that we are able to choose numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
+<p>What I am going to do is add up all the numbers in the <code>chosen</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is "playing", indicating the game is still being played:</p>
+<pre><code class="language-js">const [status, setStatus] = useState("playing");
+</code></pre>
+<p>As soon as the Done button is clicked the <code>status</code> should change to either 'correct' or 'incorrect'. To determine the total of the chosen number we reduce the array to one single value:</p>
+<pre><code class="language-js">function done() {
+  const result = chosen.reduce((a, b) => a + b, 0);
+  result === answer ? setStatus("correct") : setStatus("incorrect");
+}
+</code></pre>
+<p>To call the <code>done</code> function we add an <code>onClick</code> handler to the Done button:</p>
+<pre><code class="language-js">&#x3C;button className="action" onClick={done}>
+  Done
+&#x3C;/button>
+</code></pre>
+<p>To give some feedback to the user, for now, we just display the value of <code>status</code>:</p>
+<pre><code class="language-js">return (
+  &#x3C;div className="app">
+    {status}
+
+    /* etc. */
+</code></pre>
+<h3>Resetting the answer</h3>
+<p>...zeggen dat we de reset button nog moeten maken en dat we nadat we een corrct of incorrect antwoord hebben gegeven nog een keer willen proberen...</p>
+<p>...beide is eigenlijk hetzelfde (voor nu)...</p>
+<p>...de Modal komt er nu bij...</p>
+<p>...Ook komt nu pas de aparte <code>initialState</code> variabele</p>
+<h3>Finished</h3>
+<p>...vertellen dat de app het doet...</p>
+<p>However, the app has some issues. First of all, it's pretty boring the game let's you solve the same puzzle over and over again, so the numbers need to become random. Furthermore, as you might have noticed in the demo, when choosing a number, the buttons in the left box are moving places, which is kind of unexpected and not very user friendly. These two things I will solve in my next blog post!</p>
+<p>OPLOSSING VOOR DEZE 2 ISSUES:</p>
+<ul>
+<li>De getallen zijn nog statisch (randomizer functie maken en de initiële array onthouden met useRef)</li>
+<li>Het verspringen van de knoppen als je iets kiest (choices array moet zelfde grootte houden en worden opgevangen met null waardes?)</li>
+</ul>
+<blockquote>
+<p>LET OP: Op het laatst alle puntkomma's uit de code verwijderen!</p>
+</blockquote>
+</div>
+
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Learn React basics by creating a number game&url=https://bouwe.io/learn-react-basics-by-creating-a-number-game&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-number-game"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-number-game/learn-react-basics-by-creating-a-number-game.md">Edit on GitHub</a>
+      </div>
+    </div>
+
+    <footer>
+      <!--
+          <a href="/workshops">Workshops</a> |
+          <a href="/react">React</a>
+          -->
+    </footer>
+  </div>
+</body>
+
+</html>

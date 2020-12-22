@@ -88,31 +88,31 @@
           <a href="/learn-react-basics-by-creating-a-number-game">Learn React basics by creating a number game</a>
         </h2>
         <div class="blog-meta">
-          Dec 22, 2020  · <a href="/categories/react">React</a>  · 7 minute read
+          Dec 22, 2020  · <a href="/categories/react">React</a>  · 6 minute read
         </div>
       </div>
 
       <div><p>This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
-<p>(samenvatting wat we gaan behandelen)</p>
+<p>Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the <code>useState</code> hook.</p>
 <h3>Demo</h3>
 <p>Check out this GIF to see what we are going to build:</p>
 <img alt="Demo" src="/demo.gif" width="640"/>
-<p>So the objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again, click the Reset button.</p>
+<p>The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.</p>
 <p>Wanna give it a try yourself? <a href="https://react-number-game-v1.netlify.app">https://react-number-game-v1.netlify.app</a></p>
 <h3>Let's start building</h3>
-<p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css">on GitHub</a>.</p>
+<p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css">on my GitHub</a>.</p>
 <p>To keep it simple, the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
 <pre><code class="language-js">import React from "react";
 
 export default function App() {
   const answer = 3;
   const choices = [1, 2, 3, 4];
-  const chosen = [];
+  const selected = [];
 
   return (
-    &#x3C;div className="app">
+    &#x3C;div className="container">
       &#x3C;div className="full-width">
-        Choose numbers that add up to:
+        Select numbers that add up to:
         &#x3C;br />
         &#x3C;span className="answer">{answer}&#x3C;/span>
       &#x3C;/div>
@@ -122,7 +122,7 @@ export default function App() {
           {/* this is the box on the left which will contain numbers to choose from */}
         &#x3C;/div>
         &#x3C;div className="numbers">
-          {/* this is the box on the right which will contain the chosen numbers */}
+          {/* this is the box on the right which will contain the selected numbers */}
         &#x3C;/div>
       &#x3C;/div>
 
@@ -134,8 +134,8 @@ export default function App() {
   );
 }
 </code></pre>
-<h3>Choosing numbers by clicking on them</h3>
-<p>Note how I created and display a variable named <code>answer</code> which contains the number we'll have to add up to. Also variables for the numbers to choose from (<code>choices</code>) and the chosen numbers (<code>chosen</code>) have been added. However, these are not displayed yet, so let's do that now by mapping over them and rendering a button for each number:</p>
+<h3>Selecting numbers by clicking on them</h3>
+<p>Note how I created and display a variable named <code>answer</code> which contains the number we'll have to add up to. Also variables for the numbers to choose from (<code>choices</code>) and the selected numbers (<code>selected</code>) have been added. However, these are not displayed yet, so let's do that now by mapping over them and rendering a button for each number:</p>
 <pre><code class="language-js">&#x3C;div className="side-by-side">
   &#x3C;div className="numbers">
     {choices.map((number) => (
@@ -145,7 +145,7 @@ export default function App() {
     ))}
   &#x3C;/div>
   &#x3C;div className="numbers">
-    {chosen.map((number) => (
+    {selected.map((number) => (
       &#x3C;button key={number} className="number">
         {number}
       &#x3C;/button>
@@ -153,46 +153,57 @@ export default function App() {
   &#x3C;/div>
 &#x3C;/div>
 </code></pre>
-<blockquote>
-<p>Dynamic elements that are rendered with <code>map</code> should always contain a <code>key</code> prop with a unique identifier so React can keep track of which element is which.
-See ...</p>
-</blockquote>
-<p>Next, we want to click on a number so it moves from the left to the right box, or vice versa. Technically this means a number moves from the <code>choices</code> array to the <code>chosen</code> array, or vice versa. So to reflect changes to these arrays in the UI, we need to change these arrays from hard-coded contants to stateful values with the <code>useState</code> hook:</p>
+<p>Next, we want to click on a number to select it so it moves from the left to the right box, or vice versa. Technically this means a number moves from the <code>choices</code> array to the <code>selected</code> array, or vice versa. So to reflect changes to these arrays in the UI, we need to change these arrays from hard-coded constants to stateful values with the <code>useState</code> hook:</p>
 <pre><code class="language-js">const answer = 3;
 const [choices, setChoices] = useState([1, 2, 3, 4]);
-const [chosen, setChosen] = useState([]);
+const [selected, setSelected] = useState([]);
 </code></pre>
 <p>Note that we did not make <code>answer</code> stateful, because this value does not (yet) change.</p>
-<p>Now that we got the <code>setChoices</code> and <code>setChosen</code> functions from <code>useState</code> to update the state, let's implement functions to move numbers between these two arrays:</p>
-<pre><code class="language-js">function choose(number) {
+<p>Now that we got the <code>setChoices</code> and <code>setSelected</code> functions from <code>useState</code> to update the state, let's implement functions to move numbers between these two arrays:</p>
+<pre><code class="language-js">function select(number) {
   setChoices(choices.filter((c) => c !== number));
-  setChosen([...chosen, number]);
+  setSelected([...selected, number]);
 }
 
-function unchoose(number) {
+function deselect(number) {
   setChoices([...choices, number]);
-  setChosen(chosen.filter((c) => c !== number));
+  setSelected(selected.filter((c) => c !== number));
 }
 </code></pre>
-<p>To the number buttons in the left box we add an <code>onClick</code> handler and call the <code>choose</code> function:</p>
-<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => choose(number)}>
+<p>What happens in these functions is that a number is removed from an array by filtering all numbers except the one that was clicked. A number is added to an array using the spread operator.</p>
+<p>To the number buttons in the left box we add an <code>onClick</code> handler and call the <code>select</code> function:</p>
+<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => select(number)}>
   {number}
 &#x3C;/button>
 </code></pre>
-<p>Same for the right box, but then we call the <code>unchoose</code> function:</p>
-<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => unchoose(number)}>
+<p>Same for the right box, but then we call the <code>deselect</code> function:</p>
+<pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => deselect(number)}>
   {number}
 &#x3C;/button>
 </code></pre>
+<h3>Resetting the answer</h3>
+<p>Next to deselecting individual numbers, there is also a Reset button which should deselect all numbers. Let's implement that feature now.</p>
+<p>First, let's create a <code>reset</code> function:</p>
+<pre><code class="language-js">function reset() {
+  setChoices(initialChoices);
+  setSelected([]);
+  setResult();
+}
+</code></pre>
+<p>What we do here is set <code>choices</code> to the value of <code>initialChoices</code>, which does not yet exist. Let's create that variable now and also use it to set the initial state for the <code>useState</code> call for <code>choices</code>:</p>
+<pre><code class="language-js">const initialChoices = [1, 2, 3, 4];
+const [choices, setChoices] = useState(initialChoices);
+</code></pre>
+<p>So what happens here is that when the component is rendered for the first time it gets the value of <code>initialChoices</code>. When clicking the number buttons the state of <code>choices</code> changes. In the <code>reset</code> function we can restore the <code>initialChoices</code> again because we kept it in a separate variable.</p>
 <h3>Submitting an answer</h3>
-<p>Now that we are able to choose numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
-<p>What I am going to do is add up all the numbers in the <code>chosen</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is "playing", indicating the game is still being played:</p>
-<pre><code class="language-js">const [status, setStatus] = useState("playing");
+<p>Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
+<p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is empty, because there is no result yet:</p>
+<pre><code class="language-js">const [result, setResult] = useState();
 </code></pre>
-<p>As soon as the Done button is clicked the <code>status</code> should change to either 'correct' or 'incorrect'. To determine the total of the chosen number we reduce the array to one single value:</p>
+<p>As soon as the Done button is clicked the <code>result</code> should change to either 'correct' or 'incorrect'. To determine the total of the <code>selected</code> numbers we reduce the array to one single value by adding up the numbers:</p>
 <pre><code class="language-js">function done() {
-  const result = chosen.reduce((a, b) => a + b, 0);
-  result === answer ? setStatus("correct") : setStatus("incorrect");
+  const selectedTotal = selected.reduce((a, b) => a + b, 0);
+  selectedTotal === answer ? setResult("correct") : setResult("incorrect");
 }
 </code></pre>
 <p>To call the <code>done</code> function we add an <code>onClick</code> handler to the Done button:</p>
@@ -200,29 +211,37 @@ function unchoose(number) {
   Done
 &#x3C;/button>
 </code></pre>
-<p>To give some feedback to the user, for now, we just display the value of <code>status</code>:</p>
+<p>To give some feedback to the user, for now, we just display the value of <code>result</code>, but only when the game is finished, in other words: when <code>result</code> has a value:</p>
 <pre><code class="language-js">return (
-  &#x3C;div className="app">
-    {status}
+  &#x3C;div className="container">
+    {result &#x26;&#x26; (
+      &#x3C;h1>{result}&#x3C;/h1>
+    )}
 
-    /* etc. */
+  /* etc. */
 </code></pre>
-<h3>Resetting the answer</h3>
-<p>...zeggen dat we de reset button nog moeten maken en dat we nadat we een corrct of incorrect antwoord hebben gegeven nog een keer willen proberen...</p>
-<p>...beide is eigenlijk hetzelfde (voor nu)...</p>
-<p>...de Modal komt er nu bij...</p>
-<p>...Ook komt nu pas de aparte <code>initialState</code> variabele</p>
-<h3>Finished</h3>
-<p>...vertellen dat de app het doet...</p>
-<p>However, the app has some issues. First of all, it's pretty boring the game let's you solve the same puzzle over and over again, so the numbers need to become random. Furthermore, as you might have noticed in the demo, when choosing a number, the buttons in the left box are moving places, which is kind of unexpected and not very user friendly. These two things I will solve in my next blog post!</p>
-<p>OPLOSSING VOOR DEZE 2 ISSUES:</p>
-<ul>
-<li>De getallen zijn nog statisch (randomizer functie maken en de initiële array onthouden met useRef)</li>
-<li>Het verspringen van de knoppen als je iets kiest (choices array moet zelfde grootte houden en worden opgevangen met null waardes?)</li>
-</ul>
-<blockquote>
-<p>LET OP: Op het laatst alle puntkomma's uit de code verwijderen!</p>
-</blockquote>
+<h1>Trying again after submitting an answer</h1>
+<p>After the app indicated the answer is correct or not, of course we would like to try again. For now, this means we want to reset the game.</p>
+<p>Let's start with adding a Try Again button underneath the <code>result</code> we were already displaying. To make it look and work nicer we will put the result and the button in a <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/Modal.js">Modal</a>:</p>
+<pre><code class="language-js">return (
+  &#x3C;div className="container">
+      {result &#x26;&#x26; (
+        &#x3C;Modal>
+          &#x3C;h1>{result}&#x3C;/h1>
+          &#x3C;button className="action" onClick={reset}>
+            Try again
+          &#x3C;/button>
+        &#x3C;/Modal>
+      )}
+
+  /* etc. */
+</code></pre>
+<h3>Finished?</h3>
+<p>Well, not entirely.</p>
+<p>Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that.</p>
+<p>And as you've probably noticed in the demo there are a few annoying UI bugs when clicking the numbers. For example, the order of the numbers does not stay the same, so you really need to pay attention where the buttons have ended up before clicking the next one. This is also something I will fix in that next blog post.</p>
+<p>So stay tuned for Part 2! 😃</p>
+<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-number-game-v1">https://github.com/bouwe77/react-number-game-v1</a></p>
 </div>
 
       <div>

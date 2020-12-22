@@ -16,6 +16,17 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2020, Bouwe Westerdijk</rights>
     <entry>
+        <title type="html"><![CDATA[Learn React basics by creating a number game]]></title>
+        <id>https://bouwe.io/learn-react-basics-by-creating-a-number-game</id>
+        <link href="https://bouwe.io/learn-react-basics-by-creating-a-number-game"/>
+        <updated>2020-12-22T00:00:00.000Z</updated>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[My urge to share what I learn]]></title>
         <id>https://bouwe.io/my-urge-to-share-what-i-learn</id>
         <link href="https://bouwe.io/my-urge-to-share-what-i-learn"/>

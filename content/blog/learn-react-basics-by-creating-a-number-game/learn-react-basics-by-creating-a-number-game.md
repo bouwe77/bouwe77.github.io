@@ -187,7 +187,7 @@ return (
   /* etc. */
 ```
 
-# Trying again after submitting an answer
+### Trying again after submitting an answer
 
 After the app indicated the answer is correct or not, of course we would like to try again. For now, this means we want to reset the game.
 

@@ -1,6 +1,6 @@
 ---
 date: "2020-12-22"
-title: "Learn React basics by creating a number game"
+title: "Learn React basics by creating a number game (part 1)"
 summary: ""
 categories:
   - "React"
@@ -217,10 +217,11 @@ Although the app supports the infinite flow of answering a question, resetting i
 
 And as you've probably noticed in the demo there are a few annoying UI bugs when clicking the numbers. For example, the order of the numbers does not stay the same, so you really need to pay attention where the buttons have ended up before clicking the next one. This is also something I will fix in that next blog post.
 
-So stay tuned for Part 2! 😃
+~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
 
 P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-number-game-v1
 
 [create react app]: https://create-react-app.dev
 [on my github]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css
 [modal]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/Modal.js
+[continue reading]: /some-more-react-basics-while-improving-the-number-game

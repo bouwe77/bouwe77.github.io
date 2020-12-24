@@ -4,6 +4,7 @@ title: "Learn React basics by creating a number game"
 summary: ""
 categories:
   - "React"
+  - "simple number game"
 ---
 
 This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄

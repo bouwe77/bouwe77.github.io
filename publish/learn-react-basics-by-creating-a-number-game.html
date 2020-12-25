@@ -95,13 +95,11 @@
       <div><p>This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
 <p>Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the <code>useState</code> hook.</p>
 <h3>Demo</h3>
-<p>Check out this GIF to see what we are going to build:</p>
-<img alt="Demo" src="/demo.gif" width="640"/>
 <p>The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.</p>
 <p>Wanna give it a try yourself? <a href="https://react-number-game-v1.netlify.app">https://react-number-game-v1.netlify.app</a></p>
 <h3>Let's start building</h3>
 <p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css">on my GitHub</a>.</p>
-<p>To keep it simple, the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
+<p>To keep it simple the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
 <pre><code class="language-js">import React from "react";
 
 export default function App() {
@@ -145,32 +143,34 @@ export default function App() {
     ))}
   &#x3C;/div>
   &#x3C;div className="numbers">
-    {selected.map((number) => (
-      &#x3C;button key={number} className="number">
+    {selected.map((number, index) => (
+      &#x3C;button key={index} className="number">
         {number}
       &#x3C;/button>
     ))}
   &#x3C;/div>
 &#x3C;/div>
 </code></pre>
-<p>Next, we want to click on a number to select it so it moves from the left to the right box, or vice versa. Technically this means a number moves from the <code>choices</code> array to the <code>selected</code> array, or vice versa. So to reflect changes to these arrays in the UI, we need to change these arrays from hard-coded constants to stateful values with the <code>useState</code> hook:</p>
+<p>I added a <code>key</code> prop to each button to React can uniquely identifiable each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
+<blockquote>
+<p>Check out this <em>egghead.io</em> lesson to learn more about the <code>key</code> prop and using indexes: <a href="https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react">https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react</a></p>
+</blockquote>
+<p>Next, when clicking a number in the left box we want to have it appear in the right box and when clicking a number in the right box we want to have it disappear again. Technically this means a number from the <code>choices</code> array is added or removed from the <code>selected</code> array. To reflect changes to the <code>selected</code> array in the UI, we need to change that array from a hard-coded constant to a stateful value with the <code>useState</code> hook:</p>
 <pre><code class="language-js">const answer = 3;
-const [choices, setChoices] = useState([1, 2, 3, 4]);
+const choices = [1, 2, 3, 4];
 const [selected, setSelected] = useState([]);
 </code></pre>
-<p>Note that we did not make <code>answer</code> stateful, because this value does not (yet) change.</p>
-<p>Now that we got the <code>setChoices</code> and <code>setSelected</code> functions from <code>useState</code> to update the state, let's implement functions to move numbers between these two arrays:</p>
+<p>Note that we did not make <code>answer</code> and <code>choices</code> stateful, because these values do not change (yet).</p>
+<p>Now that we got the <code>setSelected</code> function from <code>useState</code> to update the state, let's implement functions to add and remove numbers from the <code>selected</code> array:</p>
 <pre><code class="language-js">function select(number) {
-  setChoices(choices.filter((c) => c !== number));
   setSelected([...selected, number]);
 }
 
 function deselect(number) {
-  setChoices([...choices, number]);
   setSelected(selected.filter((c) => c !== number));
 }
 </code></pre>
-<p>What happens in these functions is that a number is removed from an array by filtering all numbers except the one that was clicked. A number is added to an array using the spread operator.</p>
+<p>What happens in these functions is that a number is added to the <code>selected</code> array using the spread operator and it is removed from <code>selected</code> by filtering all numbers except the one that was clicked.</p>
 <p>To the number buttons in the left box we add an <code>onClick</code> handler and call the <code>select</code> function:</p>
 <pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => select(number)}>
   {number}
@@ -185,17 +185,10 @@ function deselect(number) {
 <p>Next to deselecting individual numbers, there is also a Reset button which should deselect all numbers. Let's implement that feature now.</p>
 <p>First, let's create a <code>reset</code> function:</p>
 <pre><code class="language-js">function reset() {
-  setChoices(initialChoices);
   setSelected([]);
-  setResult();
 }
 </code></pre>
-<p>What we do here is set <code>choices</code> to the value of <code>initialChoices</code>, which does not yet exist. Let's create that variable now and also use it to set the initial state for the <code>useState</code> call for <code>choices</code>:</p>
-<pre><code class="language-js">const initialChoices = [1, 2, 3, 4];
-const [choices, setChoices] = useState(initialChoices);
-</code></pre>
-<p>So what happens here is that when the component is rendered for the first time it gets the value of <code>initialChoices</code>. When clicking the number buttons the state of <code>choices</code> changes. In the <code>reset</code> function we can restore the <code>initialChoices</code> again because we kept it in a separate variable.</p>
-<h3>Submitting an answer</h3>
+<h3>Submitting the answer</h3>
 <p>Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
 <p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is empty, because there is no result yet:</p>
 <pre><code class="language-js">const [result, setResult] = useState();
@@ -203,13 +196,19 @@ const [choices, setChoices] = useState(initialChoices);
 <p>As soon as the Done button is clicked the <code>result</code> should change to either 'correct' or 'incorrect'. To determine the total of the <code>selected</code> numbers we reduce the array to one single value by adding up the numbers:</p>
 <pre><code class="language-js">function done() {
   const selectedTotal = selected.reduce((a, b) => a + b, 0);
-  selectedTotal === answer ? setResult("correct") : setResult("incorrect");
+  selectedTotal === answer ? setResult("correct!") : setResult("incorrect...");
 }
 </code></pre>
 <p>To call the <code>done</code> function we add an <code>onClick</code> handler to the Done button:</p>
 <pre><code class="language-js">&#x3C;button className="action" onClick={done}>
   Done
 &#x3C;/button>
+</code></pre>
+<p>When resetting, <code>result</code> needs to be cleared too so we add that to the <code>reset</code> function:</p>
+<pre><code class="language-js">function reset() {
+  setSelected([]);
+  setResult();
+}
 </code></pre>
 <p>To give some feedback to the user, for now, we just display the value of <code>result</code>, but only when the game is finished, in other words: when <code>result</code> has a value:</p>
 <pre><code class="language-js">return (
@@ -238,8 +237,7 @@ const [choices, setChoices] = useState(initialChoices);
 </code></pre>
 <h3>Finished?</h3>
 <p>Well, not entirely.</p>
-<p>Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that.</p>
-<p>And as you've probably noticed in the demo there are a few annoying UI bugs when clicking the numbers. For example, the order of the numbers does not stay the same, so you really need to pay attention where the buttons have ended up before clicking the next one. This is also something I will fix in that next blog post.</p>
+<p>Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the <code>useEffect</code> hook.</p>
 <p>So stay tuned for Part 2! 😃</p>
 <p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-number-game-v1">https://github.com/bouwe77/react-number-game-v1</a></p>
 </div>

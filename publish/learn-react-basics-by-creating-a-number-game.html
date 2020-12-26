@@ -167,10 +167,14 @@ const [selected, setSelected] = useState([]);
 }
 
 function deselect(number) {
-  setSelected(selected.filter((c) => c !== number));
+  const index = selected.indexOf(number);
+  if (index === -1) return;
+  const newSelected = [...selected];
+  newSelected.splice(index, 1);
+  setSelected(newSelected);
 }
 </code></pre>
-<p>What happens in these functions is that a number is added to the <code>selected</code> array using the spread operator and it is removed from <code>selected</code> by filtering all numbers except the one that was clicked.</p>
+<p>What happens in these functions is that a number is added to the <code>selected</code> array using the spread operator and it is removed from <code>selected</code> by finding the first occurrence of the number and remove it.</p>
 <p>To the number buttons in the left box we add an <code>onClick</code> handler and call the <code>select</code> function:</p>
 <pre><code class="language-js">&#x3C;button key={number} className="number" onClick={() => select(number)}>
   {number}

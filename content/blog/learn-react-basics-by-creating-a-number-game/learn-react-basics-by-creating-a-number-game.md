@@ -13,10 +13,6 @@ Topics this blog post will cover are JSX, conditional rendering, mapping arrays 
 
 ### Demo
 
-Check out this GIF to see what we are going to build:
-
-<img alt="Demo" src="/demo.gif" width="640"/>
-
 The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.
 
 Wanna give it a try yourself? https://react-number-game-v1.netlify.app
@@ -25,7 +21,7 @@ Wanna give it a try yourself? https://react-number-game-v1.netlify.app
 
 I'll build this app using [Create React App]. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found [on my GitHub].
 
-To keep it simple, the app will consist of one component, the `App` component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:
+To keep it simple the app will consist of one component, the `App` component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:
 
 ```js
 import React from "react";
@@ -75,8 +71,8 @@ Note how I created and display a variable named `answer` which contains the numb
     ))}
   </div>
   <div className="numbers">
-    {selected.map((number) => (
-      <button key={number} className="number">
+    {selected.map((number, index) => (
+      <button key={index} className="number">
         {number}
       </button>
     ))}
@@ -84,31 +80,37 @@ Note how I created and display a variable named `answer` which contains the numb
 </div>
 ```
 
-Next, we want to click on a number to select it so it moves from the left to the right box, or vice versa. Technically this means a number moves from the `choices` array to the `selected` array, or vice versa. So to reflect changes to these arrays in the UI, we need to change these arrays from hard-coded constants to stateful values with the `useState` hook:
+I added a `key` prop to each button to React can uniquely identifiable each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the `choices` array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the `selected` array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an `index` here, which is fine for my code, but not always is a good idea.
+
+> Check out this _egghead.io_ lesson to learn more about the `key` prop and using indexes: https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react
+
+Next, when clicking a number in the left box we want to have it appear in the right box and when clicking a number in the right box we want to have it disappear again. Technically this means a number from the `choices` array is added or removed from the `selected` array. To reflect changes to the `selected` array in the UI, we need to change that array from a hard-coded constant to a stateful value with the `useState` hook:
 
 ```js
 const answer = 3;
-const [choices, setChoices] = useState([1, 2, 3, 4]);
+const choices = [1, 2, 3, 4];
 const [selected, setSelected] = useState([]);
 ```
 
-Note that we did not make `answer` stateful, because this value does not (yet) change.
+Note that we did not make `answer` and `choices` stateful, because these values do not change (yet).
 
-Now that we got the `setChoices` and `setSelected` functions from `useState` to update the state, let's implement functions to move numbers between these two arrays:
+Now that we got the `setSelected` function from `useState` to update the state, let's implement functions to add and remove numbers from the `selected` array:
 
 ```js
 function select(number) {
-  setChoices(choices.filter((c) => c !== number));
   setSelected([...selected, number]);
 }
 
 function deselect(number) {
-  setChoices([...choices, number]);
-  setSelected(selected.filter((c) => c !== number));
+  const index = selected.indexOf(number);
+  if (index === -1) return;
+  const newSelected = [...selected];
+  newSelected.splice(index, 1);
+  setSelected(newSelected);
 }
 ```
 
-What happens in these functions is that a number is removed from an array by filtering all numbers except the one that was clicked. A number is added to an array using the spread operator.
+What happens in these functions is that a number is added to the `selected` array using the spread operator and it is removed from `selected` by finding the first occurrence of the number and remove it.
 
 To the number buttons in the left box we add an `onClick` handler and call the `select` function:
 
@@ -134,22 +136,11 @@ First, let's create a `reset` function:
 
 ```js
 function reset() {
-  setChoices(initialChoices);
   setSelected([]);
-  setResult();
 }
 ```
 
-What we do here is set `choices` to the value of `initialChoices`, which does not yet exist. Let's create that variable now and also use it to set the initial state for the `useState` call for `choices`:
-
-```js
-const initialChoices = [1, 2, 3, 4];
-const [choices, setChoices] = useState(initialChoices);
-```
-
-So what happens here is that when the component is rendered for the first time it gets the value of `initialChoices`. When clicking the number buttons the state of `choices` changes. In the `reset` function we can restore the `initialChoices` again because we kept it in a separate variable.
-
-### Submitting an answer
+### Submitting the answer
 
 Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.
 
@@ -164,7 +155,7 @@ As soon as the Done button is clicked the `result` should change to either 'corr
 ```js
 function done() {
   const selectedTotal = selected.reduce((a, b) => a + b, 0);
-  selectedTotal === answer ? setResult("correct") : setResult("incorrect");
+  selectedTotal === answer ? setResult("correct!") : setResult("incorrect...");
 }
 ```
 
@@ -174,6 +165,15 @@ To call the `done` function we add an `onClick` handler to the Done button:
 <button className="action" onClick={done}>
   Done
 </button>
+```
+
+When resetting, `result` needs to be cleared too so we add that to the `reset` function:
+
+```js
+function reset() {
+  setSelected([]);
+  setResult();
+}
 ```
 
 To give some feedback to the user, for now, we just display the value of `result`, but only when the game is finished, in other words: when `result` has a value:
@@ -213,9 +213,7 @@ return (
 
 Well, not entirely.
 
-Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that.
-
-And as you've probably noticed in the demo there are a few annoying UI bugs when clicking the numbers. For example, the order of the numbers does not stay the same, so you really need to pay attention where the buttons have ended up before clicking the next one. This is also something I will fix in that next blog post.
+Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the `useEffect` hook.
 
 ~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
 

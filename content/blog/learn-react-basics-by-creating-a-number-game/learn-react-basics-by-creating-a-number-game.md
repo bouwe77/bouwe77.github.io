@@ -101,11 +101,15 @@ function select(number) {
 }
 
 function deselect(number) {
-  setSelected(selected.filter((c) => c !== number));
+  const index = selected.indexOf(number);
+  if (index === -1) return;
+  const newSelected = [...selected];
+  newSelected.splice(index, 1);
+  setSelected(newSelected);
 }
 ```
 
-What happens in these functions is that a number is added to the `selected` array using the spread operator and it is removed from `selected` by filtering all numbers except the one that was clicked.
+What happens in these functions is that a number is added to the `selected` array using the spread operator and it is removed from `selected` by finding the first occurrence of the number and remove it.
 
 To the number buttons in the left box we add an `onClick` handler and call the `select` function:
 

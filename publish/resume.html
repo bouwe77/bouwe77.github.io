@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Create two columns that floats next to each other */
+      .column {
+        float: left;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .half-width {
+        width: 50%;
+      }
+
+      .quarter-width {
+        width: 25%;
+      }
+
+      .three-quarter-width {
+        width: 75%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .left {
+        text-align: left;
+        margin-left: 30px;
+      }
+
+      .right {
+        text-align: right;
+        margin-right: 30px;
+      }
+
+      /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+        .column {
+          width: 100%;
+        }
+        .right {
+          text-align: left;
+          margin-right: 0;
+        }
+        .left {
+          margin-left: 0;
+        }
+      }
+
+      h2 {
+        text-transform: uppercase;
+      }
+
+      .dot {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .on {
+        background-color: #d02e77;
+      }
+
+      .off {
+        background-color: darkgrey;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row">
+      <div
+        class="three-quarter-width column"
+        style="border: 1px solid darkgray"
+      >
+        <h1>Hi, I am Bouwe Westerdijk</h1>
+        <p>Software Engineer</p>
+      </div>
+      <div
+        class="quarter-width column"
+        style="border: 1px solid darkgray; text-align: right"
+      >
+        <p>Drachten, NL</p>
+        <p>+31 6 264 900 27</p>
+        <p>@bouwe</p>
+        <p>/bkwesterdijk</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="full-width column" style="border: 1px solid darkgray">
+        <h2>About me</h2>
+        <p>Some text..</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="right">
+          <h2>Expertise</h2>
+          <div style="float: right">
+            <div class="column" style="margin-right: 15px">
+              <div>
+                <span class="dot off"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+              </div>
+              <div>
+                <span class="dot off"></span>
+                <span class="dot off"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+              </div>
+              <div>
+                <span class="dot off"></span>
+                <span class="dot off"></span>
+                <span class="dot off"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+                <span class="dot on"></span>
+              </div>
+            </div>
+            <div class="column">
+              <div>C# / .NET Core</div>
+              <div>React</div>
+              <div>JavaScript</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="left">
+          <h2>Key skills</h2>
+          <p>Some text..</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="right">
+          <h2>Experience</h2>
+          <p>Some text..</p>
+        </div>
+      </div>
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="left">
+          <h2>Education</h2>
+          <p>Some text..</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="right">
+          <h2>Languages</h2>
+          <p>Some text..</p>
+        </div>
+      </div>
+      <div class="half-width column" style="border: 1px solid darkgray">
+        <div class="left">
+          <h2>Hobbies</h2>
+          <p>Some text..</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

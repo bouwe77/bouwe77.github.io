@@ -8,15 +8,9 @@ categories:
   - "simple number game"
 ---
 
-This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the functionality of the app I created in [Part 1]. You might want to read that first, so you know what the app is about and how it was built.
+This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the app I created in [Part 1]. You might want to read that first, so you know what the app is about and how it was built.
 
 ### Demo
-
-link naar netlify
-
-### Improve the user experience
-
-...
 
 ### Make the questions dynamic
 

@@ -1,10 +1,10 @@
 ---
 date: "2020-12-22"
-title: "Learn React basics by creating a number game (part 1)"
+title: "Learn React basics by creating a simple calculation game (part 1)"
 summary: ""
 categories:
   - "React"
-  - "simple number game"
+  - "simple calculation game"
 ---
 
 This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Some more React basics while improving the simple calculation game (part 2)</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Some more React basics while improving the simple calculation game (part 2)" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <h1>
+          <a href="/">bouwe.io</a>
+        </h1>
+      </div>
+      <div class="nav">
+        <!-- 
+          <a href="#">about me</a> · <a href="#">speaking</a>
+          -->
+      </div>
+    </header>
+
+    <div>
+      <div>
+        <h2 class="blog-title">
+          <a href="/some-more-react-basics-while-improving-the-simple-calculation-game">Some more React basics while improving the simple calculation game (part 2)</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 29, 2020  · <a href="/categories/react">React</a>, <a href="/categories/useeffect">useEffect</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>  · 5 minute read
+        </div>
+      </div>
+
+      <div><p>This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="/learn-react-basics-by-creating-a-simple-calculation-game">Part 1</a>. You might want to read that first, so you know what the app is about and how it was built.</p>
+<p>In this blog post we'll make the questions dynamic, because answering the same question over and over again is a bit boring.</p>
+<p>The main React topic we'll cover in this blog post is the <code>useEffect</code> hook.</p>
+<h3>Demo</h3>
+<p>The app we are building can be found here: <a href="https://react-simple-calculation-game.netlify.app.">https://react-simple-calculation-game.netlify.app.</a> Version 1 we built in <a href="/learn-react-basics-by-creating-a-simple-calculation-game">part 1</a> and now we will create version 2.</p>
+<h3>A function for random questions</h3>
+<p>We need a function that returns a random question. This question consists of an <code>answer</code>, which is the number you'll have to add up to, and <code>choices</code>, which is an array of numbers to choose from. The function will return an object containing these two properties. To keep it simple, the <code>choices</code> array will still be hard-coded and <code>answer</code> will be a random number between 2 and 10:</p>
+<pre><code class="language-js">function getQuestion() {
+  const min = 2;
+  const max = 10;
+  const answer = Math.floor(Math.random() * (max - min + 1) + min);
+  return { answer, choices: [1, 2, 3, 4] };
+}
+</code></pre>
+<p>In our <code>App</code> component we'll need to call this function. But before we do that we'll have to answer the following question: Does this function need to be <em>inside</em> or <em>outside</em> the component?</p>
+<p>I always keep these kind of functions <em>outside</em> the component.</p>
+<p>The first reason for that is about <em>separation of concern</em>: A React component is responsible for rendering UIs and should contain all code that is needed to do that. However, the <code>getQuestion</code> function has nothing to do with UIs, it's a function that contains business logic and even data. Of course it will be <em>used</em> for the UI in this case, but it could also be used for another purpose. Putting it outside keeps the component code clean.</p>
+<p>A second reason is about the behavior of React components. With every state change (for example: when clicking the numbers) the <code>App</code> component will be re-rendered which means the <code>getQuestion</code> function would be re-created with every render. For this app this is not really a big deal, but it is unnecessary.</p>
+<p>Having said that, for this app, there is nothing wrong with putting the function inside the component if that is your personal preference, but I do not recommend it.</p>
+<p>The second question is: Should I put this function in the <code>App</code> component file or in a separate file and then import it? The answer to this question is purely a personal preference. I prefer a separate file and import it, again, to keep the <code>App</code> component file clean.</p>
+<h3>Calling the <code>getQuestion</code> function</h3>
+<p>Before calling <code>getQuestion</code>, we'll refactor our component a bit. Until now, our component started with the following:</p>
+<pre><code class="language-js">function App() {
+  const answer = 3;
+  const choices = [1, 2, 3, 4];
+  const [selected, setSelected] = useState([]);
+  const [result, setResult] = useState();
+</code></pre>
+<p>As said before, <code>answer</code> and <code>choices</code> will be merged into one object which will be returned by the <code>getQuestion</code> component. This <code>question</code> object changes with each call to <code>getQuestion</code> and should be displayed, which means it becomes stateful:</p>
+<pre><code class="language-js">function App() {
+  const [question, setQuestion] = useState({ choices: [] });
+  const { answer, choices } = question;
+  const [selected, setSelected] = useState([]);
+  const [result, setResult] = useState();
+</code></pre>
+<p>I did two things in this code to make sure the rest of the component's code won't break because of this change, which are worth noting:</p>
+<p>First of all, the <code>useState</code> call for <code>question</code> gets an initial state with an empty <code>choices</code> array passed in. This is to make sure the <code>choices.map</code> call in the JSX keeps on working on the first render when <code>getQuestion</code> has not been called yet. An alternative fix is to not provide an initial state and check for the existence of the choices array before mapping it. But that means unnecessary clutter in the JSX and I don't like that.</p>
+<p>The second thing I did, which is also optional, is on the second line where I destruct <code>answer</code> and <code>choices</code> from <code>question</code>. This is to prevent I have to prepend all usages of these variables throughout the component with <code>question.</code>.</p>
+<p>Now let's fi-nal-ly call <code>getQuestion</code> in our component...</p>
+<p>Both when the component is rendered for the first time and after answering a question, the <code>getQuestion</code> function should be called so the UI will display a new question. This is a side effect as there is no direct user interaction involved that triggers getting a new question. For that we'll call React's <code>useEffect</code> hook inside our component, which in turn calls our <code>getQuestion</code> function:</p>
+<pre><code class="language-js">useEffect(() => {
+  const newQuestion = getQuestion();
+});
+</code></pre>
+<p>Next we need to update the state of <code>question</code> by calling <code>setQuestion</code>:</p>
+<pre><code class="language-js">useEffect(() => {
+  const newQuestion = getQuestion();
+  setQuestion(newQuestion);
+}, []);
+</code></pre>
+<p>Note how I also added the <strong>empty dependency array</strong> to prevent the notorious infinite <code>useEffect</code> loop.</p>
+<p>What happens now is that when the component is rendered for the first time, <code>useState</code> is called and the <code>choices</code> array is empty. The JSX is rendered and nothing is displayed. However, directly after that, <code>useEffect</code> is called, which gets a question, updates the <code>question</code> state and the question is displayed. This happens so fast the user won't notice it.</p>
+<p>After answering the question, <code>getQuestion</code> should be called again, but this is not happening. The reason for that is the empty dependency array we passed to <code>useEffect</code>, which means the code is only called after the first render.</p>
+<p>The question is when (and how) should <code>getQuestion</code> be called again? We'll use the already existing stateful <code>result</code> variable for that. When an answer is given, <code>result</code> will get a value indicating the answer is correct or not. After clicking Try Again, result is cleared again, which happens in the <code>reset</code> function. So what our <code>useEffect</code> code should do is check for the <code>result</code> variable: a new question should be retrieved when <code>result</code> is empty:</p>
+<pre><code class="language-js">useEffect(() => {
+  if (!result) setQuestion(getQuestion());
+}, [result]);
+</code></pre>
+<p>Note how I also added <code>result</code> to the dependency array. Our side effect code is dependent on that value as it needs it to determine whether <code>getQuestion</code> should be called or not.</p>
+<h3>Wrapping up</h3>
+<p>This is quite a long story for quite a small adjustment to our code. However, it's a significant one: The app now gives you infinite pleasure of trying to add up to numbers between 2 and 10! 😉</p>
+<p>By the way, did you notice we only changed the <em>behavior</em> of our component and not the UI (JSX)? This shows how nice and clean behavior and UI are separated in a React component.</p>
+<p>In my next blog post, which is part 3 already, I will cover the <code>useReducer</code> hook, which we'll use to make the component's code even cleaner.</p>
+<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game">https://github.com/bouwe77/react-simple-calculation-game</a></p>
+</div>
+
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Some more React basics while improving the simple calculation game (part 2)&url=https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/some-more-react-basics-while-improving-the-simple-calculation-game/some-more-react-basics-while-improving-the-simple-calculation-game.md">Edit on GitHub</a>
+      </div>
+    </div>
+
+    <footer>
+      <!--
+          <a href="/workshops">Workshops</a> |
+          <a href="/react">React</a>
+          -->
+    </footer>
+  </div>
+</body>
+
+</html>

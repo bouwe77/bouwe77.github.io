@@ -16,6 +16,8 @@ The main React topic we'll cover in this blog post is the `useEffect` hook.
 
 ### Demo
 
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="400" style="border:1px solid #ccc"/>
+
 The app we are building can be found here: https://react-simple-calculation-game.netlify.app. Version 1 we built in [part 1] and now we will create version 2.
 
 ### A function for random questions

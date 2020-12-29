@@ -1,6 +1,6 @@
 ---
 date: "2020-12-29"
-title: "Some more React basics while improving the simple calculation game (part 2)"
+title: "Learn React basics by creating a simple calculation game (Part 2)"
 summary: ""
 categories:
   - "React"
@@ -116,4 +116,4 @@ In my next blog post, which is part 3 already, I will cover the `useReducer` hoo
 
 P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game
 
-[part 1]: /learn-react-basics-by-creating-a-simple-calculation-game
+[part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1

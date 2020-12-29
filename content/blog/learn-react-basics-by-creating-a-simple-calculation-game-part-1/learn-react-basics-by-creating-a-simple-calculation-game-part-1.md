@@ -1,6 +1,6 @@
 ---
 date: "2020-12-22"
-title: "Learn React basics by creating a simple calculation game (part 1)"
+title: "Learn React basics by creating a simple calculation game (Part 1)"
 summary: ""
 categories:
   - "React"
@@ -222,4 +222,4 @@ P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/re
 [create react app]: https://create-react-app.dev
 [on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
 [modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
-[continue reading]: /some-more-react-basics-while-improving-the-simple-calculation-game
+[continue reading]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2

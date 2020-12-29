@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>Some more React basics while improving the simple calculation game (part 2)</title>
+    <title>Learn React basics by creating a simple calculation game (Part 2)</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="Some more React basics while improving the simple calculation game (part 2)" />
+    <meta name="twitter:title" content="Learn React basics by creating a simple calculation game (Part 2)" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -85,18 +85,18 @@
     <div>
       <div>
         <h2 class="blog-title">
-          <a href="/some-more-react-basics-while-improving-the-simple-calculation-game">Some more React basics while improving the simple calculation game (part 2)</a>
+          <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-2">Learn React basics by creating a simple calculation game (Part 2)</a>
         </h2>
         <div class="blog-meta">
           Dec 29, 2020  · <a href="/categories/react">React</a>, <a href="/categories/useeffect">useEffect</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>  · 5 minute read
         </div>
       </div>
 
-      <div><p>This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="/learn-react-basics-by-creating-a-simple-calculation-game">Part 1</a>. You might want to read that first, so you know what the app is about and how it was built.</p>
+      <div><p>This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Part 1</a>. You might want to read that first, so you know what the app is about and how it was built.</p>
 <p>In this blog post we'll make the questions dynamic, because answering the same question over and over again is a bit boring.</p>
 <p>The main React topic we'll cover in this blog post is the <code>useEffect</code> hook.</p>
 <h3>Demo</h3>
-<p>The app we are building can be found here: <a href="https://react-simple-calculation-game.netlify.app.">https://react-simple-calculation-game.netlify.app.</a> Version 1 we built in <a href="/learn-react-basics-by-creating-a-simple-calculation-game">part 1</a> and now we will create version 2.</p>
+<p>The app we are building can be found here: <a href="https://react-simple-calculation-game.netlify.app.">https://react-simple-calculation-game.netlify.app.</a> Version 1 we built in <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">part 1</a> and now we will create version 2.</p>
 <h3>A function for random questions</h3>
 <p>We need a function that returns a random question. This question consists of an <code>answer</code>, which is the number you'll have to add up to, and <code>choices</code>, which is an array of numbers to choose from. The function will return an object containing these two properties. To keep it simple, the <code>choices</code> array will still be hard-coded and <code>answer</code> will be a random number between 2 and 10:</p>
 <pre><code class="language-js">function getQuestion() {
@@ -153,22 +153,22 @@
 <p>Note how I also added <code>result</code> to the dependency array. Our side effect code is dependent on that value as it needs it to determine whether <code>getQuestion</code> should be called or not.</p>
 <h3>Wrapping up</h3>
 <p>This is quite a long story for quite a small adjustment to our code. However, it's a significant one: The app now gives you infinite pleasure of trying to add up to numbers between 2 and 10! 😉</p>
-<p>By the way, did you notice we only changed the <em>behavior</em> of our component and not the UI (JSX)? This shows how nice and clean behavior and UI are separated in a React component.</p>
+<p>By the way, did you notice we only changed the <em>behavior</em> of our component and not the UI (JSX)? This shows how nice and clean behavior and UI can be separated in a React component.</p>
 <p>In my next blog post, which is part 3 already, I will cover the <code>useReducer</code> hook, which we'll use to make the component's code even cleaner.</p>
 <p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game">https://github.com/bouwe77/react-simple-calculation-game</a></p>
 </div>
 
       <div>
         <a
-          href="https://twitter.com/intent/tweet?text=Some more React basics while improving the simple calculation game (part 2)&url=https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game&via=bouwe"
+          href="https://twitter.com/intent/tweet?text=Learn React basics by creating a simple calculation game (Part 2)&url=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2&via=bouwe"
           >Share on Twitter</a
         >
         ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game"
+        <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2"
           >Discuss on Twitter</a
         >
         ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/some-more-react-basics-while-improving-the-simple-calculation-game/some-more-react-basics-while-improving-the-simple-calculation-game.md">Edit on GitHub</a>
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-simple-calculation-game-part-2/learn-react-basics-by-creating-a-simple-calculation-game-part-2.md">Edit on GitHub</a>
       </div>
     </div>
 

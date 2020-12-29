@@ -16,9 +16,9 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2020, Bouwe Westerdijk</rights>
     <entry>
-        <title type="html"><![CDATA[Some more React basics while improving the simple calculation game (part 2)]]></title>
-        <id>https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game</id>
-        <link href="https://bouwe.io/some-more-react-basics-while-improving-the-simple-calculation-game"/>
+        <title type="html"><![CDATA[Learn React basics by creating a simple calculation game (Part 2)]]></title>
+        <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</id>
+        <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2"/>
         <updated>2020-12-29T00:00:00.000Z</updated>
         <author>
             <name>Bouwe Westerdijk</name>
@@ -27,9 +27,9 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Learn React basics by creating a simple calculation game (part 1)]]></title>
-        <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game</id>
-        <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game"/>
+        <title type="html"><![CDATA[Learn React basics by creating a simple calculation game (Part 1)]]></title>
+        <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</id>
+        <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"/>
         <updated>2020-12-22T00:00:00.000Z</updated>
         <author>
             <name>Bouwe Westerdijk</name>

@@ -1,6 +1,6 @@
 ---
 date: "2020-12-29"
-title: "Some more React basics while improving the calculation game (part 2)"
+title: "Some more React basics while improving the simple calculation game (part 2)"
 summary: ""
 categories:
   - "React"
@@ -16,9 +16,7 @@ The main React topic we'll cover in this blog post is the `useEffect` hook.
 
 ### Demo
 
-The app we are building can be found here: https://react-number-game.netlify.app. Version 1 we built in [part 1] and now we will create version 2.
-
-//TODO HERNOEMEN NAAR react-calculation-game?
+The app we are building can be found here: https://react-simple-calculation-game.netlify.app. Version 1 we built in [part 1] and now we will create version 2.
 
 ### A function for random questions
 
@@ -108,16 +106,14 @@ useEffect(() => {
 
 Note how I also added `result` to the dependency array. Our side effect code is dependent on that value as it needs it to determine whether `getQuestion` should be called or not.
 
-### What's next?
+### Wrapping up
 
 This is quite a long story for quite a small adjustment to our code. However, it's a significant one: The app now gives you infinite pleasure of trying to add up to numbers between 2 and 10! 😉
 
-By the way, did you notice we only changed the _behavior_ of our component and not the UI (JSX)? This shows how nice and clean behavior and UI are separated in a React component.
+By the way, did you notice we only changed the _behavior_ of our component and not the UI (JSX)? This shows how nice and clean behavior and UI can be separated in a React component.
 
 In my next blog post, which is part 3 already, I will cover the `useReducer` hook, which we'll use to make the component's code even cleaner.
 
-//TODO LINK NAAR GitHub repo
-//TODO URL van part 1 aanpassen, want de titel is anders
-//TODO Ook de netlify URL aanpassen in part 1
+P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game
 
-[part 1]: /learn-react-basics-by-creating-a-number-game
+[part 1]: /learn-react-basics-by-creating-a-simple-calculation-game

@@ -15,7 +15,7 @@ Topics this blog post will cover are JSX, conditional rendering, mapping arrays 
 
 The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.
 
-Wanna give it a try yourself? https://react-number-game-v1.netlify.app
+Wanna give it a try yourself? https://react-simple-calculation-game.netlify.app.
 
 ### Let's start building
 
@@ -217,9 +217,9 @@ Although the app supports the infinite flow of answering a question, resetting i
 
 ~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-number-game-v1
+P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game
 
 [create react app]: https://create-react-app.dev
-[on my github]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css
-[modal]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/Modal.js
-[continue reading]: /some-more-react-basics-while-improving-the-number-game
+[on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
+[modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
+[continue reading]: /some-more-react-basics-while-improving-the-simple-calculation-game

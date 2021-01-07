@@ -8,7 +8,7 @@ categories:
   - "simple calculation game"
 ---
 
-This is part 2 of a series of blog posts where I'll explore some more basic React principles by building a simple calculation game. In this blog post I will improve the app I created in [Part 1]. You might want to read that first, so you know what the app is about and how it was built.
+This is part 2 of a series of blog posts where I explore basic React principles by building a simple calculation game. In this blog post I will improve the app I created in [Part 1]. You might want to read that first, so you know what the app is about and how it was built.
 
 In this blog post we'll make the questions dynamic, because answering the same question over and over again is a bit boring.
 
@@ -16,13 +16,15 @@ The main React topic we'll cover in this blog post is the `useEffect` hook.
 
 ### Demo
 
-<img alt="screenshot of the simple calculation game" src="/demo.png" width="400" style="border:1px solid #ccc"/>
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 
 The app we are building can be found here: https://react-simple-calculation-game.netlify.app. Version 1 we built in [part 1] and now we will create version 2.
 
 ### A function for random questions
 
-We need a function that returns a random question. This question consists of an `answer`, which is the number you'll have to add up to, and `choices`, which is an array of numbers to choose from. The function will return an object containing these two properties. To keep it simple, the `choices` array will still be hard-coded and `answer` will be a random number between 2 and 10:
+We need a function that returns a random question. This question consists of an `answer`, which is the number you'll have to add up to, and `choices`, which is an array of numbers to choose from.
+
+The function will return an object containing these two properties. To keep it simple, the `choices` array will still be hard-coded and `answer` will be a random number between 2 and 10:
 
 ```js
 function getQuestion() {
@@ -41,7 +43,7 @@ The first reason for that is about _separation of concern_: A React component is
 
 A second reason is about the behavior of React components. With every state change (for example: when clicking the numbers) the `App` component will be re-rendered which means the `getQuestion` function would be re-created with every render. For this app this is not really a big deal, but it is unnecessary.
 
-Having said that, for this app, there is nothing wrong with putting the function inside the component if that is your personal preference, but I do not recommend it.
+> Having said that, for this app, there is nothing wrong with putting the function inside the component if that is your personal preference, but I do not recommend it.
 
 The second question is: Should I put this function in the `App` component file or in a separate file and then import it? The answer to this question is purely a personal preference. I prefer a separate file and import it, again, to keep the `App` component file clean.
 
@@ -54,7 +56,7 @@ function App() {
   const answer = 3;
   const choices = [1, 2, 3, 4];
   const [selected, setSelected] = useState([]);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
 ```
 
 As said before, `answer` and `choices` will be merged into one object which will be returned by the `getQuestion` component. This `question` object changes with each call to `getQuestion` and should be displayed, which means it becomes stateful:
@@ -64,7 +66,7 @@ function App() {
   const [question, setQuestion] = useState({ choices: [] });
   const { answer, choices } = question;
   const [selected, setSelected] = useState([]);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
 ```
 
 I did two things in this code to make sure the rest of the component's code won't break because of this change, which are worth noting:
@@ -94,7 +96,7 @@ useEffect(() => {
 
 Note how I also added the **empty dependency array** to prevent the notorious infinite `useEffect` loop.
 
-What happens now is that when the component is rendered for the first time, `useState` is called and the `choices` array is empty. The JSX is rendered and nothing is displayed. However, directly after that, `useEffect` is called, which gets a question, updates the `question` state and the question is displayed. This happens so fast the user won't notice it.
+What happens now is that when the component is rendered for the first time, `useState` is called and the `choices` array is empty. The JSX is rendered and nothing is displayed. However, directly after that, `useEffect` is called, which gets a question, updates the `question` state and the question is displayed. This is how React works and it happens so fast the user won't notice it.
 
 After answering the question, `getQuestion` should be called again, but this is not happening. The reason for that is the empty dependency array we passed to `useEffect`, which means the code is only called after the first render.
 
@@ -114,8 +116,9 @@ This is quite a long story for quite a small adjustment to our code. However, it
 
 By the way, did you notice we only changed the _behavior_ of our component and not the UI (JSX)? This shows how nice and clean behavior and UI can be separated in a React component.
 
-In my next blog post, which is part 3 already, I will cover the `useReducer` hook, which we'll use to make the component's code even cleaner.
+In my next blog post, [which is part 3 already], I will cover the `useReducer` hook, which we'll use to make the component's code even cleaner.
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game
+P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2
 
 [part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
+[which is part 3 already]: /learn-react-basics-by-creating-a-simple-calculation-game-part-3

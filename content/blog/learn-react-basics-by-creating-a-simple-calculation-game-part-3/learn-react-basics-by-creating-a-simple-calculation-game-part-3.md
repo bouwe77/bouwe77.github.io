@@ -1,5 +1,5 @@
 ---
-date: "2020-12-31"
+date: "2021-01-07"
 title: "Learn React basics by creating a simple calculation game (part 3)"
 summary: ""
 categories:

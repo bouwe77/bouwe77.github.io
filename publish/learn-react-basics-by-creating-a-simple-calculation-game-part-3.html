@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Learn React basics by creating a simple calculation game (part 3)</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Learn React basics by creating a simple calculation game (part 3)" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <h1>
+          <a href="/">bouwe.io</a>
+        </h1>
+      </div>
+      <div class="nav">
+        <!-- 
+          <a href="#">about me</a> · <a href="#">speaking</a>
+          -->
+      </div>
+    </header>
+
+    <div>
+      <div>
+        <h2 class="blog-title">
+          <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">Learn React basics by creating a simple calculation game (part 3)</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 31, 2020  · <a href="/categories/react">React</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>, <a href="/categories/usereducer">useReducer</a>  · 9 minute read
+        </div>
+      </div>
+
+      <div><p>This is part 3 of a series of blog posts where I explore basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Part 1</a> and <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-2">Part 2</a>. You might want to read those first, so you know what the app is about and how it was built.</p>
+<p>In this blog post we'll hardly change the functionality, instead, we take another approach to managing state in our component by using the <code>useReducer</code> hook. I'll explain how to do this and why this might improve your React component code.</p>
+<p>At the moment, the top of the <code>App</code> component looks like this, we have 3 <code>useState</code> calls for 3 separate state variables:</p>
+<pre><code class="language-js">function App() {
+  const [question, setQuestion] = useState({ choices: [] });
+  const { answer, choices } = question;
+  const [selected, setSelected] = useState([]);
+  const [result, setResult] = useState();
+  /* ... */
+</code></pre>
+<p>The variables that <code>useState</code> returns, both the current state value and the setter functions, are used throughout the component. When a component becomes bigger and/or more complex, you might use track of where, why and how state is updated.</p>
+<p>Switching from using various <code>useState</code>s to one <code>useReducer</code> hook is one of the approaches to solve this problem. Because <code>useReducer</code> is an alternative for <code>useState</code>, switching to <code>useReducer</code> most of the times is a refactor and not necessarily a change in functionality, which is also the case in this blog post.</p>
+<h3>The arguments to <code>useReducer</code></h3>
+<p>Before calling <code>useReducer</code> in the component, we'll create variables that we need to pass to <code>useReducer</code>.</p>
+<p>First there is a <em>reducer function</em>, which I'll call <code>appReducer</code>, but you can name it anything you like. More on what this function does later on.</p>
+<p>Next there is the <em>initial state</em>. In our case we do have some initial state, so we create an object that contains all initial state that is needed for our component and until now was passed to <code>useState</code>.</p>
+<p>Finally we call <code>useReducer</code> inside the component and pass the 2 variables we just created:</p>
+<pre><code class="language-js">function appReducer() {}
+
+const initialState = {
+  question: { choices: [] },
+  selected: [],
+  result: null,
+};
+
+function App() {
+
+  useReducer(appReducer, initialState)
+  //const [question, setQuestion] = useState({ choices: [] });
+  //const { answer, choices } = question;
+  //const [selected, setSelected] = useState([]);
+  //const [result, setResult] = useState();
+  /* ... */
+</code></pre>
+<p>Now is a good time te delete all commented out <code>useState</code> calls too, because we don't need them anymore.</p>
+<p>Although we still have to implement <code>appReducer</code>, we are finished passing all necessary arguments to <code>useReducer</code>. Now let's focus on what <code>useReducer</code> returns.</p>
+<h3>What <code>useReducer</code> returns</h3>
+<p>Just like <code>useState</code>, <code>useReducer</code> returns an array with two items: The first one is the <em>current state</em>, which is an object that contains all the separate state variables we had before when we had separate <code>useState</code> calls: <code>question</code>, <code>selected</code> and <code>result</code>.</p>
+<p>The second item of the array returned by <code>useReducer</code> is the <code>dispatch</code> function. It's the function we'll later call to update state.</p>
+<p>Notice how both <code>useState</code> and <code>useReducer</code> return an array with two items which have a similar goal, although the usage of these items differs, as you will see soon.</p>
+<pre><code class="language-js">function App() {
+  const [state, dispatch] = useReducer(appReducer, initialState)
+  /* ... */
+</code></pre>
+<p><code>state</code> is an object containing all state variables, so instead of only destructuring <code>question</code>, now let's destructure the whole <code>state</code>, so all code that <em>uses</em> the separate state values does not break:</p>
+<pre><code class="language-js">function App() {
+  const [state, dispatch] = useReducer(appReducer, initialState)
+  const { question: { answer, choices }, selected, result } = state;
+  /* ... */
+</code></pre>
+<p>We finished calling <code>useReducer</code>, but our code is broke now, because all the setter functions we used to receive from the <code>useState</code> hook (<code>setQuestion</code>, <code>setSelected</code> and <code>setResult</code>) are gone now.</p>
+<h3>Replacing <code>useState</code> setters by <code>dispatch</code></h3>
+<p>Now we will replace all <code>useState</code> setter calls with <code>useReducer</code>'s <code>dispatch</code> calls. And along with it we will implement our <code>appReducer</code> function which will perform the actual state updates.</p>
+<p>Let's start with a state update that really shows where using <code>useReducer</code> shines, and that is the <code>reset</code> function:</p>
+<pre><code class="language-js">function reset() {
+  setSelected([]);
+  setResult(null);
+}
+</code></pre>
+<p>It has two calls to set different state variables. We will replace this by one <code>dispatch</code> call. And that is because <code>selected</code> and <code>result</code> are now part of a single state object. When calling <code>dispatch</code> you always pass a so-called <em>action</em> object, which at least always contains the <em>action type</em>. The action type is a <code>string</code> value that indicates <em>what</em> you want to change about the state. By convention these are in upper case, but you can use any casing you like. Let's call it "RESET", just like the name of the function:</p>
+<pre><code class="language-js">function reset() {
+  //setSelected([]);
+  //setResult(null);
+  dispatch({ type: "RESET" });
+}
+</code></pre>
+<p>Notice that we went from calling setter functions that exactly described <em>how</em> to change the state to a <code>dispatch</code> call that only describes <em>what</em> you want to change about the state. This is the big difference between <code>ueState</code> and <code>useReducer</code>.</p>
+<p>Now that we told React to "RESET", let's implement our reducer to actually do that.</p>
+<p>First we change the signature of our reducer to make it adhere to what React expects from a reducer by adding the two required arguments <code>state</code> and <code>action</code>:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  //TODO reducer implementation
+}
+</code></pre>
+<p>Now you might think: <em>Who</em> is going to call this function? Because <em>we</em> don't, we just call <code>dispatch</code>.</p>
+<p>What happens is that when we call <code>dispatch</code>, React will call <code>appReducer</code> for us and will pass the two required arguments we just added: First the <em>current state</em>, which is something React is keeping track of. And the second argument is <code>action</code>, which is the object we passed to the <code>dispatch</code>. For the reset call it only contains a <code>type</code> string, but it can contain more as you will see later on.</p>
+<p>Let's implement <code>appReducer</code> so it resets the appropriate state variables.</p>
+<p>What a reducer always returns is a <strong>new</strong> state object. State should always considered to be immutable: don't change the incoming state directly, but instead return a new object.</p>
+<blockquote>
+<p>React uses immutable state to detect whether a state change occurred and a re-render is necessary without having to do any comparison of the previous and current state's data: No matter what exactly has changed, it is new, so just re-render.</p>
+</blockquote>
+<p>A way to return a new object based on another object is to use the spread operator:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  return { ...state, selected: [], result: null };
+}
+</code></pre>
+<p>What this return statement says is: Return the state as it was, but make <code>selected</code> an empty array and set <code>result</code> to <code>null</code>.</p>
+<p>Note how we did not use the <code>action</code> argument yet, because this is the only state change our reducer does until now. However, there will be more action types so let's prepare our reducer for that by adding a <code>switch</code> statement:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  switch (action.type) {
+    case "RESET":
+      return { ...state, selected: [], result: null };
+    default:
+      return state;
+  }
+}
+</code></pre>
+<p>I also added a <code>default</code> which returns the current state so our reducer at least always returns <em>something</em>.</p>
+<p>We have finished our first state change with <code>useReducer</code>.</p>
+<p>On to the next one, the <code>done</code> function, which is determining whether the given answer is correct:</p>
+<pre><code class="language-js">function done() {
+  const selectedTotal = selected.reduce((a, b) => a + b, 0);
+  selectedTotal === answer ? setResult("correct!") : setResult("incorrect...");
+}
+</code></pre>
+<p>Here you have to decide what goes to the reducer and what stays in the <code>done</code> function. However, this function is only using the current state to do some checking and there is no reason to keep it here. Next to updating state, a reducer's responsibility can also be to take care of the UI logic of your component:</p>
+<pre><code class="language-js">function done() {
+  dispatch({ type: "ANSWER_QUESTION" });
+}
+</code></pre>
+<p>And the reducer implementation, where I ommitted the other action type implementations:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  switch (action.type) {
+    /* ... */
+    case "ANSWER_QUESTION": {
+      const selectedTotal = state.selected.reduce((a, b) => a + b, 0);
+      const result =
+        selectedTotal === state.question.answer ? "correct!" : "incorrect...";
+      return { ...state, result };
+    }
+    /* ... */
+  }
+}
+</code></pre>
+<h3>Passing additional action data to a reducer</h3>
+<p>Next, let's tackle selecting and deselecting a number:</p>
+<pre><code class="language-js">function select(number) {
+  setSelected([...selected, number]);
+}
+
+function deselect(number) {
+  const index = selected.indexOf(number);
+  if (index === -1) return;
+  const newSelected = [...selected];
+  newSelected.splice(index, 1);
+  setSelected(newSelected);
+}
+</code></pre>
+<p>For both functions we will move the full implementation to the reducer.</p>
+<p>But implementing the reducer for these functions is kind of special: Next to the <em>action type</em>, we need to tell the reducer the <code>number</code> that was clicked. Therefore we also supply the <em>action payload</em>, an object that contains the <code>number</code>:</p>
+<pre><code class="language-js">function select(number) {
+  dispatch({ type: "SELECT", payload: { number } });
+}
+
+function deselect(number) {
+  dispatch({ type: "DESELECT", payload: { number } });
+}
+</code></pre>
+<p>And this is the reducer:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  switch (action.type) {
+    /* ... */
+    case "SELECT":
+      const newSelected = [...state.selected, action.payload.number];
+      return { ...state, selected: newSelected };
+    case "DESELECT": {
+      const index = state.selected.indexOf(action.payload.number);
+      if (index === -1) return state;
+      const newSelected = [...state.selected];
+      newSelected.splice(index, 1);
+      return { ...state, selected: newSelected };
+    }
+    /* ... */
+  }
+}
+</code></pre>
+<blockquote>
+<p>What you put in the <code>payload</code>, a numeric value, an object, etc. is up to you. You can even call it <code>data</code> or whatever instead of <code>payload</code>. As long as your reducer can handle it. However, using <code>payload</code> with an object is a convention that is used most often and therefore is recommended.</p>
+</blockquote>
+<h3>Calling <code>dispatch</code> in a <code>useEffect</code></h3>
+<p>Finally, we'll implement getting a new question after the previous one was answered. This is handled by a <code>useEffect</code> implemented:</p>
+<pre><code class="language-js">useEffect(() => {
+  if (!result) setQuestion(getQuestion());
+}, [result]);
+</code></pre>
+<p>Let's replace <code>setQuestion</code> by a dispatch with an action type of "NEW_QUESTION" and putting the new <code>question</code> in the payload:</p>
+<pre><code class="language-js">useEffect(() => {
+  if (!result) {
+    const question = getQuestion();
+    dispatch({ type: "NEW_QUESTION", payload: { question } });
+  }
+}, [result]);
+</code></pre>
+<p>Note how the <code>useEffect</code> is still responsible for getting a new question, because that is still a <em>side effect</em>. However, updating the <code>question</code> state will be handled by the reducer:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  switch (action.type) {
+    /* ... */
+    case "NEW_QUESTION":
+      return { ...state, question: action.payload.question };
+    /* ... */
+  }
+}
+</code></pre>
+<h3>What did we gain with using <code>useReducer</code>?</h3>
+<p>You might think, using <code>useReducer</code> is quite complicated. Well, it's getting used to I think.</p>
+<p>The big change we made in our component is that the component tells <em>which</em> state change it wants. And not, like we did with <code>useState</code>, <em>how</em> exactly the state should change. And this is particularly interesting for components that have a complex state structure and/or a lot of places where the state changes.</p>
+<p>However, there are people who always and only use <code>useReducer</code>, just to keep components more clean. It's up to you whether you think this is a good approach.</p>
+<p>Until now, we did not change the functionality of our app, it was just a straight up refactor.</p>
+<p>But when using <code>useReducer</code>, adding new functionality can also have a smaller impact on your component code, because there is less going on. To demonstrate this, I will add a score which keeps track of the number of correctly answered questions.</p>
+<p>First we introduce a new state variable <code>score</code> in the component by destructuring it from <code>state</code> and render it in the JSX:</p>
+<pre><code class="language-js">function App() {
+  const [state, dispatch] = useReducer(appReducer, initialState)
+  const { question: { answer, choices }, selected, result, score } = state;
+
+  /* ... */
+
+  return (
+    &#x3C;div className={styles.container}>
+
+      /* ... */
+
+      &#x3C;div className={styles["full-width"]}>
+        Score: {score}
+      &#x3C;/div>
+
+      /* ... */
+</code></pre>
+<p>Finally, we add it to the <code>initialState</code> with value <code>0</code> and in the reducer increase the score when the answer is correct:</p>
+<pre><code class="language-js">function appReducer(state, action) {
+  switch (action.type) {
+    /* ... */
+    case "ANSWER_QUESTION": {
+      const selectedTotal = state.selected.reduce((a, b) => a + b, 0);
+      if (selectedTotal === state.question.answer) {
+        return { ...state, result: "correct!", score: state.score + 1 };
+      } else {
+        return { ...state, result: "incorrect..." };
+      }
+    }
+    /* ... */
+  }
+}
+</code></pre>
+<p>See how we hardly changed the component code, because it doesn't contain any logic regarding state. The real magic is going on in the reducer.</p>
+<p>Next to cleaner components with less complexity and more focus on the actual UI, components also become smaller. This is already the case with how my code changed in this blog post, but we can even go a step further.</p>
+<p>Scroll up to see how we do all the <code>dispatch</code> calls inside functions which are called from the <code>onClick</code> events in the JSX. We could get rid of all these functions and call <code>dispatch</code> from the <code>onClick</code> events directly. This is also something that depends on your personal preference, but it can make components more concise.</p>
+<h3>Wrapping up</h3>
+<p>That's it for <code>useReducer</code>, I hope you liked reading it as I did writing it.</p>
+<p>The next thing I want to do with this app is test it with <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a>, because that is something I really want to learn and share, so stay tuned!</p>
+<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js</a></p>
+</div>
+
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Learn React basics by creating a simple calculation game (part 3)&url=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-simple-calculation-game-part-3/learn-react-basics-by-creating-a-simple-calculation-game-part-3.md">Edit on GitHub</a>
+      </div>
+    </div>
+
+    <footer>
+      <!--
+          <a href="/workshops">Workshops</a> |
+          <a href="/react">React</a>
+          -->
+    </footer>
+  </div>
+</body>
+
+</html>

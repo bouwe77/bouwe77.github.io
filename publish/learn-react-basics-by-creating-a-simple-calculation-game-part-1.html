@@ -92,10 +92,10 @@
         </div>
       </div>
 
-      <div><p>This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
+      <div><p>This is part 1 of a series of blog posts where I explore basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
 <p>Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the <code>useState</code> hook.</p>
 <h3>Demo</h3>
-<img alt="screenshot of the simple calculation game" src="/demo.png" width="400" style="border:1px solid #ccc"/>
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 <p>The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.</p>
 <p>Wanna give it a try yourself? <a href="https://react-simple-calculation-game.netlify.app">https://react-simple-calculation-game.netlify.app</a>.</p>
 <h3>Let's start building</h3>
@@ -152,7 +152,7 @@ export default function App() {
   &#x3C;/div>
 &#x3C;/div>
 </code></pre>
-<p>I added a <code>key</code> prop to each button to React can uniquely identifiable each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
+<p>I added a <code>key</code> prop to each button so React can uniquely identify each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
 <blockquote>
 <p>Check out this <em>egghead.io</em> lesson to learn more about the <code>key</code> prop and using indexes: <a href="https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react">https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react</a></p>
 </blockquote>
@@ -195,8 +195,8 @@ function deselect(number) {
 </code></pre>
 <h3>Submitting the answer</h3>
 <p>Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
-<p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is empty, because there is no result yet:</p>
-<pre><code class="language-js">const [result, setResult] = useState();
+<p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is <code>null</code>, because there is no result yet:</p>
+<pre><code class="language-js">const [result, setResult] = useState(null);
 </code></pre>
 <p>As soon as the Done button is clicked the <code>result</code> should change to either 'correct' or 'incorrect'. To determine the total of the <code>selected</code> numbers we reduce the array to one single value by adding up the numbers:</p>
 <pre><code class="language-js">function done() {
@@ -212,7 +212,7 @@ function deselect(number) {
 <p>When resetting, <code>result</code> needs to be cleared too so we add that to the <code>reset</code> function:</p>
 <pre><code class="language-js">function reset() {
   setSelected([]);
-  setResult();
+  setResult(null);
 }
 </code></pre>
 <p>To give some feedback to the user, for now, we just display the value of <code>result</code>, but only when the game is finished, in other words: when <code>result</code> has a value:</p>
@@ -244,7 +244,7 @@ function deselect(number) {
 <p>Well, not entirely.</p>
 <p>Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the <code>useEffect</code> hook.</p>
 <p><del>So stay tuned for Part 2! 😃</del> Part 2 is finished, so <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-2">continue reading</a>.</p>
-<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game">https://github.com/bouwe77/react-simple-calculation-game</a></p>
+<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js</a></p>
 </div>
 
       <div>

@@ -10,6 +10,8 @@ categories:
 
 This is part 3 of a series of blog posts where I explore basic React principles by building a simple calculation game. In this blog post I will improve the app I created in [Part 1] and [Part 2]. You might want to read those first, so you know what the app is about and how it was built.
 
+Or check out the [demo on Netlify]. In this blog post we'll create version 3.
+
 In this blog post we'll hardly change the functionality, instead, we take another approach to managing state in our component by using the `useReducer` hook. I'll explain how to do this and why this might improve your React component code.
 
 At the moment, the top of the `App` component looks like this, we have 3 `useState` calls for 3 separate state variables:
@@ -348,4 +350,5 @@ P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/re
 
 [part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
 [part 2]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2
+[demo on netlify]: https://react-simple-calculation-game.netlify.app
 [react testing library]: https://testing-library.com/docs/react-testing-library/intro/

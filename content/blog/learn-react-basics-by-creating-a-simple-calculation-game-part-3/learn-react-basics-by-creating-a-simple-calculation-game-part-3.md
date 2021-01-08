@@ -25,7 +25,7 @@ function App() {
   /* ... */
 ```
 
-The variables that `useState` returns, both the current state value and the setter functions, are used throughout the component. When a component becomes bigger and/or more complex, you might use track of where, why and how state is updated.
+The variables that `useState` returns, both the current state value and the setter functions, are used throughout the component. When a component becomes bigger and/or more complex, you might lose track of where, why and how state is updated.
 
 Switching from using various `useState`s to one `useReducer` hook is one of the approaches to solve this problem. Because `useReducer` is an alternative for `useState`, switching to `useReducer` most of the times is a refactor and not necessarily a change in functionality, which is also the case in this blog post.
 

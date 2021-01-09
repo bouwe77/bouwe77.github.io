@@ -64,7 +64,7 @@ Although we still have to implement `appReducer`, we are finished passing all ne
 
 ### What `useReducer` returns
 
-Just like `useState`, `useReducer` returns an array with two items: The first one is the _current state_, which is an object that contains all the separate state variables we had before when we had separate `useState` calls: `question`, `selected` and `result`.
+Just like `useState`, `useReducer` returns an array with two items: The first one is the _current state_, an object that contains all state variables. When we still used `useState`, these were separate variables: `question`, `selected` and `result`.
 
 The second item of the array returned by `useReducer` is the `dispatch` function. It's the function we'll later call to update state.
 
@@ -85,7 +85,7 @@ function App() {
   /* ... */
 ```
 
-We finished calling `useReducer`, but our code is broke now, because all the setter functions we used to receive from the `useState` hook (`setQuestion`, `setSelected` and `setResult`) are gone now.
+We finished calling `useReducer`, but our code is broken now, because all the setter functions we used to receive from the `useState` hook (`setQuestion`, `setSelected` and `setResult`) are gone now.
 
 ### Replacing `useState` setters by `dispatch`
 
@@ -100,7 +100,9 @@ function reset() {
 }
 ```
 
-It has two calls to set different state variables. We will replace this by one `dispatch` call. And that is because `selected` and `result` are now part of a single state object. When calling `dispatch` you always pass a so-called _action_ object, which at least always contains the _action type_. The action type is a `string` value that indicates _what_ you want to change about the state. By convention these are in upper case, but you can use any casing you like. Let's call it "RESET", just like the name of the function:
+It has two calls to set different state variables. We will replace this by one `dispatch` call. And that is because `selected` and `result` are now part of a single state object.
+
+When calling `dispatch` you always pass a so-called _action_ object, which at least always contains the _action type_. The action type is a `string` value that indicates _what_ you want to change about the state. By convention these are in upper case, but you can use any casing you like. Let's call it "RESET", just like the name of the function:
 
 ```js
 function reset() {
@@ -110,7 +112,7 @@ function reset() {
 }
 ```
 
-Notice that we went from calling setter functions that exactly described _how_ to change the state to a `dispatch` call that only describes _what_ you want to change about the state. This is the big difference between `ueState` and `useReducer`.
+Notice that we went from calling setter functions that exactly described _how_ to change the state to a `dispatch` call that only describes _what_ you want to change about the state. This is the big difference between `useState` and `useReducer`.
 
 Now that we told React to "RESET", let's implement our reducer to actually do that.
 
@@ -124,7 +126,7 @@ function appReducer(state, action) {
 
 Now you might think: _Who_ is going to call this function? Because _we_ don't, we just call `dispatch`.
 
-What happens is that when we call `dispatch`, React will call `appReducer` for us and will pass the two required arguments we just added: First the _current state_, which is something React is keeping track of. And the second argument is `action`, which is the object we passed to the `dispatch`. For the reset call it only contains a `type` string, but it can contain more as you will see later on.
+What happens is that when we call `dispatch`, React will call `appReducer` for us and will pass the two required arguments we just added: First the _current state_, which is something React is keeping track of. And the second argument is `action`, which is the action object we passed to the `dispatch`. For the reset call it only contains a `type` string, but it can contain more as you will see later on.
 
 Let's implement `appReducer` so it resets the appropriate state variables.
 
@@ -246,11 +248,11 @@ function appReducer(state, action) {
 }
 ```
 
-> What you put in the `payload`, a numeric value, an object, etc. is up to you. You can even call it `data` or whatever instead of `payload`. As long as your reducer can handle it. However, using `payload` with an object is a convention that is used most often and therefore is recommended.
+> What you put in the `payload`, a numeric value, an object, etc. is up to you. You can even call it `data`, or whatever, instead of `payload`. As long as your reducer can handle it. However, using `payload` with an object is a convention that is used most often and therefore is recommended.
 
 ### Calling `dispatch` in a `useEffect`
 
-Finally, we'll implement getting a new question after the previous one was answered. This is handled by a `useEffect` implemented:
+Finally, we'll implement getting a new question after the previous one was answered. This is handled by a `useEffect`:
 
 ```js
 useEffect(() => {
@@ -284,7 +286,7 @@ function appReducer(state, action) {
 
 ### What did we gain with using `useReducer`?
 
-You might think, using `useReducer` is quite complicated. Well, it's getting used to I think.
+We finished switching from `useState` to `useReducer`. You might think, using `useReducer` is quite complicated. Well, it's getting used to I think.
 
 The big change we made in our component is that the component tells _which_ state change it wants. And not, like we did with `useState`, _how_ exactly the state should change. And this is particularly interesting for components that have a complex state structure and/or a lot of places where the state changes.
 
@@ -344,7 +346,7 @@ Scroll up to see how we do all the `dispatch` calls inside functions which are c
 
 That's it for `useReducer`, I hope you liked reading it as I did writing it.
 
-The next thing I want to do with this app is test it with [React Testing Library], because that is something I really want to learn and share, so stay tuned!
+I am not yet sure whether there will be a next post in this series and where it will be about. Two subjects I'd like to learn and blog about are [React Testing Library] and [Tailwind CSS], so I might combine that with this app.
 
 P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js
 
@@ -352,3 +354,4 @@ P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/re
 [part 2]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2
 [demo on netlify]: https://react-simple-calculation-game.netlify.app
 [react testing library]: https://testing-library.com/docs/react-testing-library/intro/
+[tailwind css]: https://tailwindcss.com/

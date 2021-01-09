@@ -130,7 +130,7 @@ function App() {
 <p>Now is a good time te delete all commented out <code>useState</code> calls too, because we don't need them anymore.</p>
 <p>Although we still have to implement <code>appReducer</code>, we are finished passing all necessary arguments to <code>useReducer</code>. Now let's focus on what <code>useReducer</code> returns.</p>
 <h3>What <code>useReducer</code> returns</h3>
-<p>Just like <code>useState</code>, <code>useReducer</code> returns an array with two items: The first one is the <em>current state</em>, which is an object that contains all the separate state variables we had before when we had separate <code>useState</code> calls: <code>question</code>, <code>selected</code> and <code>result</code>.</p>
+<p>Just like <code>useState</code>, <code>useReducer</code> returns an array with two items: The first one is the <em>current state</em>, an object that contains all state variables. When we still used <code>useState</code>, these were separate variables: <code>question</code>, <code>selected</code> and <code>result</code>.</p>
 <p>The second item of the array returned by <code>useReducer</code> is the <code>dispatch</code> function. It's the function we'll later call to update state.</p>
 <p>Notice how both <code>useState</code> and <code>useReducer</code> return an array with two items which have a similar goal, although the usage of these items differs, as you will see soon.</p>
 <pre><code class="language-js">function App() {
@@ -143,7 +143,7 @@ function App() {
   const { question: { answer, choices }, selected, result } = state;
   /* ... */
 </code></pre>
-<p>We finished calling <code>useReducer</code>, but our code is broke now, because all the setter functions we used to receive from the <code>useState</code> hook (<code>setQuestion</code>, <code>setSelected</code> and <code>setResult</code>) are gone now.</p>
+<p>We finished calling <code>useReducer</code>, but our code is broken now, because all the setter functions we used to receive from the <code>useState</code> hook (<code>setQuestion</code>, <code>setSelected</code> and <code>setResult</code>) are gone now.</p>
 <h3>Replacing <code>useState</code> setters by <code>dispatch</code></h3>
 <p>Now we will replace all <code>useState</code> setter calls with <code>useReducer</code>'s <code>dispatch</code> calls. And along with it we will implement our <code>appReducer</code> function which will perform the actual state updates.</p>
 <p>Let's start with a state update that really shows where using <code>useReducer</code> shines, and that is the <code>reset</code> function:</p>
@@ -152,14 +152,15 @@ function App() {
   setResult(null);
 }
 </code></pre>
-<p>It has two calls to set different state variables. We will replace this by one <code>dispatch</code> call. And that is because <code>selected</code> and <code>result</code> are now part of a single state object. When calling <code>dispatch</code> you always pass a so-called <em>action</em> object, which at least always contains the <em>action type</em>. The action type is a <code>string</code> value that indicates <em>what</em> you want to change about the state. By convention these are in upper case, but you can use any casing you like. Let's call it "RESET", just like the name of the function:</p>
+<p>It has two calls to set different state variables. We will replace this by one <code>dispatch</code> call. And that is because <code>selected</code> and <code>result</code> are now part of a single state object.</p>
+<p>When calling <code>dispatch</code> you always pass a so-called <em>action</em> object, which at least always contains the <em>action type</em>. The action type is a <code>string</code> value that indicates <em>what</em> you want to change about the state. By convention these are in upper case, but you can use any casing you like. Let's call it "RESET", just like the name of the function:</p>
 <pre><code class="language-js">function reset() {
   //setSelected([]);
   //setResult(null);
   dispatch({ type: "RESET" });
 }
 </code></pre>
-<p>Notice that we went from calling setter functions that exactly described <em>how</em> to change the state to a <code>dispatch</code> call that only describes <em>what</em> you want to change about the state. This is the big difference between <code>ueState</code> and <code>useReducer</code>.</p>
+<p>Notice that we went from calling setter functions that exactly described <em>how</em> to change the state to a <code>dispatch</code> call that only describes <em>what</em> you want to change about the state. This is the big difference between <code>useState</code> and <code>useReducer</code>.</p>
 <p>Now that we told React to "RESET", let's implement our reducer to actually do that.</p>
 <p>First we change the signature of our reducer to make it adhere to what React expects from a reducer by adding the two required arguments <code>state</code> and <code>action</code>:</p>
 <pre><code class="language-js">function appReducer(state, action) {
@@ -167,7 +168,7 @@ function App() {
 }
 </code></pre>
 <p>Now you might think: <em>Who</em> is going to call this function? Because <em>we</em> don't, we just call <code>dispatch</code>.</p>
-<p>What happens is that when we call <code>dispatch</code>, React will call <code>appReducer</code> for us and will pass the two required arguments we just added: First the <em>current state</em>, which is something React is keeping track of. And the second argument is <code>action</code>, which is the object we passed to the <code>dispatch</code>. For the reset call it only contains a <code>type</code> string, but it can contain more as you will see later on.</p>
+<p>What happens is that when we call <code>dispatch</code>, React will call <code>appReducer</code> for us and will pass the two required arguments we just added: First the <em>current state</em>, which is something React is keeping track of. And the second argument is <code>action</code>, which is the action object we passed to the <code>dispatch</code>. For the reset call it only contains a <code>type</code> string, but it can contain more as you will see later on.</p>
 <p>Let's implement <code>appReducer</code> so it resets the appropriate state variables.</p>
 <p>What a reducer always returns is a <strong>new</strong> state object. State should always considered to be immutable: don't change the incoming state directly, but instead return a new object.</p>
 <blockquote>
@@ -259,10 +260,10 @@ function deselect(number) {
 }
 </code></pre>
 <blockquote>
-<p>What you put in the <code>payload</code>, a numeric value, an object, etc. is up to you. You can even call it <code>data</code> or whatever instead of <code>payload</code>. As long as your reducer can handle it. However, using <code>payload</code> with an object is a convention that is used most often and therefore is recommended.</p>
+<p>What you put in the <code>payload</code>, a numeric value, an object, etc. is up to you. You can even call it <code>data</code>, or whatever, instead of <code>payload</code>. As long as your reducer can handle it. However, using <code>payload</code> with an object is a convention that is used most often and therefore is recommended.</p>
 </blockquote>
 <h3>Calling <code>dispatch</code> in a <code>useEffect</code></h3>
-<p>Finally, we'll implement getting a new question after the previous one was answered. This is handled by a <code>useEffect</code> implemented:</p>
+<p>Finally, we'll implement getting a new question after the previous one was answered. This is handled by a <code>useEffect</code>:</p>
 <pre><code class="language-js">useEffect(() => {
   if (!result) setQuestion(getQuestion());
 }, [result]);
@@ -286,7 +287,7 @@ function deselect(number) {
 }
 </code></pre>
 <h3>What did we gain with using <code>useReducer</code>?</h3>
-<p>You might think, using <code>useReducer</code> is quite complicated. Well, it's getting used to I think.</p>
+<p>We finished switching from <code>useState</code> to <code>useReducer</code>. You might think, using <code>useReducer</code> is quite complicated. Well, it's getting used to I think.</p>
 <p>The big change we made in our component is that the component tells <em>which</em> state change it wants. And not, like we did with <code>useState</code>, <em>how</em> exactly the state should change. And this is particularly interesting for components that have a complex state structure and/or a lot of places where the state changes.</p>
 <p>However, there are people who always and only use <code>useReducer</code>, just to keep components more clean. It's up to you whether you think this is a good approach.</p>
 <p>Until now, we did not change the functionality of our app, it was just a straight up refactor.</p>
@@ -330,7 +331,7 @@ function deselect(number) {
 <p>Scroll up to see how we do all the <code>dispatch</code> calls inside functions which are called from the <code>onClick</code> events in the JSX. We could get rid of all these functions and call <code>dispatch</code> from the <code>onClick</code> events directly. This is also something that depends on your personal preference, but it can make components more concise.</p>
 <h3>Wrapping up</h3>
 <p>That's it for <code>useReducer</code>, I hope you liked reading it as I did writing it.</p>
-<p>The next thing I want to do with this app is test it with <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a>, because that is something I really want to learn and share, so stay tuned!</p>
+<p>I am not yet sure whether there will be a next post in this series and where it will be about. Two subjects I'd like to learn and blog about are <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> and <a href="https://tailwindcss.com/">Tailwind CSS</a>, so I might combine that with this app.</p>
 <p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js</a></p>
 </div>
 

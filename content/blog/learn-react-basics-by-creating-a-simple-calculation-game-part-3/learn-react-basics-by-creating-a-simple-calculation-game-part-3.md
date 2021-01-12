@@ -344,11 +344,11 @@ Scroll up to see how we do all the `dispatch` calls inside functions which are c
 
 ### Wrapping up
 
-That's it for `useReducer`, I hope you liked reading it as I did writing it.
+That's it for `useReducer`, I hope you liked reading it as much as I did writing it.
 
 I am not yet sure whether there will be a next post in this series and where it will be about. Two subjects I'd like to learn and blog about are [React Testing Library] and [Tailwind CSS], so I might combine that with this app.
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js
+The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js
 
 [part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
 [part 2]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2

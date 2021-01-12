@@ -118,7 +118,7 @@ By the way, did you notice we only changed the _behavior_ of our component and n
 
 In my next blog post, [which is part 3 already], I will cover the `useReducer` hook, which we'll use to make the component's code even cleaner.
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2
+The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2
 
 [part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
 [which is part 3 already]: /learn-react-basics-by-creating-a-simple-calculation-game-part-3

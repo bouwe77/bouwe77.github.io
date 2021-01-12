@@ -219,7 +219,7 @@ Although the app supports the infinite flow of answering a question, resetting i
 
 ~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js
+The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js
 
 [create react app]: https://create-react-app.dev
 [on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css

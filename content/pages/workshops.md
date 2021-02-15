@@ -13,7 +13,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- TBD React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
+- Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 
 #### Past events
 

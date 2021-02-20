@@ -13,10 +13,11 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
+- Feb 26, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 
 #### Past events
 
+- Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 - Jan 29, 2021 React Foundation **workshop** (part 1) @ LakeHub Academy, Kenya (remote)
 - Sep 15, 2020 **Tech talk** [Live Coding a Game in React] @ KPN GroSkills
 - Sep 11, 2020 **Tech talk** [Live Coding a Game in React] @ New Nexus Summer Bootcamp

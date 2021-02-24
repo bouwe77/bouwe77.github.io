@@ -13,7 +13,8 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- Feb 26, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
+- Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
+- TBD: GraphQL workshop @ New Nexus
 
 #### Past events
 

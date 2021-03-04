@@ -42,6 +42,8 @@ I will keep updating this list as it is a note to self in the first place.
 - [The Beginner's Guide to React] (free Egghead course) by [Kent C. Dodds]
 - [A Complete Guide to useEffect] by [Dan Abramov]
 
+Other links I keep on my [Links page].
+
 [dan abramov]: https://twitter.com/dan_abramov
 [kent c. dodds]: https://twitter.com/kentcdodds
 [cory house]: https://twitter.com/housecor
@@ -60,3 +62,4 @@ I will keep updating this list as it is a note to self in the first place.
 [a complete guide to useeffect]: https://overreacted.io/a-complete-guide-to-useeffect
 [react category]: /categories/react
 [workshops page]: /workshops
+[links page]: /links

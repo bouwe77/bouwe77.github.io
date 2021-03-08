@@ -21,6 +21,9 @@ import {
   createFolder,
   deleteFolder,
 } from "./fileSystem";
+import { getNavigationHtml } from "./navigation";
+
+const navigationHtml = getNavigationHtml();
 
 publish();
 
@@ -186,6 +189,11 @@ async function copyStaticFiles() {
 async function createHomePage(blogData) {
   let htmlBody = await readFileContents(filepaths.getHomeTemplateFilePath());
 
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtml
+  );
+
   const numberOfBlogPosts = 5;
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
@@ -208,6 +216,11 @@ async function createBlogListPage(blogData) {
   );
 
   htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtml
+  );
+
+  htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
     getBlogsHtml(blogData.pages)
   );
@@ -220,6 +233,11 @@ async function createBlogListPage(blogData) {
 async function createCategoryListPage(blogData) {
   let htmlBody = await readFileContents(
     filepaths.getCategoryListTemplateFilePath()
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtml
   );
 
   htmlBody = htmlBody.replace(
@@ -238,6 +256,10 @@ async function createPages(data) {
   data.pages.forEach(async (page) => {
     const makeHtmlBody = (content) => {
       let htmlBody = template.replace(
+        new RegExp("{{ navigation }}", "g"),
+        getNavigationHtml(page.slug)
+      );
+      htmlBody = htmlBody.replace(
         new RegExp("{{ title }}", "g"),
         page.attributes.title
       );
@@ -287,10 +309,6 @@ async function createCategoryPages(blogData) {
   blogData.categories.forEach(async (cat) => {
     allCategories.push(cat.name);
 
-    const blogsHtml = getBlogsHtml(
-      blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
-    );
-
     const slug = createSlug(cat.name);
     const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
@@ -299,8 +317,16 @@ async function createCategoryPages(blogData) {
       htmlBody = htmlBody.replace(new RegExp("{{ title }}", "g"), title);
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
+      htmlBody = htmlBody.replace(
+        new RegExp("{{ navigation }}", "g"),
+        navigationHtml
+      );
       return htmlBody;
     };
+
+    const blogsHtml = getBlogsHtml(
+      blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
+    );
 
     const body = await toHtml(makeHtmlBody, blogsHtml);
     const html = await getContainerHtml(body, title);

@@ -19,12 +19,16 @@ The links on this page are primarily a _note to self_ of blogs, websites, talks,
 
 #### GraphQL
 
-- [Everything You Need to Know About GraphQL in 3 Components] by Eve Procello
+- [Everything You Need to Know About GraphQL in 3 Components], a funny and very interactive talk by Eve Procello
 
 #### Learning & Teaching
 
+- [How To Talk To Developers], a hilarious talk with great presentational tips by Ben Orenstein
 - [Rubber Duck Debugging - How to Solve a Problem], by Coder Foundry about how explaining things helps you understand better
+- [Why it is important for developers to teach], great insights on why everyone can and should teach by MPJ of Fun Fun Function
 
+[why it is important for developers to teach]: https://youtu.be/RleN-6uMF04
+[how to talk to developers]: https://youtu.be/l9JXH7JPjR4
 [rubber duck debugging - how to solve a problem]: https://youtu.be/NBgIHOrjSxs
 [everything you need to know about graphql in 3 components]: https://youtu.be/F_M8v6MK0Sc
 [react page]: /react

@@ -4,8 +4,8 @@ title: "Workshops and talks"
 
 #### Introduction
 
-I have committed myself to learning React. And the best way to do that is by teaching it to others.
-I do that by blogging on this website and by giving workshops and talks.
+From the moment I started learning React I also started teaching React to others by blogging and giving workshops and talks.
+Now that I started learning GraphQL I am doing that too because it is a very powerful way of learning new things.
 
 #### Blog posts
 

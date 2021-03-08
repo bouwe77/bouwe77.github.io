@@ -28,7 +28,6 @@ I will keep updating this list as it is a note to self in the first place.
 
 - [Kent C. Dodds]
 - [Cory House]
-- [Robin Wieruch]
 
 ##### React talks and courses
 

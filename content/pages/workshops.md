@@ -4,8 +4,8 @@ title: "Workshops and talks"
 
 #### Introduction
 
-I have committed myself to learning React. And the best way to do that is by teaching it to others.
-I do that by blogging on this website and by giving workshops and talks.
+From the moment I started learning React I also started teaching React to others by blogging and giving workshops and talks.
+Now that I started learning GraphQL I am doing that too because it is a very powerful way of learning new things.
 
 #### Blog posts
 
@@ -13,11 +13,11 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
-- TBD: GraphQL workshop @ New Nexus
+- TBD: GraphQL workshop for .NET and Java developers @ New Nexus
 
 #### Past events
 
+- Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 - Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 - Jan 29, 2021 React Foundation **workshop** (part 1) @ LakeHub Academy, Kenya (remote)
 - Sep 15, 2020 **Tech talk** [Live Coding a Game in React] @ KPN GroSkills

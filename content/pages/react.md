@@ -14,8 +14,7 @@ My React blog posts are filed under the [React category] page.
 
 #### Workshops
 
-I am giving React workshops, check the [Workshops page]
-for more information.
+I am giving React workshops, check the [Workshops page] for more information.
 
 #### Resources
 
@@ -41,6 +40,7 @@ I will keep updating this list as it is a note to self in the first place.
 - [Using Composition in React to Avoid "Prop Drilling"] by [Michael Jackson]
 - [The Beginner's Guide to React] (free Egghead course) by [Kent C. Dodds]
 - [A Complete Guide to useEffect] by [Dan Abramov]
+- [Refactoring React: Which component pattern can improve your codebase?] by [Siddharth Kshetrapal]
 
 Other links I keep on my [Links page].
 
@@ -63,3 +63,5 @@ Other links I keep on my [Links page].
 [react category]: /categories/react
 [workshops page]: /workshops
 [links page]: /links
+[refactoring react: which component pattern can improve your codebase?]: https://youtu.be/2Dw8gA60d_k
+[siddharth kshetrapal]: https://sid.st

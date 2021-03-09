@@ -31,6 +31,10 @@ export const filepaths = {
     path.join(__dirname, staticDirectory, filename),
   getHomePublishFilePath: () =>
     path.join(__dirname, publishDirectory, "index.html"),
+  getBlogListPublishFilePath: () =>
+    path.join(__dirname, publishDirectory, "blog.html"),
+  getCategoryListPublishFilePath: () =>
+    path.join(__dirname, publishCategoriesDirectory, "index.html"),
   getPublishFilePathForMarkdown: (filename) =>
     path.join(__dirname, publishDirectory, filename.replace(/\.md$/, ".html")),
   getCategoryPageFilePath: (slug) =>
@@ -41,6 +45,10 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "container.html"),
   getHomeTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "home.html"),
+  getBlogListTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "blogs.html"),
+  getCategoryListTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "categories.html"),
   getPageTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "page.html"),
   getBlogTemplateFilePath: () =>

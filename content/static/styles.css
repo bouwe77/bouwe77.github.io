@@ -1,44 +1,50 @@
-body {
-  font-size: 14pt;
-}
-
-body {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  color: rgba(0, 0, 0, 0.7);
-}
-
 /*
-h1 {
-  font-size: 22pt;
-}
+I got the following color scheme by searching for the pink color via https://www.colorhexa.com/d02e77:
+- Pink: #d02e77
+- Blue: #2ec8d0
+- Green: #2ed036 (I do not use this color yet though)
+
+I added these colors myself
+- Anthracite #2d2d2d (Font color)
+- Lightgray #f0f0f0 (Welcome panel background color)
+- Anthracite #2f2f2f (Footer dark background color)
+- Anthracite #222222 (Footer even darker background color)
 */
 
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  color: #2d2d2d;
+}
+
 h2 {
-  font-size: 18pt;
+  font-size: 22px;
 }
 
 h3 {
-  font-size: 16pt;
+  font-size: 20px;
 }
 
-h4 {
-  font-size: 14pt;
-}
-
+h4,
 h5 {
-  font-size: 14pt;
+  font-size: 18px;
 }
 
 a:link,
-a:visited,
-a:active {
+a:visited {
   text-decoration: none;
   color: #d02e77;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+a:active {
+  text-decoration: none;
   color: #d02e77;
 }
 
@@ -49,32 +55,102 @@ a:hover {
 }
 
 .header {
-  margin: 15px 0px 30px 0px;
+  background-color: #2ec8d0;
+  padding: 10px;
 }
 
-.logo {
-  flex: 1; /* take full width */
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.logo h1 {
+.welcome {
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.welcome-container {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+}
+
+.welcome-container h1 {
+  font-size: 24px;
+}
+
+.main {
+  padding: 10px;
+}
+
+.logo > h1 {
   display: inline;
-  padding: 20px 0px;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  text-decoration: none;
 }
 
-.logo h1 a {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 26pt;
+.logo > h1 > a {
+  text-decoration: none;
+}
+
+a:link .logo-part1,
+a:visited .logo-part1,
+a:hover .logo-part1,
+a:active .logo-part1 {
+  color: #fff;
+}
+
+a:link .logo-part2,
+a:visited .logo-part2,
+a:hover .logo-part2,
+a:active .logo-part2 {
+  color: #2d2d2d;
 }
 
 .nav {
+  padding-top: 15px;
 }
 
-.nav .nav-active {
-  color: rgba(0, 0, 0, 0.7);
+ul.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-.nav .nav-active:hover {
+li.nav-item {
+  float: left;
+  margin-right: 20px;
+}
+
+a:link.nav-inactive,
+a:visited.nav-inactive {
+  color: #fff;
+}
+
+a:hover.nav-inactive {
+  color: #2d2d2d;
   text-decoration: none;
+}
+
+a:active.nav-inactive {
+  color: #fff;
+}
+
+a:link.nav-active,
+a:visited.nav-active {
+  color: #2d2d2d;
+}
+
+a:hover.nav-active {
+  text-decoration: none;
+}
+
+a:active.nav-active {
+  color: #2d2d2d;
 }
 
 blockquote {
@@ -96,6 +172,59 @@ code {
 }
 
 .blog-meta {
-  font-size: 10pt;
+  font-size: 14px;
   margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+footer {
+  color: #fff;
+}
+
+.footer-row1 {
+  background-color: #2f2f2f;
+}
+
+.footer-row2 {
+  background-color: #222222;
+  font-size: 12px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.column {
+  padding: 10px 0px;
+  width: 300px;
+}
+
+.column > h1 {
+  font-size: 20px;
+}
+
+.column > p {
+  font-size: 14px;
+}
+
+ul.sitemap {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sitemap ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.column a:link,
+.column a:visited,
+.column a:hover,
+.column a:active {
+  color: #2ec8d0;
+  font-size: 14px;
 }

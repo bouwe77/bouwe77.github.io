@@ -68,39 +68,51 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-inactive'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
-      <div class="nav"><a href="/about" >about</a> · <a href="/workshops" >workshops</a> · <a href="/links" >links</a> · <a href="/contact" >contact</a></div>
     </header>
 
-    <div>
-      <!--
-          <img src="/bouwe-react-amsterdam.png" style="width: 100%" />
-        -->
-      <p>
-        Hi! My name is Bouwe and I am a software engineer at
-        <a href="https://newnexus.nl" target="_blank">New Nexus</a> in The
-        Netherlands.
-      </p>
-      <p>
-        I like learning new technologies and sharing what I learn by
-        <a href="/blog">blogging</a> and giving
-        <a href="/workshops">workshops and presentations</a>.
-      </p>
-      <p>
-        At the moment I am working on <a href="/react">React</a>, GraphQL, .NET
-        Core and Azure.
-      </p>
+    <div class="welcome">
+      <div class="container">
+        <div class="welcome-container">
+          <h1>Hi, I am Bouwe!</h1>
+          <p>
+            I am a senior software engineer at
+            <a href="https://newnexus.nl" target="_blank">New Nexus</a> in The
+            Netherlands.
+          </p>
+          <p>
+            I like learning new technologies and sharing what I learn by
+            <a href="/blog">blogging</a> and giving
+            <a href="/workshops">workshops and presentations</a>.
+          </p>
+          <p>
+            At the moment I am working on <a href="/react">React</a>, GraphQL,
+            .NET Core and Azure.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <h3>Recent blog posts</h3>
-      
+    <div class="main">
+      <div class="container">
+        <div>
+          <h3>Recent blog posts</h3>
+
+          
 <div>
     <div>
     <h3>
@@ -122,27 +134,13 @@
     </h3>
     </div>
 </div>
-<div>
-    <div>
-    <h3>
-        <b><a href="/my-urge-to-share-what-i-learn">My urge to share what I learn</a></b>
-    </h3>
-    </div>
-</div>
-<div>
-    <div>
-    <h3>
-        <b><a href="/goodbye-gatsby-hello-static-site-generator">Goodbye Gatsby, hello static site generator</a></b>
-    </h3>
-    </div>
-</div>
-    </div>
+        </div>
 
-    <div><a href="/blog">View all blog posts &raquo;</a></div>
+        <div><a href="/blog">View all blog posts &raquo;</a></div>
 
-    <div>
-      <h3>Blog categories</h3>
-      <p><span 
+        <div>
+          <h3>Blog categories</h3>
+          <p><span 
   ><a href="categories/100-days-of-code"
     >100 days of code (6)</a
   ></span
@@ -195,14 +193,69 @@
     >useReducer (1)</a
   ></span
   ></p>
+        </div>
+      </div>
     </div>
 
     <footer>
-      <div>
-        <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
+      <div class="footer-row1">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <h1>Sitemap</h1>
+              <ul class="sitemap">
+                <li><a href="/about">About</a></li>
+                <li>
+                  <a href="/blog">Blog</a>
+                  <ul>
+                    <li><a href="/categories">Blog categories</a></li>
+                  </ul>
+                </li>
+                <li><a href="/workshops">Workshops</a></li>
+                <li>
+                  <a href="/links">Links</a>
+                  <ul>
+                    <li><a href="/react">React</a></li>
+                  </ul>
+                </li>
+                <li><a href="/contact">Contact</a></li>
+              </ul>
+            </div>
+            <div class="column">
+              <h1>Follow me</h1>
+              <ul class="sitemap">
+                <li><a href="https://twitter.com/bouwe">Twitter</a></li>
+                <li><a href="https://github.com/bouwe77">GitHub</a></li>
+                <li>
+                  <a href="https://www.linkedin.com/in/bkwesterdijk"
+                    >LinkedIn</a
+                  >
+                </li>
+                <li><a href="/rss2.xml">RSS Feed</a></li>
+                <li><a href="/atom.xml">Atom Feed</a></li>
+              </ul>
+            </div>
+            <div class="column">
+              <h1>About this website</h1>
+              <p>
+                These are just a bunch of HTML pages generated by
+                <a href="/ssg">my static site generation script.</a>
+              </p>
+
+              <p>
+                You are welcome to contribute, for example fixing my broken
+                English, by clicking the "Edit on GitHub" links on any of the
+                pages or going to my
+                <a href="https://github.com/bouwe77/bouwe.io">GitHub repo</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-row2">
+        <div class="container">
+          &copy; Bouwe Westerdijk 2019 - 2021
+        </div>
       </div>
     </footer>
   </div>

@@ -2,7 +2,7 @@
 title: About
 ---
 
-<p>Hi, I am Bouwe, an enthusiastic and experienced software engineer at
+<p>Hi, I am Bouwe Westerdijk, an enthusiastic and experienced senior software engineer at
 <a href="https://newnexus.nl" target="_blank">New Nexus</a> in The Netherlands.
 </p>
 <p>

@@ -1,26 +1,30 @@
 <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav">{{ navigation }}</div>
+        </div>
       </div>
-      <div class="nav">{{ navigation }}</div>
     </header>
 
-    <div>
-      <h2>All blog posts</h2>
-      {{ blogs }}
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2>All blog posts</h2>
+          {{ blogs }}
+        </div>
+      </div>
     </div>
 
-    <footer>
-      <div>
-        <!--
-            <a href="/workshops">Workshops</a> |
-            <a href="/react">React</a>
-            -->
-      </div>
-    </footer>
+    <footer></footer>
   </div>
 </body>

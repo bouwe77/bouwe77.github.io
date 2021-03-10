@@ -1,45 +1,49 @@
 <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav">{{ navigation }}</div>
-    </header>
-
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/{{ slug }}">{{ title }}</a>
-        </h2>
-        <div class="blog-meta">
-          {{ date }} {{ categories }} {{ readingTime }}
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav">{{ navigation }}</div>
         </div>
       </div>
+    </header>
 
-      <div>{{ content }}</div>
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/{{ slug }}">{{ title }}</a>
+          </h2>
+          <div class="blog-meta">
+            {{ date }} {{ categories }} {{ readingTime }}
+          </div>
+        </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="{{ editOnGitHubUrl }}">Edit on GitHub</a>
+        <div>{{ content }}</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="{{ editOnGitHubUrl }}">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>

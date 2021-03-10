@@ -68,27 +68,35 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav"><a href="/about" >about</a> · <a href="/workshops" >workshops</a> · <a href="/links" >links</a> · <a href="/contact" >contact</a></div>
-    </header>
-
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/day-2-publishing-my-first-blog-posts">Day 2 - Publishing my first blog posts</a>
-        </h2>
-        <div class="blog-meta">
-          May 15, 2019  · <a href="/categories/100-days-of-code">100 days of code</a>, <a href="/categories/gatsby">Gatsby</a>  · 1 minute read
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
         </div>
       </div>
+    </header>
 
-      <div><p>Now my site is live I will publish my first blog posts. Until now, I wrote my blog posts for the first days
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/day-2-publishing-my-first-blog-posts">Day 2 - Publishing my first blog posts</a>
+          </h2>
+          <div class="blog-meta">
+            May 15, 2019  · <a href="/categories/100-days-of-code">100 days of code</a>, <a href="/categories/gatsby">Gatsby</a>  · 1 minute read
+          </div>
+        </div>
+
+        <div><p>Now my site is live I will publish my first blog posts. Until now, I wrote my blog posts for the first days
 of the coding challenge in a Google Drive document. Today I will paste them into my Gatsby blog and use it from now on.</p>
 <p>The site that I use uses markdown for writing pages and posts. So what you basically do is create a markdown file
 for each blog post and place it in the designated folder. This markdown file consists of metadata and the actual blog post.
@@ -104,26 +112,22 @@ Gatsby. But that's something to fix later. Today I have published some blog post
 make it look better.</p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Day 2 - Publishing my first blog posts&url=https://bouwe.io/day-2-publishing-my-first-blog-posts&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/day-2-publishing-my-first-blog-posts"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/day-2-publishing-my-first-blog-posts/day-2-publishing-my-first-blog-posts.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Day 2 - Publishing my first blog posts&url=https://bouwe.io/day-2-publishing-my-first-blog-posts&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/day-2-publishing-my-first-blog-posts"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/day-2-publishing-my-first-blog-posts/day-2-publishing-my-first-blog-posts.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

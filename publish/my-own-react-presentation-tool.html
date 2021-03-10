@@ -68,28 +68,36 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav"><a href="/about" >about</a> · <a href="/workshops" >workshops</a> · <a href="/links" >links</a> · <a href="/contact" >contact</a></div>
-    </header>
-
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/my-own-react-presentation-tool">My own React presentation tool</a>
-        </h2>
-        <div class="blog-meta">
-          Jun 29, 2019  · <a href="/categories/react">React</a>, <a href="/categories/workshops">Workshops</a>  · 6 minute read
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
         </div>
       </div>
+    </header>
 
-      <div><h3>Introduction</h3>
-<p>For my <a href="https://bouwe.io/categories/workshops">React workshops</a> I use <a href="https://github.com/jxnblk/mdx-deck">MDX-Deck</a> as my presentation tool. MDX-Deck is
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/my-own-react-presentation-tool">My own React presentation tool</a>
+          </h2>
+          <div class="blog-meta">
+            Jun 29, 2019  · <a href="/categories/react">React</a>, <a href="/categories/workshops">Workshops</a>  · 6 minute read
+          </div>
+        </div>
+
+        <div><h3>Introduction</h3>
+<p>For my <a href="/categories/workshops">React workshops</a> I use <a href="https://github.com/jxnblk/mdx-deck">MDX-Deck</a> as my presentation tool. MDX-Deck is
 a React application which let's you write your slides in MDX, a combination
 of <strong>M</strong>ark<strong>D</strong>own and JS<strong>X</strong>.</p>
 <p>Besides the presentation slides I also show prefab example code or do live coding.
@@ -283,26 +291,22 @@ keyboard arrow navigation, CSS styling, code refactoring, etcetera. But that's s
 for another blog post.</p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=My own React presentation tool&url=https://bouwe.io/my-own-react-presentation-tool&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/my-own-react-presentation-tool"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/my-own-react-presentation-tool/my-own-react-presentation-tool.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=My own React presentation tool&url=https://bouwe.io/my-own-react-presentation-tool&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/my-own-react-presentation-tool"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/my-own-react-presentation-tool/my-own-react-presentation-tool.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

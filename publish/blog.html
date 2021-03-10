@@ -68,19 +68,28 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
-      <div class="nav"><a href="/about" >about</a> · <a href="/workshops" >workshops</a> · <a href="/links" >links</a> · <a href="/contact" >contact</a></div>
     </header>
 
-    <div>
-      <h2>All blog posts</h2>
-      
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2>All blog posts</h2>
+          
 <div>
     <div>
     <h3>
@@ -214,16 +223,11 @@
     </h3>
     </div>
 </div>
+        </div>
+      </div>
     </div>
 
-    <footer>
-      <div>
-        <!--
-            <a href="/workshops">Workshops</a> |
-            <a href="/react">React</a>
-            -->
-      </div>
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

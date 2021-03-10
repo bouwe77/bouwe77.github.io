@@ -9,16 +9,32 @@ categories:
 
 #### Introduction
 
-Every now and then I read a blog or watch a video about functional programming. I have become quite comfortable with some of the concepts, such as declarative programming, pure functions and higher order functions, which I use regularly when writing React or NodeJS code.
+Functional programming is a very intruiging paradigm for me. Some of the concepts I am already using regularly, especially when writing React or NodeJS code, such as declarative programming, pure functions and higher order functions.
 
-However, there are also concepts that I find really hard to grasp. But somehow they are also very appealing to me. Recently I realized the only way to finally understand these things is not only to try them out, but also, as an ultimate learning experience, write a blog post about it. So that's what I am going to do now about _currying_ and _partial application_.
+However, there are also concepts that I find a bit hard to grasp. _Currying_, for example, so I decided to learn this by trying it out and while doing that, writing about it.
 
-When reading or watching videos about currying I noticed something that I also encountered with other concepts being explained, for example with the `useEffect` and `useRef` React hooks. And that is that people are starting right away with explaining _how_ to use that concept. The consequence is that I find it really hard to understand.
+When reading or watching videos about currying, as is the case with many programming concepts by the way, I notice they immediately dive in how to do it, without explaining why, and what the problem is we are trying to solve.
 
-What I am missing is _why_ you would use such a concept. So what works best for me is that a problem or use case is introduced, it is solved in a way that is quite familiar for most people, which then shows the solution is not ideal, or even impossible. Then we are on the same page of what the problem is. And only after that the new concept is introduced, so it clearly shows which problem it is solving.
+So what I will do instead is introduce a use case, solve it how most developers would probably do and then show how we could also solve it with currying.
 
-So that's what I am going to do in this blog post.
+#### ...
 
-#### The problem:
+1. Logging introduceren
+   Real worls examples zijn schaars...
+   inspiratie afkomstig uit dit artikel: https://javascript.info/currying-partials
+
+2. Log function maken
+
+3. Log met currying, dus van 3 naar 1 parameter met "geneste" functions zeg maar
+
+4. Curry function maken met ES6
+
+5. Laten zien dat de function nog steeds 3 parameters heeft en dat je hem nu gewoon en curried kunt gebruiken
+
+6. Conclusie
 
 https://youtu.be/F_N97iovVbQ
+
+https://javascript.info/currying-partials
+
+https://dev.to/loujaybee/the-not-so-ccary-explanation-of-currying-in-javascript

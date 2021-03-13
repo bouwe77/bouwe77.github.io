@@ -84,41 +84,123 @@
           <a href="/currying-what-is-it-and-what-is-it-good-for">Currying: What is it and what is it good for?</a>
         </h2>
         <div class="blog-meta">
-          Mar 8, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/functional-programming">Functional programming</a>  · 1 minute read
+          Mar 14, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/functional-programming">Functional programming</a>  · 5 minute read
         </div>
       </div>
 
       <div><h4>Introduction</h4>
-<p>Functional programming is a very intruiging paradigm for me. Some of the concepts I am already using regularly, especially when writing React or NodeJS code, such as declarative programming, pure functions and higher order functions.</p>
-<p>However, there are also concepts that I find a bit hard to grasp. <em>Currying</em>, for example, so I decided to learn this by trying it out and while doing that, writing about it.</p>
-<p>When reading or watching videos about currying, as is the case with many programming concepts by the way, I notice they immediately dive in how to do it, without explaining why, and what the problem is we are trying to solve.</p>
-<p>So what I will do instead is introduce a use case, solve it how most developers would probably do and then show how we could also solve it with currying.</p>
-<h4>...</h4>
-<ol>
-<li>
-<p>Logging introduceren
-Real worls examples zijn schaars...
-inspiratie afkomstig uit dit artikel: <a href="https://javascript.info/currying-partials">https://javascript.info/currying-partials</a></p>
-</li>
-<li>
-<p>Log function maken</p>
-</li>
-<li>
-<p>Log met currying, dus van 3 naar 1 parameter met "geneste" functions zeg maar</p>
-</li>
-<li>
-<p>Curry function maken met ES6</p>
-</li>
-<li>
-<p>Laten zien dat de function nog steeds 3 parameters heeft en dat je hem nu gewoon en curried kunt gebruiken</p>
-</li>
-<li>
-<p>Conclusie</p>
-</li>
-</ol>
-<p><a href="https://youtu.be/F_N97iovVbQ">https://youtu.be/F_N97iovVbQ</a></p>
-<p><a href="https://javascript.info/currying-partials">https://javascript.info/currying-partials</a></p>
-<p><a href="https://dev.to/loujaybee/the-not-so-ccary-explanation-of-currying-in-javascript">https://dev.to/loujaybee/the-not-so-ccary-explanation-of-currying-in-javascript</a></p>
+<p>Functional programming is a very intruiging paradigm for me. Some of the concepts I am already using regularly, such as declarative programming, pure functions and higher order functions, when writing NodeJS or React.</p>
+<p>However, there are also concepts that I find a bit hard to grasp. <em>Currying</em>, for example, so I decided to learn this by trying it out and while doing that, write about it.</p>
+<p>... ... ...</p>
+<h4>A real world example</h4>
+<p>Finding real world examples for currying was actually quite hard.</p>
+<p>... ... ...</p>
+<p>... ... ...</p>
+<pre><code class="language-js">function log(datetime, severity, message) {
+  console.log(`${datetime} [${severity}] - ${message}`);
+}
+</code></pre>
+<p>Now you can call this function like this:</p>
+<pre><code class="language-js">const datetime = new Date().toISOString();
+log(datetime, "INFO", "This is an informational message");
+log(datetime, "ERROR", "An exception occurred");
+</code></pre>
+<p>So everywhere in your code you want to log you have to pass all 3 arguments. This is not ideal and error-prone.</p>
+<p>For example, you'll probably want to prevent unsupported <code>severity</code> values are passed, like <code>"DEBUG"</code>, <code>"INFO"</code>, <code>"WARN"</code>, <code>"ERROR"</code>, etc. Other values wouldn't make any sense, so you probably want to validate or (even better) restrict that.</p>
+<blockquote>
+<p>The only proper way of restricting <code>severity</code> values is using TypeScript, which we won't cover in this blog post.</p>
+</blockquote>
+<p>What we can do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:</p>
+<pre><code class="language-js">const logInfo = (message) => log(datetime, "INFO", message);
+const logError = (message) => log(datetime, "ERROR", message);
+// etc. for the other severities...
+</code></pre>
+<p>By creating these functions I do <em>partial application</em>: Creating functions out of other functions, supplying known values up front, so I only need to pass the values I only know at the moment when I use them. In this case it means the <code>datetime</code> and <code>severity</code> are known and the <code>message</code> is something that differs per logging call.</p>
+<p>JavaScript technically speaking, with this abstractions I created some <em>closures</em>.</p>
+<blockquote>
+<p><em>A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.</em></p>
+<p>MDN Web Docs <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures</a></p>
+</blockquote>
+<p>Everywhere I need to log, I choose the function that already contains the severity so I only need to pass the <code>message</code>:</p>
+<pre><code class="language-js">logInfo("This is an informational message!");
+logError("An exception occurred!");
+</code></pre>
+<h4>Enter currying</h4>
+<p>What we've achieved by introducing the closures is reducing the amount of code we need, but also using function composition: Out of the <code>log</code> function we created more specific functions.</p>
+<p>Let's take this a step further and reduce our code by composing without using closures: <em>currying</em>, at last.</p>
+<p>Currying is a technique where you transform a function so that it doesn't receive all parameters at once, but expects all parameters one by one. To achieve this, the curried version of the function needs to return another function, which in turn returns another function, until all arguments have been passed.</p>
+<p>This may sound confusing, so before I explain further, let's first transform our <code>log</code> function to a curried one:</p>
+<pre><code class="language-js">function log(datetime) {
+  return function (severity) {
+    return function (message) {
+      console.log(`${datetime} [${severity}] - ${message}`);
+    };
+  };
+}
+</code></pre>
+<p>Here you see the <code>log</code> function now only expects the <code>datetime</code> argument, which is the first argument of the original <code>log</code> function. Then it returns a new function, which expects the second argument, <code>severity</code>. Finally, a function is returned for providing the <code>message</code> argument, which does the actual logging.</p>
+<p>Although the most inner function only receives the <code>message</code>, it can also use <code>datetime</code> and <code>severity</code> because that is how closures work.</p>
+<p>Now you might think, what is the purpose of transforming our function like this?</p>
+<p>Well, what we can do now is compose new logging functions like this:</p>
+<pre><code class="language-js">logInformation("This is an informational message!");
+logError("An exception occurred!");
+</code></pre>
+<p>Notice that composing abstractions out of the <code>log</code> function does not require using closures anymore, which reduces the amount of code even more. The only place we use closures is inside the <code>log</code> function.</p>
+<p>To do the actual logging hasn't changed:</p>
+<pre><code class="language-js">logInfo("This is an informational message!");
+logError("An exception occurred!");
+</code></pre>
+<p>Finally, I want to show you a way of making the curried <code>log</code> function even more concise by using arrow functions only:</p>
+<pre><code class="language-js">const log = (datetime) => (severity) => (message) =>
+  console.log(`${datetime} [${severity}] - ${message}`);
+</code></pre>
+<p>Personally, I don't think this makes things more readable, but you could do it like this if you want.</p>
+<h4>Hybrid currying</h4>
+<p>What we've just done is changing the <code>log</code> function so it supports currying. However, what if we want to have a choice, either using the curried approach or the original way of just passing the 3 arguments ourselves?</p>
+<p>Let's go back to the original <code>log</code> function, because this is the one we want to keep:</p>
+<pre><code class="language-js">function log(datetime, severity, message) {
+  console.log(`${datetime} [${severity}] - ${message}`);
+}
+</code></pre>
+<p>And instead create a function that can make <em>any</em> function curried:</p>
+<pre><code class="language-js">function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) return fn(...args);
+    return function (a) {
+      return curried(...[...args, a]);
+    };
+  };
+}
+</code></pre>
+<blockquote>
+<p>Check out this video by Derick where he creates this <code>curry</code> function and explains how it works: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
+</blockquote>
+<p>Next, let's create a curried <code>log</code> function by calling the <code>curry</code> function:</p>
+<pre><code class="language-js">let curriedLog = curry(log);
+</code></pre>
+<p>What can do now is logging by calling <code>curriedLog</code> and pass arguments however we want:</p>
+<pre><code class="language-js">// We can call log with all 3 arguments:
+log(datetime, "INFO", "This is an informational message");
+
+// We can pass all arguments separately:
+log(datetime)("INFO")("This is an informational message");
+
+// And we can apply partial application:
+const logInfo = curriedLog(datetime)("INFO");
+logInfo("This is an informational message");
+
+// etc. etc.
+</code></pre>
+<p>Normally you wouldn't create the <code>curry</code> function yourself, but use a library like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc. instead, but I think it's nice to show how you transform a normal function to a curried function.</p>
+<h4>Conclusion</h4>
+<p>...</p>
+<p>If my blog post was not clear (or simply wrong) I really would like to hear that! If you want to know more you can check out some of the links below.</p>
+<h4>Acknowledgements and tips</h4>
+<p>A read quite a few articles and watched many videos to learn currying.</p>
+<p>The first video that made it click for me was this step by step video by Steve Griffith: <a href="https://youtu.be/F_N97iovVbQ">https://youtu.be/F_N97iovVbQ</a></p>
+<p>A great article about currying with JavaScript that inspired me to use the logging example is <a href="https://javascript.info/currying-partials">Currying Partials</a>.</p>
+<p>The <code>curry</code> function I showed you I got from this video where Derick explains how to write it: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
+<p>MPJ of Fun Fun Function also does a great (and funny as always) job explaining currying: <a href="https://youtu.be/iZLP4qOwY8I">https://youtu.be/iZLP4qOwY8I</a></p>
 </div>
 
       <div>

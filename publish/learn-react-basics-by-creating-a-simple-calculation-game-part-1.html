@@ -68,27 +68,35 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav"><a href="/about" >about</a> · <a href="/workshops" >workshops</a> · <a href="/links" >links</a> · <a href="/contact" >contact</a></div>
-    </header>
-
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Learn React basics by creating a simple calculation game (Part 1)</a>
-        </h2>
-        <div class="blog-meta">
-          Dec 22, 2020  · <a href="/categories/react">React</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>  · 6 minute read
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
         </div>
       </div>
+    </header>
 
-      <div><p>This is part 1 of a series of blog posts where I explore basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Learn React basics by creating a simple calculation game (Part 1)</a>
+          </h2>
+          <div class="blog-meta">
+            Dec 22, 2020  · <a href="/categories/react">React</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>  · 6 minute read
+          </div>
+        </div>
+
+        <div><p>This is part 1 of a series of blog posts where I explore basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
 <p>Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the <code>useState</code> hook.</p>
 <h3>Demo</h3>
 <img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
@@ -243,26 +251,22 @@ function deselect(number) {
 <p>The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js</a></p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Learn React basics by creating a simple calculation game (Part 1)&url=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-simple-calculation-game-part-1/learn-react-basics-by-creating-a-simple-calculation-game-part-1.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Learn React basics by creating a simple calculation game (Part 1)&url=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-simple-calculation-game-part-1/learn-react-basics-by-creating-a-simple-calculation-game-part-1.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

@@ -24,6 +24,7 @@ import {
 import { getNavigationHtml } from "./navigation";
 
 const navigationHtml = getNavigationHtml();
+const navigationHtmlBlogPages = getNavigationHtml("blog");
 
 publish();
 
@@ -107,6 +108,7 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.readingTime = getReadingTime(
           parsedFrontMatterAndMarkdown.body
         );
+        parsedFrontMatterAndMarkdown.isBlog = true;
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
           parsedFrontMatterAndMarkdown.attributes.categories = [];
@@ -194,7 +196,7 @@ async function createHomePage(blogData) {
     navigationHtml
   );
 
-  const numberOfBlogPosts = 5;
+  const numberOfBlogPosts = 3;
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
     getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts))
@@ -203,6 +205,16 @@ async function createHomePage(blogData) {
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogCategories }}", "g"),
     getBlogCategoriesHtmlForHomepage(blogData.categories)
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ gitHubRepoUrl }}", "g"),
+    constants.gitHubRepoUrl
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ yearNow }}", "g"),
+    new Date().getFullYear()
   );
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
@@ -217,7 +229,7 @@ async function createBlogListPage(blogData) {
 
   htmlBody = htmlBody.replace(
     new RegExp("{{ navigation }}", "g"),
-    navigationHtml
+    navigationHtmlBlogPages
   );
 
   htmlBody = htmlBody.replace(
@@ -237,7 +249,7 @@ async function createCategoryListPage(blogData) {
 
   htmlBody = htmlBody.replace(
     new RegExp("{{ navigation }}", "g"),
-    navigationHtml
+    navigationHtmlBlogPages
   );
 
   htmlBody = htmlBody.replace(
@@ -254,11 +266,16 @@ async function createPages(data) {
   const template = await readFileContents(data.template);
 
   data.pages.forEach(async (page) => {
+    const navigationHtml = page.isBlog
+      ? navigationHtmlBlogPages
+      : getNavigationHtml(page.slug);
+
     const makeHtmlBody = (content) => {
       let htmlBody = template.replace(
         new RegExp("{{ navigation }}", "g"),
-        getNavigationHtml(page.slug)
+        navigationHtml
       );
+
       htmlBody = htmlBody.replace(
         new RegExp("{{ title }}", "g"),
         page.attributes.title
@@ -319,7 +336,7 @@ async function createCategoryPages(blogData) {
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
       htmlBody = htmlBody.replace(
         new RegExp("{{ navigation }}", "g"),
-        navigationHtml
+        navigationHtmlBlogPages
       );
       return htmlBody;
     };

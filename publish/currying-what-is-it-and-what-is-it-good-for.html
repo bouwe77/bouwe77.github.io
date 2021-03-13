@@ -99,28 +99,30 @@
         <div><h4>Introduction</h4>
 <p>Functional programming is a very intruiging paradigm for me. Some of the concepts I am already using regularly, such as declarative programming, pure functions and higher order functions, when writing NodeJS or React.</p>
 <p>However, there are also concepts that I find a bit hard to grasp. <em>Currying</em>, for example, so I decided to learn this by trying it out and while doing that, write about it.</p>
-<p>... ... ...</p>
-<h4>A real world example</h4>
-<p>Finding real world examples for currying was actually quite hard.</p>
-<p>... ... ...</p>
-<p>... ... ...</p>
+<h4>A real world example?</h4>
+<p>Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow I failed to see the benefit of currying that way. So I decided to use an example that (hopefully) is a bit more realistic.</p>
+<p>So I came up with the following function, which you can use to perform logging in your app:</p>
 <pre><code class="language-js">function log(datetime, severity, message) {
   console.log(`${datetime} [${severity}] - ${message}`);
 }
 </code></pre>
-<p>Now you can call this function like this:</p>
-<pre><code class="language-js">const datetime = new Date().toISOString();
-log(datetime, "INFO", "This is an informational message");
-log(datetime, "ERROR", "An exception occurred");
+<p>Here are some examples how you could use the <code>log</code> function:</p>
+<pre><code class="language-js">// Informational logging:
+log(new Date(), "INFO", "The service has started");
+
+// Error logging:
+log(new Date(), "ERROR", "An exception occurred: " + error.message);
+
+// etc.
 </code></pre>
-<p>So everywhere in your code you want to log you have to pass all 3 arguments. This is not ideal and error-prone.</p>
+<p>Because of how the <code>log</code> function works, it means you always have to pass all 3 arguments. This is not ideal and error-prone.</p>
 <p>For example, you'll probably want to prevent unsupported <code>severity</code> values are passed, like <code>"DEBUG"</code>, <code>"INFO"</code>, <code>"WARN"</code>, <code>"ERROR"</code>, etc. Other values wouldn't make any sense, so you probably want to validate or (even better) restrict that.</p>
 <blockquote>
 <p>The only proper way of restricting <code>severity</code> values is using TypeScript, which we won't cover in this blog post.</p>
 </blockquote>
 <p>What we can do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:</p>
-<pre><code class="language-js">const logInfo = (message) => log(datetime, "INFO", message);
-const logError = (message) => log(datetime, "ERROR", message);
+<pre><code class="language-js">const logInfo = (message) => log(new Date(), "INFO", message);
+const logError = (message) => log(new Date(), "ERROR", message);
 // etc. for the other severities...
 </code></pre>
 <p>By creating these functions I do <em>partial application</em>: Creating functions out of other functions, supplying known values up front, so I only need to pass the values I only know at the moment when I use them. In this case it means the <code>datetime</code> and <code>severity</code> are known and the <code>message</code> is something that differs per logging call.</p>
@@ -170,7 +172,7 @@ logError("An exception occurred!");
   console.log(`${datetime} [${severity}] - ${message}`);
 }
 </code></pre>
-<p>And instead create a function that can make <em>any</em> function curried:</p>
+<p>And instead we create a function that can make <em>any</em> function curried:</p>
 <pre><code class="language-js">function curry(fn) {
   return function curried(...args) {
     if (args.length >= fn.length) return fn(...args);
@@ -186,22 +188,23 @@ logError("An exception occurred!");
 <p>Next, let's create a curried <code>log</code> function by calling the <code>curry</code> function:</p>
 <pre><code class="language-js">let curriedLog = curry(log);
 </code></pre>
-<p>What can do now is logging by calling <code>curriedLog</code> and pass arguments however we want:</p>
+<p>What we can do now is logging by calling <code>curriedLog</code> and pass arguments however we want:</p>
 <pre><code class="language-js">// We can call log with all 3 arguments:
-log(datetime, "INFO", "This is an informational message");
+curriedLog(new Date(), "INFO", "The service has started");
 
 // We can pass all arguments separately:
-log(datetime)("INFO")("This is an informational message");
+curriedLog(new Date())("INFO")("The service has started");
 
 // And we can apply partial application:
-const logInfo = curriedLog(datetime)("INFO");
-logInfo("This is an informational message");
+const logInfo = curriedLog(new Date())("INFO");
+logInfo("The service has started");
 
 // etc. etc.
 </code></pre>
-<p>Normally you wouldn't create the <code>curry</code> function yourself, but use a library like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc. instead, but I think it's nice to show how you transform a normal function to a curried function.</p>
+<p>Normally you wouldn't create the <code>curry</code> function yourself, but use a library like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc. instead, but I think it's nice to show how you could transform a normal function into a curried function.</p>
 <h4>Conclusion</h4>
-<p>...</p>
+<p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is, apart from that it is a cool skill and another, refreshing way of programming.</p>
+<p>However, we only touched the surface of currying so there is more to say, for example about other ways of function composition, so I will write another blog post.</p>
 <p>If my blog post was not clear (or simply wrong) I really would like to hear that! If you want to know more you can check out some of the links below.</p>
 <h4>Acknowledgements and tips</h4>
 <p>A read quite a few articles and watched many videos to learn currying.</p>

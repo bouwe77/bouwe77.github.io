@@ -13,15 +13,11 @@ Functional programming is a very intruiging paradigm for me. Some of the concept
 
 However, there are also concepts that I find a bit hard to grasp. _Currying_, for example, so I decided to learn this by trying it out and while doing that, write about it.
 
-... ... ...
+#### A real world example?
 
-#### A real world example
+Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow I failed to see the benefit of currying that way. So I decided to use an example that (hopefully) is a bit more realistic.
 
-Finding real world examples for currying was actually quite hard.
-
-... ... ...
-
-... ... ...
+So I came up with the following function, which you can use to perform logging in your app:
 
 ```js
 function log(datetime, severity, message) {
@@ -29,15 +25,19 @@ function log(datetime, severity, message) {
 }
 ```
 
-Now you can call this function like this:
+Here are some examples how you could use the `log` function:
 
 ```js
-const datetime = new Date().toISOString();
-log(datetime, "INFO", "This is an informational message");
-log(datetime, "ERROR", "An exception occurred");
+// Informational logging:
+log(new Date(), "INFO", "The service has started");
+
+// Error logging:
+log(new Date(), "ERROR", "An exception occurred: " + error.message);
+
+// etc.
 ```
 
-So everywhere in your code you want to log you have to pass all 3 arguments. This is not ideal and error-prone.
+Because of how the `log` function works, it means you always have to pass all 3 arguments. This is not ideal and error-prone.
 
 For example, you'll probably want to prevent unsupported `severity` values are passed, like `"DEBUG"`, `"INFO"`, `"WARN"`, `"ERROR"`, etc. Other values wouldn't make any sense, so you probably want to validate or (even better) restrict that.
 
@@ -46,8 +46,8 @@ For example, you'll probably want to prevent unsupported `severity` values are p
 What we can do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:
 
 ```js
-const logInfo = (message) => log(datetime, "INFO", message);
-const logError = (message) => log(datetime, "ERROR", message);
+const logInfo = (message) => log(new Date(), "INFO", message);
+const logError = (message) => log(new Date(), "ERROR", message);
 // etc. for the other severities...
 ```
 
@@ -129,7 +129,7 @@ function log(datetime, severity, message) {
 }
 ```
 
-And instead create a function that can make _any_ function curried:
+And instead we create a function that can make _any_ function curried:
 
 ```js
 function curry(fn) {
@@ -150,27 +150,29 @@ Next, let's create a curried `log` function by calling the `curry` function:
 let curriedLog = curry(log);
 ```
 
-What can do now is logging by calling `curriedLog` and pass arguments however we want:
+What we can do now is logging by calling `curriedLog` and pass arguments however we want:
 
 ```js
 // We can call log with all 3 arguments:
-log(datetime, "INFO", "This is an informational message");
+curriedLog(new Date(), "INFO", "The service has started");
 
 // We can pass all arguments separately:
-log(datetime)("INFO")("This is an informational message");
+curriedLog(new Date())("INFO")("The service has started");
 
 // And we can apply partial application:
-const logInfo = curriedLog(datetime)("INFO");
-logInfo("This is an informational message");
+const logInfo = curriedLog(new Date())("INFO");
+logInfo("The service has started");
 
 // etc. etc.
 ```
 
-Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. instead, but I think it's nice to show how you transform a normal function to a curried function.
+Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. instead, but I think it's nice to show how you could transform a normal function into a curried function.
 
 #### Conclusion
 
-...
+I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is, apart from that it is a cool skill and another, refreshing way of programming.
+
+However, we only touched the surface of currying so there is more to say, for example about other ways of function composition, so I will write another blog post.
 
 If my blog post was not clear (or simply wrong) I really would like to hear that! If you want to know more you can check out some of the links below.
 

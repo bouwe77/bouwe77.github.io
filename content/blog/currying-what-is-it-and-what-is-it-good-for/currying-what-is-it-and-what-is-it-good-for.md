@@ -9,15 +9,15 @@ categories:
 
 #### Introduction
 
-Functional programming is a very intruiging paradigm for me. Some of the concepts I am already using regularly, such as declarative programming, pure functions and higher order functions, when writing NodeJS or React.
+Functional programming is a very intruiging paradigm for me. Some of the concepts I already use regularly, such as declarative programming, pure functions and higher order functions, especially when writing NodeJS or React.
 
 However, there are also concepts that I find a bit hard to grasp. _Currying_, for example, so I decided to learn this by trying it out and while doing that, write about it.
 
 #### A real world example?
 
-Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow I failed to see the benefit of currying that way. So I decided to use an example that (hopefully) is a bit more realistic.
+Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow, after I started understanding currying, I failed to see the benefit of it. So I decided to use an example that (hopefully) is a bit more realistic.
 
-So I came up with the following function, which you can use to perform logging in your app:
+So I came up with the following `log` function, which you can use to perform logging in your app. You have to specify the date and time the event occurred, the severity of the event ("INFO", "WARN", "ERROR", etc.) and a message describing what happened.
 
 ```js
 function log(datetime, severity, message) {
@@ -37,13 +37,13 @@ log(new Date(), "ERROR", "An exception occurred: " + error.message);
 // etc.
 ```
 
-Because of how the `log` function works, it means you always have to pass all 3 arguments. This is not ideal and error-prone.
+Because of how the `log` function works, it means you always have to pass all 3 arguments. This might cause a bit of overhead and can even be error-prone.
 
-For example, you'll probably want to prevent unsupported `severity` values are passed, like `"DEBUG"`, `"INFO"`, `"WARN"`, `"ERROR"`, etc. Other values wouldn't make any sense, so you probably want to validate or (even better) restrict that.
+For example, you'll probably want to make sure only supported `severity` values are passed, because other values wouldn't make any sense, so you probably want to validate or (even better) restrict that.
 
 > The only proper way of restricting `severity` values is using TypeScript, which we won't cover in this blog post.
 
-What we can do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:
+What we _can_ do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:
 
 ```js
 const logInfo = (message) => log(new Date(), "INFO", message);
@@ -51,7 +51,7 @@ const logError = (message) => log(new Date(), "ERROR", message);
 // etc. for the other severities...
 ```
 
-By creating these functions I do _partial application_: Creating functions out of other functions, supplying known values up front, so I only need to pass the values I only know at the moment when I use them. In this case it means the `datetime` and `severity` are known and the `message` is something that differs per logging call.
+By creating these functions I use a principle called _partial application_: Creating functions out of other functions, supplying known values up front, so I only need to pass the values I only know at the moment when I use them. In this case it means the `datetime` and `severity` are known and the `message` is something that differs per logging call.
 
 JavaScript technically speaking, with this abstractions I created some _closures_.
 
@@ -59,7 +59,7 @@ JavaScript technically speaking, with this abstractions I created some _closures
 >
 > MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
-Everywhere I need to log, I choose the function that already contains the severity so I only need to pass the `message`:
+Everywhere I need to log, based on the severity I want I choose the applicable function so I only need to pass the `message`:
 
 ```js
 logInfo("This is an informational message!");
@@ -70,7 +70,7 @@ logError("An exception occurred!");
 
 What we've achieved by introducing the closures is reducing the amount of code we need, but also using function composition: Out of the `log` function we created more specific functions.
 
-Let's take this a step further and reduce our code by composing without using closures: _currying_, at last.
+Let's take this a step further and reduce our code by composing functions without using closures: _currying_.
 
 Currying is a technique where you transform a function so that it doesn't receive all parameters at once, but expects all parameters one by one. To achieve this, the curried version of the function needs to return another function, which in turn returns another function, until all arguments have been passed.
 
@@ -90,16 +90,18 @@ Here you see the `log` function now only expects the `datetime` argument, which 
 
 Although the most inner function only receives the `message`, it can also use `datetime` and `severity` because that is how closures work.
 
-Now you might think, what is the purpose of transforming our function like this?
+Now you might think, what is the purpose of transforming a function like this?
 
 Well, what we can do now is compose new logging functions like this:
 
 ```js
-logInformation("This is an informational message!");
-logError("An exception occurred!");
+const logInformation = log(new Date())("INFO");
+const logError = log(new Date())("ERROR");
 ```
 
-Notice that composing abstractions out of the `log` function does not require using closures anymore, which reduces the amount of code even more. The only place we use closures is inside the `log` function.
+This again is an example of partial application: We pass the arguments we already know, `datetime` and `severity`, but the third argument, `message`, we leave for the moment the code knows what that message should be depending on the place where it is called.
+
+Notice that composing abstractions out of the `log` function does not require using closures anymore, which reduces the amount of code even more. The only place we use closures is inside the `log` function itself.
 
 To do the actual logging hasn't changed:
 
@@ -144,7 +146,7 @@ function curry(fn) {
 
 > Check out this video by Derick where he creates this `curry` function and explains how it works: https://youtu.be/jJAxhVxaHMM
 
-Next, let's create a curried `log` function by calling the `curry` function:
+Next, let's create a `curriedLog` function by calling the `curry` function and passing the `log` function:
 
 ```js
 let curriedLog = curry(log);
@@ -166,15 +168,17 @@ logInfo("The service has started");
 // etc. etc.
 ```
 
-Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. instead, but I think it's nice to show how you could transform a normal function into a curried function.
+Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. for that instead, but I think it's nice to show how you could transform a normal function into a curried function.
 
 #### Conclusion
 
-I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is, apart from that it is a cool skill and another, refreshing way of programming.
+I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is. Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.
 
-However, we only touched the surface of currying so there is more to say, for example about other ways of function composition, so I will write another blog post.
+However, we only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.
 
-If my blog post was not clear (or simply wrong) I really would like to hear that! If you want to know more you can check out some of the links below.
+If my blog post was not clear (or simply wrong), please let me know on Twitter!
+
+If you want to know more you can check out some of the links below.
 
 #### Acknowledgements and tips
 

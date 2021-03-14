@@ -68,31 +68,35 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav">
-        <!-- 
-          <a href="#">about me</a> · <a href="#">speaking</a>
-          -->
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
     </header>
 
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/goodbye-gatsby-hello-static-site-generator">Goodbye Gatsby, hello static site generator</a>
-        </h2>
-        <div class="blog-meta">
-          Oct 28, 2020  · <a href="/categories/blogging">Blogging</a>, <a href="/categories/gatsby">Gatsby</a>, <a href="/categories/javascript">JavaScript</a>  · 3 minute read
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/goodbye-gatsby-hello-static-site-generator">Goodbye Gatsby, hello static site generator</a>
+          </h2>
+          <div class="blog-meta">
+            Oct 28, 2020  · <a href="/categories/blogging">Blogging</a>, <a href="/categories/gatsby">Gatsby</a>, <a href="/categories/javascript">JavaScript</a>  · 3 minute read
+          </div>
         </div>
-      </div>
 
-      <div><p>Until now, my blog was powered by <a href="https://www.gatsbyjs.com">Gatsby</a>. What I liked about it is that I could write blog posts and pages as Markdown documents, push to GitHub and you're done. However, I didn't understand Gatsby and, in contrast to my expectations, I was not motivated to learn it. This decreased my motivation to improve my website and write blog posts.</p>
+        <div><p>Until now, my blog was powered by <a href="https://www.gatsbyjs.com">Gatsby</a>. What I liked about it is that I could write blog posts and pages as Markdown documents, push to GitHub and you're done. However, I didn't understand Gatsby and, in contrast to my expectations, I was not motivated to learn it. This decreased my motivation to improve my website and write blog posts.</p>
 <p>Then I read <a href="https://twitter.com/ryanflorence/status/1294303054007635973">a tweet by Ryan Florence</a> where he showed <a href="https://gist.github.com/ryanflorence/fb3fe3209877e7a37700a20251804cca">a gist</a> of a very simple static site generator script. It generated HTML pages from a folder of Markdown documents. It inspired me to use it as the starting point for creating my own static site generator.</p>
 <blockquote>
 <p>A static site generator is a piece of software that generates a bunch of HTML documents and links them together. The result is a barebones static HTML website, just like in the olden days, which you publish to a hosting provider or cloud service provider. Your live website doesn't need a database or any other hosting facilities, all pages are generated in advance.</p>
@@ -115,7 +119,7 @@ categories:
 
 Until now, my blog was powered by [Gatsby]. What I liked about it is ... ... ...
 </code></pre>
-<p>The most important meta data are the categories for each blog post. The publish script contains custom code to gather category information from all blog posts to generate category pages that list the blog posts per category. It is also used to create a list of categories on the homepage, which link to the cateogry pages and show the number of blog posts for each category.</p>
+<p>The most important meta data are the categories for each blog post. The publish script contains custom code to gather category information from all blog posts to generate category pages that list the blog posts per category. It is also used to create a list of categories on the homepage, which link to the category pages and show the number of blog posts for each category.</p>
 <h3>Automation</h3>
 <p>Creating Markdown files in the correct folder, with the right name, specifying front matter etc. is sensitive to errors, so I created a script to automate that. It asks me some questions and then creates everything for me. Of course I still have to write the blog post, but the plumbing is done.</p>
 <p>The script is a CLI built with JavaScript and <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer</a> and using it looks kind of like this:</p>
@@ -126,26 +130,22 @@ Until now, my blog was powered by [Gatsby]. What I liked about it is ... ... ...
 <p>But as I use it, of course I will improve a lot along the way.</p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Goodbye Gatsby, hello static site generator&url=https://bouwe.io/goodbye-gatsby-hello-static-site-generator&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/goodbye-gatsby-hello-static-site-generator"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/goodbye-gatsby-hello-static-site-generator/goodbye-gatsby-hello-static-site-generator.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Goodbye Gatsby, hello static site generator&url=https://bouwe.io/goodbye-gatsby-hello-static-site-generator&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/goodbye-gatsby-hello-static-site-generator"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/goodbye-gatsby-hello-static-site-generator/goodbye-gatsby-hello-static-site-generator.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

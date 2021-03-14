@@ -1,20 +1,23 @@
 ---
 date: "2020-12-22"
-title: "Learn React basics by creating a number game"
+title: "Learn React basics by creating a simple calculation game (Part 1)"
 summary: ""
 categories:
   - "React"
+  - "simple calculation game"
 ---
 
-This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄
+This is part 1 of a series of blog posts where I explore basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄
 
 Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the `useState` hook.
 
 ### Demo
 
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
+
 The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.
 
-Wanna give it a try yourself? https://react-number-game-v1.netlify.app
+Wanna give it a try yourself? https://react-simple-calculation-game.netlify.app.
 
 ### Let's start building
 
@@ -79,7 +82,7 @@ Note how I created and display a variable named `answer` which contains the numb
 </div>
 ```
 
-I added a `key` prop to each button to React can uniquely identifiable each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the `choices` array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the `selected` array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an `index` here, which is fine for my code, but not always is a good idea.
+I added a `key` prop to each button so React can uniquely identify each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the `choices` array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the `selected` array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an `index` here, which is fine for my code, but not always is a good idea.
 
 > Check out this _egghead.io_ lesson to learn more about the `key` prop and using indexes: https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react
 
@@ -143,10 +146,10 @@ function reset() {
 
 Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.
 
-What I am going to do is add up all the numbers in the `selected` array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is empty, because there is no result yet:
+What I am going to do is add up all the numbers in the `selected` array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is `null`, because there is no result yet:
 
 ```js
-const [result, setResult] = useState();
+const [result, setResult] = useState(null);
 ```
 
 As soon as the Done button is clicked the `result` should change to either 'correct' or 'incorrect'. To determine the total of the `selected` numbers we reduce the array to one single value by adding up the numbers:
@@ -171,7 +174,7 @@ When resetting, `result` needs to be cleared too so we add that to the `reset` f
 ```js
 function reset() {
   setSelected([]);
-  setResult();
+  setResult(null);
 }
 ```
 
@@ -214,10 +217,11 @@ Well, not entirely.
 
 Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the `useEffect` hook.
 
-So stay tuned for Part 2! 😃
+~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
 
-P.S. The source code for this app is on my GitHub: https://github.com/bouwe77/react-number-game-v1
+The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js
 
 [create react app]: https://create-react-app.dev
-[on my github]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css
-[modal]: https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/Modal.js
+[on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
+[modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
+[continue reading]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2

@@ -6,6 +6,7 @@ import fm from "front-matter";
 import {
   getBlogCategoriesHtmlForHomepage,
   getBlogCategoriesHtmlForBlogPost,
+  getBlogCategoriesHtmlForCategoryListPage,
 } from "./blogCategories";
 import { getBlogsHtml } from "./blogs";
 import { createSlug, formatDate, getReadingTime } from "./utils";
@@ -20,6 +21,10 @@ import {
   createFolder,
   deleteFolder,
 } from "./fileSystem";
+import { getNavigationHtml } from "./navigation";
+
+const navigationHtml = getNavigationHtml();
+const navigationHtmlBlogPages = getNavigationHtml("blog");
 
 publish();
 
@@ -37,6 +42,12 @@ async function publish() {
 
   // Create the HOME page, which is a combination of an HTML template and subtemplates.
   await createHomePage(blogData);
+
+  // Create the BLOG page, which displays all blog posts.
+  await createBlogListPage(blogData);
+
+  // Create the CATEGORIES page, which displays all blog post categories.
+  await createCategoryListPage(blogData);
 
   // Convert all PAGE markdown files with front matter to HTML pages and copy them to the publish folder.
   await createPages(pageData);
@@ -97,6 +108,7 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.readingTime = getReadingTime(
           parsedFrontMatterAndMarkdown.body
         );
+        parsedFrontMatterAndMarkdown.isBlog = true;
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories)
           parsedFrontMatterAndMarkdown.attributes.categories = [];
@@ -180,8 +192,14 @@ async function createHomePage(blogData) {
   let htmlBody = await readFileContents(filepaths.getHomeTemplateFilePath());
 
   htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtml
+  );
+
+  const numberOfBlogPosts = 3;
+  htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
-    getBlogsHtml(blogData.pages)
+    getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts))
   );
 
   htmlBody = htmlBody.replace(
@@ -189,17 +207,76 @@ async function createHomePage(blogData) {
     getBlogCategoriesHtmlForHomepage(blogData.categories)
   );
 
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ gitHubRepoUrl }}", "g"),
+    constants.gitHubRepoUrl
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ yearNow }}", "g"),
+    new Date().getFullYear()
+  );
+
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
   await createFile(filepaths.getHomePublishFilePath(), html);
+}
+
+async function createBlogListPage(blogData) {
+  let htmlBody = await readFileContents(
+    filepaths.getBlogListTemplateFilePath()
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtmlBlogPages
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ blogs }}", "g"),
+    getBlogsHtml(blogData.pages)
+  );
+
+  const html = await getContainerHtml(htmlBody, constants.siteDescription);
+
+  await createFile(filepaths.getBlogListPublishFilePath(), html);
+}
+
+async function createCategoryListPage(blogData) {
+  let htmlBody = await readFileContents(
+    filepaths.getCategoryListTemplateFilePath()
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ navigation }}", "g"),
+    navigationHtmlBlogPages
+  );
+
+  htmlBody = htmlBody.replace(
+    new RegExp("{{ categories }}", "g"),
+    getBlogCategoriesHtmlForCategoryListPage(blogData.categories)
+  );
+
+  const html = await getContainerHtml(htmlBody, constants.siteDescription);
+
+  await createFile(filepaths.getCategoryListPublishFilePath(), html);
 }
 
 async function createPages(data) {
   const template = await readFileContents(data.template);
 
   data.pages.forEach(async (page) => {
+    const navigationHtml = page.isBlog
+      ? navigationHtmlBlogPages
+      : getNavigationHtml(page.slug);
+
     const makeHtmlBody = (content) => {
       let htmlBody = template.replace(
+        new RegExp("{{ navigation }}", "g"),
+        navigationHtml
+      );
+
+      htmlBody = htmlBody.replace(
         new RegExp("{{ title }}", "g"),
         page.attributes.title
       );
@@ -249,10 +326,6 @@ async function createCategoryPages(blogData) {
   blogData.categories.forEach(async (cat) => {
     allCategories.push(cat.name);
 
-    const blogsHtml = getBlogsHtml(
-      blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
-    );
-
     const slug = createSlug(cat.name);
     const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
@@ -261,8 +334,16 @@ async function createCategoryPages(blogData) {
       htmlBody = htmlBody.replace(new RegExp("{{ title }}", "g"), title);
       htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
       htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
+      htmlBody = htmlBody.replace(
+        new RegExp("{{ navigation }}", "g"),
+        navigationHtmlBlogPages
+      );
       return htmlBody;
     };
+
+    const blogsHtml = getBlogsHtml(
+      blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
+    );
 
     const body = await toHtml(makeHtmlBody, blogsHtml);
     const html = await getContainerHtml(body, title);

@@ -41,7 +41,7 @@ categories:
 Until now, my blog was powered by [Gatsby]. What I liked about it is ... ... ...
 ```
 
-The most important meta data are the categories for each blog post. The publish script contains custom code to gather category information from all blog posts to generate category pages that list the blog posts per category. It is also used to create a list of categories on the homepage, which link to the cateogry pages and show the number of blog posts for each category.
+The most important meta data are the categories for each blog post. The publish script contains custom code to gather category information from all blog posts to generate category pages that list the blog posts per category. It is also used to create a list of categories on the homepage, which link to the category pages and show the number of blog posts for each category.
 
 ### Automation
 

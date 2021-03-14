@@ -68,31 +68,35 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav">
-        <!-- 
-          <a href="#">about me</a> · <a href="#">speaking</a>
-          -->
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
     </header>
 
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/day-1-setting-up-a-gatsby-blog-on-netlify">Day 1 - Setting up a Gatsby blog on Netlify</a>
-        </h2>
-        <div class="blog-meta">
-          May 14, 2019  · <a href="/categories/100-days-of-code">100 days of code</a>, <a href="/categories/react">React</a>, <a href="/categories/gatsby">Gatsby</a>, <a href="/categories/netlify">Netlify</a>  · 2 minute read
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/day-1-setting-up-a-gatsby-blog-on-netlify">Day 1 - Setting up a Gatsby blog on Netlify</a>
+          </h2>
+          <div class="blog-meta">
+            May 14, 2019  · <a href="/categories/100-days-of-code">100 days of code</a>, <a href="/categories/react">React</a>, <a href="/categories/gatsby">Gatsby</a>, <a href="/categories/netlify">Netlify</a>  · 2 minute read
+          </div>
         </div>
-      </div>
 
-      <div><p>Today I is my first day of this coding challenge and I will build a blog so I can share my
+        <div><p>Today I is my first day of this coding challenge and I will build a blog so I can share my
 100 Days of Code experiences with you.</p>
 <p>As I am typing this I still use a Google Drive text document and that doesn’t feel good. I really need a blog.</p>
 <p>First I have to make some architectural decisions.</p>
@@ -113,26 +117,22 @@ Netlify and imported the Github repo in CodeSandbox to start coding. Nice!</p>
 I started experimenting with Gatsby which has been on my to do list for a long time.</p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Day 1 - Setting up a Gatsby blog on Netlify&url=https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/day-1-setting-up-a-gatsby-blog-on-netlify/day-1-setting-up-a-gatsby-blog-on-netlify.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Day 1 - Setting up a Gatsby blog on Netlify&url=https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/day-1-setting-up-a-gatsby-blog-on-netlify/day-1-setting-up-a-gatsby-blog-on-netlify.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

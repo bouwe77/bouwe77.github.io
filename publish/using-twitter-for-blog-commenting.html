@@ -68,31 +68,35 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav">
-        <!-- 
-          <a href="#">about me</a> · <a href="#">speaking</a>
-          -->
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
     </header>
 
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/using-twitter-for-blog-commenting">Using Twitter for blog commenting</a>
-        </h2>
-        <div class="blog-meta">
-          Apr 18, 2020  · <a href="/categories/blogging">Blogging</a>  · 2 minute read
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/using-twitter-for-blog-commenting">Using Twitter for blog commenting</a>
+          </h2>
+          <div class="blog-meta">
+            Apr 18, 2020  · <a href="/categories/blogging">Blogging</a>  · 2 minute read
+          </div>
         </div>
-      </div>
 
-      <div><p>Many blogs offer the opportunity to comment on blog posts within the blog site itself. However, I think it's better to use Twitter for this.</p>
+        <div><p>Many blogs offer the opportunity to comment on blog posts within the blog site itself. However, I think it's better to use Twitter for this.</p>
 <p>Blog comments are only visible on the blog itself, so you only see them when reading the blog post. With Twitter, the discussion on your blog post becomes public, everyone can see it and join the discussion. And a nice side effect is that it also is a way to promote the blog post to a greater audience.</p>
 <p>Furthermore, depending on the platform you use for your blog it might even mean you have to build (or integrate) commenting yourself or use an existing service. Then you might have to deal with preventing spam and inappropriate comments. And you also have yet another place to check for comments, while you're already busy checking Twitter and other social media.</p>
 <p>So why not use Twitter for this? My workflow for using Twitter as my promotion and commenting platform is as follows:</p>
@@ -115,26 +119,22 @@
 <p>Now add this link to your blog post too and name it "Discuss on Twitter". When someone clicks the link and replies to one of the tweets in the search result, that reply will also appear in that search result and this way your are building a discussion thread on your blog post.</p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Using Twitter for blog commenting&url=https://bouwe.io/using-twitter-for-blog-commenting&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/using-twitter-for-blog-commenting"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/using-twitter-for-blog-commenting/using-twitter-for-blog-commenting.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Using Twitter for blog commenting&url=https://bouwe.io/using-twitter-for-blog-commenting&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/using-twitter-for-blog-commenting"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/using-twitter-for-blog-commenting/using-twitter-for-blog-commenting.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

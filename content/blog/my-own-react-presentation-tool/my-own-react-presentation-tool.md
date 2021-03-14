@@ -250,7 +250,7 @@ a few things have to be done before it's ready for using it in my workshops. Thi
 keyboard arrow navigation, CSS styling, code refactoring, etcetera. But that's something
 for another blog post.
 
-[react workshops]: https://bouwe.io/categories/workshops
+[react workshops]: /categories/workshops
 [mdx-deck]: https://github.com/jxnblk/mdx-deck
 [mdx-deck-live-code]: https://github.com/JReinhold/mdx-deck-live-code
 [use-persisted-state]: https://github.com/donavon/use-persisted-state

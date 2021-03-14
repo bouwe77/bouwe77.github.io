@@ -25,6 +25,29 @@ export function getBlogCategoriesHtmlForHomepage(blogCategories) {
   return html;
 }
 
+export function getBlogCategoriesHtmlForCategoryListPage(blogCategories) {
+  const template = `<div>
+    <div>
+    <h3>
+        <b><a href="/categories/{{ slug }}">{{ name }} ({{ count }})</a></b>
+    </h3>
+    </div>
+</div>`;
+
+  let html = "";
+  blogCategories.forEach((cat) => {
+    let categoryHtml = "";
+    categoryHtml += template
+      .replace(new RegExp("{{ slug }}", "g"), cat.slug)
+      .replace(new RegExp("{{ name }}", "g"), cat.name)
+      .replace(new RegExp("{{ count }}", "g"), cat.count);
+
+    html += categoryHtml;
+  });
+
+  return html;
+}
+
 export function getBlogCategoriesHtmlForBlogPost(blogCategories) {
   let categoriesHtml = "";
   if (blogCategories) {

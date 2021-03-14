@@ -9,6 +9,8 @@ export const constants = {
   authorName: "Bouwe Westerdijk",
   authorEmail: "bouwe@bouwe.nl",
   authorLink: "https://bouwe.io",
+  gitHubRepoUrl: "https://github.com/bouwe77/bouwe.io",
   gitHubEditUrl: "https://github.com/bouwe77/bouwe.io/edit/master/",
   categoryPageTitle: "Blog posts about",
+  logo: "bouwe!",
 };

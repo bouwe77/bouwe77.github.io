@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>Learn React basics by creating a number game</title>
+    <title>Learn React basics by creating a simple calculation game (Part 1)</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="Learn React basics by creating a number game" />
+    <meta name="twitter:title" content="Learn React basics by creating a simple calculation game (Part 1)" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -68,37 +68,42 @@
   </head>
 
   <body>
-  <div class="container">
+  <div>
     <header class="header">
-      <div class="logo">
-        <h1>
-          <a href="/">bouwe.io</a>
-        </h1>
-      </div>
-      <div class="nav">
-        <!-- 
-          <a href="#">about me</a> · <a href="#">speaking</a>
-          -->
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
       </div>
     </header>
 
-    <div>
-      <div>
-        <h2 class="blog-title">
-          <a href="/learn-react-basics-by-creating-a-number-game">Learn React basics by creating a number game</a>
-        </h2>
-        <div class="blog-meta">
-          Dec 22, 2020  · <a href="/categories/react">React</a>  · 6 minute read
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Learn React basics by creating a simple calculation game (Part 1)</a>
+          </h2>
+          <div class="blog-meta">
+            Dec 22, 2020  · <a href="/categories/react">React</a>, <a href="/categories/simple-calculation-game">simple calculation game</a>  · 6 minute read
+          </div>
         </div>
-      </div>
 
-      <div><p>This is part 1 of a series of blog posts where I'll explore some basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
+        <div><p>This is part 1 of a series of blog posts where I explore basic React principles. I do that by building a simple calculation game. Our 6 year old daughter likes this game a lot. 😄</p>
 <p>Topics this blog post will cover are JSX, conditional rendering, mapping arrays to JSX, event handling and updating state of arrays and other values with the <code>useState</code> hook.</p>
 <h3>Demo</h3>
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 <p>The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.</p>
-<p>Wanna give it a try yourself? <a href="https://react-number-game-v1.netlify.app">https://react-number-game-v1.netlify.app</a></p>
+<p>Wanna give it a try yourself? <a href="https://react-simple-calculation-game.netlify.app">https://react-simple-calculation-game.netlify.app</a>.</p>
 <h3>Let's start building</h3>
-<p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/styles.css">on my GitHub</a>.</p>
+<p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css">on my GitHub</a>.</p>
 <p>To keep it simple the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
 <pre><code class="language-js">import React from "react";
 
@@ -151,7 +156,7 @@ export default function App() {
   &#x3C;/div>
 &#x3C;/div>
 </code></pre>
-<p>I added a <code>key</code> prop to each button to React can uniquely identifiable each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
+<p>I added a <code>key</code> prop to each button so React can uniquely identify each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
 <blockquote>
 <p>Check out this <em>egghead.io</em> lesson to learn more about the <code>key</code> prop and using indexes: <a href="https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react">https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react</a></p>
 </blockquote>
@@ -194,8 +199,8 @@ function deselect(number) {
 </code></pre>
 <h3>Submitting the answer</h3>
 <p>Now that we are able to select numbers, we want to submit our answer. This means the Done button needs functionality to determine our answer is correct.</p>
-<p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is empty, because there is no result yet:</p>
-<pre><code class="language-js">const [result, setResult] = useState();
+<p>What I am going to do is add up all the numbers in the <code>selected</code> array and compare that to the expected answer. The UI should show whether the answer is correct or incorrect, so that's a new state variable. The initial state is <code>null</code>, because there is no result yet:</p>
+<pre><code class="language-js">const [result, setResult] = useState(null);
 </code></pre>
 <p>As soon as the Done button is clicked the <code>result</code> should change to either 'correct' or 'incorrect'. To determine the total of the <code>selected</code> numbers we reduce the array to one single value by adding up the numbers:</p>
 <pre><code class="language-js">function done() {
@@ -211,7 +216,7 @@ function deselect(number) {
 <p>When resetting, <code>result</code> needs to be cleared too so we add that to the <code>reset</code> function:</p>
 <pre><code class="language-js">function reset() {
   setSelected([]);
-  setResult();
+  setResult(null);
 }
 </code></pre>
 <p>To give some feedback to the user, for now, we just display the value of <code>result</code>, but only when the game is finished, in other words: when <code>result</code> has a value:</p>
@@ -225,7 +230,7 @@ function deselect(number) {
 </code></pre>
 <h3>Trying again after submitting an answer</h3>
 <p>After the app indicated the answer is correct or not, of course we would like to try again. For now, this means we want to reset the game.</p>
-<p>Let's start with adding a Try Again button underneath the <code>result</code> we were already displaying. To make it look and work nicer we will put the result and the button in a <a href="https://raw.githubusercontent.com/bouwe77/react-number-game-v1/main/src/Modal.js">Modal</a>:</p>
+<p>Let's start with adding a Try Again button underneath the <code>result</code> we were already displaying. To make it look and work nicer we will put the result and the button in a <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js">Modal</a>:</p>
 <pre><code class="language-js">return (
   &#x3C;div className="container">
       {result &#x26;&#x26; (
@@ -242,30 +247,26 @@ function deselect(number) {
 <h3>Finished?</h3>
 <p>Well, not entirely.</p>
 <p>Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the <code>useEffect</code> hook.</p>
-<p>So stay tuned for Part 2! 😃</p>
-<p>P.S. The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-number-game-v1">https://github.com/bouwe77/react-number-game-v1</a></p>
+<p><del>So stay tuned for Part 2! 😃</del> Part 2 is finished, so <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-2">continue reading</a>.</p>
+<p>The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js</a></p>
 </div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text=Learn React basics by creating a number game&url=https://bouwe.io/learn-react-basics-by-creating-a-number-game&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-number-game"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-number-game/learn-react-basics-by-creating-a-number-game.md">Edit on GitHub</a>
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Learn React basics by creating a simple calculation game (Part 1)&url=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/learn-react-basics-by-creating-a-simple-calculation-game-part-1/learn-react-basics-by-creating-a-simple-calculation-game-part-1.md">Edit on GitHub</a>
+        </div>
       </div>
     </div>
 
-    <footer>
-      <!--
-          <a href="/workshops">Workshops</a> |
-          <a href="/react">React</a>
-          -->
-    </footer>
+    <footer></footer>
   </div>
 </body>
 

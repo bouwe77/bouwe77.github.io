@@ -2,9 +2,9 @@ import inquirer from "inquirer";
 import path from "path";
 import fs from "fs";
 
-import allCategories from "./allCategories.json";
+import allCategories from "./todo/allCategories.json";
 
-import { createSlug } from "./utils";
+import { createSlug } from "./urls/slug";
 
 const __dirname = path.resolve();
 const blogDirectory = "content/blog";

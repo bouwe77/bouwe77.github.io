@@ -2,7 +2,7 @@
 title: Links
 ---
 
-The links on this page are primarily a _note to self_ of blogs, websites, talks, videos, etc. I think are great resources to learn from. And many of these I have watched or read many times, and I can keep on doing that every now and then because every time I hear something new.
+The links on this page are primarily a _note to self_ of blogs, websites, talks, videos, etc. that I think are great resources to learn from. And many of these I have watched or read many times, and I can keep on doing that every now and then because every time I hear something new.
 
 #### React
 

@@ -10,6 +10,8 @@ categories:
 
 OK, wat gaan we hier doen?
 
+- Al met al is deze blog post een uitwerking van https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983 en dan vooral vanaf "Why do we curry?"
+
 - Uitleggen dat we met currying het probleem oplossen dat een functie weliswaar 1 return waarde heeft, maar wel een onbekend aantal parameters kan hebben. Door elke functie maar 1 parameter te geven kun je elke functie aan elke andere functie knopen.
   Dit kan zowel composition, chaining, ... zijn.
 

@@ -5,6 +5,7 @@ summary: ""
 categories:
   - "JavaScript"
   - "Functional programming"
+  - "Currying"
 ---
 
 #### Introduction

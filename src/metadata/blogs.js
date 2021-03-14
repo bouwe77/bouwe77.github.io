@@ -2,6 +2,9 @@ import fm from "front-matter";
 import { filepaths } from "./filepaths";
 import { readFileContents, readFilesInFolder, copyFile } from "./fileSystem";
 import { constants } from "../constants";
+import { getEditOnGitHubUrl } from "../urls/github";
+import { getReadingTime } from "./readingTime";
+import { createSlug } from "../urls/slug";
 
 export async function getMetadata() {
   const blogData = {
@@ -31,39 +34,35 @@ export async function getMetadata() {
 
         // If we end up here it's an .md file for which the meta data is added to the blogData array.
         let fileContents = await readFileContents(filePath);
-        const parsedFrontMatterAndMarkdown = fm(fileContents);
+        const metadata = fm(fileContents);
 
         const slug = filename.replace(".md", "");
-        parsedFrontMatterAndMarkdown.filename = filename;
-        parsedFrontMatterAndMarkdown.slug = slug;
-        parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`;
-        parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
+        metadata.filename = filename;
+        metadata.slug = slug;
+        metadata.url = `${constants.siteUrl}/${slug}`;
+        metadata.editOnGitHubUrl = getEditOnGitHubUrl(
           filepaths.getRelativeBlogContentFilePath(subFolder)
         );
-        parsedFrontMatterAndMarkdown.readingTime = getReadingTime(
-          parsedFrontMatterAndMarkdown.body
-        );
-        parsedFrontMatterAndMarkdown.isBlog = true;
+        metadata.readingTime = getReadingTime(metadata.body);
+        metadata.isBlog = true;
 
-        if (!parsedFrontMatterAndMarkdown.attributes.categories)
-          parsedFrontMatterAndMarkdown.attributes.categories = [];
+        if (!metadata.attributes.categories)
+          metadata.attributes.categories = [];
 
-        blogData.pages.push(parsedFrontMatterAndMarkdown);
+        blogData.pages.push(metadata);
 
-        parsedFrontMatterAndMarkdown.attributes.categories.forEach(
-          (categoryName) => {
-            var existingCategory = blogData.categories.find(
-              (category) => category.name === categoryName
-            );
-            if (existingCategory) existingCategory.count++;
-            else
-              blogData.categories.push({
-                name: categoryName,
-                count: 1,
-                slug: createSlug(categoryName),
-              });
-          }
-        );
+        metadata.attributes.categories.forEach((categoryName) => {
+          var existingCategory = blogData.categories.find(
+            (category) => category.name === categoryName
+          );
+          if (existingCategory) existingCategory.count++;
+          else
+            blogData.categories.push({
+              name: categoryName,
+              count: 1,
+              slug: createSlug(categoryName),
+            });
+        });
       }
 
       // Sort the categories alphabetically.

@@ -5,6 +5,7 @@ summary: ""
 categories:
   - "JavaScript"
   - "useReducer"
+  - "Functional programming"
 ---
 
 I want to write about React's useReducer hook, but to truly understand it, first I should know where this hook got its name from. So what's a reducer? I don't know exactly, to be honest, so what better way to find out than writing a blog post about it?

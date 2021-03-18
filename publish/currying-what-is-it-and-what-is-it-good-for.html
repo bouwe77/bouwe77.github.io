@@ -92,7 +92,7 @@
             <a href="/currying-what-is-it-and-what-is-it-good-for">Currying: What is it and what is it good for?</a>
           </h2>
           <div class="blog-meta">
-            Mar 14, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/functional-programming">Functional programming</a>  · 6 minute read
+            Mar 14, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/currying">Currying</a>  · 6 minute read
           </div>
         </div>
 
@@ -108,10 +108,10 @@
 </code></pre>
 <p>Here are some examples how you could use the <code>log</code> function:</p>
 <pre><code class="language-js">// Informational logging:
-log(new Date(), "INFO", "The service has started");
+log(new Date().toISOString(), "INFO", "The service has started");
 
 // Error logging:
-log(new Date(), "ERROR", "An exception occurred: " + error.message);
+log(new Date().toISOString(), "ERROR", "An exception occurred: " + error.message);
 
 // etc.
 </code></pre>
@@ -121,8 +121,8 @@ log(new Date(), "ERROR", "An exception occurred: " + error.message);
 <p>The only proper way of restricting <code>severity</code> values is using TypeScript, which we won't cover in this blog post.</p>
 </blockquote>
 <p>What we <em>can</em> do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:</p>
-<pre><code class="language-js">const logInfo = (message) => log(new Date(), "INFO", message);
-const logError = (message) => log(new Date(), "ERROR", message);
+<pre><code class="language-js">const logInfo = (message) => log(new Date().toISOString(), "INFO", message);
+const logError = (message) => log(new Date().toISOString(), "ERROR", message);
 // etc. for the other severities...
 </code></pre>
 <p>By creating these functions I use a principle called <em>partial application</em>: Creating functions out of other functions, supplying known values up front, so I only need to pass the values I only know at the moment when I use them. In this case it means the <code>datetime</code> and <code>severity</code> are known and the <code>message</code> is something that differs per logging call.</p>
@@ -152,8 +152,8 @@ logError("An exception occurred!");
 <p>Although the most inner function only receives the <code>message</code>, it can also use <code>datetime</code> and <code>severity</code> because that is how closures work.</p>
 <p>Now you might think, what is the purpose of transforming a function like this?</p>
 <p>Well, what we can do now is compose new logging functions like this:</p>
-<pre><code class="language-js">const logInformation = log(new Date())("INFO");
-const logError = log(new Date())("ERROR");
+<pre><code class="language-js">const logInformation = log(new Date().toISOString())("INFO");
+const logError = log(new Date().toISOString())("ERROR");
 </code></pre>
 <p>This again is an example of partial application: We pass the arguments we already know, <code>datetime</code> and <code>severity</code>, but the third argument, <code>message</code>, we leave for the moment the code knows what that message should be depending on the place where it is called.</p>
 <p>Notice that composing abstractions out of the <code>log</code> function does not require using closures anymore, which reduces the amount of code even more. The only place we use closures is inside the <code>log</code> function itself.</p>
@@ -191,22 +191,41 @@ logError("An exception occurred!");
 </code></pre>
 <p>What we can do now is logging by calling <code>curriedLog</code> and pass arguments however we want:</p>
 <pre><code class="language-js">// We can call log with all 3 arguments:
-curriedLog(new Date(), "INFO", "The service has started");
+curriedLog(new Date().toISOString(), "INFO", "The service has started");
 
 // We can pass all arguments separately:
-curriedLog(new Date())("INFO")("The service has started");
+curriedLog(new Date().toISOString())("INFO")("The service has started");
 
 // And we can apply partial application:
-const logInfo = curriedLog(new Date())("INFO");
+const logInfo = curriedLog(new Date().toISOString())("INFO");
 logInfo("The service has started");
 
 // etc. etc.
 </code></pre>
 <p>Normally you wouldn't create the <code>curry</code> function yourself, but use a library like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc. for that instead, but I think it's nice to show how you could transform a normal function into a curried function.</p>
+<h4>D-d-did you spot the bug? 😱</h4>
+<p>After I published this blog post someone pointed out my code contained a bug. Oh no!</p>
+<p>What will happen when you use the partial applied functions I created out of the curried <code>log</code> function, every single log entry would have the same date and time, which is not very convenient when you want to investigate your log files.</p>
+<p>Let's look again at these partially applied functions:</p>
+<pre><code class="language-js">const logInformation = log(new Date().toISOString())("INFO");
+const logError = log(new Date().toISOString())("ERROR");
+</code></pre>
+<p>The functions I create here have fixed values for the <code>datetime</code> and the <code>severity</code> arguments. The latter is fine of course, but the date and time needs to be dynamic.</p>
+<p>It took me a while to figure out a decent way to fix this, but the same person that spotted the bug helped me out greatly. Instead of the fixed date and time we pass in an object that lazily determines the date and time:</p>
+<pre><code class="language-js">var datetime = {
+  toString: () => new Date().toISOString()
+};
+
+const logInformation = log(datetime)("INFO");
+const logError = log(datetime)("ERROR");
+</code></pre>
+<p>And because the <code>log</code> function uses a string literal, the <code>toString</code> function on the <code>datetime</code> object is called, resulting in a current date and time. Sweet!</p>
 <h4>Conclusion</h4>
-<p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is. Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.</p>
-<p>However, we only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.</p>
-<p>If my blog post was not clear (or simply wrong), please let me know on Twitter!</p>
+<p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is. </p>
+<p>Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.</p>
+<p>However, we've only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.</p>
+<p>If my blog post is (still) not clear (or simply wrong), please let me know on Twitter!</p>
+<p>To fiddle around with the code I used in this blog post, check out <a href="https://codesandbox.io/s/peaceful-firefly-7eh34?file=/index.js">this CodeSandbox</a> or the <a href="https://github.com/bouwe77/js-currying">GitHub repository</a>.</p>
 <p>If you want to know more you can check out some of the links below.</p>
 <h4>Acknowledgements and tips</h4>
 <p>A read quite a few articles and watched many videos to learn currying.</p>

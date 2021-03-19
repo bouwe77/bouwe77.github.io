@@ -1,5 +1,5 @@
-import { gitHubEditUrl } from "../constants";
+import constants from "../constants";
 
 export function getEditOnGitHubUrl(relativeFilePath) {
-  return `${gitHubEditUrl}${relativeFilePath}`;
+  return `${constants.gitHubEditUrl}${relativeFilePath}`;
 }

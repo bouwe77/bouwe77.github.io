@@ -1,7 +1,7 @@
 import fm from "front-matter";
 import { filepaths } from "./filepaths";
 import { readFileContents, readFilesInFolder, copyFile } from "./fileSystem";
-import { constants } from "../constants";
+import constants from "../constants";
 import { getEditOnGitHubUrl } from "../urls/github";
 import { getReadingTime } from "./readingTime";
 import { createSlug } from "../urls/slug";
@@ -46,12 +46,17 @@ export async function getMetadata() {
         metadata.readingTime = getReadingTime(metadata.body);
         metadata.isBlog = true;
 
-        if (!metadata.attributes.categories)
-          metadata.attributes.categories = [];
+        metadata.date = metadata.attributes.date;
+        metadata.title = metadata.attributes.title;
+        metadata.summary = metadata.attributes.summary;
+        metadata.categories = metadata.attributes.categories
+          ? metadata.attributes.categories
+          : [];
+        metadata.attributes = undefined;
 
         blogData.pages.push(metadata);
 
-        metadata.attributes.categories.forEach((categoryName) => {
+        metadata.categories.forEach((categoryName) => {
           var existingCategory = blogData.categories.find(
             (category) => category.name === categoryName
           );

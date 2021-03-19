@@ -5,7 +5,7 @@ export async function getMetaData() {
   const blogs = await getBlogMetadata();
   //const pages = await getPageMetadata();
 
-  console.log(blogs);
+  console.log(blogs.pages[0]);
 
   return {
     blogs,

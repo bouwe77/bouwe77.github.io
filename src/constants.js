@@ -1,4 +1,4 @@
-export const constants = {
+export default {
   siteName: "bouwe.io",
   siteUrl: "https://bouwe.io",
   siteDescription: "bouwe.io, a blog by Bouwe Westerdijk",

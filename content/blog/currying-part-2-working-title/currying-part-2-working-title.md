@@ -14,20 +14,20 @@ categories:
 
 #### Introduction
 
-I find currying an intruiging pattern, just like many other of the concepts of functional programming. But for me, and I have also heard this from others, there are some challenges with currying: What is it and what is it good for? This was the title of my previous blog post about currying, but after finishing it, I realized I primarily covered the _what_ part, and not entirely the _what is it good for_ part.
+I find currying an intruiging pattern, just like many other of the concepts of functional programming. But for me, and I have also heard this from others, there are some challenges with currying: What is it and what is it good for? This was the title of my previous blog post about currying, but after finishing it, I realized I mainly covered the _what_ part, and not entirely the _what is it good for_ part.
 
 So if you don't know what currying is, please read [Part 1] where I try to explain it and which also contains some links to other resources that explain currying very well.
 
 #### Why currying?
 
-Ik heb composability genoemd, maar er is nog een wat hoger niveau om dit te bekijken en dat is: alle functions 1 input en 1 outp parameter.
+In my previous blog post I wrote how currying, combined with partial application, allows composing new functions with lesser key strokes. While this is true, it is not the most important reason to use currying:
 
-- Uitleggen dat we met currying het probleem oplossen dat een functie weliswaar 1 return waarde heeft, maar wel een onbekend aantal parameters kan hebben. Door elke functie maar 1 parameter te geven kun je elke functie aan elke andere functie knopen.
-  Dit kan zowel composition, chaining, ... zijn.
+```js
 
-En dit gaat ook over compsability, maar dan niet van een function uit een curried function, maar over het componeren van meerdere functions in 1.
+```
 
-Chaining = composition, want ik maak een nieuwe functie door een aantal aan elkaar te plakken.
+The most important reason to use currying is it allows you to use another way of composing, which is combining multiple functions into one function, also known as piping.
+
 
 #### Roman numerals
 

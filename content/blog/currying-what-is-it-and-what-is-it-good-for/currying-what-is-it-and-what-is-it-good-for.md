@@ -30,10 +30,10 @@ Here are some examples how you could use the `log` function:
 
 ```js
 // Informational logging:
-log(new Date(), "INFO", "The service has started");
+log(new Date().toISOString(), "INFO", "The service has started");
 
 // Error logging:
-log(new Date(), "ERROR", "An exception occurred: " + error.message);
+log(new Date().toISOString(), "ERROR", "An exception occurred: " + error.message);
 
 // etc.
 ```
@@ -47,8 +47,8 @@ For example, you'll probably want to make sure only supported `severity` values 
 What we _can_ do is create some utility logging functions that, when logging, save us some key strokes, so probably reduce mistakes, but also make it more clear how to do logging, by offering the following abstractions:
 
 ```js
-const logInfo = (message) => log(new Date(), "INFO", message);
-const logError = (message) => log(new Date(), "ERROR", message);
+const logInfo = (message) => log(new Date().toISOString(), "INFO", message);
+const logError = (message) => log(new Date().toISOString(), "ERROR", message);
 // etc. for the other severities...
 ```
 
@@ -96,8 +96,8 @@ Now you might think, what is the purpose of transforming a function like this?
 Well, what we can do now is compose new logging functions like this:
 
 ```js
-const logInformation = log(new Date())("INFO");
-const logError = log(new Date())("ERROR");
+const logInformation = log(new Date().toISOString())("INFO");
+const logError = log(new Date().toISOString())("ERROR");
 ```
 
 This again is an example of partial application: We pass the arguments we already know, `datetime` and `severity`, but the third argument, `message`, we leave for the moment the code knows what that message should be depending on the place where it is called.
@@ -157,13 +157,13 @@ What we can do now is logging by calling `curriedLog` and pass arguments however
 
 ```js
 // We can call log with all 3 arguments:
-curriedLog(new Date(), "INFO", "The service has started");
+curriedLog(new Date().toISOString(), "INFO", "The service has started");
 
 // We can pass all arguments separately:
-curriedLog(new Date())("INFO")("The service has started");
+curriedLog(new Date().toISOString())("INFO")("The service has started");
 
 // And we can apply partial application:
-const logInfo = curriedLog(new Date())("INFO");
+const logInfo = curriedLog(new Date().toISOString())("INFO");
 logInfo("The service has started");
 
 // etc. etc.
@@ -171,13 +171,45 @@ logInfo("The service has started");
 
 Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. for that instead, but I think it's nice to show how you could transform a normal function into a curried function.
 
+#### D-d-did you spot the bug? 😱
+
+After I published this blog post someone pointed out my code contained a bug. Oh no!
+
+What will happen when you use the partial applied functions I created out of the curried `log` function, every single log entry would have the same date and time, which is not very convenient when you want to investigate your log files.
+
+Let's look again at these partially applied functions:
+
+```js
+const logInformation = log(new Date().toISOString())("INFO");
+const logError = log(new Date().toISOString())("ERROR");
+```
+
+The functions I create here have fixed values for the `datetime` and the `severity` arguments. The latter is fine of course, but the date and time needs to be dynamic.
+
+It took me a while to figure out a decent way to fix this, but the same person that spotted the bug helped me out greatly. Instead of the fixed date and time we pass in an object that lazily determines the date and time:
+
+```js
+var datetime = {
+  toString: () => new Date().toISOString()
+};
+
+const logInformation = log(datetime)("INFO");
+const logError = log(datetime)("ERROR");
+```
+
+And because the `log` function uses a string literal, the `toString` function on the `datetime` object is called, resulting in a current date and time. Sweet!
+
 #### Conclusion
 
-I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the benefits are, I am not yet fully convinced of how useful currying is. Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.
+I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is. 
 
-However, we only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.
+Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.
 
-If my blog post was not clear (or simply wrong), please let me know on Twitter!
+However, we've only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.
+
+If my blog post is (still) not clear (or simply wrong), please let me know on Twitter!
+
+To fiddle around with the code I used in this blog post, check out [this CodeSandbox] or the [GitHub repository].
 
 If you want to know more you can check out some of the links below.
 
@@ -196,3 +228,5 @@ MPJ of Fun Fun Function also does a great (and funny as always) job explaining c
 [currying partials]: https://javascript.info/currying-partials
 [lodash]: https://lodash.com
 [ramda]: https://ramdajs.com
+[this codesandbox]: https://codesandbox.io/s/peaceful-firefly-7eh34?file=/index.js
+[github repository]: https://github.com/bouwe77/js-currying

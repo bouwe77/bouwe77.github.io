@@ -18,40 +18,76 @@ I find currying an intruiging pattern, just like many other of the concepts of f
 
 So if you don't know what currying is, please read [Part 1] where I try to explain it and which also contains some links to other resources that explain currying very well.
 
+#### Logging continued
+
+In this blog post we'll continue on the logging functionality we started with in [Part 1]. I changed the code a bit, now the `log` function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:
+
+```js
+function formatLog(datetime, severity, message) {
+  return `${datetime} [${severity}] - ${message}`;
+}
+
+function writeToConsole(message) {
+  console.log(message);
+  return message;
+}
+
+function writeToFile(filePath, message) {
+  fs.appendFile(filePath, message + "\n", (err) => {
+    if (err) throw err;
+  });
+  return message;
+}
+```
+
+What we can do now is call and combine different functions to achieve what we want:
+
+```js
+// Write a log message to the console:
+writeToConsole(formatLog(new Date().toISOString(), "INFO", "Hello World"));
+
+// Write a log message to a file:
+writeToFile(
+  "/path/to/file",
+  formatLog(new Date().toISOString(), "INFO", "Hello World")
+);
+
+// Write a log message to both the console and a file:
+writeToFile(
+  "/path/to/file",
+  writeToConsole(formatLog(new Date().toISOString(), "INFO", "Hello World"))
+);
+```
+
+Note how I nest different function calls to achieve what I want. This is not particularly readable and I am not composing anything.
+
+#### Piping
+
+What I would like to do is compose a new function out of the functions I nested and then call that function. In a "real" functional programming language, this would look something like this:
+
+```js
+"Hello World" |> logInfo |> writeToConsole |> writeToFile;
+```
+
+I pass "Hello World" to the `logInfo` function, the return value of `logInfo` is passed to `writeToConsole`, etc.
+
+Chaining different functions like this is called _piping_. However, piping like this is not supported by JavaScript (yet).
+
+> Linkje naar proposal...
+
+However, there is an alternative, also very elegant, way of piping in JavaScript. However, our functions can not be chained yet because they are not compatible.
+
+...plaatje...?
+
 #### Why currying?
 
-In my previous blog post I wrote how currying, combined with partial application, allows composing new functions with lesser key strokes. While this is true, it is not the most important reason to use currying:
+In my previous blog post I wrote how currying, combined with partial application, allows composing new functions by creating them in advance with the values that are fixed, so when you call them you only have to provide the arguments that are not fixed.
 
-```js
-
-```
-
-The most important reason to use currying is it allows you to use another way of composing, which is combining multiple functions into one function, also known as piping.
-
-
-#### Roman numerals
-
-Inspired by Scott Wlaschin's great talk [The Power of Composition], I chose to make a function that transforms a decimal number into a Roman numeral.
-
-Before I knew anything about functional programming I would probably write it like this:
-
-```js
-//...
-```
-
-Note how this code is not functional. It contains a lot of _imperative_ code, in other words, code that exactly tells _how_ to transform the number into a Roman numeral. You have to look closely to determine what's actually happening. And the same goes for when you have to change this code.
-
-Of course we need to write code that takes care of the _how_, but let's take a functional approach. Let's write code that achieves the exact same thing, but now with a _declarative_ approach:
-
-By just looking at the names of the functions you can see what's going on much quicker. This code is easier to reason about and as a consequence easier to change.
-
-> Easy to reason about? Yes, that is pretty subjective, but I think we can agree on the fact the functional code contains less nitty gritty details and still does the same thing?
-
-Hier nest ik dus de function calls van binnen naar buiten.
+However, there is a more important reason to use currying, which is also about composition, and that is combining multiple different functions into one new function.
 
 #### Composing
 
-Hier de compose toepassen:
+... ... ...
 
 ```js
 const compose = (...fns) => (x) => fns.reduceRight((y, f) => f(y), x);
@@ -60,15 +96,10 @@ const compose = (...fns) => (x) => fns.reduceRight((y, f) => f(y), x);
 So what I can do now is this:
 
 ```js
-const decimaltoRomanNumeral = compose(
-  replace_XXXXX_with_L,
-  replace_VV_with_X,
-  replace_IIIII_with_V,
-  replicateIs
-);
+const bla = compose(writeToFile, writeToConsole, formatLog);
 ```
 
-Note how I still pass the replace function in the reverse, just like when I nested the function calls, this will call the last function, `replicateIs` first, followed by `replace_IIIII_with_V`, etc.
+Note how I still pass the replace function in reverse order, just like when I nested the function calls, this will call the last function, `formatLog` first, followed by `writeToConsole`, etc.
 
 #### Piping
 
@@ -99,15 +130,10 @@ Notice the slight difference with `compose`: We use `reduce` instead of `reduceR
 With this `pipe` function we can change the ... ... like this:
 
 ```js
-const decimaltoRomanNumeral = pipe(
-  replicateIs,
-  replace_IIIII_with_V,
-  replace_VV_with_X,
-  replace_XXXXX_with_L
-);
+const bla = pipe(writeToFile, writeToConsole, formatLog);
 ```
 
-So that is the difference between composing and piping: The _order_ in which you specify which functions are composed together.
+So that is the difference between composing and piping: The _order_ in which you specify which functions are composed together. However, the order in which the functions are called is still the same.
 
 #### Iets over map
 
@@ -121,5 +147,5 @@ Iets zeggen over dat we code declaratief hebben gemaakt, het gaat er om dat je a
 
 Huge shoutout enz.enz. [Curry and Function Composition] by Eric Elliott.
 
-[the power of composition]: https://youtu.be/rCKPgu4DvcE
+[part 1]: /currying-what-is-it-and-what-is-it-good-for
 [curry and function composition]: https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983

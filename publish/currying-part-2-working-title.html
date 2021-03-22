@@ -105,28 +105,57 @@
 </li>
 </ul>
 <h4>Introduction</h4>
-<p>I find currying an intruiging pattern, just like many other of the concepts of functional programming. But for me, and I have also heard this from others, there are some challenges with currying: What is it and what is it good for? This was the title of my previous blog post about currying, but after finishing it, I realized I primarily covered the <em>what</em> part, and not entirely the <em>what is it good for</em> part.</p>
-<p>So if you don't know what currying is, please read [Part 1] where I try to explain it and which also contains some links to other resources that explain currying very well.</p>
-<h4>Why currying?</h4>
-<p>Ik heb composability genoemd, maar er is nog een wat hoger niveau om dit te bekijken en dat is: alle functions 1 input en 1 outp parameter.</p>
-<ul>
-<li>Uitleggen dat we met currying het probleem oplossen dat een functie weliswaar 1 return waarde heeft, maar wel een onbekend aantal parameters kan hebben. Door elke functie maar 1 parameter te geven kun je elke functie aan elke andere functie knopen.
-Dit kan zowel composition, chaining, ... zijn.</li>
-</ul>
-<p>En dit gaat ook over compsability, maar dan niet van een function uit een curried function, maar over het componeren van meerdere functions in 1.</p>
-<p>Chaining = composition, want ik maak een nieuwe functie door een aantal aan elkaar te plakken.</p>
-<h4>Roman numerals</h4>
-<p>Inspired by Scott Wlaschin's great talk <a href="https://youtu.be/rCKPgu4DvcE">The Power of Composition</a>, I chose to make a function that transforms a decimal number into a Roman numeral.</p>
-<p>Before I knew anything about functional programming I would probably write it like this:</p>
-<pre><code class="language-js">//...
+<p>I find currying an intruiging pattern, just like many other of the concepts of functional programming. But for me, and I have also heard this from others, there are some challenges with currying: What is it and what is it good for? This was the title of my previous blog post about currying, but after finishing it, I realized I mainly covered the <em>what</em> part, and not entirely the <em>what is it good for</em> part.</p>
+<p>So if you don't know what currying is, please read <a href="/currying-what-is-it-and-what-is-it-good-for">Part 1</a> where I try to explain it and which also contains some links to other resources that explain currying very well.</p>
+<h4>Logging continued</h4>
+<p>In this blog post we'll continue on the logging functionality we started with in <a href="/currying-what-is-it-and-what-is-it-good-for">Part 1</a>. I changed the code a bit, now the <code>log</code> function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:</p>
+<pre><code class="language-js">function formatLog(datetime, severity, message) {
+  return `${datetime} [${severity}] - ${message}`;
+}
+
+function writeToConsole(message) {
+  console.log(message);
+  return message;
+}
+
+function writeToFile(filePath, message) {
+  fs.appendFile(filePath, message + "\n", (err) => {
+    if (err) throw err;
+  });
+  return message;
+}
 </code></pre>
-<p>Note how this code is not functional. It contains a lot of <em>imperative</em> code, in other words, code that exactly tells <em>how</em> to transform the number into a Roman numeral. You have to look closely to determine what's actually happening. And the same goes for when you have to change this code.</p>
-<p>Of course we need to write code that takes care of the <em>how</em>, but let's take a functional approach. Let's write code that achieves the exact same thing, but now with a <em>declarative</em> approach:</p>
-<p>By just looking at the names of the functions you can see what's going on much quicker. This code is easier to reason about and as a consequence easier to change.</p>
-<blockquote>
-<p>Easy to reason about? Yes, that is pretty subjective, but I think we can agree on the fact the functional code contains less nitty gritty details and still does the same thing?</p>
-</blockquote>
-<p>Hier nest ik dus de function calls van binnen naar buiten.</p>
+<p>What we can do now is call and combine different functions to achieve what we want:</p>
+<pre><code class="language-js">// Write a log message to the console:
+writeToConsole(formatLog(new Date().toISOString(), "INFO", "Hello World"));
+
+// Write a log message to a file:
+writeToFile(
+  "/Users/bouwe/Documents/runjs/file88.log",
+  formatLog(new Date().toISOString(), "INFO", "Hello World")
+);
+
+// Write a log message to both the console and a file:
+writeToFile(
+  "/Users/bouwe/Documents/runjs/file99.log",
+  writeToConsole(formatLog(new Date().toISOString(), "INFO", "Hello World"))
+);
+</code></pre>
+<p>Note how I nest different function calls to achieve what I want. To make it more declarative, lets create a fuction, which I can call to achieve the same:</p>
+<pre><code class="language-js">const logInfo = (message) => {
+  writeToFile(
+    "/Users/bouwe/Documents/runjs/file101.log",
+    writeToConsole(formatLog(new Date().toISOString(), "INFO", message))
+  );
+};
+
+logInfo("Hello World");
+</code></pre>
+<p>Now I've prepared a <code>logInfo</code> function which abstracts all the details away so I don't need to provide these when logging.</p>
+<p>Nice, but still the nesting of the functions...</p>
+<h4>Why currying?</h4>
+<p>In my previous blog post I wrote how currying, combined with partial application, allows composing new functions by creating them in advance with the values that are fixed, so when you call them you only have to provide the arguments that are not fixed.</p>
+<p>However, there is a more important reason to use currying, which is also about composition, and that is combining multiple different functions into one new function.</p>
 <h4>Composing</h4>
 <p>Hier de compose toepassen:</p>
 <pre><code class="language-js">const compose = (...fns) => (x) => fns.reduceRight((y, f) => f(y), x);

@@ -8,10 +8,10 @@ categories:
   - "Functional programming"
 ---
 
-
 ### Resources om te checken...
 
 - Boek van Eric Elliott
+- https://youtu.be/1DMolJ2FrNY -> Mooi voorbeeld om een array om te zetten in een object
 - https://medium.com/@miklosnemeth/oh-daniel-absolutely-brilliant-f3441c358a1d
 - https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce

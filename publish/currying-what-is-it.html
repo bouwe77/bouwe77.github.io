@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>Currying: What is it and what is it good for?</title>
+    <title>Currying: What is it?</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="Currying: What is it and what is it good for?" />
+    <meta name="twitter:title" content="Currying: What is it?" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -89,7 +89,7 @@
       <div class="container">
         <div>
           <h2 class="blog-title">
-            <a href="/currying-what-is-it-and-what-is-it-good-for">Currying: What is it and what is it good for?</a>
+            <a href="/currying-what-is-it">Currying: What is it?</a>
           </h2>
           <div class="blog-meta">
             Mar 14, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/currying">Currying</a>  · 6 minute read
@@ -111,7 +111,11 @@
 log(new Date().toISOString(), "INFO", "The service has started");
 
 // Error logging:
-log(new Date().toISOString(), "ERROR", "An exception occurred: " + error.message);
+log(
+  new Date().toISOString(),
+  "ERROR",
+  "An exception occurred: " + error.message
+);
 
 // etc.
 </code></pre>
@@ -213,7 +217,7 @@ const logError = log(new Date().toISOString())("ERROR");
 <p>The functions I create here have fixed values for the <code>datetime</code> and the <code>severity</code> arguments. The latter is fine of course, but the date and time needs to be dynamic.</p>
 <p>It took me a while to figure out a decent way to fix this, but the same person that spotted the bug helped me out greatly. Instead of the fixed date and time we pass in an object that lazily determines the date and time:</p>
 <pre><code class="language-js">var datetime = {
-  toString: () => new Date().toISOString()
+  toString: () => new Date().toISOString(),
 };
 
 const logInformation = log(datetime)("INFO");
@@ -221,7 +225,7 @@ const logError = log(datetime)("ERROR");
 </code></pre>
 <p>And because the <code>log</code> function uses a string literal, the <code>toString</code> function on the <code>datetime</code> object is called, resulting in a current date and time. Sweet!</p>
 <h4>Conclusion</h4>
-<p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is. </p>
+<p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is.</p>
 <p>Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.</p>
 <p>However, we've only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.</p>
 <p>If my blog post is (still) not clear (or simply wrong), please let me know on Twitter!</p>
@@ -237,15 +241,15 @@ const logError = log(datetime)("ERROR");
 
         <div>
           <a
-            href="https://twitter.com/intent/tweet?text=Currying: What is it and what is it good for?&url=https://bouwe.io/currying-what-is-it-and-what-is-it-good-for&via=bouwe"
+            href="https://twitter.com/intent/tweet?text=Currying: What is it?&url=https://bouwe.io/currying-what-is-it&via=bouwe"
             >Share on Twitter</a
           >
           ·
-          <a href="https://twitter.com/search?q=https://bouwe.io/currying-what-is-it-and-what-is-it-good-for"
+          <a href="https://twitter.com/search?q=https://bouwe.io/currying-what-is-it"
             >Discuss on Twitter</a
           >
           ·
-          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/currying-what-is-it-and-what-is-it-good-for/currying-what-is-it-and-what-is-it-good-for.md">Edit on GitHub</a>
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/currying-what-is-it/currying-what-is-it.md">Edit on GitHub</a>
         </div>
       </div>
     </div>

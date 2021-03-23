@@ -16,10 +16,10 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2021, Bouwe Westerdijk</rights>
     <entry>
-        <title type="html"><![CDATA[Currying Part 2 (Working Title)]]></title>
-        <id>https://bouwe.io/currying-part-2-working-title</id>
-        <link href="https://bouwe.io/currying-part-2-working-title"/>
-        <updated>2021-03-21T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[Composition with currying]]></title>
+        <id>https://bouwe.io/composition-with-currying</id>
+        <link href="https://bouwe.io/composition-with-currying"/>
+        <updated>2021-03-23T00:00:00.000Z</updated>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -27,9 +27,9 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Currying: What is it and what is it good for?]]></title>
-        <id>https://bouwe.io/currying-what-is-it-and-what-is-it-good-for</id>
-        <link href="https://bouwe.io/currying-what-is-it-and-what-is-it-good-for"/>
+        <title type="html"><![CDATA[Currying: What is it?]]></title>
+        <id>https://bouwe.io/currying-what-is-it</id>
+        <link href="https://bouwe.io/currying-what-is-it"/>
         <updated>2021-03-14T00:00:00.000Z</updated>
         <author>
             <name>Bouwe Westerdijk</name>

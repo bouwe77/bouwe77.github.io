@@ -1,6 +1,6 @@
 ---
 date: "2021-03-14"
-title: "Currying: What is it and what is it good for?"
+title: "Currying: What is it?"
 summary: ""
 categories:
   - "JavaScript"
@@ -33,7 +33,11 @@ Here are some examples how you could use the `log` function:
 log(new Date().toISOString(), "INFO", "The service has started");
 
 // Error logging:
-log(new Date().toISOString(), "ERROR", "An exception occurred: " + error.message);
+log(
+  new Date().toISOString(),
+  "ERROR",
+  "An exception occurred: " + error.message
+);
 
 // etc.
 ```
@@ -190,7 +194,7 @@ It took me a while to figure out a decent way to fix this, but the same person t
 
 ```js
 var datetime = {
-  toString: () => new Date().toISOString()
+  toString: () => new Date().toISOString(),
 };
 
 const logInformation = log(datetime)("INFO");
@@ -201,7 +205,7 @@ And because the `log` function uses a string literal, the `toString` function on
 
 #### Conclusion
 
-I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is. 
+I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is.
 
 Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.
 

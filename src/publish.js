@@ -16,9 +16,9 @@ async function start() {
 
 function writeDone() {
   //console.clear();
-  console.log();
-  console.log("     ┌───────────────┐");
-  console.log("     │    ✓ Done!    │");
-  console.log("     └───────────────┘	");
+  const fgGreen = "\x1b[32m";
+  console.log(fgGreen, "    ┌─────────────┐");
+  console.log("     │   ✓ Done!   │");
+  console.log("     └─────────────┘	");
   console.log("\n\n");
 }

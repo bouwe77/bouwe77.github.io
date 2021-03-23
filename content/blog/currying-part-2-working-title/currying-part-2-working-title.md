@@ -8,13 +8,9 @@ categories:
   - "Currying"
 ---
 
-- Al met al is deze blog post een uitwerking van https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983 en dan vooral vanaf "Why do we curry?"
-
-- Composen van partially applied functions, dus van meerdere 1 function maken. Nog even kijken wat hierbij een goed voorbeeld is.
-
 #### Introduction
 
-I find currying an intruiging pattern, just like many other of the concepts of functional programming. But for me, and I have also heard this from others, there are some challenges with currying: What is it and what is it good for? This was the title of my previous blog post about currying, but after finishing it, I realized I mainly covered the _what_ part, and not entirely the _what is it good for_ part.
+Bla bla bla... In ieder geval composition noemen.
 
 So if you don't know what currying is, please read [Part 1] where I try to explain it and which also contains some links to other resources that explain currying very well.
 
@@ -40,7 +36,7 @@ function writeToFile(filePath, message) {
 }
 ```
 
-What we can do now is call and combine different functions to achieve what we want:
+What we can do now is call and combine different functions to achieve what we want by nesting them:
 
 ```js
 // Write a log message to the console:
@@ -59,93 +55,91 @@ writeToFile(
 );
 ```
 
-Note how I nest different function calls to achieve what I want. This is not particularly readable and I am not composing anything.
+Nesting the function calls like this is not particularly readable and I am not composing anything.
 
-#### Piping
+#### Piping and composition
 
-What I would like to do is compose a new function out of the functions I nested and then call that function. In a "real" functional programming language, this would look something like this:
-
-```js
-"Hello World" |> logInfo |> writeToConsole |> writeToFile;
-```
-
-I pass "Hello World" to the `logInfo` function, the return value of `logInfo` is passed to `writeToConsole`, etc.
-
-Chaining different functions like this is called _piping_. However, piping like this is not supported by JavaScript (yet).
-
-> Linkje naar proposal...
-
-However, there is an alternative, also very elegant, way of piping in JavaScript. However, our functions can not be chained yet because they are not compatible.
-
-...plaatje...?
-
-#### Why currying?
-
-In my previous blog post I wrote how currying, combined with partial application, allows composing new functions by creating them in advance with the values that are fixed, so when you call them you only have to provide the arguments that are not fixed.
-
-However, there is a more important reason to use currying, which is also about composition, and that is combining multiple different functions into one new function.
-
-#### Composing
-
-... ... ...
+What I would like to do instead is compose a new function that does the nesting for me, so I only need to mention which functions I want to be called in sequence, making my code look nicer. This is a form of composition that is called piping:
 
 ```js
-const compose = (...fns) => (x) => fns.reduceRight((y, f) => f(y), x);
+// Compose a new function by piping (or chaining) some functions into a new function that does logging for us:
+const logInfoToFile = pipe(formatLog, writeToConsole, writeToFile);
+
+// Call the function we just composed to do some logging:
+logInfoToFile("Hello World");
 ```
 
-So what I can do now is this:
+The code above does not work, because we haven't defined the `pipe` function yet. But because we are doing functional programming, this code is already quite easy to reason about.
 
-```js
-const bla = compose(writeToFile, writeToConsole, formatLog);
-```
-
-Note how I still pass the replace function in reverse order, just like when I nested the function calls, this will call the last function, `formatLog` first, followed by `writeToConsole`, etc.
-
-#### Piping
-
-Although the previous compose example works, it would make more sense to specify the functions in the order we want them to be called.
-
-In functional programming languages like Haskell or F#, you would use _piping_, which is way to chain multiple function calls:
-
-```
-//voorbeeld Haskell of F#
-```
-
-Uitleggen wat in de code hierboven gebeurt.
-
-However, this is not (yet) possible in JavaScript.
-
-> Hier een link naar da proposal.
-
-But what we can do is write a `pipe` function, that looks quite similar to the `compose` we made earlier:
+This is the `pipe` function:
 
 ```js
 const pipe = (...fns) => (x) => fns.reduce((y, f) => f(y), x);
 ```
 
-Notice the slight difference with `compose`: We use `reduce` instead of `reduceRight`.
+> Just like the `curry` function I showed you in [Part 1], also the `pipe` function is probably not something you'd build yourself, but use from libraries like [Lodash], [Ramda], etc.
 
-> I have already written about the useReducer hook in React and now am using reducers as well. However, "iets met dat ik nog niet goed genoeg weet wat reducers nou eigenlijk precies zijn en hoe ze werken". Fun fun function had een goeie uitleg en Eric Elliott ongetwijfeld ook... Dus dat wordt dan mijn volgende blog post...
+What the `pipe` function does is composing a function that calls the provided functions nested, just like we did by hand earlier. The only thing we did is abstracted that away, for convenience, but also to keep our code clean.
 
-With this `pipe` function we can change the ... ... like this:
+However, something is missing in the code example where I showed how to pipe and log. We pass three functions to pipe and then call the `logInfoToFile` and only pass a message. But what about all the other arguments, like the `datetime` and `severity` for `formatLog` and the `filepath` for the `writeToFile` function?
+
+To be able to do piping, or rather, composing in general, we need a predictable interface for each function, so they always _fit_ together. And the only way to achieve that is by requiring that every function not only always returns a value, but also it always expects exactly one parameter.
+
+That way, the return value from the first function is the argument for the next, which also returns one value, that is passed to the next function, etc., and so you can combine any number of functions you want.
+
+However, the `formatLog` and `writeToFile` need multiple arguments, so they are not suitable for composition yet.
+
+#### Currying to the rescue!
+
+In my [previous blog about currying] I showed you how we can transform any function to a curried function so that it can only receive one argument at a time. So that's what we are going to do now to solve our composition problem.
+
+Here is the `curry` function from that blog post and we'll use it to curry both the `log` and `writeToFile` functions, so we can partially apply them with the `logInfo` and `writeToLogFile` functions, respectively:
 
 ```js
-const bla = pipe(writeToFile, writeToConsole, formatLog);
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) return fn(...args);
+    return function (a) {
+      return curried(...[...args, a]);
+    };
+  };
+}
+
+const curriedFormatLog = curry(formatLog);
+const datetime = { toString: () => newDate().toISOString() };
+const formatLogInfo = curriedFormatLog(datetime)("INFO");
+
+const curriedWriteToFile = curry(writeToFile);
+const writeToLogFile = curriedWriteToFile("/path/to/file");
 ```
 
-So that is the difference between composing and piping: The _order_ in which you specify which functions are composed together. However, the order in which the functions are called is still the same.
+The `formatLogInfo` function already passes two of the three arguments that `formatLog` expects, so there is only one (`message`) left. The same for `writeToLogFile`, which already passes file path, so also there only the `message` is left.
 
-#### Iets over map
+Now we can pipe the logging functions like this so the return value of each function is passed as an argument to the next function:
 
-Volgens mij is een mooi voorbeeld dat ik een array van decimals heb en die dan kan ombutsen naar roman numerals...
+```js
+// Pipe (or chain) some functions into a new function that does logging for us:
+const logInfoToFile = pipe(formatLogInfo, writeToConsole, writeToLogFile);
 
-...
+// Let's do some logging:
+logInfoToFile("Hello World");
+```
 
 #### Conclusion
 
 Iets zeggen over dat we code declaratief hebben gemaakt, het gaat er om dat je allemaal functions maakt en die aanroept, zodat het een leesbaar geheel wordt van stapjes die elkaar aanroepen.
 
-Huge shoutout enz.enz. [Curry and Function Composition] by Eric Elliott.
+Ook dat deze code niet production ready is, het is vooral illustratief.
+
+Doordat ik er inmiddels best veel mee geoefend heb, komt het steeds beter in mijn systeem en zie ik steeds meer toepassingen...
+
+Links
+
+- [Curry and Function Composition] by Eric Elliott.
 
 [part 1]: /currying-what-is-it-and-what-is-it-good-for
+[previous blog about currying]: /currying-what-is-it-and-what-is-it-good-for
 [curry and function composition]: https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983
+[lodash]: https://lodash.com
+[ramda]: https://ramdajs.com
+[esnext proposal: the pipeline operator]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator

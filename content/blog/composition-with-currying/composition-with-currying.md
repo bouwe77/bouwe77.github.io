@@ -12,7 +12,7 @@ categories:
 
 In my [previous blog post about currying] I mainly wrote about what currying is and to a lesser extent where it's useful for.
 
-I mentioned how you can compose new functions by specifying some of the arguments in front, which are always the same. That way, when calling the function, you only have to supply the arguments that you only know at the moment you are calling it. This is called _partial application_ and makes your code easier to reason about because you use nice abstractions.
+I mentioned how you can compose new functions by specifying some of the arguments up front, which are always the same. That way, when calling the function, you only have to supply the arguments that you only know at the moment you are calling it. This is called _partial application_ and makes your code easier to reason about because you use nice abstractions.
 
 In this blog post I'll write some more about composition, but this time not composing a function from one other function, but composing a function from _multiple_ other, different functions. This is also achieved by using currying.
 
@@ -75,7 +75,7 @@ logInfoToFile("Hello World");
 
 Notice how we are using the same three functions we also used when nesting, but this time we don't call them but pass them to a `pipe` function which creates a new function for us: composition.
 
-However, this code above does not work, because we haven't defined the `pipe` function yet. But because we are doing functional programming, this code is already quite easy to reason about.
+However, the code above does not work, because we haven't defined the `pipe` function yet. But because we are doing functional programming, this code is already quite easy to reason about.
 
 This is the `pipe` function:
 
@@ -137,7 +137,7 @@ Look how clean this code is! If I don't want to log to the console anymore, just
 
 What we did in this post is making declarative code by combining several building blocks together, which was made possible because of currying.
 
-The logging solution is not meant to be used in a production situation, it is merely illustrative for how a real world situation could look like, but I hope you see the characteristics, or even benefits of currying by now.
+The logging solution is not meant to be used in a production situation, it is merely illustrative for how a real world situation could look like, but I hope you see the characteristics, and even benefits, of currying by now.
 
 By writing this blog posts, which involved quite some experimenting with JavaScript, I learned yet another way of thinking and approaching code, and I start seeing more and more possibilities for using currying. The more I do it, functional programming really starts growing on me.
 

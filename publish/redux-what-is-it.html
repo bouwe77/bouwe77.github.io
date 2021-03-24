@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Redux: What is it?</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Redux: What is it?" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div>
+    <header class="header">
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/redux-what-is-it">Redux: What is it?</a>
+          </h2>
+          <div class="blog-meta">
+            Apr 4, 2021  · <a href="/categories/react">React</a>, <a href="/categories/redux">Redux</a>  · 2 minute read
+          </div>
+        </div>
+
+        <div><h1>Inleiding</h1>
+<p>Redux wordt veel gevraagd in de markt dus ik moet weten wat het is en hoe het werkt.</p>
+<p>Het doel van deze blog post is vooral goed te weten begrijpen wat het is, welke probleem het oplost en wat je wel of niet in Redux moet doen.</p>
+<p>Maar ik begin met een stukje geschiedenis en de vraag of het wel nodig is. Maar ongeacht of het nodig ga ik er toch in duiken omdat dat handig, zowel als je wel of geen keuze hebt het te gebruiken.</p>
+<p>Uitgangspunt is wel dat je weet wat een reducer is, dus verwijzen naar mijn blog posts daarover.</p>
+<h1>Do I need Redux?</h1>
+<p>Er is echter ook scepsis van de React wereld en mij: Vroeger moest je wel Redux gebruiken, tenminste, dat zij men, bijvoorbeeld MPJ van Fun Fun Function en dus ben ik er zelf ook ooit mee begonnen.</p>
+<p>Maar het bleek toch lastig als beginnende React dev, ook in combinatie met class components. Gelukkig kwamen hooks net op tijd uit en ben ik die eerst goed gaan leren.</p>
+<p>Of je het nodig hebt kun je beter zelf beoordelen, maar het begint bij goed snappen waarvoor het is, en dat is waar deze blog post over gaat.</p>
+<h1>Context</h1>
+<p>Eerst vertellen wat context is.</p>
+<p>Het mooiste is om hier een heel klein voorbeeld-appje te introduceren, waarin zowel lokale als globale state zit.</p>
+<p>Conceptueel waarschijnlijk: lokale useState state, context state vanwege compound components om prop drilling te voorkomen en dan globale, van de server afkomstige, Redux state?</p>
+<p>Ergens in deze blog post moet ik ook het verhaal van react-query meenemen: UI state vs Server (?) state.</p>
+<h1>Enter Redux</h1>
+<p>Hier ga ik de voorbeeld-app ombutsen naar Redux, waarbij ik alle (of gedeetelijke) context state overhevel naar Redux, met hopelijk een goed verhaal waarom.</p>
+<p>Het voorbeeld moet wel een hele goeie reden/voorbeeld zijn voor typisch iets wat je in Redux stopt, zodat daar in de rest van de blog post geen discussie meer over is. Bovendien leer je dan überhaupt goed welk probleem je met Redux (of überhaupt state uit je components halen) oplost.</p>
+<p>Want misschien kan ik 'm daarmee platslaan: Je haalt je state uit je components vandaan.</p>
+<p>Waarom en welke state hevel je over? Dat wordt hier uitgelegd: <a href="https://blog.bitsrc.io/redux-react-alternatives-c1733793a339">https://blog.bitsrc.io/redux-react-alternatives-c1733793a339</a></p>
+<h1>Next steps</h1>
+<p>In een volgende blog post thunk, saga enz. Hier alvast even kort noemen wat dit is.</p>
+<p>En zoiets als redux-form, wat is dat en wat heb je daar nou aan?</p>
+<h1>Alternatives for Redux</h1>
+<p>Nu we weten welk soort state in Redux thuishoort, en we dus besluiten dat bepaalde state sowieso niet door React useState/useContext laten afhandelen, wat zijn de alternatieven voor Redux?</p>
+<p>React-query natuurlijk, maar wat nog meer? MobX? GraphQL? Recoil?</p>
+<p>Ik weet nog niet hoe kwalitatief goed dit artikel is, maar wellicht een startpunt: <a href="https://blog.bitsrc.io/redux-react-alternatives-c1733793a339">https://blog.bitsrc.io/redux-react-alternatives-c1733793a339</a></p>
+<h1>Conclusion</h1>
+<p>Ik denk dat weten wat Redux is, welk probleem het oplost en wat je wanneer, wel of niet in Redux stopt veel belangrijker is dan er heel veel ervaring mee te hebben.</p>
+<p>... ... ...</p>
+</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Redux: What is it?&url=https://bouwe.io/redux-what-is-it&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/redux-what-is-it"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/redux-what-is-it/redux-what-is-it.md">Edit on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </div>
+</body>
+
+</html>

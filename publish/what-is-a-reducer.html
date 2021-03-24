@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>What is a reducer?</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="What is a reducer?" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div>
+    <header class="header">
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/what-is-a-reducer">What is a reducer?</a>
+          </h2>
+          <div class="blog-meta">
+            Nov 6, 2020  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/usereducer">useReducer</a>, <a href="/categories/functional-programming">Functional programming</a>  · 2 minute read
+          </div>
+        </div>
+
+        <div><h1>Waar ga ik het over hebben?</h1>
+<h2>Inleiding</h2>
+<ul>
+<li>De reden van deze post is: wat is een reducer en waarom heet useReducer useReducer, wat reduce je dan?</li>
+<li>Past mooi in mijn ontdekkingstocht naar functioneel programmeren</li>
+</ul>
+<h2>Map, filter, reduce</h2>
+<ul>
+<li>map, filter en reduce heel kort om aan te geven dat reducer de swiss knife is, als map en filter niet voldoet</li>
+</ul>
+<p>Resources:</p>
+<ul>
+<li>Mooi overzicht van map/filter/reduce: <a href="https://code.tutsplus.com/tutorials/how-to-use-map-filter-reduce-in-javascript--cms-26209">https://code.tutsplus.com/tutorials/how-to-use-map-filter-reduce-in-javascript--cms-26209</a></li>
+<li>Inspirerende manier van schrijven/uitleggen: <a href="https://medium.com/async-la/a-short-and-sour-guide-to-reducers-b5b54d3bb018">https://medium.com/async-la/a-short-and-sour-guide-to-reducers-b5b54d3bb018</a></li>
+<li>MDN over JavaScript array.reduce: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce</a></li>
+</ul>
+<pre><code class="language-js">const food = [
+  { name: "Apple", kind: "Fruit", bla: "🍎" },
+  { name: "Hamburger", kind: "Junk food", bla: "🍔" },
+  { name: "Lolly", kind: "Candy", bla: "🍭" },
+  { name: "Banana", kind: "Fruit", bla: "🍌" },
+];
+</code></pre>
+<p>Met bovenstaande data:</p>
+<ul>
+<li>Met map array ombutsen zodat je alleen de emojis ziet.</li>
+<li>Met filter de appel eruit halen</li>
+<li>Met reduce een object maken waarbij kind de key is. Voorbeeld: <a href="https://youtu.be/1DMolJ2FrNY">https://youtu.be/1DMolJ2FrNY</a></li>
+</ul>
+<h2>Immutability</h2>
+<ul>
+<li>Uitleggen wat immutability is</li>
+<li>Waarom het belangrijk is: ...</li>
+<li>Dat reducers best complex kunnen worden vanwege immutability</li>
+<li>Dat Immer dit makkelijker maakt: <a href="https://youtu.be/C-hAqD6_OOk">https://youtu.be/C-hAqD6_OOk</a> (Eric Elliott)</li>
+</ul>
+<h2>useReducer</h2>
+<p>Nu we goed weten wat een reducer is: waarom heet useReducer zo?</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://daveceddia.com/usereducer-hook-examples/">https://daveceddia.com/usereducer-hook-examples/</a></li>
+</ul>
+<p>Ook aangeven dat/hoe je een React reducer dus ook heel makkelijk kan unit testen, Eric Elliott noemt dit ook kort in zijn boek in de context van Redux, maar hetzelfde geldt voor useReducer: <a href="https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d">https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d</a></p>
+<p>Alhoewel de vraag wel is wat dat voor waarde oplevert, aangezien zo'n reducer onderdeel is van de UI, oftewel een implementatiedetail, en je dus net zo goed het hele component kunt testen.</p>
+<h2>Conclusion</h2>
+<p>...</p>
+</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=What is a reducer?&url=https://bouwe.io/what-is-a-reducer&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/what-is-a-reducer"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/what-is-a-reducer/what-is-a-reducer.md">Edit on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </div>
+</body>
+
+</html>

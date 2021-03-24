@@ -16,6 +16,17 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2021, Bouwe Westerdijk</rights>
     <entry>
+        <title type="html"><![CDATA[What is a reducer?]]></title>
+        <id>https://bouwe.io/what-is-a-reducer</id>
+        <link href="https://bouwe.io/what-is-a-reducer"/>
+        <updated>2021-03-31T00:00:00.000Z</updated>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Composition with currying]]></title>
         <id>https://bouwe.io/composition-with-currying</id>
         <link href="https://bouwe.io/composition-with-currying"/>
@@ -64,17 +75,6 @@
         <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</id>
         <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"/>
         <updated>2020-12-22T00:00:00.000Z</updated>
-        <author>
-            <name>Bouwe Westerdijk</name>
-            <email>bouwe@bouwe.nl</email>
-            <uri>https://bouwe.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[What is a reducer?]]></title>
-        <id>https://bouwe.io/what-is-a-reducer</id>
-        <link href="https://bouwe.io/what-is-a-reducer"/>
-        <updated>2020-11-06T00:00:00.000Z</updated>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>

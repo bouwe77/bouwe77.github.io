@@ -1,5 +1,5 @@
 ---
-date: "2020-11-06"
+date: "2021-03-31"
 title: "What is a reducer?"
 summary: ""
 categories:

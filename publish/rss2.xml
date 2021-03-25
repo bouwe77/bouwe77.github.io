@@ -15,6 +15,13 @@
         </image>
         <copyright>All rights reserved 2019 - 2021, Bouwe Westerdijk</copyright>
         <item>
+            <title><![CDATA[Redux: What is it?]]></title>
+            <link>https://bouwe.io/redux-what-is-it</link>
+            <guid>https://bouwe.io/redux-what-is-it</guid>
+            <pubDate>Sun, 04 Apr 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
             <title><![CDATA[What is a reducer?]]></title>
             <link>https://bouwe.io/what-is-a-reducer</link>
             <guid>https://bouwe.io/what-is-a-reducer</guid>

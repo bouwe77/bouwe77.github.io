@@ -16,6 +16,17 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2021, Bouwe Westerdijk</rights>
     <entry>
+        <title type="html"><![CDATA[Redux: What is it?]]></title>
+        <id>https://bouwe.io/redux-what-is-it</id>
+        <link href="https://bouwe.io/redux-what-is-it"/>
+        <updated>2021-04-04T00:00:00.000Z</updated>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[What is a reducer?]]></title>
         <id>https://bouwe.io/what-is-a-reducer</id>
         <link href="https://bouwe.io/what-is-a-reducer"/>

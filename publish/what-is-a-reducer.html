@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>What is a reducer?</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="What is a reducer?" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div>
+    <header class="header">
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/what-is-a-reducer">What is a reducer?</a>
+          </h2>
+          <div class="blog-meta">
+            Mar 25, 2021  · <a href="/categories/javascript">JavaScript</a>, <a href="/categories/usereducer">useReducer</a>, <a href="/categories/functional-programming">Functional programming</a>  · 6 minute read
+          </div>
+        </div>
+
+        <div><h4>Introduction</h4>
+<p>Before I started with React I never heard of reducers. And even though I've become quite comfortable with the <code>useReducer</code> hook and even wrote <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">a blog post about it</a>, to be honest, I hardly know what a reducer is and why the <code>useReducer</code> hook is called <code>useReducer</code>.</p>
+<p>This blog post will answer these questions and it also fits nicely in me exploring <a href="/categories/functional-programming">functional programming</a> concepts.</p>
+<h4>Map, filter, reduce</h4>
+<p>When talking about <em>reducers</em>, you can't skip talking about <em>map</em> and <em>filter</em> too. These three concepts are the major ways of dealing with arrays in JavaScript. So if you have no clue what a reducer is, I have given you some context already, because we are talking about dealing with arrays in JavaScript today.</p>
+<p>Check out the following <code>pets</code> object array:</p>
+<pre><code class="language-js">const pets = [
+  { name: "Doug", kind: "dog", photo: "🐶" },
+  { name: "Katy", kind: "cat", photo: "🐱" },
+  { name: "Carl", kind: "cat", photo: "🐈" },
+  { name: "Patti", kind: "parrot", photo: "🦜" },
+];
+</code></pre>
+<p>Let's talk about <code>map</code> first. This is a method on a JavaScript array which allows you to transform an array into another array, where the number of items in the array stay the same.</p>
+<p>Suppose we want to transform the <code>pets</code> array into an array that only holds the <code>photo</code> property of all the pets. This means we are going from an object array to a string array:</p>
+<pre><code class="language-js">const photos = pets.map((pet) => pet.photo);
+
+// [ '🐶', '🐱', '🐈', '🦜' ]
+</code></pre>
+<p>This is <em>declarative</em> code. We tell that we want to map the <code>pets</code> into a <code>photos</code> array and specify <em>which</em> property we want by passing an arrow function to <code>map</code>. How the <code>map</code> method does this is not our concern.</p>
+<p>The arrow function we pass to the <code>map</code> method is executed on each item in the array and that function returns how such an item should look like, which in this case is to only keep the <code>photo</code>.</p>
+<p>But what if you don't want all pets, but only the <em>cats</em>. This is <em>filtering</em>, and can be achieved with the <code>filter</code> method:</p>
+<pre><code class="language-js">const cats = pets.filter((pet) => pet.kind === "cat");
+</code></pre>
+<p>The <code>filter</code> method also expects a function, but this time a function that returns a boolean. If that function returns <code>true</code> for an array item, that one is added to the new, filtered array. If it returns false, you won't see it in the new array.</p>
+<p>Finally, you can also combine array methods, suppose you want the photos of all cats:</p>
+<pre><code class="language-js">const catPhotos = pets
+  .filter((pet) => pet.kind === "cat")
+  .map((cat) => cat.photo);
+
+// [ '🐱', '🐈' ]
+</code></pre>
+<p>There are more array methods in JavaScript, but with these two you'll get very far. However, what if you need a very specific operation on an array, one that can't be achieved using the <code>map</code> and/or <code>filter</code> method? That's where the <code>reduce</code> method comes in.</p>
+<h4>Reduce</h4>
+<p>What the <code>reduce</code> method does is transform an array into a single value. That value can be anything: another array, a number, an object, etc. This method is so flexible you can even implement the <code>map</code> or <code>filter</code> methods with it.</p>
+<p>Suppose we want to know how many cats we have. First some imperative code:</p>
+<pre><code class="language-js">let countCats = 0;
+for (pet of pets) {
+  if (pet.kind === "cat") countCats++;
+}
+</code></pre>
+<p>And now declaratively, with the <code>reduce</code> method:</p>
+<pre><code class="language-js">const reducer = function (total, pet) {
+  if (pet.kind === "cat") return total + 1;
+  return total;
+};
+const initialValue = 0;
+
+let countCats = pets.reduce(reducer, initialValue);
+
+console.log(countCats); // 2
+</code></pre>
+<p>You might notice this code is longer than the imperative code. That is mainly because I want to keep it simple for now. I can imagine this code still does not make much sense, so let me explain.</p>
+<p>We call <code>pets.reduce()</code> and it returns the number of cats. The <code>reduce</code> method wants to know 2 things: First what it should do <em>for each item</em> in the array, i.e. the <code>reducer</code> function. The second argument is the initial value of the value <code>pets.reduce</code> will return, which is 0 in our case, because there are 0 cats, unless the <code>reducer</code> function finds one.</p>
+<blockquote>
+<p>The arguments to a reducer are officially called the Accumulator and the Current Value, but I like to give them more descriptive names, in this case <code>total</code> and <code>pet</code> respectively.</p>
+<p>By the way, a reducer has some more (optional) parameters, which you might need depending on your use case. Check out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce() documentation on MDN</a> for more info.</p>
+</blockquote>
+<p>Our <code>reducer</code> function expects 2 parameters, <code>total</code> and <code>pet</code>, which are supplied by <code>pets.reduce</code>. On the first iteration <code>total</code> is 0 (the initial value) and <code>pet</code> is our sweet dog Doug. <code>reducer</code> returns the total of 0, because Doug is not a cat.</p>
+<p>On the second iteration, <code>total</code> is still 0, but <code>pet</code> is Katy the cat, so <code>reducer</code> will return 1. On the third iteration we encounter another cat, so <code>total</code> becomes 2 and on the final iteration <code>total</code> is 2 and remains 2, because Patti is a parrot.</p>
+<p>Now that we know how the reducer example counts the cats, let me show you a shorter version of that code using arrow functions:</p>
+<pre><code class="language-js">let countCats = pets.reduce(
+  (total, pet) => (pet.kind === "cat" ? total + 1 : total),
+  0
+);
+</code></pre>
+<p>Of course it's up to you how short (and clear) you want your code to be, but I can assure you the more you use reducers the more you'll get used to very concise code like this.</p>
+<p>Let's look at a more complex reducer, where we create an object where the plural form of <code>kind</code> is the key and each key has an array of pets, which only contain the <code>name</code> and <code>photo</code>:</p>
+<pre><code class="language-js">{
+  dogs: [{ name: 'Doug', photo: '🐶' }],
+  cats: [
+    { name: 'Katy', photo: '🐱' },
+    { name: 'Carl', photo: '🐈' },
+  ],
+  parrots: [{ name: 'Patti', photo: '🦜' }],
+}
+</code></pre>
+<p>This is how we could achieve that with the <code>reduce</code> method:</p>
+<pre><code class="language-js">const petsObject = pets.reduce((obj, pet) => {
+  const key = pet.kind + "s";
+  obj[key] = obj[key] || [];
+  obj[key].push({ name: pet.name, photo: pet.photo });
+  return obj;
+}, {});
+</code></pre>
+<p>The initial value of the object the reducer creates is <code>{}</code>, i.e. an empty object. Each pet is passed into the reducer, determines the key, adds that key to the object and pushes the pet to that array.</p>
+<h4>useReducer</h4>
+<p>The <code>useReducer</code> hook in React, why is it called like that? Well, like the name implies, it uses a reducer. So where we just saw how the <code>reduce</code> method on a JavaScript array uses a reducer function, the <code>useReducer</code> hook also uses a reducer function.</p>
+<p>Realizing this took away a lot of confusion on my side already, because apparantly reducing things in React has nothing to do with arrays!</p>
+<p>But still, what are we reducing? When reducing pets, the reducer function received an accummalator, i.e. the value that eventually becomes the end result, and it received the pet, which, depending on what was going on with that pet, influenced the accumalator.</p>
+<p>So we have some state, the accumalator, and something that influences how that state changes. Thinking of how <code>useReducer</code> works, that sounds familiar.</p>
+<p>Now let's look at a simple reducer, which can be used by the <code>useReducer</code> hook:</p>
+<pre><code class="language-js">function countReducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { ...state, count: state.count + 1 };
+    case "decrement":
+      return { ...state, count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+</code></pre>
+<p>In React we could use this reducer to update the state of the component. Check out <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">my blog post about useReducer</a> or the <a href="https://reactjs.org/docs/hooks-reference.html#usereducer">React docs</a> on how to do that. However, because it's a reducer, we can also use it on a JavaScript array.</p>
+<p>In this case the array contains the <em>actions</em> we want to perform and the initial value for the <code>reduce</code> method is the initial <em>state</em>:</p>
+<pre><code class="language-js">const result = [
+  { type: "increment" },
+  { type: "increment" },
+  { type: "decrement" },
+  { type: "increment" },
+].reduce(countReducer, { count: 0 });
+
+console.log(result); // 2
+</code></pre>
+<p>The initial value is an object with a <code>count</code> property that has the value 0. The array contains 3 increment and 1 decrement actions, so the end result is 2.</p>
+<p>This is a very nice trick to unit test the reducer in isolation if you'd want that. However, I don't think I would unit test my reducers like that, because I agree with <a href="https://kentcdodds.com">Kent C. Dodds</a> it is better to test a React component as a whole and <a href="https://kentcdodds.com/blog/testing-implementation-details">consider the reducer as an implementation detail</a>.</p>
+<h4>Conclusion</h4>
+<p>There you have it, I, and hopefully you too, know now what a reducer is and what the <code>useReducer</code> has got to do with it.</p>
+<p>If you want to check out the code in this blog post, please check out this gist: <a href="https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a">https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a</a></p>
+</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=What is a reducer?&url=https://bouwe.io/what-is-a-reducer&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/what-is-a-reducer"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/what-is-a-reducer/what-is-a-reducer.md">Edit on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </div>
+</body>
+
+</html>

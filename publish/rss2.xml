@@ -4,7 +4,7 @@
         <title>bouwe.io</title>
         <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
-        <lastBuildDate>Wed, 24 Mar 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 25 Mar 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -18,7 +18,7 @@
             <title><![CDATA[What is a reducer?]]></title>
             <link>https://bouwe.io/what-is-a-reducer</link>
             <guid>https://bouwe.io/what-is-a-reducer</guid>
-            <pubDate>Wed, 31 Mar 2021 00:00:00 GMT</pubDate>
+            <pubDate>Thu, 25 Mar 2021 00:00:00 GMT</pubDate>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>

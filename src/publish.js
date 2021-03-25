@@ -195,7 +195,7 @@ async function createHomePage(blogData) {
     navigationHtml
   );
 
-  const numberOfBlogPosts = 3;
+  const numberOfBlogPosts = 5;
   htmlBody = htmlBody.replace(
     new RegExp("{{ blogs }}", "g"),
     getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts))

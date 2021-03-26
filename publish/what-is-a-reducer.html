@@ -97,7 +97,7 @@
         </div>
 
         <div><h4>Introduction</h4>
-<p>Before I started with React I never heard of reducers. And even though I've become quite comfortable with the <code>useReducer</code> hook and even wrote <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">a blog post about it</a>, to be honest, I hardly know what a reducer is and why the <code>useReducer</code> hook is called <code>useReducer</code>.</p>
+<p>Before I started with React I never heard of reducers. And even though I've become quite comfortable with the <code>useReducer</code> hook, partly because I wrote <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">a blog post about it</a>, to be honest, I still hardly know what a reducer is and why the <code>useReducer</code> hook is called <code>useReducer</code>.</p>
 <p>This blog post will answer these questions and it also fits nicely in me exploring <a href="/categories/functional-programming">functional programming</a> concepts.</p>
 <h4>Map, filter, reduce</h4>
 <p>When talking about <em>reducers</em>, you can't skip talking about <em>map</em> and <em>filter</em> too. These three concepts are the major ways of dealing with arrays in JavaScript. So if you have no clue what a reducer is, I have given you some context already, because we are talking about dealing with arrays in JavaScript today.</p>
@@ -148,8 +148,9 @@ let countCats = pets.reduce(reducer, initialValue);
 
 console.log(countCats); // 2
 </code></pre>
-<p>You might notice this code is longer than the imperative code. That is mainly because I want to keep it simple for now. I can imagine this code still does not make much sense, so let me explain.</p>
-<p>We call <code>pets.reduce()</code> and it returns the number of cats. The <code>reduce</code> method wants to know 2 things: First what it should do <em>for each item</em> in the array, i.e. the <code>reducer</code> function. The second argument is the initial value of the value <code>pets.reduce</code> will return, which is 0 in our case, because there are 0 cats, unless the <code>reducer</code> function finds one.</p>
+<p>You might notice this code is longer than the imperative code. That is mainly because I want to keep it simple for now. That is also the reason why I am counting cats with a reducer, while that can also be done with the <code>map</code> method.</p>
+<p>However, I can imagine this reduce code still does not make much sense, so let me explain.</p>
+<p>We call <code>pets.reduce()</code> and it returns the number of cats. The <code>reduce</code> method wants to know 2 things: First what it should do <em>for each item</em> in the array, i.e. the <code>reducer</code> function. The second argument is the initial value of the value that <code>pets.reduce</code> will return, which is 0 in our case, because there are 0 cats, unless the <code>reducer</code> function finds one.</p>
 <blockquote>
 <p>The arguments to a reducer are officially called the Accumulator and the Current Value, but I like to give them more descriptive names, in this case <code>total</code> and <code>pet</code> respectively.</p>
 <p>By the way, a reducer has some more (optional) parameters, which you might need depending on your use case. Check out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce() documentation on MDN</a> for more info.</p>
@@ -163,7 +164,7 @@ console.log(countCats); // 2
 );
 </code></pre>
 <p>Of course it's up to you how short (and clear) you want your code to be, but I can assure you the more you use reducers the more you'll get used to very concise code like this.</p>
-<p>Let's look at a more complex reducer, where we create an object where the plural form of <code>kind</code> is the key and each key has an array of pets, which only contain the <code>name</code> and <code>photo</code>:</p>
+<p>Let's look at a more complex reducer, where we create an object where the plural form of <code>kind</code> is the key and each key has an array of pets, which only contain the <code>name</code> and <code>photo</code> properties:</p>
 <pre><code class="language-js">{
   dogs: [{ name: 'Doug', photo: '🐶' }],
   cats: [
@@ -213,7 +214,7 @@ console.log(result); // 2
 <p>The initial value is an object with a <code>count</code> property that has the value 0. The array contains 3 increment and 1 decrement actions, so the end result is 2.</p>
 <p>This is a very nice trick to unit test the reducer in isolation if you'd want that. However, I don't think I would unit test my reducers like that, because I agree with <a href="https://kentcdodds.com">Kent C. Dodds</a> it is better to test a React component as a whole and <a href="https://kentcdodds.com/blog/testing-implementation-details">consider the reducer as an implementation detail</a>.</p>
 <h4>Conclusion</h4>
-<p>There you have it, I, and hopefully you too, know now what a reducer is and what the <code>useReducer</code> has got to do with it.</p>
+<p>There you have it, I, and hopefully you too, know now what a reducer is and what the <code>useReducer</code> hook has got to do with it.</p>
 <p>If you want to check out the code in this blog post, please check out this gist: <a href="https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a">https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a</a></p>
 </div>
 

@@ -10,7 +10,7 @@ categories:
 
 #### Introduction
 
-Before I started with React I never heard of reducers. And even though I've become quite comfortable with the `useReducer` hook and even wrote [a blog post about it], to be honest, I hardly know what a reducer is and why the `useReducer` hook is called `useReducer`.
+Before I started with React I never heard of reducers. And even though I've become quite comfortable with the `useReducer` hook, partly because I wrote [a blog post about it], to be honest, I still hardly know what a reducer is and why the `useReducer` hook is called `useReducer`.
 
 This blog post will answer these questions and it also fits nicely in me exploring [functional programming] concepts.
 
@@ -90,9 +90,11 @@ let countCats = pets.reduce(reducer, initialValue);
 console.log(countCats); // 2
 ```
 
-You might notice this code is longer than the imperative code. That is mainly because I want to keep it simple for now. I can imagine this code still does not make much sense, so let me explain.
+You might notice this code is longer than the imperative code. That is mainly because I want to keep it simple for now. That is also the reason why I am counting cats with a reducer, while that can also be done with the `map` method.
 
-We call `pets.reduce()` and it returns the number of cats. The `reduce` method wants to know 2 things: First what it should do _for each item_ in the array, i.e. the `reducer` function. The second argument is the initial value of the value `pets.reduce` will return, which is 0 in our case, because there are 0 cats, unless the `reducer` function finds one.
+However, I can imagine this reduce code still does not make much sense, so let me explain.
+
+We call `pets.reduce()` and it returns the number of cats. The `reduce` method wants to know 2 things: First what it should do _for each item_ in the array, i.e. the `reducer` function. The second argument is the initial value of the value that `pets.reduce` will return, which is 0 in our case, because there are 0 cats, unless the `reducer` function finds one.
 
 > The arguments to a reducer are officially called the Accumulator and the Current Value, but I like to give them more descriptive names, in this case `total` and `pet` respectively.
 >
@@ -113,7 +115,7 @@ let countCats = pets.reduce(
 
 Of course it's up to you how short (and clear) you want your code to be, but I can assure you the more you use reducers the more you'll get used to very concise code like this.
 
-Let's look at a more complex reducer, where we create an object where the plural form of `kind` is the key and each key has an array of pets, which only contain the `name` and `photo`:
+Let's look at a more complex reducer, where we create an object where the plural form of `kind` is the key and each key has an array of pets, which only contain the `name` and `photo` properties:
 
 ```js
 {
@@ -185,7 +187,7 @@ This is a very nice trick to unit test the reducer in isolation if you'd want th
 
 #### Conclusion
 
-There you have it, I, and hopefully you too, know now what a reducer is and what the `useReducer` has got to do with it.
+There you have it, I, and hopefully you too, know now what a reducer is and what the `useReducer` hook has got to do with it.
 
 If you want to check out the code in this blog post, please check out this gist: https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a
 

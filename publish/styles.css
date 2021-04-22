@@ -166,6 +166,13 @@ code {
   padding: 2px 4px;
 }
 
+/* This pre styling is used for code blocks that are syntax highlighted by highlight.js */
+pre {
+  background: #282c34;
+  padding: 7px;
+  border-radius: 5px;
+}
+
 .page-title,
 .blog-title {
   display: inline;

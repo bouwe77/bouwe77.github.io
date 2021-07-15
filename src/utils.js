@@ -1,7 +1,13 @@
 export function createSlug(text) {
   let slug = text
     .toLowerCase()
+    // Remove multiple spaces:
+    .replace(/  +/g, " ")
+    // Remove dashes:
+    .replace("-", "")
+    // Replace spaces with dashes:
     .replace(/ /g, "-")
+    // Remove special characters:
     .replace(/[^\w-]+/g, "");
 
   return slug;

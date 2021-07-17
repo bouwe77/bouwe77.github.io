@@ -13,7 +13,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- TBD: GraphQL workshop for .NET and Java developers @ New Nexus
+(none at the moment)
 
 #### Past events
 

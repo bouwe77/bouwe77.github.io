@@ -13,7 +13,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 #### Upcoming events
 
-- None at the moment
+(one at the moment)
 
 #### Past events
 

@@ -2,20 +2,20 @@
 title: "Workshops and talks"
 ---
 
-#### Introduction
+### Introduction
 
 From the moment I started learning React I also started teaching React to others by blogging and giving workshops and talks.
 Now that I started learning GraphQL I do the same because it is a very powerful way of learning new things.
 
-#### Blog posts
+### Blog posts
 
 Blog posts about my workshops are filed under the [Workshops category].
 
-#### Upcoming events
+### Upcoming events
 
 (none at the moment)
 
-#### Past events
+### Past events
 
 - Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 - Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
@@ -39,7 +39,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 - May 9, 2019 React beginner **workshop** @ New Nexus
 - Mar 12, 2019 React beginner **workshop** @ New Nexus (private event)
 
-#### Interested in a workshop or talk?
+### Interested in a workshop or talk?
 
 That would be awesome! 😃 Contact me on [Twitter]!
 

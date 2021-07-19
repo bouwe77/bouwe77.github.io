@@ -8,13 +8,13 @@ categories:
   - "Currying"
 ---
 
-#### Introduction
+### Introduction
 
 Functional programming is a very intruiging paradigm for me. Some of the concepts I already use regularly, such as declarative programming, pure functions and higher order functions, especially when writing NodeJS or React.
 
 However, there are also concepts that I find a bit hard to grasp. _Currying_, for example, so I decided to learn this by trying it out and while doing that, write about it.
 
-#### A real world example?
+### A real world example?
 
 Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow, after I started understanding currying, I failed to see the benefit of it. So I decided to use an example that (hopefully) is a bit more realistic.
 
@@ -71,7 +71,7 @@ logInfo("This is an informational message!");
 logError("An exception occurred!");
 ```
 
-#### Enter currying
+### Enter currying
 
 What we've achieved by introducing the closures is reducing the amount of code we need, but also using function composition: Out of the `log` function we created more specific functions.
 
@@ -124,7 +124,7 @@ const log = (datetime) => (severity) => (message) =>
 
 Personally, I don't think this makes things more readable, but you could do it like this if you want.
 
-#### Hybrid currying
+### Hybrid currying
 
 What we've just done is changing the `log` function so it supports currying. However, what if we want to have a choice, either using the curried approach or the original way of just passing the 3 arguments ourselves?
 
@@ -175,7 +175,7 @@ logInfo("The service has started");
 
 Normally you wouldn't create the `curry` function yourself, but use a library like [Lodash], [Ramda], etc. for that instead, but I think it's nice to show how you could transform a normal function into a curried function.
 
-#### D-d-did you spot the bug? 😱
+### D-d-did you spot the bug? 😱
 
 After I published this blog post someone pointed out my code contained a bug. Oh no!
 
@@ -203,7 +203,7 @@ const logError = log(datetime)("ERROR");
 
 And because the `log` function uses a string literal, the `toString` function on the `datetime` object is called, resulting in a current date and time. Sweet!
 
-#### Conclusion
+### Conclusion
 
 I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is.
 
@@ -217,7 +217,7 @@ To fiddle around with the code I used in this blog post, check out [this CodeSan
 
 If you want to know more you can check out some of the links below.
 
-#### Acknowledgements and tips
+### Acknowledgements and tips
 
 A read quite a few articles and watched many videos to learn currying.
 

@@ -2,34 +2,27 @@
 title: "React"
 ---
 
-#### Introduction
+### Introduction
 
 I have committed myself to learning React. And not by just copy and pasting another one's code
 and hoping it works, but by really learning the basics and the idea behind React. And the best way
 to do that is by teaching it to others. I do that by blogging on this website and by giving workshops.
 
-#### Blog posts
+### Blog posts
 
 My React blog posts are filed under the [React category] page.
 
-#### Workshops
+### Workshops
 
 I am giving React workshops, check the [Workshops page] for more information.
 
-#### Resources
+### Resources
 
 Here is a list of links that I consider being essential for me (and maybe for you too!) to learn React.
 Many of the links I have watched or read many times, and I can keep on watching or reading them because
 every time I hear something new.
 
 I will keep updating this list as it is a note to self in the first place.
-
-##### People to follow on Twitter
-
-- [Kent C. Dodds]
-- [Cory House]
-
-##### React talks and courses
 
 - [React: Rethinking best practices] by [Pete Hunt]
 - [Simply React] by [Kent C. Dodds]

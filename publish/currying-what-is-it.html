@@ -96,10 +96,10 @@
           </div>
         </div>
 
-        <div><h4>Introduction</h4>
+        <div><h3>Introduction</h3>
 <p>Functional programming is a very intruiging paradigm for me. Some of the concepts I already use regularly, such as declarative programming, pure functions and higher order functions, especially when writing NodeJS or React.</p>
 <p>However, there are also concepts that I find a bit hard to grasp. <em>Currying</em>, for example, so I decided to learn this by trying it out and while doing that, write about it.</p>
-<h4>A real world example?</h4>
+<h3>A real world example?</h3>
 <p>Most people try to explain currying with very simple functions, for example one that adds up two numbers. I totally agree with such an approach to keep it simple, but somehow, after I started understanding currying, I failed to see the benefit of it. So I decided to use an example that (hopefully) is a bit more realistic.</p>
 <p>So I came up with the following <code>log</code> function, which you can use to perform logging in your app. You have to specify the date and time the event occurred, the severity of the event ("INFO", "WARN", "ERROR", etc.) and a message describing what happened.</p>
 <pre><code class="language-js">function log(datetime, severity, message) {
@@ -139,7 +139,7 @@ const logError = (message) => log(new Date().toISOString(), "ERROR", message);
 <pre><code class="language-js">logInfo("This is an informational message!");
 logError("An exception occurred!");
 </code></pre>
-<h4>Enter currying</h4>
+<h3>Enter currying</h3>
 <p>What we've achieved by introducing the closures is reducing the amount of code we need, but also using function composition: Out of the <code>log</code> function we created more specific functions.</p>
 <p>Let's take this a step further and reduce our code by composing functions without using closures: <em>currying</em>.</p>
 <p>Currying is a technique where you transform a function so that it doesn't receive all parameters at once, but expects all parameters one by one. To achieve this, the curried version of the function needs to return another function, which in turn returns another function, until all arguments have been passed.</p>
@@ -170,7 +170,7 @@ logError("An exception occurred!");
   console.log(`${datetime} [${severity}] - ${message}`);
 </code></pre>
 <p>Personally, I don't think this makes things more readable, but you could do it like this if you want.</p>
-<h4>Hybrid currying</h4>
+<h3>Hybrid currying</h3>
 <p>What we've just done is changing the <code>log</code> function so it supports currying. However, what if we want to have a choice, either using the curried approach or the original way of just passing the 3 arguments ourselves?</p>
 <p>Let's go back to the original <code>log</code> function, because this is the one we want to keep:</p>
 <pre><code class="language-js">function log(datetime, severity, message) {
@@ -207,7 +207,7 @@ logInfo("The service has started");
 // etc. etc.
 </code></pre>
 <p>Normally you wouldn't create the <code>curry</code> function yourself, but use a library like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc. for that instead, but I think it's nice to show how you could transform a normal function into a curried function.</p>
-<h4>D-d-did you spot the bug? 😱</h4>
+<h3>D-d-did you spot the bug? 😱</h3>
 <p>After I published this blog post someone pointed out my code contained a bug. Oh no!</p>
 <p>What will happen when you use the partial applied functions I created out of the curried <code>log</code> function, every single log entry would have the same date and time, which is not very convenient when you want to investigate your log files.</p>
 <p>Let's look again at these partially applied functions:</p>
@@ -224,14 +224,14 @@ const logInformation = log(datetime)("INFO");
 const logError = log(datetime)("ERROR");
 </code></pre>
 <p>And because the <code>log</code> function uses a string literal, the <code>toString</code> function on the <code>datetime</code> object is called, resulting in a current date and time. Sweet!</p>
-<h4>Conclusion</h4>
+<h3>Conclusion</h3>
 <p>I really learned a lot from exploring currying and writing about it. And although we now know what currying is and seen how to use it and what the some of the characteristics are, I am not yet fully convinced of how useful currying is.</p>
 <p>Apart from that it is a cool skill and just, like many other functional programming patterns, is another, refreshing way of programming.</p>
 <p>However, we've only touched the surface of currying and there is more to say, for example about other ways of function composition, so I will write another blog post soon.</p>
 <p>If my blog post is (still) not clear (or simply wrong), please let me know on Twitter!</p>
 <p>To fiddle around with the code I used in this blog post, check out <a href="https://codesandbox.io/s/peaceful-firefly-7eh34?file=/index.js">this CodeSandbox</a> or the <a href="https://github.com/bouwe77/js-currying">GitHub repository</a>.</p>
 <p>If you want to know more you can check out some of the links below.</p>
-<h4>Acknowledgements and tips</h4>
+<h3>Acknowledgements and tips</h3>
 <p>A read quite a few articles and watched many videos to learn currying.</p>
 <p>The first video that made it click for me was this step by step video by Steve Griffith: <a href="https://youtu.be/F_N97iovVbQ">https://youtu.be/F_N97iovVbQ</a></p>
 <p>A great article about currying with JavaScript that inspired me to use the logging example is <a href="https://javascript.info/currying-partials">Currying Partials</a>.</p>

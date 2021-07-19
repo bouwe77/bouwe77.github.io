@@ -8,13 +8,13 @@ categories:
   - "Functional programming"
 ---
 
-#### Introduction
+### Introduction
 
 Before I started with React I never heard of reducers. And even though I've become quite comfortable with the `useReducer` hook, partly because I wrote [a blog post about it], to be honest, I still hardly know what a reducer is and why the `useReducer` hook is called `useReducer`.
 
 This blog post will answer these questions and it also fits nicely in me exploring [functional programming] concepts.
 
-#### Map, filter, reduce
+### Map, filter, reduce
 
 When talking about _reducers_, you can't skip talking about _map_ and _filter_ too. These three concepts are the major ways of dealing with arrays in JavaScript. So if you have no clue what a reducer is, I have given you some context already, because we are talking about dealing with arrays in JavaScript today.
 
@@ -63,7 +63,7 @@ const catPhotos = pets
 
 There are more array methods in JavaScript, but with these two you'll get very far. However, what if you need a very specific operation on an array, one that can't be achieved using the `map` and/or `filter` method? That's where the `reduce` method comes in.
 
-#### Reduce
+### Reduce
 
 What the `reduce` method does is transform an array into a single value. That value can be anything: another array, a number, an object, etc. This method is so flexible you can even implement the `map` or `filter` methods with it.
 
@@ -141,7 +141,7 @@ const petsObject = pets.reduce((obj, pet) => {
 
 The initial value of the object the reducer creates is `{}`, i.e. an empty object. Each pet is passed into the reducer, determines the key, adds that key to the object and pushes the pet to that array.
 
-#### useReducer
+### useReducer
 
 The `useReducer` hook in React, why is it called like that? Well, like the name implies, it uses a reducer. So where we just saw how the `reduce` method on a JavaScript array uses a reducer function, the `useReducer` hook also uses a reducer function.
 
@@ -185,7 +185,7 @@ The initial value is an object with a `count` property that has the value 0. The
 
 This is a very nice trick to unit test the reducer in isolation if you'd want that. However, I don't think I would unit test my reducers like that, because I agree with [Kent C. Dodds] it is better to test a React component as a whole and [consider the reducer as an implementation detail].
 
-#### Conclusion
+### Conclusion
 
 There you have it, I, and hopefully you too, know now what a reducer is and what the `useReducer` hook has got to do with it.
 

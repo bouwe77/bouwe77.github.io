@@ -1,16 +1,7 @@
-export function createSlug(text) {
-  let slug = text
-    .toLowerCase()
-    // Remove multiple spaces:
-    .replace(/  +/g, " ")
-    // Remove dashes:
-    .replace("-", "")
-    // Replace spaces with dashes:
-    .replace(/ /g, "-")
-    // Remove special characters:
-    .replace(/[^\w-]+/g, "");
+import slugify from "slugify";
 
-  return slug;
+export function createSlug(text) {
+  return slugify(text, { lower: true, strict: true });
 }
 
 export function formatDate(date) {

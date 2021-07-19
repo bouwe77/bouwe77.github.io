@@ -96,11 +96,11 @@
           </div>
         </div>
 
-        <div><h4>Introduction</h4>
+        <div><h3>Introduction</h3>
 <p>In my <a href="/currying-what-is-it">previous blog post about currying</a> I mainly wrote about what currying is and to a lesser extent where it's useful for.</p>
 <p>I mentioned how you can compose new functions by specifying some of the arguments up front, which are always the same. That way, when calling the function, you only have to supply the arguments that you only know at the moment you are calling it. This is called <em>partial application</em> and makes your code easier to reason about because you use nice abstractions.</p>
 <p>In this blog post I'll write some more about composition, but this time not composing a function from one other function, but composing a function from <em>multiple</em> other, different functions. This is also achieved by using currying.</p>
-<h4>Logging continued</h4>
+<h3>Logging continued</h3>
 <p>In this blog post we'll continue on the logging functionality we started with in <a href="/currying-what-is-it">Part 1</a>. I changed the code a bit, now the <code>log</code> function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:</p>
 <pre><code class="language-js">function formatLog(datetime, severity, message) {
   return `${datetime} [${severity}] - ${message}`;
@@ -136,7 +136,7 @@ writeToFile(
 );
 </code></pre>
 <p>What I am doing here is combining function calls by nesting them. This is not composition.</p>
-<h4>Composition by piping</h4>
+<h3>Composition by piping</h3>
 <p>What I would like to do instead is compose a new function that does the nesting for me, so I only need to mention which functions I want to be called in sequence, making my code look nicer. This is a form of composition that is called <em>piping</em>:</p>
 <pre><code class="language-js">// Compose a new function by piping (or chaining) some functions into a new function that does logging for us:
 const logInfoToFile = pipe(formatLog, writeToConsole, writeToFile);
@@ -157,7 +157,7 @@ logInfoToFile("Hello World");
 <p>To be able to do piping we need a predictable interface for each function, so they always <em>fit</em> together. And the only way to achieve that is by requiring that every function not only always returns a value, but it also always expects exactly one parameter.</p>
 <p>That way, the return value from the first function is the argument for the next, which also returns one value, that is passed to the next function, etc., and so you can combine any number of functions you want.</p>
 <p>However, the <code>formatLog</code> and <code>writeToFile</code> need multiple arguments, so they are not suitable for this way of composition yet.</p>
-<h4>Currying to the rescue</h4>
+<h3>Currying to the rescue</h3>
 <p>In my <a href="/currying-what-is-it">previous blog post about currying</a> I showed you how we can transform any function to a curried function so that it can only receive one argument at a time. So that's what we are going to do now to solve our composition problem.</p>
 <p>Here is the <code>curry</code> function from that blog post and we'll use it to curry both the <code>log</code> and <code>writeToFile</code> functions, so we can partially apply them with the <code>logInfo</code> and <code>writeToLogFile</code> functions, respectively:</p>
 <pre><code class="language-js">function curry(fn) {
@@ -185,7 +185,7 @@ const logInfoToFile = pipe(formatLogInfo, writeToConsole, writeToLogFile);
 logInfoToFile("Hello World");
 </code></pre>
 <p>Look how clean this code is! If I don't want to log to the console anymore, just remove that function from the <code>pipe</code> arguments. And I can compose many other functions, each with their own applicable combination of functions.</p>
-<h4>Conclusion</h4>
+<h3>Conclusion</h3>
 <p>What we did in this post is making declarative code by combining several building blocks together, which was made possible because of currying.</p>
 <p>The logging solution is not meant to be used in a production situation, it is merely illustrative for how a real world situation could look like, but I hope you see the characteristics, and even benefits, of currying by now.</p>
 <p>By writing this blog posts, which involved quite some experimenting with JavaScript, I learned yet another way of thinking and approaching code, and I start seeing more and more possibilities for using currying. The more I do it, functional programming really starts growing on me.</p>

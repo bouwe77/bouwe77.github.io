@@ -8,7 +8,7 @@ categories:
   - "Currying"
 ---
 
-#### Introduction
+### Introduction
 
 In my [previous blog post about currying] I mainly wrote about what currying is and to a lesser extent where it's useful for.
 
@@ -16,7 +16,7 @@ I mentioned how you can compose new functions by specifying some of the argument
 
 In this blog post I'll write some more about composition, but this time not composing a function from one other function, but composing a function from _multiple_ other, different functions. This is also achieved by using currying.
 
-#### Logging continued
+### Logging continued
 
 In this blog post we'll continue on the logging functionality we started with in [Part 1]. I changed the code a bit, now the `log` function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:
 
@@ -61,7 +61,7 @@ writeToFile(
 
 What I am doing here is combining function calls by nesting them. This is not composition.
 
-#### Composition by piping
+### Composition by piping
 
 What I would like to do instead is compose a new function that does the nesting for me, so I only need to mention which functions I want to be called in sequence, making my code look nicer. This is a form of composition that is called _piping_:
 
@@ -95,7 +95,7 @@ That way, the return value from the first function is the argument for the next,
 
 However, the `formatLog` and `writeToFile` need multiple arguments, so they are not suitable for this way of composition yet.
 
-#### Currying to the rescue
+### Currying to the rescue
 
 In my [previous blog post about currying] I showed you how we can transform any function to a curried function so that it can only receive one argument at a time. So that's what we are going to do now to solve our composition problem.
 
@@ -133,7 +133,7 @@ logInfoToFile("Hello World");
 
 Look how clean this code is! If I don't want to log to the console anymore, just remove that function from the `pipe` arguments. And I can compose many other functions, each with their own applicable combination of functions.
 
-#### Conclusion
+### Conclusion
 
 What we did in this post is making declarative code by combining several building blocks together, which was made possible because of currying.
 

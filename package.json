@@ -24,6 +24,7 @@
     "remark": "12.0.1",
     "remark-html": "^12.0.0",
     "shelljs": "^0.8.4",
+    "slugify": "^1.6.0",
     "vfile-reporter": "^6.0.1"
   },
   "devDependencies": {

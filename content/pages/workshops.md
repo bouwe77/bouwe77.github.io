@@ -5,7 +5,6 @@ title: "Workshops and talks"
 ### Introduction
 
 From the moment I started learning React I also started teaching React to others by blogging and giving workshops and talks.
-Now that I started learning GraphQL I do the same because it is a very powerful way of learning new things.
 
 ### Blog posts
 

@@ -1,4 +1,6 @@
-# Cheat Sheet - git
+---
+title: git
+---
 
 ## Delete local branch
 

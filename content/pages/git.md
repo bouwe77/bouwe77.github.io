@@ -30,6 +30,10 @@ title: git
 
 > `git branch`
 
+## Rename branch
+
+> See https://stackoverflow.com/a/6591218
+
 ## Add alias for git command
 
 > `git config --global alias.co checkout`

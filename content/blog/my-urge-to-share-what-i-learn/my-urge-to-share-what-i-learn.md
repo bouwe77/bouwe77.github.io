@@ -6,6 +6,7 @@ categories:
   - "Blogging"
   - "Personal"
   - "Workshops"
+  - "Teaching"
 ---
 
 ### Learn by sharing

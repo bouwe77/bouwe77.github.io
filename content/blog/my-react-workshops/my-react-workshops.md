@@ -6,6 +6,7 @@ categories:
   - "React"
   - "Workshops"
   - "Personal"
+  - "Teaching"
 ---
 
 This year I started giving React workshops. In this blog post I want to share with

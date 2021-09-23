@@ -101,13 +101,13 @@
 With every blog post I learned something new, but also made mistakes. But that's
 what learning is about. And because I am learning in public, it kind of forces
 me to fix things that could be better.</p>
-<p>In my <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">previous post</a> (part 3) about the render props pattern, I thought I kind of
+<p>In my <a href="render-props-part-iii-a-flexible-and-reusable-toggle-component">previous post</a> (part 3) about the render props pattern, I thought I kind of
 finished my implementation of the <code>Toggle</code> component. However, I used the <code>useEffect</code>
 hook, which is a great learning experience, but now, a few months later, I realized
 in this case, it is not necessary to use <code>useEffect</code> for what I wanted to achieve.</p>
 <p>In this blog post I will explain you why.</p>
 <h3>Do you haz teh codez?</h3>
-<p>Sure, this is my <code>Toggle</code> component from <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a>:</p>
+<p>Sure, this is my <code>Toggle</code> component from <a href="render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a>:</p>
 <pre><code class="language-js">function Toggle({ render, onToggle }) {
   const [on, setOn] = useState(false);
 
@@ -164,7 +164,7 @@ the dependency array. However, we've removed the <code>useEffect</code> entirely
 not an issue anymore.</p>
 </blockquote>
 <h3>How I figured this out</h3>
-<p>After writing <a href="/render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a> it kept on disturbing me I had to use such a complicated
+<p>After writing <a href="render-props-part-iii-a-flexible-and-reusable-toggle-component">part 3</a> it kept on disturbing me I had to use such a complicated
 solution for such a common and simple problem. So I started googling arround and
 stumbled upon <a href="https://www.reddit.com/r/reactjs/comments/a3y76f/react_hooks_setstate_gotcha/eba1fh0/">this Reddit post</a>.</p>
 <p>There Mr Dan Abramov himself explains why you can not have the new state value right

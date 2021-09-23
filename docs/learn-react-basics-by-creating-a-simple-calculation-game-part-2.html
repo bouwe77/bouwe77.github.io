@@ -96,12 +96,12 @@
           </div>
         </div>
 
-        <div><p>This is part 2 of a series of blog posts where I explore basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">Part 1</a>. You might want to read that first, so you know what the app is about and how it was built.</p>
+        <div><p>This is part 2 of a series of blog posts where I explore basic React principles by building a simple calculation game. In this blog post I will improve the app I created in <a href="learn-react-basics-by-creating-a-simple-calculation-game-part-1">Part 1</a>. You might want to read that first, so you know what the app is about and how it was built.</p>
 <p>In this blog post we'll make the questions dynamic, because answering the same question over and over again is a bit boring.</p>
 <p>The main React topic we'll cover in this blog post is the <code>useEffect</code> hook.</p>
 <h3>Demo</h3>
 <img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
-<p>Or check out the <a href="https://react-simple-calculation-game.netlify.app">demo on Netlify</a>. Version 1 we built in <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-1">part 1</a> and now we will create version 2.</p>
+<p>Or check out the <a href="https://react-simple-calculation-game.netlify.app">demo on Netlify</a>. Version 1 we built in <a href="learn-react-basics-by-creating-a-simple-calculation-game-part-1">part 1</a> and now we will create version 2.</p>
 <h3>A function for random questions</h3>
 <p>We need a function that returns a random question. This question consists of an <code>answer</code>, which is the number you'll have to add up to, and <code>choices</code>, which is an array of numbers to choose from.</p>
 <p>The function will return an object containing these two properties. To keep it simple, the <code>choices</code> array will still be hard-coded and <code>answer</code> will be a random number between 2 and 10:</p>
@@ -162,7 +162,7 @@
 <h3>Wrapping up</h3>
 <p>This is quite a long story for quite a small adjustment to our code. However, it's a significant one: The app now gives you infinite pleasure of trying to add up to numbers between 2 and 10! 😉</p>
 <p>By the way, did you notice we only changed the <em>behavior</em> of our component and not the UI (JSX)? This shows how nice and clean behavior and UI can be separated in a React component.</p>
-<p>In my next blog post, <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">which is part 3 already</a>, I will cover the <code>useReducer</code> hook, which we'll use to make the component's code even cleaner.</p>
+<p>In my next blog post, <a href="learn-react-basics-by-creating-a-simple-calculation-game-part-3">which is part 3 already</a>, I will cover the <code>useReducer</code> hook, which we'll use to make the component's code even cleaner.</p>
 <p>The source code for this app is on my GitHub: <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2">https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2</a></p>
 </div>
 

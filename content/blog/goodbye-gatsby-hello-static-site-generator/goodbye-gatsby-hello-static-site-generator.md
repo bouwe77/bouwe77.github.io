@@ -60,7 +60,7 @@ Although everything of my site, including my SSG scripts, are open source, I don
 But as I use it, of course I will improve a lot along the way.
 
 [gatsby]: https://www.gatsbyjs.com
-[i use twitter for that]: /using-twitter-for-blog-commenting
+[i use twitter for that]: using-twitter-for-blog-commenting
 [a tweet by ryan florence]: https://twitter.com/ryanflorence/status/1294303054007635973
 [a gist]: https://gist.github.com/ryanflorence/fb3fe3209877e7a37700a20251804cca
 [netlify]: https://netlify.com

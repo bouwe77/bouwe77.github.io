@@ -124,7 +124,7 @@ What we have done is separated the responsibilities even more:
 
 For a working example, please check out [this CodeSandbox] or the [Github repo].
 
-[blog post about the render props pattern]: /day-4-render-props
+[blog post about the render props pattern]: day-4-render-props
 [lifting state up]: https://reactjs.org/docs/lifting-state-up.html
 [this codesandbox]: https://codesandbox.io/s/nqksb
 [github repo]: https://github.com/bouwe77/react-render-props-2

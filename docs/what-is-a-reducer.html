@@ -97,8 +97,8 @@
         </div>
 
         <div><h3>Introduction</h3>
-<p>Before I started with React I never heard of reducers. And even though I've become quite comfortable with the <code>useReducer</code> hook, partly because I wrote <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">a blog post about it</a>, to be honest, I still hardly know what a reducer is and why the <code>useReducer</code> hook is called <code>useReducer</code>.</p>
-<p>This blog post will answer these questions and it also fits nicely in me exploring <a href="/categories/functional-programming">functional programming</a> concepts.</p>
+<p>Before I started with React I never heard of reducers. And even though I've become quite comfortable with the <code>useReducer</code> hook, partly because I wrote <a href="learn-react-basics-by-creating-a-simple-calculation-game-part-3">a blog post about it</a>, to be honest, I still hardly know what a reducer is and why the <code>useReducer</code> hook is called <code>useReducer</code>.</p>
+<p>This blog post will answer these questions and it also fits nicely in me exploring <a href="categories/functional-programming">functional programming</a> concepts.</p>
 <h3>Map, filter, reduce</h3>
 <p>When talking about <em>reducers</em>, you can't skip talking about <em>map</em> and <em>filter</em> too. These three concepts are the major ways of dealing with arrays in JavaScript. So if you have no clue what a reducer is, I have given you some context already, because we are talking about dealing with arrays in JavaScript today.</p>
 <p>Check out the following <code>pets</code> object array:</p>
@@ -200,7 +200,7 @@ console.log(countCats); // 2
   }
 }
 </code></pre>
-<p>In React we could use this reducer to update the state of the component. Check out <a href="/learn-react-basics-by-creating-a-simple-calculation-game-part-3">my blog post about useReducer</a> or the <a href="https://reactjs.org/docs/hooks-reference.html#usereducer">React docs</a> on how to do that. However, because it's a reducer, we can also use it on a JavaScript array.</p>
+<p>In React we could use this reducer to update the state of the component. Check out <a href="learn-react-basics-by-creating-a-simple-calculation-game-part-3">my blog post about useReducer</a> or the <a href="https://reactjs.org/docs/hooks-reference.html#usereducer">React docs</a> on how to do that. However, because it's a reducer, we can also use it on a JavaScript array.</p>
 <p>In this case the array contains the <em>actions</em> we want to perform and the initial value for the <code>reduce</code> method is the initial <em>state</em>:</p>
 <pre><code class="language-js">const result = [
   { type: "increment" },

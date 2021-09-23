@@ -191,9 +191,9 @@ There you have it, I, and hopefully you too, know now what a reducer is and what
 
 If you want to check out the code in this blog post, please check out this gist: https://gist.github.com/bouwe77/587a0fd9211a2310ca087abb92031e2a
 
-[a blog post about it]: /learn-react-basics-by-creating-a-simple-calculation-game-part-3
-[my blog post about usereducer]: /learn-react-basics-by-creating-a-simple-calculation-game-part-3
-[functional programming]: /categories/functional-programming
+[a blog post about it]: learn-react-basics-by-creating-a-simple-calculation-game-part-3
+[my blog post about usereducer]: learn-react-basics-by-creating-a-simple-calculation-game-part-3
+[functional programming]: categories/functional-programming
 [array.prototype.reduce() documentation on mdn]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 [react docs]: https://reactjs.org/docs/hooks-reference.html#usereducer
 [kent c. dodds]: https://kentcdodds.com

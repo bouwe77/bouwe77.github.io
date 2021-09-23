@@ -97,11 +97,11 @@
         </div>
 
         <div><h3>Introduction</h3>
-<p>In my <a href="/currying-what-is-it">previous blog post about currying</a> I mainly wrote about what currying is and to a lesser extent where it's useful for.</p>
+<p>In my <a href="currying-what-is-it">previous blog post about currying</a> I mainly wrote about what currying is and to a lesser extent where it's useful for.</p>
 <p>I mentioned how you can compose new functions by specifying some of the arguments up front, which are always the same. That way, when calling the function, you only have to supply the arguments that you only know at the moment you are calling it. This is called <em>partial application</em> and makes your code easier to reason about because you use nice abstractions.</p>
 <p>In this blog post I'll write some more about composition, but this time not composing a function from one other function, but composing a function from <em>multiple</em> other, different functions. This is also achieved by using currying.</p>
 <h3>Logging continued</h3>
-<p>In this blog post we'll continue on the logging functionality we started with in <a href="/currying-what-is-it">Part 1</a>. I changed the code a bit, now the <code>log</code> function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:</p>
+<p>In this blog post we'll continue on the logging functionality we started with in <a href="currying-what-is-it">Part 1</a>. I changed the code a bit, now the <code>log</code> function is split into a function that formats the log message and one that writes a message to the console. I also added a function that writes a message to a file:</p>
 <pre><code class="language-js">function formatLog(datetime, severity, message) {
   return `${datetime} [${severity}] - ${message}`;
 }
@@ -135,7 +135,7 @@ writeToFile(
   writeToConsole(formatLog(new Date().toISOString(), "INFO", "Hello World"))
 );
 </code></pre>
-<p>What I am doing here is combining function calls by nesting them. This is not composition.</p>
+<p>What I am doing here is combining function calls by nesting them. This is not the composition I am looking for.</p>
 <h3>Composition by piping</h3>
 <p>What I would like to do instead is compose a new function that does the nesting for me, so I only need to mention which functions I want to be called in sequence, making my code look nicer. This is a form of composition that is called <em>piping</em>:</p>
 <pre><code class="language-js">// Compose a new function by piping (or chaining) some functions into a new function that does logging for us:
@@ -150,7 +150,7 @@ logInfoToFile("Hello World");
 <pre><code class="language-js">const pipe = (...fns) => (x) => fns.reduce((y, f) => f(y), x);
 </code></pre>
 <blockquote>
-<p>Just like the <code>curry</code> function I showed you in <a href="/currying-what-is-it">Part 1</a>, the <code>pipe</code> function is probably not something you'd build yourself, but use from libraries like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc.</p>
+<p>Just like the <code>curry</code> function I showed you in <a href="currying-what-is-it">Part 1</a>, the <code>pipe</code> function is probably not something you'd build yourself, but use from libraries like <a href="https://lodash.com">Lodash</a>, <a href="https://ramdajs.com">Ramda</a>, etc.</p>
 </blockquote>
 <p>What the <code>pipe</code> function does is composing a function that calls the provided functions nested, just like we did by hand earlier. The only thing we did is abstracted that away for convenience and readability.</p>
 <p>However, when we pass the three functions to <code>pipe</code> and then call the <code>logInfoToFile</code> function we only pass a message. But what about all the other arguments, like the <code>datetime</code> and <code>severity</code> for <code>formatLog</code> and the <code>filepath</code> for the <code>writeToFile</code> function?</p>
@@ -158,7 +158,7 @@ logInfoToFile("Hello World");
 <p>That way, the return value from the first function is the argument for the next, which also returns one value, that is passed to the next function, etc., and so you can combine any number of functions you want.</p>
 <p>However, the <code>formatLog</code> and <code>writeToFile</code> need multiple arguments, so they are not suitable for this way of composition yet.</p>
 <h3>Currying to the rescue</h3>
-<p>In my <a href="/currying-what-is-it">previous blog post about currying</a> I showed you how we can transform any function to a curried function so that it can only receive one argument at a time. So that's what we are going to do now to solve our composition problem.</p>
+<p>In my <a href="currying-what-is-it">previous blog post about currying</a> I showed you how we can transform any function to a curried function so that it can only receive one argument at a time. So that's what we are going to do now to solve our composition problem.</p>
 <p>Here is the <code>curry</code> function from that blog post and we'll use it to curry both the <code>log</code> and <code>writeToFile</code> functions, so we can partially apply them with the <code>logInfo</code> and <code>writeToLogFile</code> functions, respectively:</p>
 <pre><code class="language-js">function curry(fn) {
   return function curried(...args) {

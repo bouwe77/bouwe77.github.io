@@ -31,7 +31,7 @@ The links on this page are primarily a _note to self_ of blogs, websites, talks,
 [how to talk to developers]: https://youtu.be/l9JXH7JPjR4
 [rubber duck debugging - how to solve a problem]: https://youtu.be/NBgIHOrjSxs
 [everything you need to know about graphql in 3 components]: https://youtu.be/F_M8v6MK0Sc
-[react page]: /react
+[react page]: react
 [javascript promises in depth]: https://egghead.io/courses/javascript-promises-in-depth
 [the evolution of async javascript: from callbacks, to promises, to async/await]: https://youtu.be/gB-OmN1egV8
 [imperative vs declarative programming]: https://ui.dev/imperative-vs-declarative-programming/

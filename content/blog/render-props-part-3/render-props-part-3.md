@@ -214,9 +214,9 @@ To watch or play around with the full code of this blog post, please check out t
 Although I am very satisfied with this solution and even more what I learned from it, there are still some
 improvements to make, so stay tuned for yet another (and hopefully last) blog post about the render props pattern.
 
-[render props]: /categories/render-props
-[part 1]: /day-4-render-props
-[part 2]: /render-props-part-ii-using-the-toggle-component
+[render props]: categories/render-props
+[part 1]: day-4-render-props
+[part 2]: render-props-part-ii-using-the-toggle-component
 [class components]: https://reactjs.org/docs/state-and-lifecycle.html
 [lift up]: https://reactjs.org/docs/lifting-state-up.html
 [proptypes]: https://reactjs.org/docs/typechecking-with-proptypes.html

@@ -224,4 +224,4 @@ The source code for this app is on my GitHub: https://github.com/bouwe77/react-s
 [create react app]: https://create-react-app.dev
 [on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
 [modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
-[continue reading]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2
+[continue reading]: learn-react-basics-by-creating-a-simple-calculation-game-part-2

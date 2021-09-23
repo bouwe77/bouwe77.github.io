@@ -52,8 +52,8 @@ Other links I keep on my [Links page].
 [using composition in react to avoid "prop drilling"]: https://youtu.be/3XaXKiXtNjw
 [the beginner's guide to react]: https://egghead.io/courses/the-beginner-s-guide-to-react
 [a complete guide to useeffect]: https://overreacted.io/a-complete-guide-to-useeffect
-[react category]: /categories/react
-[workshops page]: /workshops
-[links page]: /links
+[react category]: categories/react
+[workshops page]: workshops
+[links page]: links
 [refactoring react: which component pattern can improve your codebase?]: https://youtu.be/2Dw8gA60d_k
 [siddharth kshetrapal]: https://sid.st

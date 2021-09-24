@@ -128,8 +128,8 @@ by sharing is a great way to solidify what you learn.
 
 To see the code, check out [this CodeSandbox] or the [Github repo].
 
-[previous post]: render-props-part-iii-a-flexible-and-reusable-toggle-component
-[part 3]: render-props-part-iii-a-flexible-and-reusable-toggle-component
+[previous post]: /render-props-part-iii-a-flexible-and-reusable-toggle-component
+[part 3]: /render-props-part-iii-a-flexible-and-reusable-toggle-component
 [this reddit post]: https://www.reddit.com/r/reactjs/comments/a3y76f/react_hooks_setstate_gotcha/eba1fh0/
 [this codesandbox]: https://codesandbox.io/s/github/bouwe77/react-render-props-4/tree/master/
 [github repo]: https://github.com/bouwe77/react-render-props-4

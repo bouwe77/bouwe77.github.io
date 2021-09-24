@@ -350,8 +350,8 @@ I am not yet sure whether there will be a next post in this series and where it 
 
 The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v3/App.js
 
-[part 1]: learn-react-basics-by-creating-a-simple-calculation-game-part-1
-[part 2]: learn-react-basics-by-creating-a-simple-calculation-game-part-2
+[part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
+[part 2]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2
 [demo on netlify]: https://react-simple-calculation-game.netlify.app
 [react testing library]: https://testing-library.com/docs/react-testing-library/intro/
 [tailwind css]: https://tailwindcss.com/

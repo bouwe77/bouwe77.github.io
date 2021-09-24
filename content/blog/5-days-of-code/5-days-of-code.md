@@ -25,4 +25,4 @@ feels like an obligation and I don't want too many obligations.
 So that's why I decided to quit the challenge, but to keep on blogging. Writing
 a blog 2 or 3 times a week is also fine I think.
 
-[render props pattern]: day-4-render-props
+[render props pattern]: /day-4-render-props

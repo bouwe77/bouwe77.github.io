@@ -233,11 +233,11 @@ const [currentSlideIndex, setCurrentSlideIndex] = useCurrentSlideIndexState(0);
 See how the code view (left) and presentation view (right) are kept in sync, both when
 moving to the next slide as well as when live coding:
 
-<img alt="Both browser windows are kept in sync" src="react-slides-prototype-1.gif" width="672"/>
+<img alt="Both browser windows are kept in sync" src="/react-slides-prototype-1.gif" width="672"/>
 
 And here is how I will use it in full screen mode:
 
-<img alt="Both browser windows are kept in sync" src="react-slides-prototype-2.gif" width="672"/>
+<img alt="Both browser windows are kept in sync" src="/react-slides-prototype-2.gif" width="672"/>
 
 Done! :)
 
@@ -250,7 +250,7 @@ a few things have to be done before it's ready for using it in my workshops. Thi
 keyboard arrow navigation, CSS styling, code refactoring, etcetera. But that's something
 for another blog post.
 
-[react workshops]: categories/workshops
+[react workshops]: /categories/workshops
 [mdx-deck]: https://github.com/jxnblk/mdx-deck
 [mdx-deck-live-code]: https://github.com/JReinhold/mdx-deck-live-code
 [use-persisted-state]: https://github.com/donavon/use-persisted-state

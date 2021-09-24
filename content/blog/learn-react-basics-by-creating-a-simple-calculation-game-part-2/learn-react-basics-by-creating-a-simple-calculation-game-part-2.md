@@ -16,7 +16,7 @@ The main React topic we'll cover in this blog post is the `useEffect` hook.
 
 ### Demo
 
-<img alt="screenshot of the simple calculation game" src="demo.png" width="350" style="border:1px solid #ccc"/>
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 
 Or check out the [demo on Netlify]. Version 1 we built in [part 1] and now we will create version 2.
 
@@ -120,6 +120,6 @@ In my next blog post, [which is part 3 already], I will cover the `useReducer` h
 
 The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v2
 
-[part 1]: learn-react-basics-by-creating-a-simple-calculation-game-part-1
-[which is part 3 already]: learn-react-basics-by-creating-a-simple-calculation-game-part-3
+[part 1]: /learn-react-basics-by-creating-a-simple-calculation-game-part-1
+[which is part 3 already]: /learn-react-basics-by-creating-a-simple-calculation-game-part-3
 [demo on netlify]: https://react-simple-calculation-game.netlify.app

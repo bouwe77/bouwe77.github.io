@@ -13,7 +13,7 @@ Topics this blog post will cover are JSX, conditional rendering, mapping arrays 
 
 ### Demo
 
-<img alt="screenshot of the simple calculation game" src="demo.png" width="350" style="border:1px solid #ccc"/>
+<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 
 The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.
 
@@ -224,4 +224,4 @@ The source code for this app is on my GitHub: https://github.com/bouwe77/react-s
 [create react app]: https://create-react-app.dev
 [on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
 [modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
-[continue reading]: learn-react-basics-by-creating-a-simple-calculation-game-part-2
+[continue reading]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2

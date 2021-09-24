@@ -4,8 +4,8 @@ const __dirname = path.resolve();
 const blogDirectory = "content/blog";
 const pagesDirectory = "content/pages";
 const staticDirectory = "content/static";
-const publishDirectory = "docs";
-const publishCategoriesDirectory = "docs/categories";
+const publishDirectory = "publish";
+const publishCategoriesDirectory = "publish/categories";
 const templatesDirectory = "templates";
 
 export const filepaths = {

@@ -59,7 +59,7 @@ writeToFile(
 );
 ```
 
-What I am doing here is combining function calls by nesting them. This is not the composition I am looking for.
+What I am doing here is combining function calls by nesting them. This is not composition.
 
 ### Composition by piping
 
@@ -148,8 +148,8 @@ More on currying and composition:
 - [Curry and Function Composition], an article by Eric Elliott.
 - [The Power of Composition], a great talk by Scott Wlaschin.
 
-[part 1]: currying-what-is-it
-[previous blog post about currying]: currying-what-is-it
+[part 1]: /currying-what-is-it
+[previous blog post about currying]: /currying-what-is-it
 [curry and function composition]: https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983
 [lodash]: https://lodash.com
 [ramda]: https://ramdajs.com

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Day 4 - Render props</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Day 4 - Render props" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+  <div>
+    <header class="header">
+      <div class="container">
+        <div class="header-container">
+          <div class="logo">
+            <h1>
+              <a href="/"
+                ><span class="logo-part1">bouwe</span
+                ><span class="logo-part2">.io</span></a
+              >
+            </h1>
+          </div>
+          <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/workshops" class='nav-inactive'>workshops</a></li><li class='nav-item'><a href="/links" class='nav-inactive'>links</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="container">
+        <div>
+          <h2 class="blog-title">
+            <a href="/day-4-render-props">Day 4 - Render props</a>
+          </h2>
+          <div class="blog-meta">
+            May 17, 2019  · <a href="/categories/100-days-of-code">100 days of code</a>, <a href="/categories/react">React</a>, <a href="/categories/render-props">render props</a>  · 5 minute read
+          </div>
+        </div>
+
+        <div><h3>Render what?</h3>
+<p>Render props is one of the React patterns that was on my "React To Do list" for some time.
+So today I decided to check out what the pattern is and to experiment with it.</p>
+<p>As soon as I started reading what the pattern was it became clear to me it's not a thing I will
+totally master within one day. My goal today is to have a basic understanding which problem
+it solves. And the best way to do that is to make a very simple component and bring render
+props into practice.</p>
+<p>So what is render props?</p>
+<blockquote>
+<p>Render props is a pattern you can use to separate how a component <em>works</em> from how it <em>looks</em>.</p>
+</blockquote>
+<p>If you make this separation you can reuse the component's functionality in
+other components that each define their own UI for that functionality. It also can be a nice
+way to just separate the functionality from the UI when either one is complicated and you want
+your code to be more readable or easier testable.</p>
+<h3>Toggle component</h3>
+<p>Let's create a very simple component, a toggle component. Its functionality is that you can turn something on or off.
+And the component renders a button to allow that:</p>
+<pre><code class="language-js">function App() {
+  return (
+    &#x3C;div>
+      &#x3C;Toggle />
+    &#x3C;/div>
+  );
+}
+
+function Toggle() {
+  const [on, setOn] = useState(false);
+
+  return &#x3C;button onClick={() => setOn(!on)}>{on ? "ON" : "OFF"}&#x3C;/button>;
+}
+</code></pre>
+<p>Let's break this down.</p>
+<p>What happens here is that the <code>App</code> component renders a <code>Toggle</code> component.
+In the <code>Toggle</code> component we render a button that you can press to turn it on or off. The button's
+text contains the current state of the component: "ON" when the <code>on</code> variable is true, otherwise "OFF".</p>
+<p>What the component renders depends on the value of the <code>on</code> variable. That's why we call React's
+<a href="https://reactjs.org/docs/hooks-state.html">useState hook</a>. The <code>useState</code> hook returns two things: the <code>on</code> variable that contains the current
+boolean value indicating the state is on or off and the <code>setOn</code> function which we must use to change
+the value of the <code>on</code> variable.</p>
+<p>With the button's <code>onClick</code> we call the <code>setOn</code> function, which makes React re-render the component
+which in turn results in the button showing the current state.</p>
+<p>What we have now is just a <code>Toggle</code> component, we haven't done anything with render props.</p>
+<h3>Let's refactor first</h3>
+<p>The toggle button is fine, but wouldn't it be nice to optionally replace it with a checkbox?
+To make this possible the first step to take is moving the button out of the <code>Toggle</code> component into a function:</p>
+<pre><code class="language-js">function renderToggleButton(toggle, on) {
+  return &#x3C;button onClick={toggle}>{on ? "ON" : "OFF"}&#x3C;/button>;
+}
+</code></pre>
+<p>This function has two arguments: a <code>toggle</code> function and the current <code>on</code> boolean value. The function renders
+a button with an <code>onClick</code> that calls the <code>toggle</code> function. Note we do not pass anything to the <code>toggle</code>
+function. It's not this function's responsibility to do the actual toggling. It only defines the UI and
+<em>when</em> toggling should take place.</p>
+<p>Now we update the <code>Toggle</code> component. It no longer renders the button, but it will call the <code>renderToggleButton</code>
+function we just created. It passes a function that calls <code>setOn</code> and we also pass the current <code>on</code> boolean value:</p>
+<pre><code class="language-js">function Toggle(props) {
+  const [on, setOn] = useState(false);
+
+  return &#x3C;>{renderToggleButton(() => setOn(!on), on)}&#x3C;/>;
+}
+</code></pre>
+<p>The only thing we did here was <em>refactor</em> the code by separating the toggle functionality from the toggle UI.
+It still only renders the toggle button.</p>
+<p>Let's create an alternative UI for toggling, a checkbox. This function returns a checkbox and also displays "ON" of "OFF"
+respectively:</p>
+<pre><code class="language-js">function renderToggleCheckbox(toggle, on) {
+  return (
+    &#x3C;>
+      &#x3C;input type="checkbox" checked={on} onChange={toggle} />
+      {on ? "ON" : "OFF"}
+    &#x3C;/>
+  );
+}
+</code></pre>
+<p>Here we also get the <code>toggle</code> function passed in and call it when the checkbox is checked or unchecked.
+But the UI is totally different.</p>
+<p>Now we can change the <code>Toggle</code> component so it renders a checkbox instead of a button:</p>
+<pre><code class="language-js">function Toggle() {
+  const [on, setOn] = useState(false);
+
+  return &#x3C;>{renderToggleCheckbox(() => setOn(!on), on)}&#x3C;/>;
+}
+</code></pre>
+<p>The toggle functionality still works, but <em>looks different</em>. We have verified our <code>Toggle</code> component has become <em>independent</em> from
+the UI.</p>
+<h3>Render props at last</h3>
+<p>The final step we have to take is to tell the <code>Toggle</code> component which UI it has to render. And we'll do that by passing in that UI.
+And as we already created two functions that return the toggle UI, we need to change the <code>Toggle</code> component so it can receive one of
+these functions. The way you pass in a function (or any value for that matter) to a component is by using <em>props</em>. And what we will
+pass via props is a render function hence the name <em>render props</em>.</p>
+<p>Let's render the <code>Toggle</code> component twice so we can pass in both render functions:</p>
+<pre><code class="language-js">function App() {
+  return (
+    &#x3C;div>
+      &#x3C;Toggle render={renderToggleButton} />
+      &#x3C;Toggle render={renderToggleCheckbox} />
+    &#x3C;/div>
+  );
+}
+</code></pre>
+<blockquote>
+<p>Note that the name of the prop containing the render function is called <code>render</code>. However, this is not required,
+it's just a <em>naming convention</em>, you can give it any name you like.</p>
+</blockquote>
+<p>The <code>Toggle</code> component should now receive props and call the <code>render</code> function from props:</p>
+<pre><code class="language-js">function Toggle(props) {
+  const [on, setOn] = useState(false);
+
+  return &#x3C;>{props.render(() => setOn(!on), on)}&#x3C;/>;
+}
+</code></pre>
+<p>And that's it! We created a <code>Toggle</code> component that is responsible for toggle functionality. How the UI looks is not its concern.
+It gets passed in a <em>render prop</em> containing a function it calls to render a UI. What we can do now is create lots of different UIs
+that implement ways to toggle.</p>
+<p>I am really excited I have not only learned the basics of the render props pattern but
+also implemented my first render props and created this blog to explain it to myself and you. My hands are itching (Dutch for being very
+eager) to create the most ridiculous toggle UIs I can think off, but maybe that's something for a next time.</p>
+<p>Check <a href="https://codesandbox.io/s/m54oh">my render props implementation</a> on CodeSandbox or the <a href="https://github.com/bouwe77/react-render-props">Github repo</a> for the full code of this blog post. Feel free to experiment with it.</p>
+<p>And if you want to know more about render props, these two blog posts are great:</p>
+<ul>
+<li>
+<p><a href="https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce">Use a render prop</a> by Michael Jackson, where he introduces the pattern way back in 2017.</p>
+</li>
+<li>
+<p><a href="https://kentcdodds.com/blog/react-hooks-whats-going-to-happen-to-render-props">What's going to happen to render props</a> by Kent C. Dodds where he explains what to do with render props now we have React hooks.</p>
+</li>
+</ul>
+<p>I ignored that last blog post when writing this blog post, but I think it's food for thought and maybe even reason for a second
+render props blog post.</p>
+</div>
+
+        <div>
+          <a
+            href="https://twitter.com/intent/tweet?text=Day 4 - Render props&url=https://bouwe.io/day-4-render-props&via=bouwe"
+            >Share on Twitter</a
+          >
+          ·
+          <a href="https://twitter.com/search?q=https://bouwe.io/day-4-render-props"
+            >Discuss on Twitter</a
+          >
+          ·
+          <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/day-4-render-props/day-4-render-props.md">Edit on GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+  </div>
+</body>
+
+</html>

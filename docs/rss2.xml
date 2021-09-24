@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>bouwe.io</title>
+        <link>https://bouwe.io</link>
+        <description>bouwe.io, a blog by Bouwe Westerdijk</description>
+        <lastBuildDate>Fri, 24 Sep 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>bouwe.io</title>
+            <url>https://bouwe.io/bouwe-react-amsterdam.png</url>
+            <link>https://bouwe.io</link>
+        </image>
+        <copyright>All rights reserved 2019 - 2021, Bouwe Westerdijk</copyright>
+        <item>
+            <title><![CDATA[What is a reducer?]]></title>
+            <link>https://bouwe.io/what-is-a-reducer</link>
+            <guid>https://bouwe.io/what-is-a-reducer</guid>
+            <pubDate>Thu, 25 Mar 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Composition with currying]]></title>
+            <link>https://bouwe.io/composition-with-currying</link>
+            <guid>https://bouwe.io/composition-with-currying</guid>
+            <pubDate>Tue, 23 Mar 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Currying: What is it?]]></title>
+            <link>https://bouwe.io/currying-what-is-it</link>
+            <guid>https://bouwe.io/currying-what-is-it</guid>
+            <pubDate>Sun, 14 Mar 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Learn React basics by creating a simple calculation game (part 3)]]></title>
+            <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3</link>
+            <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3</guid>
+            <pubDate>Thu, 07 Jan 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Learn React basics by creating a simple calculation game (Part 2)]]></title>
+            <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</link>
+            <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</guid>
+            <pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Learn React basics by creating a simple calculation game (Part 1)]]></title>
+            <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</link>
+            <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</guid>
+            <pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[My urge to share what I learn]]></title>
+            <link>https://bouwe.io/my-urge-to-share-what-i-learn</link>
+            <guid>https://bouwe.io/my-urge-to-share-what-i-learn</guid>
+            <pubDate>Wed, 04 Nov 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Goodbye Gatsby, hello static site generator]]></title>
+            <link>https://bouwe.io/goodbye-gatsby-hello-static-site-generator</link>
+            <guid>https://bouwe.io/goodbye-gatsby-hello-static-site-generator</guid>
+            <pubDate>Wed, 28 Oct 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Using Twitter for blog commenting]]></title>
+            <link>https://bouwe.io/using-twitter-for-blog-commenting</link>
+            <guid>https://bouwe.io/using-twitter-for-blog-commenting</guid>
+            <pubDate>Sat, 18 Apr 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[useEffect for handling side effects]]></title>
+            <link>https://bouwe.io/useeffect-for-handling-side-effects</link>
+            <guid>https://bouwe.io/useeffect-for-handling-side-effects</guid>
+            <pubDate>Tue, 17 Mar 2020 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Wat je leert in mijn React Foundation training]]></title>
+            <link>https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training</link>
+            <guid>https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training</guid>
+            <pubDate>Wed, 25 Sep 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Render Props Part IV - Keep It Simple Stupid]]></title>
+            <link>https://bouwe.io/render-props-part-4</link>
+            <guid>https://bouwe.io/render-props-part-4</guid>
+            <pubDate>Wed, 18 Sep 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[My own React presentation tool]]></title>
+            <link>https://bouwe.io/my-own-react-presentation-tool</link>
+            <guid>https://bouwe.io/my-own-react-presentation-tool</guid>
+            <pubDate>Sat, 29 Jun 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Render Props Part III - A flexible and reusable Toggle component]]></title>
+            <link>https://bouwe.io/render-props-part-3</link>
+            <guid>https://bouwe.io/render-props-part-3</guid>
+            <pubDate>Thu, 30 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Render Props Part II: using the Toggle component]]></title>
+            <link>https://bouwe.io/render-props-part-2</link>
+            <guid>https://bouwe.io/render-props-part-2</guid>
+            <pubDate>Mon, 20 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[5 Days of Code]]></title>
+            <link>https://bouwe.io/5-days-of-code</link>
+            <guid>https://bouwe.io/5-days-of-code</guid>
+            <pubDate>Sat, 18 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Day 4 - Render props]]></title>
+            <link>https://bouwe.io/day-4-render-props</link>
+            <guid>https://bouwe.io/day-4-render-props</guid>
+            <pubDate>Fri, 17 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Day 3 - Switched to another Gatsby starter]]></title>
+            <link>https://bouwe.io/day-3-switched-to-another-gatsby-starter</link>
+            <guid>https://bouwe.io/day-3-switched-to-another-gatsby-starter</guid>
+            <pubDate>Thu, 16 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Day 2 - Publishing my first blog posts]]></title>
+            <link>https://bouwe.io/day-2-publishing-my-first-blog-posts</link>
+            <guid>https://bouwe.io/day-2-publishing-my-first-blog-posts</guid>
+            <pubDate>Wed, 15 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[My React workshops]]></title>
+            <link>https://bouwe.io/my-react-workshops</link>
+            <guid>https://bouwe.io/my-react-workshops</guid>
+            <pubDate>Wed, 15 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Day 1 - Setting up a Gatsby blog on Netlify]]></title>
+            <link>https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify</link>
+            <guid>https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify</guid>
+            <pubDate>Tue, 14 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[Day 0 - A new challenge - 100 Days of Code]]></title>
+            <link>https://bouwe.io/day-0-a-new-challenge-100-days-of-code</link>
+            <guid>https://bouwe.io/day-0-a-new-challenge-100-days-of-code</guid>
+            <pubDate>Mon, 13 May 2019 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+    </channel>
+</rss>

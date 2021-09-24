@@ -49,7 +49,7 @@ Creating Markdown files in the correct folder, with the right name, specifying f
 
 The script is a CLI built with JavaScript and [Inquirer] and using it looks kind of like this:
 
-<img alt="Automated creation of a blog post" src="/ssg.gif" width="672"/>
+<img alt="Automated creation of a blog post" src="ssg.gif" width="672"/>
 
 ### Conclusion
 

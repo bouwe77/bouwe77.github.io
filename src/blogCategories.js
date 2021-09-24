@@ -29,7 +29,7 @@ export function getBlogCategoriesHtmlForCategoryListPage(blogCategories) {
   const template = `<div>
     <div>
     <h3>
-        <b><a href="/categories/{{ slug }}">{{ name }} ({{ count }})</a></b>
+        <b><a href="categories/{{ slug }}">{{ name }} ({{ count }})</a></b>
     </h3>
     </div>
 </div>`;
@@ -56,7 +56,7 @@ export function getBlogCategoriesHtmlForBlogPost(blogCategories) {
     blogCategories.forEach((category) => {
       if (!first) categoriesHtml += ", ";
       first = false;
-      categoriesHtml += `<a href="/categories/${createSlug(
+      categoriesHtml += `<a href="categories/${createSlug(
         category
       )}">${category}</a>`;
     });

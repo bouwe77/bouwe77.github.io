@@ -16,7 +16,7 @@ The main React topic we'll cover in this blog post is the `useEffect` hook.
 
 ### Demo
 
-<img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
+<img alt="screenshot of the simple calculation game" src="demo.png" width="350" style="border:1px solid #ccc"/>
 
 Or check out the [demo on Netlify]. Version 1 we built in [part 1] and now we will create version 2.
 

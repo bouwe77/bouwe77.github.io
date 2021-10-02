@@ -1,0 +1,30 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "bouwe77",
+      "name": "Bouwe K. Westerdijk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4126793?v=4",
+      "profile": "https://bouwe.io",
+      "contributions": [
+        "bug",
+        "blog",
+        "code",
+        "content",
+        "doc",
+        "design",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "bouwe77.github.io",
+  "projectOwner": "bouwe77",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

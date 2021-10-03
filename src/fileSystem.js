@@ -19,6 +19,7 @@ export async function createFile(filePath, fileContents) {
 }
 
 export function createFolder(folderPath) {
+  console.log({folderPath})
   shell.mkdir(folderPath);
 }
 

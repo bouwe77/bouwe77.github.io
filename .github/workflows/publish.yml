@@ -25,6 +25,9 @@ jobs:
       - name: Publish Markdown to HTML
         run: npm run publish
         
+      - name: Create CNAME file
+        run: echo 'www.bouwe.io' > docs/CNAME
+        
       - name: Commit and push
         run: |
           git config --global user.name 'Bouwe K. Westerdijk'

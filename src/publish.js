@@ -22,6 +22,7 @@ import {
   deleteFolder,
 } from "./fileSystem";
 import { getNavigationHtml } from "./navigation";
+import { createRedirectHtmlPages } from "./redirects";
 
 const navigationHtml = getNavigationHtml();
 const navigationHtmlBlogPages = getNavigationHtml("blog");
@@ -35,6 +36,9 @@ async function publish() {
 
   // Copy all files from the static folder as-is to the publish folder.
   await copyStaticFiles();
+
+  // Create redirect HTML pages for all redirects.
+  await createRedirectHtmlPages();
 
   // Get front matter and markdown content for all pages and blogs.
   const pageData = await getPageData();

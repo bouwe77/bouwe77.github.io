@@ -65,9 +65,9 @@ async function publish() {
   await createFeeds(blogData);
 
   const fgGreen = "\x1b[32m";
-  console.log(fgGreen, "    ┌─────────────┐");
-  console.log("     │   ✓ Done!   │");
-  console.log("     └─────────────┘	");
+  console.log(fgGreen, "┌─────────────┐");
+  console.log(fgGreen, "│   ✓ Done!   │");
+  console.log(fgGreen, "└─────────────┘");
   console.log("\n\n");
 }
 

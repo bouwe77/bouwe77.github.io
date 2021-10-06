@@ -1,5 +1,5 @@
 ---
-title: "Workshops and talks"
+title: "Speaking"
 ---
 
 ### Introduction
@@ -16,6 +16,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 ### Past events
 
+- Sep 24, 2021 React Query **lightning talk** @ WebinarGeek
 - Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 - Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 - Jan 29, 2021 React Foundation **workshop** (part 1) @ LakeHub Academy, Kenya (remote)

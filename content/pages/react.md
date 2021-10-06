@@ -14,7 +14,7 @@ My React blog posts are filed under the [React category] page.
 
 ### Workshops
 
-I am giving React workshops, check the [Workshops page] for more information.
+I am giving React workshops, check the [Speaking page] for more information.
 
 ### Resources
 
@@ -53,7 +53,7 @@ Other links I keep on my [Links page].
 [the beginner's guide to react]: https://egghead.io/courses/the-beginner-s-guide-to-react
 [a complete guide to useeffect]: https://overreacted.io/a-complete-guide-to-useeffect
 [react category]: /categories/react
-[workshops page]: /workshops
+[speaking page]: /speaking
 [links page]: /links
 [refactoring react: which component pattern can improve your codebase?]: https://youtu.be/2Dw8gA60d_k
 [siddharth kshetrapal]: https://sid.st

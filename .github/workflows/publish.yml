@@ -33,4 +33,5 @@ jobs:
           git add docs/*
           if ! git diff-index --quiet HEAD; then
             git commit -am "Publish Markdown to HTML" --allow-empty
+            git push
           fi

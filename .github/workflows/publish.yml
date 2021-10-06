@@ -34,4 +34,6 @@ jobs:
           if git diff-index --quiet HEAD; then
             git commit -am "Publish Markdown to HTML"
             git push
+          else
+            echo "docs were not updated: nothing to commit and push"
           fi

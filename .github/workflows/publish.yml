@@ -5,8 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab:
   workflow_dispatch:
 
 jobs:
@@ -25,6 +24,7 @@ jobs:
       - name: Publish Markdown to HTML
         run: npm run publish
 
+      # When the docs haven't changed, use "skip ci" in the commit message to prevent an error here.
       - name: Commit and push
         run: |
           git config --global user.name 'Bouwe K. Westerdijk'

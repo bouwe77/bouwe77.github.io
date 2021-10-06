@@ -4,7 +4,7 @@ const app = express();
 
 const __dirname = path.resolve();
 
-const publishFolder = __dirname + "/publish";
+const publishFolder = __dirname + "/docs";
 app.use(express.static(publishFolder, { extensions: ["html"] }));
 
 const PORT = 2234;

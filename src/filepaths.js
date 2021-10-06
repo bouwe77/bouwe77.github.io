@@ -35,6 +35,8 @@ export const filepaths = {
     path.join(__dirname, publishDirectory, "blog.html"),
   getCategoryListPublishFilePath: () =>
     path.join(__dirname, publishCategoriesDirectory, "index.html"),
+  getRedirectPublishFilePath: (redirectFrom) =>
+    path.join(__dirname, publishDirectory, redirectFrom + ".html"),
   getPublishFilePathForMarkdown: (filename) =>
     path.join(__dirname, publishDirectory, filename.replace(/\.md$/, ".html")),
   getCategoryPageFilePath: (slug) =>
@@ -55,6 +57,8 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "blog.html"),
   getCategoryTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "category.html"),
+  getRedirectTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "redirect.html"),
   getPublishRssFilePath: () =>
     path.join(__dirname, publishDirectory, "rss2.xml"),
   getPublishAtomFilePath: () =>

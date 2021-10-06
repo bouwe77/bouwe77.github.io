@@ -2,9 +2,9 @@ name: Publish Markdown and static assets to 'docs' folder
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,10 +24,7 @@ jobs:
 
       - name: Publish Markdown to HTML
         run: npm run publish
-        
-      - name: Create CNAME file
-        run: echo 'www.bouwe.io' > docs/CNAME
-        
+
       - name: Commit and push
         run: |
           git config --global user.name 'Bouwe K. Westerdijk'
@@ -35,4 +32,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add docs/*
           git commit -am "Publish Markdown to HTML"
-          git push        
+          git push

@@ -26,8 +26,6 @@ const redirects = [
 
 export async function createRedirectHtmlPages() {
   for (const redirect of redirects) {
-    console.log(`Redirecting ${redirect.from} to ${redirect.to}`);
-
     let html = await readFileContents(filepaths.getRedirectTemplateFilePath());
 
     html = html.replace(new RegExp("{{ redirect_to }}", "g"), redirect.to);

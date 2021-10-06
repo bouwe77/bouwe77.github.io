@@ -32,5 +32,5 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add docs/*
           if ! git diff-index --quiet HEAD; then
-            git commit -am "Publish Markdown to HTML"
+            git commit -am "Publish Markdown to HTML" --allow-empty
           fi

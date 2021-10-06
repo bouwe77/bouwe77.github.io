@@ -31,10 +31,5 @@ jobs:
           git config --global user.email 'bouwe77@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add docs/*
-          if ! git diff-index --quiet HEAD; then
-            git commit -am "Publish Markdown to HTML"
-            git push
-            echo "docs published"
-          else
-            echo "docs were not updated so nothing published"
-          fi
+          git commit -am "Publish Markdown to HTML"
+          git push

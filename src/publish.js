@@ -211,13 +211,18 @@ async function createHomePage(blogData) {
   await createFile(filepaths.getHomePublishFilePath(), html);
 }
 
-async function createPage(pageHtml, navigation, publishToFilePath) {
+async function createPage(
+  pageHtml,
+  navigation,
+  publishToFilePath,
+  title = constants.siteDescription
+) {
   let htmlBody = await readFileContents(filepaths.getBodyTemplateFilePath());
 
   const bodyData = { page: pageHtml, navigation };
   htmlBody = replaceTokens(htmlBody, bodyData);
 
-  const html = await getContainerHtml(htmlBody, constants.siteDescription);
+  const html = await getContainerHtml(htmlBody, title);
 
   await createFile(publishToFilePath, html);
 }
@@ -227,11 +232,11 @@ async function createBlogListPage(blogData) {
     filepaths.getBlogListTemplateFilePath()
   );
 
-  const pageData = {
+  const data = {
     blogs: getBlogsHtml(blogData.pages),
   };
 
-  pageHtml = replaceTokens(pageHtml, pageData);
+  pageHtml = replaceTokens(pageHtml, data);
 
   await createPage(
     pageHtml,
@@ -241,20 +246,21 @@ async function createBlogListPage(blogData) {
 }
 
 async function createCategoryListPage(blogData) {
-  let htmlBody = await readFileContents(
+  let pageHtml = await readFileContents(
     filepaths.getCategoryListTemplateFilePath()
   );
 
   const data = {
-    navigation: navigationHtmlBlogPages,
     categories: getBlogCategoriesHtmlForCategoryListPage(blogData.categories),
   };
 
-  htmlBody = replaceTokens(htmlBody, data);
+  pageHtml = replaceTokens(pageHtml, data);
 
-  const html = await getContainerHtml(htmlBody, constants.siteDescription);
-
-  await createFile(filepaths.getCategoryListPublishFilePath(), html);
+  await createPage(
+    pageHtml,
+    navigationHtmlBlogPages,
+    filepaths.getCategoryListPublishFilePath()
+  );
 }
 
 async function createPages(data) {
@@ -286,12 +292,13 @@ async function createPages(data) {
       return htmlBody;
     };
 
-    let body = await toHtml(makeHtmlBody, page.body);
-    let html = await getContainerHtml(body, page.attributes.title);
+    let pageHtml = await toHtml(makeHtmlBody, page.body);
 
-    await createFile(
+    await createPage(
+      pageHtml,
+      navigationHtml,
       filepaths.getPublishFilePathForMarkdown(page.filename),
-      html
+      page.attributes.title
     );
   });
 }
@@ -309,7 +316,7 @@ async function createCategoryPages(blogData) {
     const slug = createSlug(cat.name);
     const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
-    const makeHtmlBody = (content) => {
+    const makePageHtml = (content) => {
       const data = {
         title: title,
         content: content,
@@ -326,12 +333,17 @@ async function createCategoryPages(blogData) {
       blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
     );
 
-    const body = await toHtml(makeHtmlBody, blogsHtml);
-    const html = await getContainerHtml(body, title);
+    const pageHtml = await toHtml(makePageHtml, blogsHtml);
 
-    await createFile(filepaths.getCategoryPageFilePath(slug), html);
+    await createPage(
+      pageHtml,
+      navigationHtml,
+      filepaths.getCategoryPageFilePath(slug),
+      title
+    );
   });
 
+  // Create a JSON file with all the blog categories, because we need them elsewhere too.
   const categoriesJson = JSON.stringify(allCategories);
   await createFile(filepaths.getAllCategoriesJsonFilePath(), categoriesJson);
 }

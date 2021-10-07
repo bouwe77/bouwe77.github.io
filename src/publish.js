@@ -211,6 +211,17 @@ async function createHomePage(blogData) {
   await createFile(filepaths.getHomePublishFilePath(), html);
 }
 
+async function createPage(pageHtml, navigation, publishToFilePath) {
+  let htmlBody = await readFileContents(filepaths.getBodyTemplateFilePath());
+
+  const bodyData = { page: pageHtml, navigation };
+  htmlBody = replaceTokens(htmlBody, bodyData);
+
+  const html = await getContainerHtml(htmlBody, constants.siteDescription);
+
+  await createFile(publishToFilePath, html);
+}
+
 async function createBlogListPage(blogData) {
   let pageHtml = await readFileContents(
     filepaths.getBlogListTemplateFilePath()
@@ -222,13 +233,11 @@ async function createBlogListPage(blogData) {
 
   pageHtml = replaceTokens(pageHtml, pageData);
 
-  let htmlBody = await readFileContents(filepaths.getBodyTemplateFilePath());
-  const bodyData = { page: pageHtml, navigation: navigationHtmlBlogPages };
-  htmlBody = replaceTokens(htmlBody, bodyData);
-
-  const html = await getContainerHtml(htmlBody, constants.siteDescription);
-
-  await createFile(filepaths.getBlogListPublishFilePath(), html);
+  await createPage(
+    pageHtml,
+    navigationHtmlBlogPages,
+    filepaths.getBlogListPublishFilePath()
+  );
 }
 
 async function createCategoryListPage(blogData) {

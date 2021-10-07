@@ -212,15 +212,17 @@ async function createHomePage(blogData) {
 }
 
 async function createPage(
-  pageHtml,
+  pageSpecificHtml,
   navigation,
   publishToFilePath,
   title = constants.siteDescription
 ) {
-  let htmlBody = await readFileContents(filepaths.getBodyTemplateFilePath());
+  const htmlBodyTemplate = await readFileContents(
+    filepaths.getBodyTemplateFilePath()
+  );
 
-  const bodyData = { page: pageHtml, navigation };
-  htmlBody = replaceTokens(htmlBody, bodyData);
+  const bodyData = { page: pageSpecificHtml, navigation };
+  const htmlBody = replaceTokens(htmlBodyTemplate, bodyData);
 
   const html = await getContainerHtml(htmlBody, title);
 
@@ -228,7 +230,7 @@ async function createPage(
 }
 
 async function createBlogListPage(blogData) {
-  let pageHtml = await readFileContents(
+  let pageSpecificHtml = await readFileContents(
     filepaths.getBlogListTemplateFilePath()
   );
 
@@ -236,17 +238,17 @@ async function createBlogListPage(blogData) {
     blogs: getBlogsHtml(blogData.pages),
   };
 
-  pageHtml = replaceTokens(pageHtml, data);
+  pageSpecificHtml = replaceTokens(pageSpecificHtml, data);
 
   await createPage(
-    pageHtml,
+    pageSpecificHtml,
     navigationHtmlBlogPages,
     filepaths.getBlogListPublishFilePath()
   );
 }
 
 async function createCategoryListPage(blogData) {
-  let pageHtml = await readFileContents(
+  let pageSpecificHtml = await readFileContents(
     filepaths.getCategoryListTemplateFilePath()
   );
 
@@ -254,10 +256,10 @@ async function createCategoryListPage(blogData) {
     categories: getBlogCategoriesHtmlForCategoryListPage(blogData.categories),
   };
 
-  pageHtml = replaceTokens(pageHtml, data);
+  pageSpecificHtml = replaceTokens(pageSpecificHtml, data);
 
   await createPage(
-    pageHtml,
+    pageSpecificHtml,
     navigationHtmlBlogPages,
     filepaths.getCategoryListPublishFilePath()
   );
@@ -292,10 +294,10 @@ async function createPages(data) {
       return htmlBody;
     };
 
-    let pageHtml = await toHtml(makeHtmlBody, page.body);
+    let pageSpecificHtml = await toHtml(makeHtmlBody, page.body);
 
     await createPage(
-      pageHtml,
+      pageSpecificHtml,
       navigationHtml,
       filepaths.getPublishFilePathForMarkdown(page.filename),
       page.attributes.title
@@ -316,7 +318,7 @@ async function createCategoryPages(blogData) {
     const slug = createSlug(cat.name);
     const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
-    const makePageHtml = (content) => {
+    const makePageSpecificHtml = (content) => {
       const data = {
         title: title,
         content: content,
@@ -333,10 +335,10 @@ async function createCategoryPages(blogData) {
       blogData.pages.filter((p) => p.attributes.categories.includes(cat.name))
     );
 
-    const pageHtml = await toHtml(makePageHtml, blogsHtml);
+    const pageSpecificHtml = await toHtml(makePageSpecificHtml, blogsHtml);
 
     await createPage(
-      pageHtml,
+      pageSpecificHtml,
       navigationHtml,
       filepaths.getCategoryPageFilePath(slug),
       title

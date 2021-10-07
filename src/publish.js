@@ -9,7 +9,7 @@ import {
   getBlogCategoriesHtmlForCategoryListPage,
 } from "./blogCategories";
 import { getBlogsHtml } from "./blogs";
-import { createSlug, formatDate, getReadingTime } from "./utils";
+import { replaceTokens, createSlug, formatDate, getReadingTime } from "./utils";
 import { createFeeds } from "./feeds";
 import { constants } from "./constants";
 import { filepaths } from "./filepaths";
@@ -194,31 +194,17 @@ async function copyStaticFiles() {
 async function createHomePage(blogData) {
   let htmlBody = await readFileContents(filepaths.getHomeTemplateFilePath());
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ navigation }}", "g"),
-    navigationHtml
-  );
-
   const numberOfBlogPosts = 5;
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ blogs }}", "g"),
-    getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts))
-  );
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ blogCategories }}", "g"),
-    getBlogCategoriesHtmlForHomepage(blogData.categories)
-  );
+  const data = {
+    navigation: navigationHtml,
+    blogs: getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts)),
+    blogCategories: getBlogCategoriesHtmlForHomepage(blogData.categories),
+    gitHubRepoUrl: constants.gitHubRepoUrl,
+    yearNow: new Date().getFullYear(),
+  };
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ gitHubRepoUrl }}", "g"),
-    constants.gitHubRepoUrl
-  );
-
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ yearNow }}", "g"),
-    new Date().getFullYear()
-  );
+  htmlBody = replaceTokens(htmlBody, data);
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
@@ -226,19 +212,19 @@ async function createHomePage(blogData) {
 }
 
 async function createBlogListPage(blogData) {
-  let htmlBody = await readFileContents(
+  let pageHtml = await readFileContents(
     filepaths.getBlogListTemplateFilePath()
   );
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ navigation }}", "g"),
-    navigationHtmlBlogPages
-  );
+  const pageData = {
+    blogs: getBlogsHtml(blogData.pages),
+  };
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ blogs }}", "g"),
-    getBlogsHtml(blogData.pages)
-  );
+  pageHtml = replaceTokens(pageHtml, pageData);
+
+  let htmlBody = await readFileContents(filepaths.getBodyTemplateFilePath());
+  const bodyData = { page: pageHtml, navigation: navigationHtmlBlogPages };
+  htmlBody = replaceTokens(htmlBody, bodyData);
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
@@ -250,15 +236,12 @@ async function createCategoryListPage(blogData) {
     filepaths.getCategoryListTemplateFilePath()
   );
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ navigation }}", "g"),
-    navigationHtmlBlogPages
-  );
+  const data = {
+    navigation: navigationHtmlBlogPages,
+    categories: getBlogCategoriesHtmlForCategoryListPage(blogData.categories),
+  };
 
-  htmlBody = htmlBody.replace(
-    new RegExp("{{ categories }}", "g"),
-    getBlogCategoriesHtmlForCategoryListPage(blogData.categories)
-  );
+  htmlBody = replaceTokens(htmlBody, data);
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
@@ -274,37 +257,22 @@ async function createPages(data) {
       : getNavigationHtml(page.slug);
 
     const makeHtmlBody = (content) => {
-      let htmlBody = template.replace(
-        new RegExp("{{ navigation }}", "g"),
-        navigationHtml
-      );
+      const data = {
+        navigation: navigationHtml,
+        title: page.attributes.title,
+        date: page.attributes.date
+          ? formatDate(page.attributes.date)
+          : undefined,
+        categories: getBlogCategoriesHtmlForBlogPost(
+          page.attributes.categories
+        ),
+        readingTime: ` · ${page.readingTime} minute read`,
+        content,
+        slug: page.slug,
+        editOnGitHubUrl: page.editOnGitHubUrl,
+      };
 
-      htmlBody = htmlBody.replace(
-        new RegExp("{{ title }}", "g"),
-        page.attributes.title
-      );
-
-      let formattedDate = "";
-      if (page.attributes.date)
-        formattedDate = formatDate(page.attributes.date);
-      htmlBody = htmlBody.replace(new RegExp("{{ date }}", "g"), formattedDate);
-
-      htmlBody = htmlBody.replace(
-        new RegExp("{{ categories }}", "g"),
-        getBlogCategoriesHtmlForBlogPost(page.attributes.categories)
-      );
-
-      htmlBody = htmlBody.replace(
-        new RegExp("{{ readingTime }}", "g"),
-        ` · ${page.readingTime} minute read`
-      );
-
-      htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
-      htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), page.slug);
-      htmlBody = htmlBody.replace(
-        new RegExp("{{ editOnGitHubUrl }}", "g"),
-        page.editOnGitHubUrl
-      );
+      const htmlBody = replaceTokens(template, data);
 
       return htmlBody;
     };
@@ -333,14 +301,15 @@ async function createCategoryPages(blogData) {
     const title = `${constants.categoryPageTitle} "${cat.name}"`;
 
     const makeHtmlBody = (content) => {
-      let htmlBody = template;
-      htmlBody = htmlBody.replace(new RegExp("{{ title }}", "g"), title);
-      htmlBody = htmlBody.replace(new RegExp("{{ content }}", "g"), content);
-      htmlBody = htmlBody.replace(new RegExp("{{ slug }}", "g"), slug);
-      htmlBody = htmlBody.replace(
-        new RegExp("{{ navigation }}", "g"),
-        navigationHtmlBlogPages
-      );
+      const data = {
+        title: title,
+        content: content,
+        slug: slug,
+        navigation: navigationHtmlBlogPages,
+      };
+
+      const htmlBody = replaceTokens(template, data);
+
       return htmlBody;
     };
 
@@ -385,9 +354,12 @@ async function getContainerHtml(body, title) {
     filepaths.getContainerTemplateFilePath()
   );
 
-  let html = template
-    .replace(new RegExp("{{ title }}", "g"), title)
-    .replace(new RegExp("{{ body }}", "g"), body);
+  const data = {
+    title: title,
+    body: body,
+  };
+
+  let html = replaceTokens(template, data);
 
   return html;
 }

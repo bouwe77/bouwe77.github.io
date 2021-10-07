@@ -1,5 +1,13 @@
 import slugify from "slugify";
 
+export function replaceTokens(html, data) {
+  for (const token of Object.keys(data)) {
+    html = html.replace(new RegExp(`{{ ${token} }}`, "g"), data[token]);
+  }
+
+  return html;
+}
+
 export function createSlug(text) {
   return slugify(text, { lower: true, strict: true });
 }

@@ -45,6 +45,8 @@ export const filepaths = {
     path.join(__dirname, "src", "allCategories.json"),
   getContainerTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "container.html"),
+  getBodyTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "body.html"),
   getHomeTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "home.html"),
   getBlogListTemplateFilePath: () =>

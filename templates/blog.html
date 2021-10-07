@@ -1,23 +1,23 @@
-        <div>
-          <h2 class="blog-title">
-            <a href="/{{ slug }}">{{ title }}</a>
-          </h2>
-          <div class="blog-meta">
-            {{ date }} {{ categories }} {{ readingTime }}
-          </div>
+      <div>
+        <h2 class="blog-title">
+          <a href="/{{ slug }}">{{ title }}</a>
+        </h2>
+        <div class="blog-meta">
+          {{ date }} {{ categories }} {{ readingTime }}
         </div>
+      </div>
 
-        <div>{{ content }}</div>
+      <div>{{ content }}</div>
 
-        <div>
-          <a
-            href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
-            >Share on Twitter</a
-          >
-          ·
-          <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
-            >Discuss on Twitter</a
-          >
-          ·
-          <a href="{{ editOnGitHubUrl }}">Edit on GitHub</a>
-        </div>
+      <div>
+        <a
+          href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="{{ editOnGitHubUrl }}">Edit on GitHub</a>
+      </div>

@@ -192,7 +192,9 @@ async function copyStaticFiles() {
 }
 
 async function createHomePage(blogData) {
-  let htmlBody = await readFileContents(filepaths.getHomeTemplateFilePath());
+  const pageTemplate = await readFileContents(
+    filepaths.getHomeTemplateFilePath()
+  );
 
   const numberOfBlogPosts = 5;
 
@@ -204,7 +206,7 @@ async function createHomePage(blogData) {
     yearNow: new Date().getFullYear(),
   };
 
-  htmlBody = replaceTokens(htmlBody, data);
+  const htmlBody = replaceTokens(pageTemplate, data);
 
   const html = await getContainerHtml(htmlBody, constants.siteDescription);
 
@@ -229,8 +231,22 @@ async function createPage(
   await createFile(publishToFilePath, html);
 }
 
+/*
+
+const sum = pipeAsyncFunctions(
+  x => x + 1,
+  x => new Promise(resolve => setTimeout(() => resolve(x + 2), 1000)),
+  x => x + 3,
+  async x => (await x) + 4
+);
+(async() => {
+  console.log(await sum(5)); // 15 (after one second)
+})();
+
+  */
+
 async function createBlogListPage(blogData) {
-  let pageSpecificHtml = await readFileContents(
+  let pageTemplate = await readFileContents(
     filepaths.getBlogListTemplateFilePath()
   );
 
@@ -238,7 +254,7 @@ async function createBlogListPage(blogData) {
     blogs: getBlogsHtml(blogData.pages),
   };
 
-  pageSpecificHtml = replaceTokens(pageSpecificHtml, data);
+  const pageSpecificHtml = replaceTokens(pageTemplate, data);
 
   await createPage(
     pageSpecificHtml,
@@ -248,7 +264,7 @@ async function createBlogListPage(blogData) {
 }
 
 async function createCategoryListPage(blogData) {
-  let pageSpecificHtml = await readFileContents(
+  let pageTemplate = await readFileContents(
     filepaths.getCategoryListTemplateFilePath()
   );
 
@@ -256,7 +272,7 @@ async function createCategoryListPage(blogData) {
     categories: getBlogCategoriesHtmlForCategoryListPage(blogData.categories),
   };
 
-  pageSpecificHtml = replaceTokens(pageSpecificHtml, data);
+  const pageSpecificHtml = replaceTokens(pageTemplate, data);
 
   await createPage(
     pageSpecificHtml,
@@ -266,7 +282,7 @@ async function createCategoryListPage(blogData) {
 }
 
 async function createPages(data) {
-  const template = await readFileContents(data.template);
+  const pageTemplate = await readFileContents(data.template);
 
   data.pages.forEach(async (page) => {
     const navigationHtml = page.isBlog
@@ -289,7 +305,7 @@ async function createPages(data) {
         editOnGitHubUrl: page.editOnGitHubUrl,
       };
 
-      const htmlBody = replaceTokens(template, data);
+      const htmlBody = replaceTokens(pageTemplate, data);
 
       return htmlBody;
     };
@@ -306,7 +322,7 @@ async function createPages(data) {
 }
 
 async function createCategoryPages(blogData) {
-  const template = await readFileContents(
+  const pageTemplate = await readFileContents(
     filepaths.getCategoryTemplateFilePath()
   );
 
@@ -326,7 +342,7 @@ async function createCategoryPages(blogData) {
         navigation: navigationHtmlBlogPages,
       };
 
-      const htmlBody = replaceTokens(template, data);
+      const htmlBody = replaceTokens(pageTemplate, data);
 
       return htmlBody;
     };

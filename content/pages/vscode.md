@@ -5,70 +5,88 @@ title: VS Code Tips & Tricks
 ### Alfred snippets
 
 Open Alfred Snippets pane
-⌘ + SHIFT + L
+
+> ⌘ + SHIFT + L
 
 ### VS Code Appearance
 
 Zen Mode
-⌘ K, Z
+
+> ⌘ K, Z
 
 Side Bar
-⌘ B
+
+> ⌘ B
 
 Toggle hide/show Terminal
-⌘ J
+
+> ⌘ J
 
 Zoom in
-⌘ =
+
+> ⌘ =
 
 Zoom out
-⌘ -
+
+> ⌘ -
 
 ### Refactoring
 
 Selection into new file
-CTRL + SHIFT + R
+
+> CTRL + SHIFT + R
 
 ### Navigating cursor
 
 To beginning of the line
-⌘ ⇦
+
+> ⌘ ⇦
 
 To the end of the line
-⌘ ⇨
+
+> ⌘ ⇨
 
 Next word
-ALT ⇨
+
+> ALT ⇨
 
 Previous word
-ALT ⇦
+
+> ALT ⇦
 
 ### Selecting / replacing
 
 Select word
 (and replace multiple occurrences)
-⌘ D
-(repeat to select the other same words one by one)
+
+> ⌘ D
+> (repeat to select the other same words one by one)
 
 Select line
-...?
+
+> ...?
 
 ### Moving/duplicating
 
 Move line up
-ALT ⇧
+
+> ALT ⇧
 
 Move line down
-ALT ⇩
+
+> ALT ⇩
 
 Duplicate line above
-ALT SHIFT ⇧
+
+> ALT SHIFT ⇧
 
 Duplicate line below
-ALT SHIFT ⇩
+
+> ALT SHIFT ⇩
 
 ### Multi cursor
 
 Create a multi cursor
-⌘ ALT ⇧
-(or down)
+
+> ⌘ ALT ⇧
+> (or down)

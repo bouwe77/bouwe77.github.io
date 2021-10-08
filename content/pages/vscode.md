@@ -64,7 +64,7 @@ Select word
 
 Select line
 
-> ...?
+> ⌘ L
 
 ### Moving/duplicating
 

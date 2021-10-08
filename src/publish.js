@@ -199,7 +199,6 @@ async function createHomePage(blogData) {
   const numberOfBlogPosts = 5;
 
   const data = {
-    navigation: navigationHtml,
     blogs: getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts)),
     blogCategories: getBlogCategoriesHtmlForHomepage(blogData.categories),
     gitHubRepoUrl: constants.gitHubRepoUrl,
@@ -208,7 +207,11 @@ async function createHomePage(blogData) {
 
   const htmlBody = replaceTokens(pageTemplate, data);
 
-  const html = await getContainerHtml(htmlBody, constants.siteDescription);
+  const html = await getContainerHtml(
+    htmlBody,
+    constants.siteDescription,
+    navigationHtml
+  );
 
   await createFile(filepaths.getHomePublishFilePath(), html);
 }
@@ -223,10 +226,10 @@ async function createPage(
     filepaths.getBodyTemplateFilePath()
   );
 
-  const bodyData = { page: pageSpecificHtml, navigation };
+  const bodyData = { page: pageSpecificHtml };
   const htmlBody = replaceTokens(htmlBodyTemplate, bodyData);
 
-  const html = await getContainerHtml(htmlBody, title);
+  const html = await getContainerHtml(htmlBody, title, navigation);
 
   await createFile(publishToFilePath, html);
 }
@@ -297,7 +300,6 @@ async function createPages(data) {
 
     const makeHtmlBody = (content) => {
       const data = {
-        navigation: navigationHtml,
         title: page.attributes.title,
         date: page.attributes.date
           ? formatDate(page.attributes.date)
@@ -345,7 +347,6 @@ async function createCategoryPages(blogData) {
         title: title,
         content: content,
         slug: slug,
-        navigation: navigationHtmlBlogPages,
       };
 
       const htmlBody = replaceTokens(pageTemplate, data);
@@ -394,7 +395,7 @@ function getEditOnGitHubUrl(relativeFilePath) {
   return `${constants.gitHubEditUrl}${relativeFilePath}`;
 }
 
-async function getContainerHtml(body, title) {
+async function getContainerHtml(body, title, navigation) {
   let template = await readFileContents(
     filepaths.getContainerTemplateFilePath()
   );
@@ -402,6 +403,7 @@ async function getContainerHtml(body, title) {
   const data = {
     title,
     body,
+    navigation,
   };
 
   let html = replaceTokens(template, data);

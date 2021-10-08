@@ -289,7 +289,7 @@ async function createPages(data) {
       ? navigationHtmlBlogPages
       : getNavigationHtml(page.slug);
 
-    const interactivityHtml = getInteractivityHtml(
+    const interactivityHtml = await getInteractivityHtml(
       page.attributes.title,
       page.slug,
       page.editOnGitHubUrl

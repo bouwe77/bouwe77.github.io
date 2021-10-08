@@ -61,6 +61,8 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "category.html"),
   getRedirectTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "redirect.html"),
+  getInteractivityTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "interactivity.html"),
   getPublishRssFilePath: () =>
     path.join(__dirname, publishDirectory, "rss2.xml"),
   getPublishAtomFilePath: () =>

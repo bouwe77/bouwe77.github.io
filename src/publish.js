@@ -289,6 +289,12 @@ async function createPages(data) {
       ? navigationHtmlBlogPages
       : getNavigationHtml(page.slug);
 
+    const interactivityHtml = getInteractivityHtml(
+      page.attributes.title,
+      page.slug,
+      page.editOnGitHubUrl
+    );
+
     const makeHtmlBody = (content) => {
       const data = {
         navigation: navigationHtml,
@@ -302,7 +308,7 @@ async function createPages(data) {
         readingTime: ` · ${page.readingTime} minute read`,
         content,
         slug: page.slug,
-        editOnGitHubUrl: page.editOnGitHubUrl,
+        interactivity: interactivityHtml,
       };
 
       const htmlBody = replaceTokens(pageTemplate, data);
@@ -394,8 +400,24 @@ async function getContainerHtml(body, title) {
   );
 
   const data = {
-    title: title,
-    body: body,
+    title,
+    body,
+  };
+
+  let html = replaceTokens(template, data);
+
+  return html;
+}
+
+async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
+  let template = await readFileContents(
+    filepaths.getInteractivityTemplateFilePath()
+  );
+
+  const data = {
+    title,
+    slug,
+    editOnGitHubUrl,
   };
 
   let html = replaceTokens(template, data);

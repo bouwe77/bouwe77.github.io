@@ -4,15 +4,4 @@
 
       <div>{{ content }}</div>
 
-      <div>
-        <a
-          href="https://twitter.com/intent/tweet?text={{ title }}&url=https://bouwe.io/{{ slug }}&via=bouwe"
-          >Share on Twitter</a
-        >
-        ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/{{ slug }}"
-          >Discuss on Twitter</a
-        >
-        ·
-        <a href="{{ editOnGitHubUrl }}">Edit on GitHub</a>
-      </div>
+      {{ interactivity }}

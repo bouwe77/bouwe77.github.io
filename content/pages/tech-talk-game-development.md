@@ -58,6 +58,18 @@ title: Game Development Tech Talk
 
 ---
 
+## How about architecture, testing, ...?
+
+- A game isn’t necessarily only frontend
+
+- Backend for storing high scores
+
+- Web sockets for real time interactivity 
+
+- Test automation on both front and back end
+
+---
+
 ## Fun
 
 When learning something new, especally in your own time, the most importan thing is it needs to be fun.

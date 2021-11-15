@@ -30,6 +30,7 @@ I will keep updating this list as it is a note to self in the first place.
 - [Never Write Another Higher Order Component] by [Michael Jackson]
 - [Getting Closure on React Hooks] by [swyx]
 - [Using Composition in React to Avoid "Prop Drilling"] by [Michael Jackson]
+- [React is Fiction] by [Jenn Creighton]
 - [The Beginner's Guide to React] (free Egghead course) by [Kent C. Dodds]
 - [A Complete Guide to useEffect] by [Dan Abramov]
 - [Refactoring React: Which component pattern can improve your codebase?] by [Siddharth Kshetrapal]
@@ -57,3 +58,6 @@ Other links I keep on my [Links page].
 [links page]: /links
 [refactoring react: which component pattern can improve your codebase?]: https://youtu.be/2Dw8gA60d_k
 [siddharth kshetrapal]: https://sid.st
+[react is fiction]: https://youtu.be/kqh4lz2Lkzs
+[jenn creighton]: https://twitter.com/gurlcode
+ 

@@ -2,11 +2,15 @@
 title: Remix
 ---
 
+# What
+
 Web framework
 
 Michael Jackson, Ryan Florence, React Training
 
 Built on React Router 6
+
+# Platforms
 
 Deploy to any server
 
@@ -22,6 +26,8 @@ Server entry point: Send real HTML over the wire
 Has a `handleRequest` function.
 
 Both server and client gets compiled to HTML returned by the server.
+
+# Routes
 
 Root route
 

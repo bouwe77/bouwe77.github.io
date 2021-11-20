@@ -95,19 +95,36 @@
 <p>Web framework</p>
 <p>Michael Jackson, Ryan Florence, React Training</p>
 <p>Built on React Router 6</p>
+<p>Met React, en alle frameworks zijn we steeds verder verwijderd van de fundamentals of the web,
+zoals HTTP, forms, etc. </p>
+<p>Weet je nog hoe ik in mijn vorige lightning talk vertelde over server state
+en client state? Het probleem is er vanwege een stricte scheiding tussen server en client apps
+en steeds complexer wordende frontends.</p>
+<p>Ik ben oud genoeg om te weten dat dat vroeger anders ging, en de makers van Remix ook. Dus wat zij met Remix doen
+is de developer experience van tegenwoordig, dus bijv. declaratief programmeren in JS en React combineren met de
+fundamentals van het web, zoals HTTP, Request/Response, forms, cookies enz.</p>
+<p>En ondanks dat je je Remix app bouwt in JavaScript en React betekent niet per se dat je app zelf in de browser ook een JS app is.
+Het kan zijn dat de server gewoon HTML rendert naar de browser, bijvoorbeeld als je een heel simpel form hebt.</p>
+<p>Remix lost de problemen niet op, zoals bijvoorbeeld React Query wel doet, maar elimineert het probleem juist. Een voorbeeld is dat je geen cache hoeft bij te houden, omdat de browser dat al kan doen via HTTP caching headers. Dus door je HTTP headers goed te zetten in je Remix code is er geen abstractie en geen code nodig. Je elimineert het probleem van caching i.p.v. het op te lossen zoals React Query doet.</p>
+<p>React makes you a better JS developer, and Remix makes you a better web developer.</p>
 <h1>Platforms</h1>
 <p>Deploy to any server</p>
 <p>Starter templates: Express (Node), Vercel, AWS Lambda Architect</p>
 <p>Later: Netlify, Azure, Firebase, CloudFlare workers</p>
 <h1>Client/Server</h1>
-<p>Client entry point</p>
+<p>Client entry point: browser rendering/hydration</p>
 <p>Server entry point: Send real HTML over the wire
 Has a <code>handleRequest</code> function.</p>
 <p>Both server and client gets compiled to HTML returned by the server.</p>
+<p>In the future, if you would omit the client entry point, Remix assumes it's a fully server rendered app, and if you
+omit the server entry point it's a fully client rendered app like Create React App.</p>
 <h1>Routes</h1>
 <p>Root route</p>
+<p>Define routes via filesystem, and/or via a custom routes </p>
 <p>Each route can describe their own meta tags</p>
-<p>Each route can have links (e.g. CSS)</p>
+<p>Each route can have links (e.g. CSS), which is another example of eliminating a problem instead of solving it like, obfuscating CSS classes, making them unique, with hashes by using CSS Modules, CSS-in-JS, Styled Components, ... </p>
+<h1>Layouts</h1>
+<p>When a route has the same name as a folder, it becomes a "layout route" for the child routes inside the folder. Render an <Outlet /> and the child routes will appear there. This is how you can have multiple levels of persistent layout nesting associated with URLs.</p>
 <p>When rendering in the browser these links are loaded, but also removed, which makes sure you have no CSS conflicts: You exactly know which styles are used.</p>
 </div>
 

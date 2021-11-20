@@ -10,6 +10,24 @@ Michael Jackson, Ryan Florence, React Training
 
 Built on React Router 6
 
+Met React, en alle frameworks zijn we steeds verder verwijderd van de fundamentals of the web,
+zoals HTTP, forms, etc. 
+
+Weet je nog hoe ik in mijn vorige lightning talk vertelde over server state
+en client state? Het probleem is er vanwege een stricte scheiding tussen server en client apps
+en steeds complexer wordende frontends.
+
+Ik ben oud genoeg om te weten dat dat vroeger anders ging, en de makers van Remix ook. Dus wat zij met Remix doen
+is de developer experience van tegenwoordig, dus bijv. declaratief programmeren in JS en React combineren met de 
+fundamentals van het web, zoals HTTP, Request/Response, forms, cookies enz.
+
+En ondanks dat je je Remix app bouwt in JavaScript en React betekent niet per se dat je app zelf in de browser ook een JS app is.
+Het kan zijn dat de server gewoon HTML rendert naar de browser, bijvoorbeeld als je een heel simpel form hebt.
+
+Remix lost de problemen niet op, zoals bijvoorbeeld React Query wel doet, maar elimineert het probleem juist. Een voorbeeld is dat je geen cache hoeft bij te houden, omdat de browser dat al kan doen via HTTP caching headers. Dus door je HTTP headers goed te zetten in je Remix code is er geen abstractie en geen code nodig. Je elimineert het probleem van caching i.p.v. het op te lossen zoals React Query doet.
+
+React makes you a better JS developer, and Remix makes you a better web developer.
+
 # Platforms
 
 Deploy to any server
@@ -27,6 +45,9 @@ Has a `handleRequest` function.
 
 Both server and client gets compiled to HTML returned by the server.
 
+In the future, if you would omit the client entry point, Remix assumes it's a fully server rendered app, and if you
+omit the server entry point it's a fully client rendered app like Create React App.
+
 # Routes
 
 Root route
@@ -35,7 +56,7 @@ Define routes via filesystem, and/or via a custom routes
 
 Each route can describe their own meta tags
 
-Each route can have links (e.g. CSS)
+Each route can have links (e.g. CSS), which is another example of eliminating a problem instead of solving it like, obfuscating CSS classes, making them unique, with hashes by using CSS Modules, CSS-in-JS, Styled Components, ... 
 
 # Layouts
 

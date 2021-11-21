@@ -43,10 +43,10 @@ Client entry point: browser rendering/hydration
 Server entry point: Send real HTML over the wire
 Has a `handleRequest` function.
 
-Both server and client gets compiled to HTML returned by the server.
-
 In the future, if you would omit the client entry point, Remix assumes it's a fully server rendered app, and if you
 omit the server entry point it's a fully client rendered app like Create React App.
+
+There is a server build and a client build
 
 # Routes
 

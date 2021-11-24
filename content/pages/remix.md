@@ -28,9 +28,13 @@ Remix lost de problemen niet op, zoals bijvoorbeeld React Query wel doet, maar e
 
 React makes you a better JS developer, and Remix makes you a better web developer.
 
+# SSR + SSG
+
+Remix does not support SSG, unless you download the build website yourself.
+
 # Platforms
 
-Deploy to any server
+Remix doesn't want to own your platform, or your server. Deploy to any server, it's all about choices.
 
 Starter templates: Express (Node), Vercel, AWS Lambda Architect
 
@@ -48,9 +52,13 @@ omit the server entry point it's a fully client rendered app like Create React A
 
 There is a server build and a client build
 
+Server is a "cloud function", depending on the platform. The client is an asset which you can put on a CDN.
+
+Remix does not (yet) support Client Side Rendering, but this will probably be done service workers.
+
 # Routes
 
-Root route
+Root route, nested routes
 
 Define routes via filesystem, and/or via a custom routes 
 
@@ -58,6 +66,7 @@ Each route can describe their own meta tags
 
 Each route can have links (e.g. CSS), which is another example of eliminating a problem instead of solving it like, obfuscating CSS classes, making them unique, with hashes by using CSS Modules, CSS-in-JS, Styled Components, ... 
 
+If a route only returns a LoaderFunction, or ActionFunction, it becomes an API endpoint. Without nested routing of course, now it's an independent route.
 # Layouts
 
 When a route has the same name as a folder, it becomes a "layout route" for the child routes inside the folder. Render an <Outlet /> and the child routes will appear there. This is how you can have multiple levels of persistent layout nesting associated with URLs.

@@ -16,7 +16,8 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 ### Past events
 
-- Sep 24, 2021 React Query **lightning talk** @ WebinarGeek
+- Nov 26, 2021 [REMIX] **lightning talk** @ WebinarGeek
+- Sep 24, 2021 [React Query] **lightning talk** @ WebinarGeek
 - Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 - Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 - Jan 29, 2021 React Foundation **workshop** (part 1) @ LakeHub Academy, Kenya (remote)
@@ -43,8 +44,10 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 That would be awesome! 😃 Contact me on [Twitter]!
 
-[live coding a game in react]: https://newnexus.nl/webinar/live-coding-a-game-in-react/
-[leren is delen, delen is leren]: https://newnexus.nl/webinar/leren-is-delen-delen-is-leren/
-[power to the client with graphql]: https://newnexus.nl/webinar/power-to-the-client-with-graphql/
+[live coding a game in react]: https://newnexus.nl/webinar/live-coding-a-game-in-react
+[leren is delen, delen is leren]: https://newnexus.nl/webinar/leren-is-delen-delen-is-leren
+[power to the client with graphql]: https://newnexus.nl/webinar/power-to-the-client-with-graphql
 [workshops category]: /categories/workshops
 [twitter]: https://twitter.com/bouwe
+[react query]: https://react-query.tanstack.com
+[remix]: https://remix.run

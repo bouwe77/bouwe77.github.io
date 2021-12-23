@@ -8,6 +8,10 @@ const publishDirectory = "docs";
 const publishCategoriesDirectory = "docs/categories";
 const templatesDirectory = "templates";
 
+function convertMarkdownFilenameToHtmlFilename(filename) {
+  return filename.replace(/\.md$/, ".html");
+}
+
 export const filepaths = {
   getPublishDirectory: () => path.join(__dirname, publishDirectory),
   getPublishCategoriesDirectory: () =>
@@ -38,7 +42,14 @@ export const filepaths = {
   getRedirectPublishFilePath: (redirectFrom) =>
     path.join(__dirname, publishDirectory, redirectFrom + ".html"),
   getPublishFilePathForMarkdown: (filename) =>
-    path.join(__dirname, publishDirectory, filename.replace(/\.md$/, ".html")),
+    path.join(
+      __dirname,
+      publishDirectory,
+      convertMarkdownFilenameToHtmlFilename(filename)
+    ),
+  getPagesPublishFilePath: () =>
+    path.join(__dirname, publishDirectory, "pages.html"),
+  convertMarkdownFilenameToHtmlFilename,
   getCategoryPageFilePath: (slug) =>
     path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
   getAllCategoriesJsonFilePath: () =>
@@ -55,6 +66,8 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "categories.html"),
   getPageTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "page.html"),
+  getPagesTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "pages.html"),
   getBlogTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "blog.html"),
   getCategoryTemplateFilePath: () =>

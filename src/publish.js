@@ -8,6 +8,7 @@ import {
   getBlogCategoriesHtmlForBlogPost,
   getBlogCategoriesHtmlForCategoryListPage,
 } from "./blogCategories";
+import { getHtmlForPagesPage } from "./pages";
 import { getBlogsHtml } from "./blogs";
 import { replaceTokens, createSlug, formatDate, getReadingTime } from "./utils";
 import { createFeeds } from "./feeds";
@@ -62,6 +63,10 @@ async function publish() {
   // Create a page for each blog category.
   await createCategoryPages(blogData);
 
+  // Create a PAGES page, which displays links to all pages from the content/pages folder.
+  await createPagesPage(pageData);
+
+  // Create RSS and Atom feeds.
   await createFeeds(blogData);
 
   const fgGreen = "\x1b[32m";
@@ -233,20 +238,6 @@ async function createPage(
 
   await createFile(publishToFilePath, html);
 }
-
-/*
-
-const sum = pipeAsyncFunctions(
-  x => x + 1,
-  x => new Promise(resolve => setTimeout(() => resolve(x + 2), 1000)),
-  x => x + 3,
-  async x => (await x) + 4
-);
-(async() => {
-  console.log(await sum(5)); // 15 (after one second)
-})();
-
-  */
 
 async function createBlogListPage(blogData) {
   let pageTemplate = await readFileContents(
@@ -425,4 +416,29 @@ async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
   let html = replaceTokens(template, data);
 
   return html;
+}
+
+// Create a page with links to all pages from the content/pages folder.
+async function createPagesPage(pageData) {
+  const pages = pageData.pages.map((page) => ({
+    title: page.attributes.title,
+    slug: page.slug,
+  }));
+
+  const data = {
+    pages: getHtmlForPagesPage(pages),
+  };
+
+  const pageTemplate = await readFileContents(
+    filepaths.getPagesTemplateFilePath()
+  );
+
+  const htmlBody = replaceTokens(pageTemplate, data);
+
+  await createPage(
+    htmlBody,
+    getNavigationHtml("pages"),
+    filepaths.getPagesPublishFilePath(),
+    "Pages"
+  );
 }

@@ -1,9 +1,7 @@
 export function getHtmlForPagesPage(pages) {
   const template = `<div>
     <div>
-    <h3>
         <b><a href="/{{ slug }}">{{ title }}</a></b>
-    </h3>
     </div>
 </div>`;
 

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bouwe.io</id>
     <title>bouwe.io</title>
-    <updated>2021-12-23T00:00:00.000Z</updated>
+    <updated>2021-12-29T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Bouwe Westerdijk</name>
@@ -15,6 +15,17 @@
     <logo>https://bouwe.io/bouwe-react-amsterdam.png</logo>
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2021, Bouwe Westerdijk</rights>
+    <entry>
+        <title type="html"><![CDATA[Optimize renders without memoization]]></title>
+        <id>https://bouwe.io/optimize-renders-without-memoization</id>
+        <link href="https://bouwe.io/optimize-renders-without-memoization"/>
+        <updated>2021-12-28T00:00:00.000Z</updated>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[How I sort out my ideas and thoughts]]></title>
         <id>https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts</id>

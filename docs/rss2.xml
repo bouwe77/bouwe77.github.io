@@ -4,7 +4,7 @@
         <title>bouwe.io</title>
         <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
-        <lastBuildDate>Thu, 23 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Dec 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,13 @@
             <link>https://bouwe.io</link>
         </image>
         <copyright>All rights reserved 2019 - 2021, Bouwe Westerdijk</copyright>
+        <item>
+            <title><![CDATA[Optimize renders without memoization]]></title>
+            <link>https://bouwe.io/optimize-renders-without-memoization</link>
+            <guid>https://bouwe.io/optimize-renders-without-memoization</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
         <item>
             <title><![CDATA[How I sort out my ideas and thoughts]]></title>
             <link>https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts</link>

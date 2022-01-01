@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Optimize renders without memoization</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Optimize renders without memoization" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+          </div>
+        </div>
+      </header>
+  
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/optimize-renders-without-memoization">Optimize renders without memoization</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 28, 2021  · <a href="/categories/react">React</a>, <a href="/categories/performance">Performance</a>  · 5 minute read
+        </div>
+      </div>
+
+      <div><h3>Introduction</h3>
+<p>In this blog post I want to introduce an alternative to the ways React offers to memoize components. Memoization is basically a caching mechanism, which let's you control when components should (or should not) be rerendered.</p>
+<p>React is all about composition, and the more I use (and learn about) React I realize composition is a solution for many cases where often more complex solutions, for example memoization, seem appealing, while they are not always necessary.</p>
+<p>But before I introduce an alternative for memoization, let's talk a bit more about what rendering and memoization are.</p>
+<h3>Rendering</h3>
+<p>If you open your React app in the browser, React will render the components for you. In other words, React will <em>call</em> your component functions, create React elements out of the JSX in those components, and then commit those elements to the browser DOM.</p>
+<p>From then on, only the component(s) whose state has changed will be rerendered. React will then compare the created React elements of those rerendered components to the elements in the Virtual DOM to determine which changes actually need to be committed to the browser DOM.</p>
+<p>State changes are the way to change the UI, and rendering is the way to apply those changes. This is how React works, and React does this very fast and efficient.</p>
+<p>However, it is very well possible that the result of a rerender results in no changes need to be made to the DOM. And because it still takes some effort for React to render those elements, it can be beneficial to be at least a little bit mindful about this: Do my React components cause unnecessary rerenders?</p>
+<h3>Unnecessary rerenders</h3>
+<p>An unnecessary rerender is a render that does not result in DOM changes that need to be committed.</p>
+<p>Although not something that will happen quickly, or often, but unnecessary rerenders could even be the cause for performance problems. Especially in big, complex applications. Because again, React is very fast and efficient, but at some point it can just be too much.</p>
+<p>There are many ways to prevent unnecessary rerenders, or even performance problems. Most notably by colocating state in the component where it is actually used, so only that component needs to be rerendered. And by making what needs to be rendered fast and efficient: If rendering your component takes 2 milliseconds, then it perhaps isn't such a big deal to render it a hundred times...</p>
+<p>If these ways are not sufficient there is another trick to optimize renders and that is memoization.</p>
+<h3>Memoizing components</h3>
+<p>By memoizing components you tell React to only rerender a component when the dependencies change.</p>
+<p>There are 2 ways to memoize components in React, the first is the <code>React.memo</code> higher order component, which you use when defining a component function. You tell React to only rerender the component when the props changed that were passed into the component:</p>
+<pre><code class="language-js">//TODO...
+</code></pre>
+<p>This means that everyone who uses that component will always have a memoized component.</p>
+<p>The second way is the <code>useMemo</code> hook. Use this hook when you have a component that itself is not memoized, but you want to memoize it in a specific situation, because that is necessary in the component where you use it. In other words, <code>useMemo</code> is a bit more flexible.</p>
+<p>And this flexibility can be important, because why would you want to memoize something always, while it may not always be necessary. Of course, memoization reduces rerenders, but the fact it is being memoized costs resources. React not only has to do the actual memoization, it also has to be stored somewhere, which costs you memory.</p>
+<p>Imagine, every time you are going for a walk you wear a rain suit, take your umbrella, etc. You could do that, because when it would rain you'll stay dry. But it takes effort to put on the rain suit, and it will make you sweat more. It is not without effort. So instead, just check the weather forecast, and only bother if it is necessary.</p>
+<p>Anyway, now that you know a bit more about rendering and memoization, let's work with an example that has an unnecessary rerender, and solve that.</p>
+<h3>An example</h3>
+<p>Check out the following example. Here we have ...</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Let's add some state. Now you can ... Every time the state changes (in other words, the ...), this component is rerenderd:</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Did you spot the unnecessary rerender? 😱</p>
+<p>Although also the ... component gets rerendered when ... changes, it hasn't got anything to do with that state. So here we have an opportunity to optimize the rerenders.</p>
+<p>Let's apply memoization with <code>useMemo</code> to optimize:</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Now the ... component only rerenders when the dependencies of the <code>useMemo</code> call change. But an empty array is an empty array, and will always stay an empty array, so it will never be rerendered again.</p>
+<p>Unless, and this is important, the internal state of the ... component changes of course. Then the ... component will be rerendered. So instead of saying the ... component will never be rerendered, I should have said, it will never be rerendered when the ... component is rerendered. </p>
+<p>It is no longer part of the render cycle of the ... component by using memoization.</p>
+<h3>Composition</h3>
+<p>React is all about composition. This means ...</p>
+<p>The reason I started this blog post by talking about rendering was not only because of the unnecessary ones. Rendering is also about composition: When you compose your components well, you can influence what and when is (or is not) rerendered.</p>
+<p>Let me show you what I mean with composing well, by solving our unnecessary rerender by using composition instead of memoization:</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Why does this solve my unnecessary rerender?</p>
+<p>Like I just said, we don't want the ... component to rerender when the ... state of the ... component changes. And what I did here is move the ... component out of the ... component, so it no longer takes part in the ... component's render cycle. I moved it higher up in the component tree, by introducing the ... component. By the way, if I already would have a parent component, I could have moved it there as well.</p>
+<p>The ... component still renders the ... component, but it gets the <em>already rendered</em> JSX from the ... parent component, instead of JSX the ... component still had to render itself, which meant it became part of the ... component's render cycle.</p>
+<p>Only when the ... component rerenders, the ... component is also rerendered, which is only for the initial render. The ... component has no state, and no parents that hve state, so it will never rerender because of a state change.</p>
+<h3>Pass components as props</h3>
+<p>In the previous example I used React's <code>children</code> prop, but that is not always posible. </p>
+<p>For example, when your layout is a bit more complex and you want to position the children on specific places in the UI. Or when <code>children</code> is not specific enough if you want to control which, and how many, child components can be passed in.</p>
+<p>In that case you can use <em>slots</em>, in other words, a specific prop for each child component you want to render.</p>
+<p>I've adjusted the example we just used, and now we don't use the <code>children</code> prop anymore, but use the ... props instead:</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Note how this is a more explicit approach compared to just using <code>children</code>, but the effect is the same: The child components are already rendered, are coming from outside of the ... component, and therefore are not part of the ... component's render cycle.</p>
+<h3>Create the component outside of the parent component</h3>
+<p>A third and final example of an alternative to memoization is creating and rendering the component outside of the component:</p>
+<pre><code class="language-js">//...
+</code></pre>
+<p>Here we don't pass in the already rendered component as a prop, but instead just render the one that is defined outside of the ... component, and therefore also outside of its render cycle.</p>
+<p>...
+...
+...</p>
+<h3>Conclusion</h3>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Optimize renders without memoization&url=https://bouwe.io/optimize-renders-without-memoization&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/optimize-renders-without-memoization"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/optimize-renders-without-memoization/optimize-renders-without-memoization.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+
+    </div>
+
+  </body>
+</html>

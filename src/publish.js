@@ -423,7 +423,10 @@ async function createPagesPage(pageData) {
   const pages = pageData.pages.map((page) => ({
     title: page.attributes.title,
     slug: page.slug,
-  }));
+  })).sort(function(a, b) {
+    if (a.title===b.title) return 0
+    return  (a.title.toUpperCase() < b.title.toUpperCase()) ? -1 : 1;
+  });
 
   const data = {
     pages: getHtmlForPagesPage(pages),

@@ -88,11 +88,11 @@ And because the error is expected, you might be able to even give pretty detaile
 
 Unexpected errors, however, always need adjustment _inside_ of the application(s) where things are going wrong.
 
-If the user entered a too long value in an input field, you could've built your app in such a way it just displays the error stacktrace, which might give the user a clue on what they did wrong. However, that's not a good idea, and it's not the user's responsibility to fix it. A possible fix for this problem could be improving the form validation, so it is no longer possible for the user to enter a too long value.
+If the user entered a too long value in an input field, you could've built your app in such a way it just displays the error stack trace, which might give the user a clue on what they did wrong. However, that's not a good idea, and it's not the user's responsibility to fix it. A possible fix for this problem could be improving the form validation, so it is no longer possible for the user to enter a too long value.
 
 Because of these differences, handling expected and unexpected errors will probably happen in different places in the app. Expected errors are handled (caught) close to where they happen so you know the context and can give proper feedback.
 
-Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stacktrace. And you'll need that stacktrace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.
+Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stack trace. And you'll need that stack trace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.
 
 # What all errors have in common
 
@@ -118,7 +118,7 @@ Whatever the reason, an error will (should) occur, because it is unexpected, and
 
 The analysis of where the _cause_ of the problem lies is important: You don't want fix the client app, when actually the API is wrong. If you fix things in the wrong place, for example make the client app handle either correct and incorrect responses, you are obfuscating the real problem.
 
-Of course, sometimes you are dependent on external parties, and a quick fix can be convenient, but strive to prevent these kind of things as it makes the source code brittle, unclear, and unmaintainable.
+Of course, sometimes you are dependent on external parties, and a quick fix can be convenient, but strive to prevent these kind of things as it makes things brittle, unclear, and unmaintainable.
 
 It is often the case an API, and the client consuming it, are built in different programming languages, so unexpected errors are common. By just sticking to the contract, you'll find issues earlier, most likely already when testing, so you'll ship robust code, and prevent as much as unexpected errors as possible.
 

@@ -132,9 +132,9 @@
 <p>So whatever the case with expected errors, the application source code does not need to be changed to make things work again.</p>
 <p>And because the error is expected, you might be able to even give pretty detailed instructions on what went wrong and even what the user can do (if anything) to try again.</p>
 <p>Unexpected errors, however, always need adjustment <em>inside</em> of the application(s) where things are going wrong.</p>
-<p>If the user entered a too long value in an input field, you could've built your app in such a way it just displays the error stacktrace, which might give the user a clue on what they did wrong. However, that's not a good idea, and it's not the user's responsibility to fix it. A possible fix for this problem could be improving the form validation, so it is no longer possible for the user to enter a too long value.</p>
+<p>If the user entered a too long value in an input field, you could've built your app in such a way it just displays the error stack trace, which might give the user a clue on what they did wrong. However, that's not a good idea, and it's not the user's responsibility to fix it. A possible fix for this problem could be improving the form validation, so it is no longer possible for the user to enter a too long value.</p>
 <p>Because of these differences, handling expected and unexpected errors will probably happen in different places in the app. Expected errors are handled (caught) close to where they happen so you know the context and can give proper feedback.</p>
-<p>Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stacktrace. And you'll need that stacktrace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.</p>
+<p>Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stack trace. And you'll need that stack trace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.</p>
 <h1>What all errors have in common</h1>
 <p>There is one thing expected and unexpected errors have in common when handling them.</p>
 <p>When an error occurs, the feedback to the user or caller should always be clear. What has happened, and what can the user do now? Even if it means the user can't do anything, then at least they know.</p>
@@ -147,12 +147,12 @@
 <p>When somehow the structure is suddenly not correct anymore, it's an unexpected error. Somewhere in one of our application the contract is broken. Or the old version of an application is still deployed.</p>
 <p>Whatever the reason, an error will (should) occur, because it is unexpected, and you want to know. This way, the error bubbles up to a certain place in the application, and is logged, so people can check what went wrong.</p>
 <p>The analysis of where the <em>cause</em> of the problem lies is important: You don't want fix the client app, when actually the API is wrong. If you fix things in the wrong place, for example make the client app handle either correct and incorrect responses, you are obfuscating the real problem.</p>
-<p>Of course, sometimes you are dependent on external parties, and a quick fix can be convenient, but strive to prevent these kind of things as it makes the source code brittle, unclear, and unmaintainable.</p>
+<p>Of course, sometimes you are dependent on external parties, and a quick fix can be convenient, but strive to prevent these kind of things as it makes things brittle, unclear, and unmaintainable.</p>
 <p>It is often the case an API, and the client consuming it, are built in different programming languages, so unexpected errors are common. By just sticking to the contract, you'll find issues earlier, most likely already when testing, so you'll ship robust code, and prevent as much as unexpected errors as possible.</p>
 <h1>Conclusion</h1>
 <p>My point is to not just put some try/catch statements here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.</p>
 <p>Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen. But you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.</p>
-<p>And if you fix something, fix it in the right place.</p>
+<p>And if you fix something, try to fix it in the right place.</p>
 <p>I am really curious what you think, so please let me know on Twitter:</p>
 </div>
 

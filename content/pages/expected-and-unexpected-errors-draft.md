@@ -6,7 +6,7 @@ categories:
   - "Architecture"
 ---
 
-# Introduction
+### Introduction
 
 The reason I write this blog post is because I have some thoughts about errors, and how to categorize and handle them. It is not based on any investigation, or study, these are just my own thoughts, based on my opinion and experience.
 
@@ -16,7 +16,7 @@ The distinction I like to make for errors is to identify them as _expected_ or _
 
 But first some terminology, what are we talking about?
 
-# What is an error?
+### What is an error?
 
 The term one might use for errors depends on your programming language, or framework, but in this blog post the errors I am talking about are also known as faults, or exceptions: Your code is running and suddenly something goes wrong and an error is thrown.
 
@@ -24,7 +24,7 @@ No one wants errors, because they indicate something is wrong. Perhaps the only 
 
 If an error occurs, it most likely means something is not working, which might have impact for your users. It could also be there is hardly (or no) impact, but in that case they are at least distracting.
 
-# How do you know errors occur?
+### How do you know errors occur?
 
 Most apps have some kind of logging in place, so when errors occur, we at least know.
 
@@ -36,7 +36,7 @@ It is even possible errors are not logged, and not reported. That is disastrous,
 
 Let's assume for now you want to know which errors happen (logging), and you want to give proper feedback to your users.
 
-# What do errors even say?
+### What do errors even say?
 
 So you have an application, you know when errors occur, and you provide feedback to your users.
 
@@ -50,7 +50,7 @@ That is why your application not only needs to be built, but also needs to be te
 
 And that brings me to _expected_ and _unexpected_ errors.
 
-# Expected errors
+### Expected errors
 
 Expected errors are errors you know will happen and can not be prevented. For example, an application is communicating with another application, and somehow, a server is down, or the connection is gone. There are many ways to minimize the chance of this to happen, but it will happen.
 
@@ -62,7 +62,7 @@ Expected errors can be predicted up front, and therefore can and should be teste
 
 A part of expected errors are outside of your influence, for example when a user has a failing WiFi connection. There is nothing you can do about that, so logging has no use. Giving clear feedback, if you can, might.
 
-# Unexpected errors
+### Unexpected errors
 
 Unexpected errors are really annoying and hard.
 
@@ -74,7 +74,7 @@ You can not have any external monitoring in place, because you don't know what t
 
 The error message "An error occurred, please try again" does not apply here. Unexpected errors are caused by bugs (programmer mistakes), so you can press that button as many times as you want, but chances are virtually zero it will somehow work later, without anyone changing anything in the source code of one of the applications involved.
 
-# Differences between expected and unexpected errors
+### Differences between expected and unexpected errors
 
 Let's talk about the differences between expected and unexpected errors.
 
@@ -94,7 +94,7 @@ Because of these differences, handling expected and unexpected errors will proba
 
 Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stack trace. And you'll need that stack trace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.
 
-# What all errors have in common
+### What all errors have in common
 
 There is one thing expected and unexpected errors have in common when handling them.
 
@@ -106,7 +106,7 @@ For example, when you have a UI, and an error occurs, let the user know an error
 
 Or when you call an API, it is important you know it's a 4xx or a 5xx status code. In other words, an unexpected error, caused by a bug, or an expected (temporary) error, that might be worth retrying.
 
-# Where should unexpected errors be fixed?
+### Where should unexpected errors be fixed?
 
 Preventing and fixing unexpected errors is all about _cause_ and _responsibility_.
 
@@ -122,7 +122,7 @@ Of course, sometimes you are dependent on external parties, and a quick fix can 
 
 It is often the case an API, and the client consuming it, are built in different programming languages, so unexpected errors are common. By just sticking to the contract, you'll find issues earlier, most likely already when testing, so you'll ship robust code, and prevent as much as unexpected errors as possible.
 
-# Conclusion
+### Conclusion
 
 My point is to not just put some try/catch statements here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.
 

@@ -56,8 +56,6 @@ Expected errors are errors you know will happen and can not be prevented. For ex
 
 We just talked about logging, and while it might be interesting to log these kinds of problems, more importantly, there should be some kind of external monitoring in place to determine something is wrong and should be fixed. You'll need to have some kind of service that checks the health of your servers, network, and application.
 
-The solution to fix these kind of issues lies mostly _outside_ of the application.
-
 Regarding feedback to the user, we all know the phrase "An error occurred, please try again". Although this often feels (and is) not very helpful, for expected errors this might be quite useful. Chances are there was just a hickup in the connection, or a standby server took over for a failing server, so retrying a few seconds later might already help.
 
 Expected errors can be predicted up front, and therefore can and should be tested. You could, for example, shut down a server, disconnect the WiFi, make deliberate mistakes in config files, etc. and see how the application responds.
@@ -118,16 +116,18 @@ When somehow the structure is suddenly not correct anymore, it's an unexpected e
 
 Whatever the reason, an error will (should) occur, because it is unexpected, and you want to know. This way, the error bubbles up to a certain place in the application, and is logged, so people can check what went wrong.
 
-The analysis of where the _cause_ of the problem lies is important: You don't want fix the client app, when actually the API is wrong. If you fix things in the wrong place, for example, make the client app handle either correct and incorrect responses, you are obfuscating the real problem.
+The analysis of where the _cause_ of the problem lies is important: You don't want fix the client app, when actually the API is wrong. If you fix things in the wrong place, for example make the client app handle either correct and incorrect responses, you are obfuscating the real problem.
 
 Of course, sometimes you are dependent on external parties, and a quick fix can be convenient, but strive to prevent these kind of things as it makes the source code brittle, unclear, and unmaintainable.
 
-It is often the case an API, and the client consuming it, are built in different programming languages, so these kind of problems are common. By sticking to the contract, you'll find issues earlier, most likely already when testing, so you'll ship robust code.
+It is often the case an API, and the client consuming it, are built in different programming languages, so unexpected errors are common. By just sticking to the contract, you'll find issues earlier, most likely already when testing, so you'll ship robust code, and prevent as much as unexpected errors as possible.
 
-# So what's the point?
+# Conclusion
 
-My point is to not just put some try/catch here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.
+My point is to not just put some try/catch statements here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.
 
 Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen. But you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.
 
 And if you fix something, fix it in the right place.
+
+I am really curious what you think, so please let me know on Twitter:

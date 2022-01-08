@@ -128,6 +128,6 @@ My point is to not just put some try/catch statements here and there. Instead, i
 
 Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen. But you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.
 
-And if you fix something, fix it in the right place.
+And if you fix something, try to fix it in the right place.
 
 I am really curious what you think, so please let me know on Twitter:

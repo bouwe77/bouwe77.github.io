@@ -12,7 +12,7 @@ The reason I write this blog post is because I have some thoughts about errors, 
 
 I deliberatly made this post a bit abstract, so it does not depend, or relate to any programming languages or frameworks you use.
 
-I want to talk about the distinction between _expected_ and _unexpected_ errors. Or perhaps _known_ and _unknown_ errors.
+I want to talk about the distinction between _expected_ and _unexpected_ errors.
 
 But before I explain, first some terminology, what are we talking about?
 
@@ -60,7 +60,7 @@ Expected errors are errors you know will happen and can not be prevented. For ex
 
 We just talked about logging, and while it might be interesting to log these kinds of problems, more importantly, there should be some kind of external monitoring in place to determine something is wrong and should be fixed. You'll need to have some kind of service that checks the health of your servers, network, and application, so you don't depend on logging to determine things are down.
 
-Regarding feedback to the user, we all know the phrase "An error occurred, please try again". Often this feels (and is) not very helpful, but for expected errors this might be actually quite useful, because expected errors are often temporary. Chances are there was just a hickup in the connection, or a standby server took over for a failing server, so retrying a few seconds later might already help.
+Regarding feedback to the user, we all know the phrase "An error occurred, please try again". Often this feels (and is) not very helpful, but for expected errors this might be actually quite useful, because expected errors are often temporary. Chances are there was just a hickup in the connection, or a standby server took over for a failing server, so recovering from the error by retrying a few seconds later might already help.
 
 Expected errors can be predicted up front, and therefore can and should be tested. You could, for example, shut down a server, disconnect the WiFi, make deliberate mistakes in config files, etc. and see how the application responds.
 
@@ -98,9 +98,9 @@ Unexpected errors, however, always need adjustment _inside_ of the application(s
 
 If the user entered a too long value in an input field, you could've built your app in such a way it just displays the error stack trace, which might give the user a clue on what they did wrong. However, that's not a good idea, and it's not the user's responsibility to fix it. A possible fix for this problem could be improving the form validation, so it is no longer possible for the user to enter a too long value.
 
-Because of these differences, handling expected and unexpected errors will probably happen in different places in the app. Expected errors are handled (caught) close to where they happen so you know the context and can give proper feedback.
+Because of these differences, handling expected and unexpected errors will happen in different places in the app. Expected errors are handled (caught) close to where they happen so you know the context and can give proper feedback.
 
-Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but probably bubble up to a higher level in your source code so you can log a full stack trace. And you'll need that stack trace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.
+Unexpected errors, however, are not caught on specific places (because they can happen anywhere), but should bubble up to a catch-all higher up in the code, so you can log a full stack trace. And you'll need that stack trace, because unexpected errors often need to be investigated before they can be solved, so you want to collect as much information as possible.
 
 ### What all errors have in common
 
@@ -112,7 +112,7 @@ How detailed this feedback is depends on the situation of course. Giving too muc
 
 For example, when you have a UI, and an error occurs, let the user know an error occurred. Maybe part of the UI can even still work, despite the error.
 
-Or when you call an API, it is important you know it's a 4xx or a 5xx status code. In other words, an unexpected error, caused by a bug, or an expected (temporary) error, that might be worth retrying.
+Or when you call an API, it is important you know it's an unexpected error, caused by a bug (4xx status code), or an expected (temporary) error (5xx status code), that might be worth retrying.
 
 ### Where should unexpected errors be fixed?
 

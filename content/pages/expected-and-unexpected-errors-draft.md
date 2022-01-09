@@ -8,19 +8,19 @@ categories:
 
 ### Introduction
 
-The reason I write this blog post is because I have some thoughts about errors, and how to categorize and handle them. It is not based on any investigation, or study, these are just my own thoughts, based on my opinion and experience.
+The reason I write this blog post is because I have some thoughts about errors, and how to categorize and handle them. It is not based on any investigation, or study, these are just my own thoughts, and one of the ways to look at errors, based on my opinion and experience.
 
-By making this article, other people can read it, might find it interesting, might discuss about it, and I, but perhaps other people too, might learn something from it.
+I deliberatly made this post a bit abstract, so it does not depend, or relate to any programming languages or frameworks you use.
 
-The distinction I like to make for errors is to identify them as _expected_ or _unexpected_. And how you handle errors depending on this distinction.
+I want to talk about the distinction between _expected_ and _unexpected_ errors. Or perhaps _known_ and _unknown_ errors.
 
-But first some terminology, what are we talking about?
+But before I explain, first some terminology, what are we talking about?
 
 ### What is an error?
 
-The term one might use for errors depends on your programming language, or framework, but in this blog post the errors I am talking about are also known as faults, or exceptions: Your code is running and suddenly something goes wrong and an error is thrown.
+The term one might use for errors depends on your programming language, or framework, but in this blog post the errors I am talking about are also known as faults, or exceptions: Your code is running and suddenly something goes wrong and **an error is thrown** which causes your program (or a part of it) to stop functioning or responding properly.
 
-No one wants errors, because they indicate something is wrong. Perhaps the only good thing about errors is that you at least know there is something to improve in your code base. On the other hand, you can't prevent them from happening, so it's all about how to handle them.
+No one wants errors, because they indicate something is wrong. Perhaps the only good thing about errors is that at least you know there is something to improve in your code base. On the other hand, you can't prevent them from happening, so it's all about how to handle them.
 
 If an error occurs, it most likely means something is not working, which might have impact for your users. It could also be there is hardly (or no) impact, but in that case they are at least distracting.
 
@@ -40,13 +40,17 @@ Let's assume for now you want to know which errors happen (logging), and you wan
 
 So you have an application, you know when errors occur, and you provide feedback to your users.
 
-Does that mean that when there are no errors, your software works? Of course not, because you might be handling errors wrongly, or even worse, there are no errors, but the the software is not working.
+Does that mean that when there are no errors, your software works? Of course not, because you might be handling errors wrongly, or even worse, there are no errors, but the software is not working.
 
-For example, suppose you have a web shop, users can add products to their cart, but when they click the the "Order Now" button nothing happens. No errors, just nothing happens. It appears some of the app's functionality has not been built, and/or tested, and now your company can not sell their products.
+For example, suppose you have a web shop, users can add products to their cart, but when they click the "Order Now" button nothing happens. No errors, just nothing happens. It appears some of the app's functionality has not been built, and/or tested, and now your company can not sell their products.
 
-So errors can be an indication things are wrong, but no errors are not an indication nothing is wrong.
+So errors can be an indication things are wrong, but no errors are not necessarily an indication nothing is wrong...
 
-That is why your application not only needs to be built, but also needs to be tested. And not only the functionality (the happy flow), but also how it handles errors.
+If something is not working as intended, regardless errors are thrown or not, then you have a _bug_.
+
+By the way, throwing errors should not be used to control the flow of your application. In other words, as an easy way to exit a function by letting things crash, so you can catch them elsewhere. Errors should indicate things are really wrong, an exception to the rule. If you want quit processing because of a functional situation, just return early from the function by returning a return type that indicates what's wrong.
+
+To be sure your software works well, and not only the happy flow, but also how it handles errors, is the reason why your software should be tested thoroughly.
 
 And that brings me to _expected_ and _unexpected_ errors.
 
@@ -100,7 +104,7 @@ There is one thing expected and unexpected errors have in common when handling t
 
 When an error occurs, the feedback to the user or caller should always be clear. What has happened, and what can the user do now? Even if it means the user can't do anything, then at least they know.
 
-How detailed this feedback is depends on the situation of course. Giving too much detail might not really help, or even lead to security issues.
+How detailed this feedback is depends on the situation of course. Giving too much detail might not always be really helpful, or even lead to security issues.
 
 For example, when you have a UI, and an error occurs, let the user know an error occurred. Maybe part of the UI can even still work, despite the error.
 
@@ -127,6 +131,8 @@ It is often the case an API, and the client consuming it, are built in different
 My point is to not just put some try/catch statements here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.
 
 Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen. But you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.
+
+So if you have a general, central catch-all where all errors end up in, you can log them there. But becuse you handle the expected (known) errors in the place where they actually occur, these won't end up in the catch-all, making the catch-all the place for unexpected (yet unknown) errors only.
 
 And if you fix something, try to fix it in the right place.
 

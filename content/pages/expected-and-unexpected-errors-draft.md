@@ -134,9 +134,9 @@ It is often the case an API, and the client consuming it, are built with differe
 
 My point is to not just put some try/catch statements here and there. Instead, identify what can go wrong (expected errors), handle them, test them, and give proper feedback.
 
-Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen., but you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.
+Everything else (unexpected errors) should not be handled specifically, because you don't know where, when, and why they happen, but you want to know they happen, so catch them so you can give proper feedback, and log them, so you at least know something needs to be fixed.
 
-So if you have a general, central catch-all where all errors end up, you can log them there., but because you handle the expected (known) errors in the place where they actually occur, these won't end up in the catch-all, making the catch-all the place for unexpected (yet unknown) errors only.
+So if you have a general, central catch-all where all errors end up, you can log them there, but because you handle the expected (known) errors in the place where they actually occur, these won't end up in the catch-all, making the catch-all the place for unexpected (yet unknown) errors only.
 
 And if you fix something, try to fix it in the right place.
 

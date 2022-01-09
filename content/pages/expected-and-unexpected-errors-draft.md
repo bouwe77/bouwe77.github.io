@@ -42,13 +42,13 @@ So you have an application, you know when errors occur, and you provide feedback
 
 Does that mean that when there are no errors, your software works? Of course not, because you might be handling errors wrongly, or even worse, there are no errors, but the software is not working.
 
-For example, suppose you have a web shop, users can add products to their cart, but when they click the "Order Now" button nothing happens. No errors, just nothing happens. It appears some of the app's functionality has not been built, and/or tested, and now your company can not sell their products.
+For example, suppose you have a web shop, users can add products to their cart, but when they click the "Order Now" button nothing happens. No errors, just nothing happens. It appears some of the app's functionality has not been properyl built, and/or tested, and now your company can not sell their products.
 
 So errors can be an indication things are wrong, but no errors are not necessarily an indication nothing is wrong...
 
 If something is not working as intended, regardless errors are thrown or not, then you have a _bug_.
 
-By the way, throwing errors should not be used to control the flow of your application. In other words, as an easy way to exit a function by letting things crash, so you can catch them elsewhere. Errors should indicate things are really wrong, an exception to the rule. If you want quit processing because of a functional situation, just return early from the function by returning a return type that indicates what's wrong.
+> By the way, throwing errors should not be used to control the flow of your application. In other words, as an easy way to exit a function by letting things crash, so you can catch them elsewhere. Errors should indicate things are really wrong, an exception to the rule. If you want quit processing because of a functional situation, just return early from the function by returning a return type that indicates what's wrong.
 
 To be sure your software works well, and not only the happy flow, but also how it handles errors, is the reason why your software should be tested thoroughly.
 
@@ -58,13 +58,13 @@ And that brings me to _expected_ and _unexpected_ errors.
 
 Expected errors are errors you know will happen and can not be prevented. For example, an application is communicating with another application, and somehow, a server is down, or the connection is gone. There are many ways to minimize the chance of this to happen, but it will happen.
 
-We just talked about logging, and while it might be interesting to log these kinds of problems, more importantly, there should be some kind of external monitoring in place to determine something is wrong and should be fixed. You'll need to have some kind of service that checks the health of your servers, network, and application.
+We just talked about logging, and while it might be interesting to log these kinds of problems, more importantly, there should be some kind of external monitoring in place to determine something is wrong and should be fixed. You'll need to have some kind of service that checks the health of your servers, network, and application, so you don't depend on logging to determine things are down.
 
-Regarding feedback to the user, we all know the phrase "An error occurred, please try again". Although this often feels (and is) not very helpful, for expected errors this might be quite useful. Chances are there was just a hickup in the connection, or a standby server took over for a failing server, so retrying a few seconds later might already help.
+Regarding feedback to the user, we all know the phrase "An error occurred, please try again". Often this feels (and is) not very helpful, but for expected errors this might be actually quite useful, because expected errors are often temporary. Chances are there was just a hickup in the connection, or a standby server took over for a failing server, so retrying a few seconds later might already help.
 
 Expected errors can be predicted up front, and therefore can and should be tested. You could, for example, shut down a server, disconnect the WiFi, make deliberate mistakes in config files, etc. and see how the application responds.
 
-A part of expected errors are outside of your influence, for example when a user has a failing WiFi connection. There is nothing you can do about that, so logging has no use. Giving clear feedback, if you can, might.
+Expected errors can also be outside of your influence, for example when a user has a failing WiFi connection. There is nothing you can do about that, so logging has no use. Giving clear feedback, if you can, might however.
 
 ### Unexpected errors
 
@@ -72,9 +72,13 @@ Unexpected errors are really annoying and hard.
 
 Suppose you built and tested your application(s), everything is on production, and then an error occurs: The response from the API you called returns JSON in a structure that is not how your application expected it, so parsing fails with an error. Or a user enters data in a form, but the value is too long.
 
-These kinds of errors are unexpected because you have designed, built, and tested your application, based on documentation, meetings, or whatever. So everything should be good, but isn't.
+Of course you want to check for values being too long, but an error should not be the way to indicate that. It's not an error situation, but a functional situation you want to check (validate) for.
 
-You can not have any external monitoring in place, because you don't know what to monitor for, anything can go wrong. So for unexpected errors logging is really important: When it happens you want to know _what_ and _where_ it happened.
+These kinds of errors are unexpected because you have designed, built, and tested your application, based on documentation, meetings, or whatever. So everything should be good, but isn't. This is what we call bugs.
+
+You can not have any external monitoring in place, because you don't know what to monitor for, anything can go wrong. You've tested the application for what it _should_ do, and not for things it _should not_ do.
+
+So for unexpected errors logging is really important: When it happens you want to know _what_ and _where_ it happened.
 
 The error message "An error occurred, please try again" does not apply here. Unexpected errors are caused by bugs (programmer mistakes), so you can press that button as many times as you want, but chances are virtually zero it will somehow work later, without anyone changing anything in the source code of one of the applications involved.
 

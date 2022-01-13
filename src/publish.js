@@ -460,7 +460,7 @@ async function createVideoPage() {
   await createPage(
     htmlBody,
     getNavigationHtml("videos"),
-    filepaths.getPagesPublishFilePath(),
+    filepaths.getVideosPublishFilePath(),
     "Videos"
   );
 }

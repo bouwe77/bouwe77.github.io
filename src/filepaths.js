@@ -49,6 +49,8 @@ export const filepaths = {
     ),
   getPagesPublishFilePath: () =>
     path.join(__dirname, publishDirectory, "pages.html"),
+  getVideosPublishFilePath: () =>
+    path.join(__dirname, publishDirectory, "videos.html"),
   convertMarkdownFilenameToHtmlFilename,
   getCategoryPageFilePath: (slug) =>
     path.join(__dirname, publishCategoriesDirectory, slug + ".html"),

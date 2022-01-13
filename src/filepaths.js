@@ -49,6 +49,8 @@ export const filepaths = {
     ),
   getPagesPublishFilePath: () =>
     path.join(__dirname, publishDirectory, "pages.html"),
+  getVideosPublishFilePath: () =>
+    path.join(__dirname, publishDirectory, "videos.html"),
   convertMarkdownFilenameToHtmlFilename,
   getCategoryPageFilePath: (slug) =>
     path.join(__dirname, publishCategoriesDirectory, slug + ".html"),
@@ -68,6 +70,8 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "page.html"),
   getPagesTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "pages.html"),
+  getVideosTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "videos.html"),
   getBlogTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "blog.html"),
   getCategoryTemplateFilePath: () =>

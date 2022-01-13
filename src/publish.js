@@ -66,6 +66,8 @@ async function publish() {
   // Create a PAGES page, which displays links to all pages from the content/pages folder.
   await createPagesPage(pageData);
 
+  await createVideosPage();
+
   // Create RSS and Atom feeds.
   await createFeeds(blogData);
 
@@ -420,13 +422,15 @@ async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
 
 // Create a page with links to all pages from the content/pages folder.
 async function createPagesPage(pageData) {
-  const pages = pageData.pages.map((page) => ({
-    title: page.attributes.title,
-    slug: page.slug,
-  })).sort(function(a, b) {
-    if (a.title===b.title) return 0
-    return  (a.title.toUpperCase() < b.title.toUpperCase()) ? -1 : 1;
-  });
+  const pages = pageData.pages
+    .map((page) => ({
+      title: page.attributes.title,
+      slug: page.slug,
+    }))
+    .sort(function (a, b) {
+      if (a.title === b.title) return 0;
+      return a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1;
+    });
 
   const data = {
     pages: getHtmlForPagesPage(pages),
@@ -443,5 +447,20 @@ async function createPagesPage(pageData) {
     getNavigationHtml("pages"),
     filepaths.getPagesPublishFilePath(),
     "Pages"
+  );
+}
+
+async function createVideosPage() {
+  const pageTemplate = await readFileContents(
+    filepaths.getVideosTemplateFilePath()
+  );
+
+  const htmlBody = pageTemplate;
+
+  await createPage(
+    htmlBody,
+    getNavigationHtml("videos"),
+    filepaths.getVideosPublishFilePath(),
+    "Videos"
   );
 }

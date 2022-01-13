@@ -68,6 +68,8 @@ export const filepaths = {
     path.join(__dirname, templatesDirectory, "page.html"),
   getPagesTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "pages.html"),
+  getVideosTemplateFilePath: () =>
+    path.join(__dirname, templatesDirectory, "videos.html"),
   getBlogTemplateFilePath: () =>
     path.join(__dirname, templatesDirectory, "blog.html"),
   getCategoryTemplateFilePath: () =>

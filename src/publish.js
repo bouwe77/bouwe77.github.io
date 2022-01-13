@@ -66,7 +66,7 @@ async function publish() {
   // Create a PAGES page, which displays links to all pages from the content/pages folder.
   await createPagesPage(pageData);
 
-  await createVideoPage();
+  await createVideosPage();
 
   // Create RSS and Atom feeds.
   await createFeeds(blogData);
@@ -450,7 +450,7 @@ async function createPagesPage(pageData) {
   );
 }
 
-async function createVideoPage() {
+async function createVideosPage() {
   const pageTemplate = await readFileContents(
     filepaths.getVideosTemplateFilePath()
   );

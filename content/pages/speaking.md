@@ -16,6 +16,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 ### Past events
 
+- Jan 28, 2022 **lightning talk** on Expected and Unexpected Errors @ WebinarGeek
 - Nov 26, 2021 [REMIX] **lightning talk** @ WebinarGeek
 - Sep 24, 2021 [React Query] **lightning talk** @ WebinarGeek
 - Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)

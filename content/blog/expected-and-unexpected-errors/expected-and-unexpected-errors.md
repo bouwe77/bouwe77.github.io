@@ -5,6 +5,7 @@ summary: ""
 categories:
   - "Architecture"
   - "Testing"
+  - "Error handling"
 ---
 
 ### Introduction

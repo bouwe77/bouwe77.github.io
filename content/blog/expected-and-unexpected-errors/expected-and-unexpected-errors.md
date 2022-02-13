@@ -4,8 +4,8 @@ title: "Expected and Unexpected Errors"
 summary: ""
 categories:
   - "Architecture"
-  - "Testing"
   - "Error handling"
+  - "Testing"
 ---
 
 ### Introduction

@@ -15,7 +15,11 @@ title: Video ideas
 
 * Optimization without memoization
 * Composing hooks (Number API + Giphy search engine)
+* Ink https://github.com/vadimdemedes/ink
+* useEffect complete walkthrough
 
-# XState
+# Bunny Hop
 
-* Adventure game?
+* React
+* XState
+* Framer Motion

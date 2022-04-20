@@ -8,8 +8,11 @@ title: Video ideas
 * When to useRef (bug: stateful var, terwijl het ook een ref kan zijn)
 * Optimization without memoization
 * Composing hooks (Number API + Giphy search engine)
-* ...
+* React.Children + React.cloneElement, zodat je technische details zoals coordinaten weg kunt abstraheren
+* Starfield naar React to porteren (useRef en zo)
 * 
+
+
 ## Testing-Library
 * Testing fetching data with useEffect
 * ...

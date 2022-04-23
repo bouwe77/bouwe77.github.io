@@ -53,10 +53,8 @@ Context
 * Wanneer heb je een action/service nodig: Als de state machine niet kan (weten) wat er echt moet gebeuren omdat het UI is, terwijl de state machine niet in de UI zit. Dus dan delegeert de machine de daadwerkelijke implementatie aan de UI (React), zodat XState bepaalt (orchestreert) wanneer de action/service wordt aangeroepen.
 * Difference between useReducer en XState: finite vs infinite
 * Modelleren state machine kan lastig zijn, maar als je de state machine gewoon aanroept in je component, dan komt de implementatie van de machine misschien makkelijker. Dus een soort TDD-achtige approach, maar dan gewoon in je component, waarbij je de functie gaat aanroepen, zodat je weet wat je moet implementeren.
-* Misschien in het algemeen een video over dat het gebruik van een functie helpt om zowel 
+* Misschien in het algemeen een video over dat het gebruik van een functie helpt om zowel een goeie interface als implementatie te krijgen.
 * Spaceship web socket connectie + events afhandeling ombouwen naar XState?
-
-
 
 ## Misc
 * Temba introduction + demo

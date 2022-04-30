@@ -14,6 +14,7 @@ title: Video ideas
 * Heel erg vanuit een probleem redeneren, dus kijk, hier een probleem, en hoe gaan we dit oplossen?
 
 ## React
+* Show don't tell: In plaats van een string in state, en o.b.v. conditioneel renderen, gewoon het component in state?
 * useState updater form (kan ik een bug bedenken en hiermee fixen?)
 * Optimization without memoization: Composition
 * Composing hooks (Number API + Giphy search engine)
@@ -29,6 +30,7 @@ useRef
 * Music player ergens in mijn cursusmateriaal
 
 useEffect
+* In the context van React: What are side effects? https://youtu.be/_oifJWkO_so, purity, idempotency, etc
 * useEffect: Het is volgens mij nooit een probleem om alle dependencies toe te voegen die eslint aangeeft. Volgens mij is het misverstand dat dit soms niet moet. Voorbeeld bedenken.
 
 Context

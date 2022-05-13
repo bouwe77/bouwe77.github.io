@@ -103,8 +103,16 @@
 <li>Bronnen: Ervaring bij WG, mijn eigen POC repo's, dingen die ik nog wil leren</li>
 <li>Heel erg vanuit een probleem redeneren, dus kijk, hier een probleem, en hoe gaan we dit oplossen?</li>
 </ul>
+<h2>useEffect + RFC for useEvent Hook</h2>
+<p>Resources:</p>
+<ul>
+<li>Opinion Kent C. Dodds on May 13 2022: <a href="https://youtu.be/ZkujAieh9Iw?t=1827">https://youtu.be/ZkujAieh9Iw?t=1827</a></li>
+<li>RFC from the React team: <a href="https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md">https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md</a></li>
+<li>Reactathon talk by David K Piano Kourshid: <a href="https://youtu.be/Ck-e3hd3pKw?t=4013">https://youtu.be/Ck-e3hd3pKw?t=4013</a></li>
+</ul>
 <h2>React</h2>
 <ul>
+<li>Show don't tell: In plaats van een string in state, en o.b.v. conditioneel renderen, gewoon het component in state?</li>
 <li>useState updater form (kan ik een bug bedenken en hiermee fixen?)</li>
 <li>Optimization without memoization: Composition</li>
 <li>Composing hooks (Number API + Giphy search engine)</li>
@@ -122,7 +130,8 @@
 </ul>
 <p>useEffect</p>
 <ul>
-<li>useEffect: Het is volgens mij nooit een probleem om alle dependencies toe te voegen die eslint aangeeft. Volgens mij is het misverstand dat dit soms niet moet. Voorbeeld bedenken.</li>
+<li>In the context van React: What are side effects? <a href="https://youtu.be/_oifJWkO_so">https://youtu.be/_oifJWkO_so</a>, purity, idempotency, etc</li>
+<li>useEffect: Het is volgens mij nooit een probleem om alle dependencies toe te voegen die eslint aangeeft. Volgens mij is het misverstand dat dit soms niet moet. Voorbeeld bedenken. Mogelijke inspiratie is mijn vraag op Discord: <a href="https://discord.com/channels/715220730605731931/971163411020935198">https://discord.com/channels/715220730605731931/971163411020935198</a></li>
 </ul>
 <p>Context</p>
 <ul>
@@ -150,7 +159,7 @@
 <li>Algemene video over de verschillen tussen getBy, findBy, en queryBy</li>
 <li>Testing fetching data with useEffect, want dit slaat nergens op: <a href="https://youtu.be/yTZ-txdrHdY">https://youtu.be/yTZ-txdrHdY</a></li>
 <li>Wanneer is act() nou eigenlijk nodig? Ik heb het nooit gebruikt. Ben je een prutser als je dat wel doet? Volgens mij heb ik een test met een act() in mijn kanban projectje van 2021.</li>
-<li>WG situatie: await wait (for nothing), terwijl je gewoon moet achten op iets dat wordt gerenderd.</li>
+<li>WG situatie: await wait (for nothing), terwijl je gewoon moet wachten op iets dat wordt gerenderd.</li>
 <li>Hoe kun je elementen benaderen die niet heel benaderbaar zijn? Bijvoorbeeld SVG elementen (zoals bij bunny hop), is dat die ene algemene role? </li>
 <li>Integratie tests, zodat je veilig kunt refactoren, bijvoorbeeld van losse hooks naar custom hooks, of van een reducer naar een state machine.</li>
 <li>Hooks kun je beter testen vanuit een component in je test, i.p.v. met renderHook: <a href="https://kentcdodds.com/blog/how-to-test-custom-react-hooks">https://kentcdodds.com/blog/how-to-test-custom-react-hooks</a></li>
@@ -160,7 +169,7 @@
 <li>Wanneer heb je een action/service nodig: Als de state machine niet kan (weten) wat er echt moet gebeuren omdat het UI is, terwijl de state machine niet in de UI zit. Dus dan delegeert de machine de daadwerkelijke implementatie aan de UI (React), zodat XState bepaalt (orchestreert) wanneer de action/service wordt aangeroepen.</li>
 <li>Difference between useReducer en XState: finite vs infinite</li>
 <li>Modelleren state machine kan lastig zijn, maar als je de state machine gewoon aanroept in je component, dan komt de implementatie van de machine misschien makkelijker. Dus een soort TDD-achtige approach, maar dan gewoon in je component, waarbij je de functie gaat aanroepen, zodat je weet wat je moet implementeren.</li>
-<li>Misschien in het algemeen een video over dat het gebruik van een functie helpt om zowel </li>
+<li>Misschien in het algemeen een video over dat het gebruik van een functie helpt om zowel een goeie interface als implementatie te krijgen.</li>
 <li>Spaceship web socket connectie + events afhandeling ombouwen naar XState?</li>
 </ul>
 <h2>Misc</h2>

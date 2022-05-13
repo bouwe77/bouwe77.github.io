@@ -13,6 +13,13 @@ title: Video ideas
 * Bronnen: Ervaring bij WG, mijn eigen POC repo's, dingen die ik nog wil leren
 * Heel erg vanuit een probleem redeneren, dus kijk, hier een probleem, en hoe gaan we dit oplossen?
 
+## useEffect + RFC for useEvent Hook
+
+Resources:
+* Opinion Kent C. Dodds on May 13 2022: https://youtu.be/ZkujAieh9Iw?t=1827
+* RFC from the React team: https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md
+* Reactathon talk by David K Piano Kourshid: https://youtu.be/Ck-e3hd3pKw?t=4013
+
 ## React
 * Show don't tell: In plaats van een string in state, en o.b.v. conditioneel renderen, gewoon het component in state?
 * useState updater form (kan ik een bug bedenken en hiermee fixen?)
@@ -31,7 +38,7 @@ useRef
 
 useEffect
 * In the context van React: What are side effects? https://youtu.be/_oifJWkO_so, purity, idempotency, etc
-* useEffect: Het is volgens mij nooit een probleem om alle dependencies toe te voegen die eslint aangeeft. Volgens mij is het misverstand dat dit soms niet moet. Voorbeeld bedenken.
+* useEffect: Het is volgens mij nooit een probleem om alle dependencies toe te voegen die eslint aangeeft. Volgens mij is het misverstand dat dit soms niet moet. Voorbeeld bedenken. Mogelijke inspiratie is mijn vraag op Discord: https://discord.com/channels/715220730605731931/971163411020935198
 
 Context
 * Context omzetten naar Zustand, zodat de interface bijna niet verandert (toch?), maar dat je wel selectors kunt gebruiken.

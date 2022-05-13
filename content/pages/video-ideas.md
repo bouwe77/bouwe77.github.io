@@ -53,7 +53,7 @@ Context
 * Algemene video over de verschillen tussen getBy, findBy, en queryBy
 * Testing fetching data with useEffect, want dit slaat nergens op: https://youtu.be/yTZ-txdrHdY
 * Wanneer is act() nou eigenlijk nodig? Ik heb het nooit gebruikt. Ben je een prutser als je dat wel doet? Volgens mij heb ik een test met een act() in mijn kanban projectje van 2021.
-* WG situatie: await wait (for nothing), terwijl je gewoon moet achten op iets dat wordt gerenderd.
+* WG situatie: await wait (for nothing), terwijl je gewoon moet wachten op iets dat wordt gerenderd.
 * Hoe kun je elementen benaderen die niet heel benaderbaar zijn? Bijvoorbeeld SVG elementen (zoals bij bunny hop), is dat die ene algemene role? 
 * Integratie tests, zodat je veilig kunt refactoren, bijvoorbeeld van losse hooks naar custom hooks, of van een reducer naar een state machine.
 * Hooks kun je beter testen vanuit een component in je test, i.p.v. met renderHook: https://kentcdodds.com/blog/how-to-test-custom-react-hooks

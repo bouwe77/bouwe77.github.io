@@ -67,6 +67,7 @@ Context
 
 ## Misc
 * Temba introduction + demo
+* Show don't tell: Zoals bij React niet een prop meegeven, maar JSX, zo kan dat ook bij een gewone JS function. Video maken wasrin ik uitleg dat dit, ongeachr components, altijd een goed idee is.
 
 ---
 

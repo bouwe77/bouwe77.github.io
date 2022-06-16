@@ -16,6 +16,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 ### Past events
 
+- May 27, 2022 **lighning talk** demoing my side project [Holodeck] by creating MDX slides during the talk @ WebinarGeek
 - Jan 28, 2022 **lightning talk** on Expected and Unexpected Errors @ WebinarGeek
 - Nov 26, 2021 [REMIX] **lightning talk** @ WebinarGeek
 - Sep 24, 2021 [React Query] **lightning talk** @ WebinarGeek
@@ -45,6 +46,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 That would be awesome! 😃 Contact me on [Twitter]!
 
+[holodeck]: https://github.com/bouwe77/holodeck
 [live coding a game in react]: https://newnexus.nl/webinar/live-coding-a-game-in-react
 [leren is delen, delen is leren]: https://newnexus.nl/webinar/leren-is-delen-delen-is-leren
 [power to the client with graphql]: https://newnexus.nl/webinar/power-to-the-client-with-graphql

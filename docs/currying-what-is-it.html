@@ -133,7 +133,7 @@ const logError = (message) => log(new Date().toISOString(), "ERROR", message);
 <p>JavaScript technically speaking, with this abstractions I created some <em>closures</em>.</p>
 <blockquote>
 <p><em>A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.</em></p>
-<p>MDN Web Docs <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures</a></p>
+<p>MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures</p>
 </blockquote>
 <p>Everywhere I need to log, based on the severity I want I choose the applicable function so I only need to pass the <code>message</code>:</p>
 <pre><code class="language-js">logInfo("This is an informational message!");
@@ -188,7 +188,7 @@ logError("An exception occurred!");
 }
 </code></pre>
 <blockquote>
-<p>Check out this video by Derick where he creates this <code>curry</code> function and explains how it works: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
+<p>Check out this video by Derick where he creates this <code>curry</code> function and explains how it works: https://youtu.be/jJAxhVxaHMM</p>
 </blockquote>
 <p>Next, let's create a <code>curriedLog</code> function by calling the <code>curry</code> function and passing the <code>log</code> function:</p>
 <pre><code class="language-js">let curriedLog = curry(log);
@@ -233,10 +233,10 @@ const logError = log(datetime)("ERROR");
 <p>If you want to know more you can check out some of the links below.</p>
 <h3>Acknowledgements and tips</h3>
 <p>A read quite a few articles and watched many videos to learn currying.</p>
-<p>The first video that made it click for me was this step by step video by Steve Griffith: <a href="https://youtu.be/F_N97iovVbQ">https://youtu.be/F_N97iovVbQ</a></p>
+<p>The first video that made it click for me was this step by step video by Steve Griffith: https://youtu.be/F_N97iovVbQ</p>
 <p>A great article about currying with JavaScript that inspired me to use the logging example is <a href="https://javascript.info/currying-partials">Currying Partials</a>.</p>
-<p>The <code>curry</code> function I showed you I got from this video where Derick explains how to write it: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
-<p>MPJ of Fun Fun Function also does a great (and funny as always) job explaining currying: <a href="https://youtu.be/iZLP4qOwY8I">https://youtu.be/iZLP4qOwY8I</a></p>
+<p>The <code>curry</code> function I showed you I got from this video where Derick explains how to write it: https://youtu.be/jJAxhVxaHMM</p>
+<p>MPJ of Fun Fun Function also does a great (and funny as always) job explaining currying: https://youtu.be/iZLP4qOwY8I</p>
 </div>
 
             <div>

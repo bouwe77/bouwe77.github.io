@@ -2,7 +2,7 @@
 title: XState
 ---
 
-# Introduction
+# My notes about XState
 
 This page is about XState, but I also have a page about using [XState with React](/xstate-react).
 
@@ -60,7 +60,6 @@ A service is an interpreted machine i.e. an **instance** of a machine.
 ```js
 const service = interpret(myMachine).start();
 ```
-
 
 Via de service kun je events sturen:
 
@@ -170,7 +169,6 @@ const myMachine = Machine({
 ```
 
 # Internal transitions
-
 
 Dus ik definieer een `on` buiten de states om. Je kunt dan, ongeacht de state, het event triggeren:
 

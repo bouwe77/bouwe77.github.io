@@ -1,6 +1,5 @@
 import remark from "remark";
 import html from "remark-html";
-import report from "vfile-reporter";
 import fm from "front-matter";
 
 import {
@@ -373,7 +372,7 @@ async function toHtml(makeHtmlBody, markdown) {
       .use(html)
       .process(String(markdown), async (err, markup) => {
         if (err) {
-          console.error(report(err));
+          console.error(err);
           reject(err);
         }
 

@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>TS</title>
+    <title>ScriptKit</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="TS" />
+    <meta name="twitter:title" content="ScriptKit" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -88,30 +88,79 @@
           <div class="main">
       <div class="container">
               <div>
-        <h2 class="page-title">TS</h2>
+        <h2 class="page-title">ScriptKit</h2>
       </div>
 
-      <div><p><strong>Cheat Sheet</strong>
-https://github.com/typescript-cheatsheets/react</p>
-<p><strong>Function components in React</strong>
-https://kentcdodds.com/blog/how-to-write-a-react-component-in-typescript</p>
-<p><strong>How to type a submit handler</strong>
-https://epicreact.dev/how-to-type-a-react-form-on-submit-handler</p>
-<p><strong>Function syntaxes</strong>
-https://kentcdodds.com/blog/typescript-function-syntaxes</p>
+      <div><h3>Selected text</h3>
+<p><code>await getSelectedText()</code> returns the selected text.</p>
+<p>Do something with that text, and then possibly use <code>await setSelectedText(text)</code> to replace the selected text.</p>
+<h3>HTTP requests</h3>
+<p><code>await get(url)</code></p>
+<h3>Create JSON file of data</h3>
+<p><code>inspect(data)</code> or with a filename <code>inspect(data, </code>myData.json<code>)</code></p>
+<h3>User input</h3>
+<p><code>arg('What is your name?')</code></p>
+<h3>User input select from list of options</h3>
+<p><code>arg</code> also accepts a 2nd argument for specifying which options to select, with an optional preview. The structure of these choices are:</p>
+<pre><code>{
+    name: string
+    description: string
+    value: string
+    preview: () => string
+}
+</code></pre>
+<p>When you select an option, the <code>value</code> is returned.</p>
+<h3>Run bash commands</h3>
+<p>Supply a command after the dollar sign: <code></div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=ScriptKit&url=https://bouwe.io/scriptkit&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/scriptkit"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/scriptkit.md">Edit on GitHub</a>
+      </div>
+command here'</code></p>
+<p>For example for opening a URL:</p>
+<p><code>await </div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=ScriptKit&url=https://bouwe.io/scriptkit&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/scriptkit"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/scriptkit.md">Edit on GitHub</a>
+      </div>
+open https://bouwe.io'</code></p>
+<h3>Chrome Dev Tools</h3>
+<p>Open dev tools: <code>dev()</code>. Log things in the dev tools: <code>dev(stuff)</code></p>
+<h3>Open VS Code</h3>
+<p><code>editor(path)</code>, which opens the preferred editor for the given file or folder path.</p>
+<h3>Folders and files</h3>
+<p><code>home()</code> refers to the home directory, and <code>home("blah")</code> refers to the "blah" folder inside the home directory.</p>
 </div>
 
             <div>
         <a
-          href="https://twitter.com/intent/tweet?text=TS&url=https://bouwe.io/ts&via=bouwe"
+          href="https://twitter.com/intent/tweet?text=ScriptKit&url=https://bouwe.io/scriptkit&via=bouwe"
           >Share on Twitter</a
         >
         ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/ts"
+        <a href="https://twitter.com/search?q=https://bouwe.io/scriptkit"
           >Discuss on Twitter</a
         >
         ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/ts.md">Edit on GitHub</a>
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/scriptkit.md">Edit on GitHub</a>
       </div>
 
       </div>

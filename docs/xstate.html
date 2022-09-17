@@ -91,7 +91,9 @@
         <h2 class="page-title">XState</h2>
       </div>
 
-      <div><h1>State, events, and transitions</h1>
+      <div><h1>My notes about XState</h1>
+<p>This page is about XState, but I also have a page about using <a href="/xstate-react">XState with React</a>.</p>
+<h1>State, events, and transitions</h1>
 <p>Elke state is een object.</p>
 <p>De machine config wil weten welke <code>states</code> er zijn: object van alle state objecten</p>
 <p>En wil weten wat de <code>initialState</code> is.</p>
@@ -123,12 +125,9 @@ const myMachine = Machine(machineConfig);
 </code></pre>
 <p>Je gebruikt de object notatie als je meer wilt definiëren voor de transitie.</p>
 <h1>Services</h1>
-<p>A service is an interpreted machine i.e. an <strong>instance</strong> of machine.</p>
+<p>A service is an interpreted machine i.e. an <strong>instance</strong> of a machine.</p>
 <pre><code class="language-js">const service = interpret(myMachine).start();
 </code></pre>
-<blockquote>
-<p>ff checken: wij gebruiken <code>.start()</code> niet, is dat niet (meer) nodig?</p>
-</blockquote>
 <p>Via de service kun je events sturen:</p>
 <pre><code class="language-js">service.send("TOOGLE");
 </code></pre>
@@ -209,10 +208,6 @@ const myMachine = Machine(machineConfig);
 })
 </code></pre>
 <h1>Internal transitions</h1>
-<blockquote>
-<p>Mijn vertaling is dat dit een globale transitie is over de hele machine, ongeacht de huidige state, klopt dat???
-Als ik dit lees kan ik het nog niet helemaal relateren: <a href="https://xstate.js.org/docs/guides/transitions.html#internal-transitions">https://xstate.js.org/docs/guides/transitions.html#internal-transitions</a></p>
-</blockquote>
 <p>Dus ik definieer een <code>on</code> buiten de states om. Je kunt dan, ongeacht de state, het event triggeren:</p>
 <pre><code class="language-js">const myMachine = Machine(
   {

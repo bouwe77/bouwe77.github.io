@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>TS</title>
+    <title>XState React</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="TS" />
+    <meta name="twitter:title" content="XState React" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -88,30 +88,43 @@
           <div class="main">
       <div class="container">
               <div>
-        <h2 class="page-title">TS</h2>
+        <h2 class="page-title">XState React</h2>
       </div>
 
-      <div><p><strong>Cheat Sheet</strong>
-https://github.com/typescript-cheatsheets/react</p>
-<p><strong>Function components in React</strong>
-https://kentcdodds.com/blog/how-to-write-a-react-component-in-typescript</p>
-<p><strong>How to type a submit handler</strong>
-https://epicreact.dev/how-to-type-a-react-form-on-submit-handler</p>
-<p><strong>Function syntaxes</strong>
-https://kentcdodds.com/blog/typescript-function-syntaxes</p>
+      <div><h1>My notes about using XState with React</h1>
+<p>This page is about using XState with React, but I also have a page about <a href="/xstate">XState</a>.</p>
+<h1>Some terminology</h1>
+<p>Service = ...
+Interpreting = ...</p>
+<h1>useMachine</h1>
+<p>Interprets the given machine and starts a service that runs for the lifetime of the component.</p>
+<p>Returns an array of <code>[state, send, service]</code>.</p>
+<h1>useInterpret</h1>
+<p>Use React Context for global state when using XState and React. To prevent re-renders because of React Context,
+use <code>useInterpret</code>, which returns a service, a static reference to the running machine, which never changes.</p>
+<h1>useActor</h1>
+<p>To use the service from Context elsewhere, call <code>useActor(service)</code>, which returns the <code>state</code> (and <code>context</code> as
+part of it), every time it changes. In other words, with every change the component re-renders.</p>
+<blockquote>
+<p><code>useActor</code> subscribes to emitted changes from an existing (e.g. from React Context) actor.</p>
+</blockquote>
+<p>To have more control on re-renders, use a selector (<code>useSelector</code>) instead of <code>useActor</code> to define for which state
+or context value you want the component to re-render.</p>
+<p>The service coming from Context also returns the <code>send</code> function for sending events to the machine. If you already
+call <code>useActor</code>, that will also return the <code>send</code> function.</p>
 </div>
 
             <div>
         <a
-          href="https://twitter.com/intent/tweet?text=TS&url=https://bouwe.io/ts&via=bouwe"
+          href="https://twitter.com/intent/tweet?text=XState React&url=https://bouwe.io/xstate-react&via=bouwe"
           >Share on Twitter</a
         >
         ·
-        <a href="https://twitter.com/search?q=https://bouwe.io/ts"
+        <a href="https://twitter.com/search?q=https://bouwe.io/xstate-react"
           >Discuss on Twitter</a
         >
         ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/ts.md">Edit on GitHub</a>
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/xstate-react.md">Edit on GitHub</a>
       </div>
 
       </div>

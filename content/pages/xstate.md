@@ -2,6 +2,10 @@
 title: XState
 ---
 
+# Introduction
+
+This page is about XState, but I also have a page about using [XState with React](/xstate-react).
+
 # State, events, and transitions
 
 Elke state is een object.
@@ -51,13 +55,12 @@ Je gebruikt de object notatie als je meer wilt definiëren voor de transitie.
 
 # Services
 
-A service is an interpreted machine i.e. an **instance** of machine.
+A service is an interpreted machine i.e. an **instance** of a machine.
 
 ```js
 const service = interpret(myMachine).start();
 ```
 
-> ff checken: wij gebruiken `.start()` niet, is dat niet (meer) nodig?
 
 Via de service kun je events sturen:
 
@@ -168,8 +171,6 @@ const myMachine = Machine({
 
 # Internal transitions
 
-> Mijn vertaling is dat dit een globale transitie is over de hele machine, ongeacht de huidige state, klopt dat???
-> Als ik dit lees kan ik het nog niet helemaal relateren: https://xstate.js.org/docs/guides/transitions.html#internal-transitions
 
 Dus ik definieer een `on` buiten de states om. Je kunt dan, ongeacht de state, het event triggeren:
 

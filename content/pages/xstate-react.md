@@ -1,0 +1,13 @@
+---
+title: XState React
+---
+
+# Introduction
+
+This page is about using XState with React, but I also have a page about [XState](/xstate).
+
+# ...
+
+...
+...
+...

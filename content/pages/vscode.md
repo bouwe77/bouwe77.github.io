@@ -2,11 +2,9 @@
 title: VS Code Tips & Tricks
 ---
 
-### Alfred snippets
+### Command palette
 
-Open Alfred Snippets pane
-
-> ⌘ + SHIFT + L
+> ⌘ SHIFT P
 
 ### VS Code Appearance
 
@@ -90,3 +88,13 @@ Create a multi cursor
 
 > ⌘ ALT ⇧
 > (or down)
+
+### Navigating to other files
+
+Open file
+
+> ⌘ P
+
+Navigate to type definition
+
+> ⌘ T

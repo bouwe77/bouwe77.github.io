@@ -26,6 +26,8 @@ title: git
 
 > `git restore <filename>`
 
+Add `--staged` to restore staged changes.
+
 ## See all branches
 
 > `git branch`

@@ -13,6 +13,22 @@ title: Video ideas
 * Bronnen: Ervaring bij WG, mijn eigen POC repo's, dingen die ik nog wil leren
 * Heel erg vanuit een probleem redeneren, dus kijk, hier een probleem, en hoe gaan we dit oplossen?
 
+---
+
+## Egghead - How to make a video?
+
+Source: Egghead courses about Egghead courses by John Lindquist and Trevor Miller
+
+Mijn aantekeningen:
+- Name a clip by (in your head) adding "How do I..." in front of it: "Render a component with testing library", "Mock an API request", etc.
+- Say what you are doing out loud WHILE doing it.
+- First show HOW, then MAYBE explain afterwards.
+- If you do want to explain something, highlight the the code you are explaining.
+- Hide MacOS top bar, VS Code Zen Mode
+- Stay on topic, no remarks of possibly unrelated things
+
+---
+
 ## useEffect + RFC for useEvent Hook
 
 Resources:

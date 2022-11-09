@@ -16,6 +16,7 @@ Blog posts about my workshops are filed under the [Workshops category].
 
 ### Past events
 
+- Oct 21, 2022 **lightning talk** about manual vs automated End-to-End testing @ WebinarGeek
 - May 27, 2022 **lighning talk** demoing my side project [Holodeck] by creating MDX slides during the talk @ WebinarGeek
 - Jan 28, 2022 **lightning talk** on Expected and Unexpected Errors @ WebinarGeek
 - Nov 26, 2021 [REMIX] **lightning talk** @ WebinarGeek

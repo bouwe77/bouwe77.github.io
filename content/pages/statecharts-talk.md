@@ -50,10 +50,23 @@ Overig
 
 Verder uitzoeken...
 
-### Imperative vs declarative?
+### Imperative vs declarative
 
-...
+Voorbeeld van imperatieve code (met veel condities/checks) omzetten naar een state machine. Je gaat van een implementatie naar een "beschrijving"
+
+### Praktijkvoorbeelden 
+
+- WebinarGeek: Streaming app laten zien en de UI uitdaging.
+- Voorbeeld van een state machine
+- Voorbeelden hoe state machines met elkaar communiceren: spawning, maar ook gewoon events emitten wat niet via een state machine gaat. Kan best aangeven dat we dit wel hebben geprobeerd, maar niet nodig bleek te zijn, want zo ingewikkeld is dat niet.
+
+### Actors
+
+- Tegen de tijd dat het april is, is v5 vast uit, dus vertellen over actors
 
 ### Wanneer een state machine/statechart gebruiken?
 
 - "When there is a big diversity in points in time, when it is harder to reason about" https://youtu.be/1kJcnFBrk2I?t=4803
+(deze hele video is wel interessant!)
+- In het geval van React: Side effects uit de components + render cycle halen
+- Communiceren met de business? Alhoewel een state machine te specifiek en een te klein deel van een proces vertegenwoordigd? Aan de andere kant, er zijn vat WG state machines voorbeelden die iedereen wel snapt...

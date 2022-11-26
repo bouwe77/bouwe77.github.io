@@ -14,6 +14,7 @@ title: "Statecharts Talk"
 
 - Dit zou wel eens een hele belangrijke rode draad kunnen worden: https://stately.ai/blog/you-dont-need-a-library-for-state-machines
 - Overzichtelijk verhaal over de basisprincipes van state machines en statecharts: https://stately.ai/blog/introduction-to-state-machines-and-statecharts
+- https://statecharts.github.io
 
 <hr style="background-color:red; height: 10px">
 

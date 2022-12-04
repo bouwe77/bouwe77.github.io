@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Elm baby steps</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Elm baby steps" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+          </div>
+        </div>
+      </header>
+  
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/elm-baby-steps">Elm baby steps</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 4, 2022  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>, <a href="/categories/currying">Currying</a>  · 4 minute read
+        </div>
+      </div>
+
+      <div><h3>Elm?</h3>
+<p>Elm is a functional programming language for creating web apps. As you will see in this blog post, programming in Elm is quite different from programming in JavaScript, but Elm does compile to JavaScript, which makes it work in every browser.</p>
+<p>I am learning Elm because functional programming intrigues me, and building for the web as well, so it feels like the ideal language to try out.</p>
+<p>You can do functional programming in JavaScript as well, but JS is not opiniated about what paradigm(s) you use, so there are always escape hatches from not programming fully functional. Which is not a bad thing at all of course, the fact you can use different paradigms in a language is ideal, because which paradigm is best? It depends of course.</p>
+<p>So the reason I try out Elm is mainly because of curiosity. And because there are some very compelling language features that Elm offers: Static typing, immutability, pure functions, no side effects, no exceptions, no runtime errors, no <code>null</code> or <code>undefined</code>, etc. Sounds like a lot less to worry about.</p>
+<p>Many reasons to try this out, let's go! This blog post will focus on the language itself.</p>
+<h3>Playground</h3>
+<p>Let's not install things, but just start coding by using the Elm playground: https://elm-lang.org/try</p>
+<p>Here you can code with Elm, and see how it looks in the browser by clicking "Rebuild", which, like I said, compiles your Elm code to JavaScript.</p>
+<h3>Hello, World!</h3>
+<p>Let's create a variable with the name <code>sayHello</code> with the value "Hello, World!":</p>
+<pre><code class="language-elm">sayHello = "Hello, World!"
+</code></pre>
+<p>Let's output that value to the browser. Every Elm program needs a <code>main</code> function which is called by Elm. The <code>main</code> function expects an argument with the value tht needs to be rendered, so lets try this:</p>
+<pre><code class="language-elm">sayHello = "Hello, World!"
+
+main = sayHello
+</code></pre>
+<p>This does not work:</p>
+<pre><code>I cannot handle this type of `main` value:
+
+3| main = sayHello
+   ^^^^
+The type of `main` value I am seeing is:
+
+    String
+</code></pre>
+<p>The problem is that the type of <code>main</code> is a string, while it should be a function, so Elm can call it. So we need a function that returns our <code>"Hello, World!"</code> string. For this, we import the <code>text</code> function from Elm:</p>
+<pre><code class="language-elm">import Html exposing (text)
+
+sayHello = "Hello, World!"
+
+main = text sayHello
+</code></pre>
+<p>Here we import the 'text' function, and assign calling the <code>text</code> function with the <code>sayHello</code> argument to <code>main</code>, so Elm can call it and render <code>"Hello, World!"</code> in the browser.</p>
+<h3>Functions</h3>
+<p>Let's make a function that expects a name to say hello to:</p>
+<pre><code class="language-elm">sayHello name = "Hello, " ++ name
+</code></pre>
+<p>How to read this? <code>sayHello</code> is the name of the function, and it expects an argument called <code>name</code>. The <code>=</code> sign is for indicating where the function body starts, which here returns the string <code>"Hello, "</code>, followed by <code>++</code> which concatenates string, in this case the <code>name</code> argument.</p>
+<p>With this, our program now looks like this:</p>
+<pre><code class="language-elm">import Html exposing (text)
+
+sayHello name = "Hello, " ++ name
+
+main = text (sayHello "Bouwe")
+</code></pre>
+<p>Note how <code>main</code> is still calling <code>text</code>, but the argument is the outcome of calling the <code>sayHello</code> function first. If I would not add the parentheses, I would be passing 2 arguments to <code>text</code>, while it only expects one.</p>
+<h3>Calculations and types</h3>
+<p>Let's do some calculations:</p>
+<pre><code class="language-elm">add a b = a + b
+</code></pre>
+<p>Here the <code>add</code> function expects to arguments, <code>a</code> and <code>b</code>, and it will return the total of these two numbers.</p>
+<p>Numbers, you might think? How does Elm know these are numbers? Well, it's the <code>+</code> operator, which you can only use for numbers. Remember, we used the <code>++</code> operator in our previous example because we were dealing with strings. This shows how Elm is statically typed and will try to infer types. If it can not infer it, it will say so, and you can explicitly define the types if necessary.</p>
+<p>Alright, let's write the outcome of the calculation to the screen:</p>
+<pre><code class="language-elm">import Html exposing (text)
+
+add a b = a + b
+
+main = text (add 1 1)
+</code></pre>
+<p>Here we pass the result of <code>1 + 1</code> to the <code>text</code> function by calling the <code>add</code> function. However, this does not work, because <code>text</code> expects a string while the result of <code>add</code> is a number. The compilation error says we probably want to use <code>String.fromInt</code> to convert it to a string first.</p>
+<p>As with everything in Elm, <code>String.fromInt</code> is a function as well, so we could call it as follows:</p>
+<pre><code class="language-elm">main = text (String.fromInt (add 1 1))
+</code></pre>
+<p>This works, but I don't like all the parentheses, so let's break it up, and use a very cool language feature, the pipe operator:</p>
+<pre><code class="language-elm">total = add 1 1
+        |> String.fromInt
+
+main = text total
+</code></pre>
+<p>Here we call <code>add</code>, pass the value <code>1</code> twice, and the result from this, <code>2</code>, is passed along to the next function in the pipeline, <code>String.fromInt</code>. This converts <code>2</code> to the string <code>"2"</code>, and assigns it to the variable <code>total</code>, which is then passed to the <code>text</code> function for displaying.</p>
+<h3>Partial application</h3>
+<p>Elm supports partial application, in other words, calling a function with some of its arguments, which then returns a new function to which you only need to pass in the remaining arguments.</p>
+<p>Let me show you some examples with the <code>add</code> function we just used:</p>
+<pre><code class="language-elm">result = add 10 20
+-- result is the number 30
+
+result = add 10
+-- result is a function where the first argument (10) is already passed and applied, and you only need to pass the second argument still
+</code></pre>
+<p>As the second call results in a function that adds <code>10</code> to any number argument passed to it, let's rename it to <code>addTen</code>, and call it:</p>
+<pre><code class="language-elm">addTen = add 10
+
+result = addTen 20
+-- result is the number 30
+</code></pre>
+<p>With this, we could create a bunch of functions, and reuse and compose them together however we need. I wrote a blog post about this already.</p>
+<h3>Conclusion</h3>
+<p>Cool, we covered a few basics about Elm, I learned a lot, and I hope you too! There is much more to discover of course, so stay tuned for another blog post. Topics I can think of are some more language syntax, but also how to render HTML, as Elm is for building web applications.</p>
+<p>Thanks for reading!</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Elm baby steps&url=https://bouwe.io/elm-baby-steps&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/elm-baby-steps"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/elm-baby-steps/elm-baby-steps.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+
+    </div>
+
+  </body>
+</html>

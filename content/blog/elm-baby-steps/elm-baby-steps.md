@@ -14,29 +14,29 @@ Elm is a functional programming language for creating web apps. As you will see 
 
 I am learning Elm because functional programming intrigues me, and building for the web as well, so it feels like the ideal language to try out.
 
-You can do functional programming in JavaScript as well, but JS is not opiniated about what paradigm(s) you use, so there are always escape hatches from not programming fully functional. Which is not a bad thing at all of course, the fact you can use different paradigms in a language is ideal, because which paradigm is best? It depends of course.
+You can do functional programming in JavaScript as well, but JS is not opinionated about what paradigm(s) you use, so there are always escape hatches from not programming fully functional. Which is not a bad thing at all of course, the fact you can use different paradigms in a language is ideal, because which paradigm is best? It depends of course.
 
-So the reason I try out Elm is mainly because of curiosity. And because there are some very compelling language features that Elm offers: Static typing, immutability, pure functions, no side effects, no exceptions, no runtime errors, no `null` or `undefined`, etc. Sounds like a lot less to worry about.
+So my reason I try out Elm is mainly because of curiosity. And because there are some very compelling language features that Elm offers: Static typing, immutability, pure functions, no side effects, no exceptions, no runtime errors, no `null` or `undefined`, etc. Sounds like a lot less to worry about.
 
 Many reasons to try this out, let's go! This blog post will focus on the language itself.
 
 ### Playground
 
-Let's not install things, but just start coding by using the Elm playground: https://elm-lang.org/try
+Let's not install things, but just start coding by using the Elm playground: [https://elm-lang.org/try]
 
-Here you can code with Elm, and see how it looks in the browser by clicking "Rebuild", which, like I said, compiles your Elm code to JavaScript.
+Here you can code with Elm, and see how it looks in the browser by clicking "Rebuild", which, like I said, compiles your Elm code to JavaScript, and shows the result in the browser right away.
 
 ### Hello, World!
 
 Let's create a variable with the name `sayHello` with the value "Hello, World!":
 
-```elm
+```
 sayHello = "Hello, World!"
 ```
 
-Let's output that value to the browser. Every Elm program needs a `main` function which is called by Elm. The `main` function expects an argument with the value tht needs to be rendered, so lets try this:
+Let's output that value to the browser. Every Elm program needs a `main` function which is called by Elm. The `main` function expects an argument with the value that needs to be rendered, so let's try this:
 
-```elm
+```
 sayHello = "Hello, World!"
 
 main = sayHello
@@ -56,7 +56,7 @@ The type of `main` value I am seeing is:
 
 The problem is that the type of `main` is a string, while it should be a function, so Elm can call it. So we need a function that returns our `"Hello, World!"` string. For this, we import the `text` function from Elm:
 
-```elm
+```
 import Html exposing (text)
 
 sayHello = "Hello, World!"
@@ -70,7 +70,7 @@ Here we import the 'text' function, and assign calling the `text` function with 
 
 Let's make a function that expects a name to say hello to:
 
-```elm
+```
 sayHello name = "Hello, " ++ name
 ```
 
@@ -78,7 +78,7 @@ How to read this? `sayHello` is the name of the function, and it expects an argu
 
 With this, our program now looks like this:
 
-```elm
+```
 import Html exposing (text)
 
 sayHello name = "Hello, " ++ name
@@ -92,7 +92,7 @@ Note how `main` is still calling `text`, but the argument is the outcome of call
 
 Let's do some calculations:
 
-```elm
+```
 add a b = a + b
 ```
 
@@ -102,7 +102,7 @@ Numbers, you might think? How does Elm know these are numbers? Well, it's the `+
 
 Alright, let's write the outcome of the calculation to the screen:
 
-```elm
+```
 import Html exposing (text)
 
 add a b = a + b
@@ -114,13 +114,13 @@ Here we pass the result of `1 + 1` to the `text` function by calling the `add` f
 
 As with everything in Elm, `String.fromInt` is a function as well, so we could call it as follows:
 
-```elm
+```
 main = text (String.fromInt (add 1 1))
 ```
 
 This works, but I don't like all the parentheses, so let's break it up, and use a very cool language feature, the pipe operator:
 
-```elm
+```
 total = add 1 1
         |> String.fromInt
 
@@ -135,24 +135,25 @@ Elm supports partial application, in other words, calling a function with some o
 
 Let me show you some examples with the `add` function we just used:
 
-```elm
-result = add 10 20
--- result is the number 30
+```
+result1 = add 10 20
+-- result1 is the number 30
 
-result = add 10
--- result is a function where the first argument (10) is already passed and applied, and you only need to pass the second argument still
+result2 = add 10
+-- result2 is a function where the first argument (10) is already passed and applied,
+-- and you only need to pass the second argument still
 ```
 
 As the second call results in a function that adds `10` to any number argument passed to it, let's rename it to `addTen`, and call it:
 
-```elm
+```
 addTen = add 10
 
 result = addTen 20
 -- result is the number 30
 ```
 
-With this, we could create a bunch of functions, and reuse and compose them together however we need. I wrote a blog post about this already.
+With this, we could create a bunch of functions, and reuse and compose them together however we need. I wrote a [blog post about this](/composition-with-currying) already.
 
 ### Conclusion
 

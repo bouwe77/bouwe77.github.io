@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Elm baby steps</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Elm baby steps" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+          </div>
+        </div>
+      </header>
+  
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/elm-rendering-html">Elm baby steps</a>
+        </h2>
+        <div class="blog-meta">
+          Dec 5, 2022  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>  · 4 minute read
+        </div>
+      </div>
+
+      <div><h3>Introduction</h3>
+<p>In my <a href="/elm-baby-steps">previous blog post about Elm</a> I wrote about the Elm language, mainly about how to create and call functions. Because that's what you do in a functional language, writing and/or calling functions.</p>
+<p>In this post I'll look into rendering HTML with Elm. This is very common, as Elm is a language for creating web applications. The Elm code you write is compiled into JavaScript.</p>
+<p>Again, we will use the <a href="https://elm-lang.org/try">Elm Playground</a> so you don't have to install anything, and we can just fiddle around.</p>
+<p>In this blog post I'll focus on just <em>showing</em> HTML. Adding user interaction will be something for a next article.</p>
+<h3>Hello World</h3>
+<p>As I've already explained in <a href="/elm-baby-steps">my previous Elm blog post</a>, the following Elm program renders the text <code>"Hello World"</code> in the browser:</p>
+<pre><code>import Html exposing (text)
+
+main = 
+    text "Hello, World!"
+</code></pre>
+<p>If you inspect the page, you'll see the DOM (roughly) looks as this:</p>
+<pre><code>&#x3C;html>
+&#x3C;body>
+"Hello, World!"
+&#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<p>Now you might think, let's add some HTML like this:</p>
+<pre><code>main =
+    text "&#x3C;div>Hello, &#x3C;b>World!&#x3C;/b>&#x3C;/div>"
+</code></pre>
+<p>However, now it (still) renders the value as text, so it does not apply the markup:</p>
+<pre><code>&#x3C;html>
+&#x3C;body>
+"&#x3C;div>Hello, &#x3C;b>World!&#x3C;/b>&#x3C;/div>"
+&#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<p>The reason for this is we still pass the <code>text</code> function to <code>main</code>. It's purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the <code>body</code> element.</p>
+<p>So how do we write HTML that is rendered by the browser?</p>
+<h3>HTML</h3>
+<p>Let's start with just rendering a <code>div</code> element with a text. Next to the <code>text</code> function we were already importing, we also import the <code>div</code> function:</p>
+<pre><code>import Html exposing (div, text)
+
+main =
+    div [] [ text "Hello, World!" ]
+</code></pre>
+<p>The value of <code>main</code> now becomes the <code>div</code> function which expects two list arguments. The first one are HTML attributes of the <code>div</code>, which are empty (<code>[]</code>) in this case. The second argument is a list of children of the <code>div</code>, in this case the <code>text</code> with the <code>"Hello, World!"</code> text content as an argument.</p>
+<p>Next, let's try to achieve the HTML we want, with <code>"World!"</code> being bold:</p>
+<pre><code>import Html exposing (b, div, text)
+
+main =
+    div []
+        [ text "Hello, "
+        , b []
+            [ text "World!"
+            ]
+        ]
+</code></pre>
+<p>In the second (children) array argument, <code>div</code> not only receives the <code>"Hello, "</code> text, but also another element function for a bold text, the <code>b</code> function we've imported from <code>Html</code>. The <code>b</code> element also has an empty list for its attributes, and a child for the <code>"World"</code> text.</p>
+<blockquote>
+<p>Note the indentation of the code, this is how you should indent Elm code. Personally I really have to get used to this, so for now I let my editor do the formatting, also because incorrect formatting gives compilation errors. You could use VS Code, or an online editor such as <a href="https://elm-editor.com">Elm Editor</a> to do this for you.</p>
+</blockquote>
+<h3>CSS styling</h3>
+<p>Until now we have not supplied any attributes to the <code>div</code> and <code>b</code> elements we've used, so let's do that now. Let's center the div and make the bold text red:</p>
+<pre><code>import Html exposing (b, div, text)
+import Html.Attributes exposing (style)
+
+main =
+    div
+        [ style "display" "grid"
+        , style "place-items" "center"
+        , style "min-height" "5vh"
+        , style "background-color" "white"
+        ]
+        [ text "Hello, "
+        , b
+            [ style "color" "red"
+            ]
+            [ text "World!"
+            ]
+        ]
+</code></pre>
+<p>We import <code>style</code> from <code>Html.Attributes</code>, and pass it to both the <code>div</code> and <code>b</code> in the first argument, which is the attributes argument.</p>
+<p>Of course you can also use CSS classes:</p>
+<pre><code>import Html exposing (b, div, text)
+import Html.Attributes exposing (class)
+
+main =
+    div
+        [ class "container"
+        ]
+        [ text "Hello, "
+        , b
+            [ class "emphasis"
+            ]
+            [ text "World!"
+            ]
+        ]
+</code></pre>
+<p>Just like with most frontend frameworks, Elm is not opinionated about CSS styling, so there are many more ways to do styling.</p>
+<h3>Conclusion</h3>
+<p>Of course there is a lot more to say about HTML, but that's for another time. A very nice next step would be to discover how to make a web app interactive, so stay tuned!</p>
+<p>Thanks for reading, and if you have questions or remarks, please let me know!</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Elm baby steps&url=https://bouwe.io/elm-rendering-html&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/elm-rendering-html"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/elm-rendering-html/elm-rendering-html.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+
+    </div>
+
+  </body>
+</html>

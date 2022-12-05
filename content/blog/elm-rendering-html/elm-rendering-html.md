@@ -38,7 +38,7 @@ If you inspect the page, you'll see the DOM (roughly) looks as this:
 Now you might think, let's add some HTML like this:
 
 ```
-main = text "<div><h1>Hello</h1>, World!</div>"
+main = text "<div>Hello, <b>World!</b></div>"
 ```
 
 However, now it (still) renders the value as text, so it does not apply the markup:
@@ -46,7 +46,7 @@ However, now it (still) renders the value as text, so it does not apply the mark
 ```
 <html>
 <body>
-"<div><h1>Hello</h1>, World!</div>"
+"<div>Hello, <b>World!</b></div>"
 </body>
 </html>
 ```
@@ -55,5 +55,33 @@ This is of course because we still pass the `text` function to `main`. So how do
 
 ### HTML
 
+Let's start with just rendering a `div` element with a text. Next to the `text` function we were already importing, we also import the `div` function:
+
+```
+import Html exposing (text, div)
+
+main = div [] [ text "Hello, World!" ]
+```
+
+The value of `main` now becomes the `div` function which expects two list arguments. The first one are HTML attributes of the `div`, which are empty (`[]`) in this case. The second argument is a list of children of the `div`, in this case the `text` with the `"Hello, World!"` argument:
+
+Next, let's try to achieve the HTML we want, with `"World!"` being bold:
+
+```
+import Html exposing (text, b, div)
+
+main = div [] [ 
+  text "Hello, ", 
+  b [] [ 
+    text "World!" 
+  ]
+]
+```
+
+In the second (children) array argument, `div` not only receives the `"Hello, "` text, but also another element function for a bold text. This is the `b` function we've imported from `Html`. The `b` element also has an empty list for its attributes, but the child is the `"World"` text.
+
+### CSS styling
+
+...
 
 

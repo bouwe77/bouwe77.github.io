@@ -1,6 +1,6 @@
 ---
 date: "2022-12-05"
-title: "Elm baby steps"
+title: "Elm: Rendering HTML"
 summary: ""
 categories:
   - "Functional programming"
@@ -55,7 +55,7 @@ However, now it (still) renders the value as text, so it does not apply the mark
 </html>
 ```
 
-The reason for this is we still pass the `text` function to `main`. It's purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the `body` element.
+The reason for this is we still pass the `text` function to `main`. Its purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the `body` element.
 
 So how do we write HTML that is rendered by the browser?
 

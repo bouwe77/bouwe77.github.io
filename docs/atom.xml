@@ -16,7 +16,7 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2022, Bouwe Westerdijk</rights>
     <entry>
-        <title type="html"><![CDATA[Elm baby steps]]></title>
+        <title type="html"><![CDATA[Elm: Rendering HTML]]></title>
         <id>https://bouwe.io/elm-rendering-html</id>
         <link href="https://bouwe.io/elm-rendering-html"/>
         <updated>2022-12-05T00:00:00.000Z</updated>

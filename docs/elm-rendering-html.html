@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>Elm baby steps</title>
+    <title>Elm: Rendering HTML</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="Elm baby steps" />
+    <meta name="twitter:title" content="Elm: Rendering HTML" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -89,7 +89,7 @@
       <div class="container">
               <div>
         <h2 class="blog-title">
-          <a href="/elm-rendering-html">Elm baby steps</a>
+          <a href="/elm-rendering-html">Elm: Rendering HTML</a>
         </h2>
         <div class="blog-meta">
           Dec 5, 2022  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>  · 4 minute read
@@ -126,7 +126,7 @@ main =
 &#x3C;/body>
 &#x3C;/html>
 </code></pre>
-<p>The reason for this is we still pass the <code>text</code> function to <code>main</code>. It's purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the <code>body</code> element.</p>
+<p>The reason for this is we still pass the <code>text</code> function to <code>main</code>. Its purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the <code>body</code> element.</p>
 <p>So how do we write HTML that is rendered by the browser?</p>
 <h3>HTML</h3>
 <p>Let's start with just rendering a <code>div</code> element with a text. Next to the <code>text</code> function we were already importing, we also import the <code>div</code> function:</p>
@@ -196,7 +196,7 @@ main =
 
             <div>
         <a
-          href="https://twitter.com/intent/tweet?text=Elm baby steps&url=https://bouwe.io/elm-rendering-html&via=bouwe"
+          href="https://twitter.com/intent/tweet?text=Elm: Rendering HTML&url=https://bouwe.io/elm-rendering-html&via=bouwe"
           >Share on Twitter</a
         >
         ·

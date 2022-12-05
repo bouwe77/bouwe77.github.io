@@ -11,11 +11,11 @@ categories:
 
 In my [previous blog post about Elm](/elm-baby-steps) I wrote about the Elm language, mainly about how to create and call functions. Because that's what you do in a functional language, writing and/or calling functions.
 
-In this post I'll look into rendering HTML with Elm. This is very common as Elm is a language for creating web applications. The Elm code you write is compiled into JavaScript.
+In this post I'll look into rendering HTML with Elm. This is very common, as Elm is a language for creating web applications. The Elm code you write is compiled into JavaScript.
 
-Again, we will use the [Elm Playground](https://elm-lang.org/try) so you don't have to install anything, and can just fiddle around.
+Again, we will use the [Elm Playground](https://elm-lang.org/try) so you don't have to install anything, and we can just fiddle around.
 
-In this blog post I'll focus on just _showing_ HTML, and not on user interaction yet, that will be something for a next post.
+In this blog post I'll focus on just _showing_ HTML. Adding user interaction will be something for a next article.
 
 ### Hello World
 
@@ -57,7 +57,7 @@ However, now it (still) renders the value as text, so it does not apply the mark
 
 The reason for this is we still pass the `text` function to `main`. It's purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the `body` element.
 
-So how do we render HTML that is interpreted by the browser?
+So how do we write HTML that is rendered by the browser?
 
 ### HTML
 
@@ -86,7 +86,7 @@ main =
         ]
 ```
 
-In the second (children) array argument, `div` not only receives the `"Hello, "` text, but also another element function for a bold text, the `b` function we've imported from `Html`. The `b` element also has an empty list for its attributes, but the child is the `"World"` text.
+In the second (children) array argument, `div` not only receives the `"Hello, "` text, but also another element function for a bold text, the `b` function we've imported from `Html`. The `b` element also has an empty list for its attributes, and a child for the `"World"` text.
 
 > Note the indentation of the code, this is how you should indent Elm code. Personally I really have to get used to this, so for now I let my editor do the formatting, also because incorrect formatting gives compilation errors. You could use VS Code, or an online editor such as [Elm Editor](https://elm-editor.com) to do this for you.
 
@@ -139,7 +139,7 @@ Just like with most frontend frameworks, Elm is not opinionated about CSS stylin
 
 ### Conclusion
 
-Of course there is a lot more to say about HTML, but that's for another time. A very nice next step would be to discover how to make a web app where users can interact with, so stay tuned!
+Of course there is a lot more to say about HTML, but that's for another time. A very nice next step would be to discover how to make a web app interactive, so stay tuned!
 
 Thanks for reading, and if you have questions or remarks, please let me know!
 

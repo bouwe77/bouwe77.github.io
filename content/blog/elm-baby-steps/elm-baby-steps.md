@@ -22,7 +22,7 @@ Many reasons to try this out, let's go! This blog post will focus on the languag
 
 ### Playground
 
-Let's not install things, but just start coding by using the Elm playground: [https://elm-lang.org/try]
+Let's not install things, but just start coding by using the Elm playground: [https://elm-lang.org/try](https://elm-lang.org/try)
 
 Here you can code with Elm, and see how it looks in the browser by clicking "Rebuild", which, like I said, compiles your Elm code to JavaScript, and shows the result in the browser right away.
 
@@ -96,7 +96,7 @@ Let's do some calculations:
 add a b = a + b
 ```
 
-Here the `add` function expects to arguments, `a` and `b`, and it will return the total of these two numbers.
+Here the `add` function expects two arguments, `a` and `b`, and it will return the total of these two numbers.
 
 Numbers, you might think? How does Elm know these are numbers? Well, it's the `+` operator, which you can only use for numbers. Remember, we used the `++` operator in our previous example because we were dealing with strings. This shows how Elm is statically typed and will try to infer types. If it can not infer it, it will say so, and you can explicitly define the types if necessary.
 

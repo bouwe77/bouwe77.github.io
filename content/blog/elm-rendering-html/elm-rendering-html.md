@@ -135,7 +135,7 @@ main =
         ]
 ```
 
-Just like with most frontend frameworks, Elm is not opinionated about CSS styling, so there are many more ways of doing that.
+Just like with most frontend frameworks, Elm is not opinionated about CSS styling, so there are many more ways to do styling.
 
 ### Conclusion
 

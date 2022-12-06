@@ -55,7 +55,7 @@ However, now it (still) renders the value as text, so it does not apply the mark
 </html>
 ```
 
-The reason for this is we still pass the `text` function to `main`. Its purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the `body` element.
+The reason for this is we still pass the `text` function to `main`. Its purpose is to add plain text nodes to the DOM. However, text nodes aren't the only things you can add to the DOM, of course there are also elements.
 
 So how do we write HTML that is rendered by the browser?
 

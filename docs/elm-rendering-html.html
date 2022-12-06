@@ -126,7 +126,7 @@ main =
 &#x3C;/body>
 &#x3C;/html>
 </code></pre>
-<p>The reason for this is we still pass the <code>text</code> function to <code>main</code>. Its purpose is to add plain text to the DOM. It's the equivalent of rendering text content into an element, in this case in the <code>body</code> element.</p>
+<p>The reason for this is we still pass the <code>text</code> function to <code>main</code>. Its purpose is to add plain text nodes to the DOM. However, text nodes aren't the only things you can add to the DOM, of course there are also elements.</p>
 <p>So how do we write HTML that is rendered by the browser?</p>
 <h3>HTML</h3>
 <p>Let's start with just rendering a <code>div</code> element with a text. Next to the <code>text</code> function we were already importing, we also import the <code>div</code> function:</p>

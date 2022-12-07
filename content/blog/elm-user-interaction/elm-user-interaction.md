@@ -160,12 +160,12 @@ main =
 
 We've imported `Browser`, and assign `Browser.sandbox` to `main`. This is Elm's way to indicate an app is interactive.
 
-Notice how, with this change, we only pass `initialModel`, `view`, and `update`. The Elm Runtime will do the wiring for us, and keep everything in sync now. Here is how you see all of the parts of the Elm Architecture coming together.
+Notice how, with this change, we only pass `initialModel`, `view`, and `update`. All of the parts of the Elm Architecture come together here as we hand them over the Elm Runtime, which will keep everything in sync now.
 
 ### Conclusion
 
-Man, figuring out the Elm Architecure, and implement it while writing this blog post was quite the journey! But the fact with this knowledge I know the basics of creating Elm apps feels great.
+Man, figuring out the Elm Architecure, and implement it, while writing this blog post was quite the journey! But it feels great with this experience I have a nice first overview of how to build an interactive Elm app.
 
-There are of course many things to improve here, and of course many other things to still find out, but I am really starting to understand and like Elm.
+There are of course many things to improve here, and of course many other things to still find out, but I am really starting to understand and like (!) Elm.
 
 I hope you found this interesting, and please let me know if you have anything to add or ask.

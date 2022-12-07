@@ -134,9 +134,9 @@ We've used two list functions here, `List.filter` and `List.map`. There are a fe
 
 ### Updating the model
 
-The third part of The Elm Architecture, next to View and Model, is Update. This is of course also a function, called `update`, which receives all of the information to update the model. After the model is updated, the Elm Runtime will update the UI, by applying the updated model to the view.
+The third part of The Elm Architecture, next to View and Model, is Update. This of course is also a function, called `update`, which receives all of the information to update the model. After the model is updated, the Elm Runtime will update the UI, by applying the updated model to the view.
 
-The `update` function needs two things to know what to do: The so-called message (`msg`), which specifies _what_ to do, and the `model` to change, depending on the `msg`:
+The `update` function needs two things to know what to do: The so-called message (`msg`), which specifies _what_ to do, and the `model` that needs to change, depending on the `msg`:
 
 ```
 -- ...
@@ -164,6 +164,8 @@ Notice how, with this change, we only pass `initialModel`, `view`, and `update`.
 
 ### Conclusion
 
-...
-...
-...
+Man, figuring out the Elm Architecure, and implement it while writing this blog post was quite the journey! But the fact with this knowledge I know the basics of creating Elm apps feels great.
+
+There are of course many things to improve here, and of course many other things to still find out, but I am really starting to understand and like Elm.
+
+I hope you found this interesting, and please let me know if you have anything to add or ask.

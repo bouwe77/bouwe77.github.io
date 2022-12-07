@@ -62,17 +62,14 @@ view model =
         [ h1 [] [ text "Let's Help Santa! 🎅🏻🙏🏻" ]
         , div [ class "container" ]
             [ div [ class "workshop" ]
-                [ renderPresent "present-2"
-                , renderPresent "present-3"
-                ]
+                [ renderPresent "present-2", renderPresent "present-3" ]
             , div [ class "sleigh" ]
-                [ renderPresent "present-1"
-                ]
+                [ renderPresent "present-1" ]
             ]
         ]
 ```
 
-If you read my previous blog post, you might notice a slight difference: The HTML is defined in a function called `view`, that receives a `model` argument. It returns an HTML structure, kind of like we did before. We don't use the `model` argument yet. Then we call `main`, which calls the `view` and receives a string of `"todo"` as a value for now.
+If you read my previous blog post, you might notice a slight difference: Here. the HTML is defined in a function called `view`, that receives a `model` argument. It returns an HTML structure, kind of like we did before. In the HTML, we don't use the `model` argument yet. Then we call `main`, which calls the `view` and passes a string of `"todo"` as a dummy model for now.
 
 
 ### The initial model
@@ -101,3 +98,72 @@ The `initialModel` is a list of `Present` records, where the `location` is eithe
 
 Now that we have an initial model, let's render that instead of the hard-coded elements:
 
+```
+view model =
+    div []
+        [ h1 [] [ text "Let's Help Santa! 🎅🏻🙏🏻" ]
+        , div [ class "container" ]
+            [ div [ class "workshop" ] (renderPresents model Workshop)
+            , div [ class "sleigh" ] (renderPresents model Sleigh)
+            ]
+        ]
+```
+
+Notice how the hard-coded lists of presents have been replace by a call to `renderPresents`, which receives 2 arguments, the `model` (all of the presents), and a `Location` type to filter on of either `Workshop` or `Sleigh`.
+
+This is the `renderPresents` function:
+
+```
+renderPresents presents locationFilter =
+    List.map
+        (\p -> renderPresent p.id)
+        (List.filter (\p -> p.location == locationFilter) presents)
+```
+
+It receives the `presents`, which it filters with `List.filter` on the given `locationFilter`. The filtered presents is passed as the second argument to `List.map`, which only keeps the `id` of the present, because that's the only thing the `renderPresent` needs.
+
+Note how I use parenthesis so Elm knows which arguments belong to which function call. You need to read this from the inside out: First there is the filter on `presents`, and then there is a map on the result.
+
+We've used two list functions here, `List.filter` and `List.map`. There are a few things that are different when you are used to JavaScript:
+
+- They are not _methods_ on a list, but instead independent functions where you pass the list to. Methods do not exist in Elm, there are only functions, which need to _receive_ all arguments.
+
+- The list to filter or map on is the _second_ argument.
+
+- The first argument of both functions is an anonymous function which defines what to apply on every item in the list. In Elm, anonymous functions start with a `\` (backslash), and we use the arrow `->` before returning.
+
+### Updating the model
+
+The third part of The Elm Architecture, next to View and Model, is Update. This is of course also a function, called `update`, which receives all of the information to update the model. After the model is updated, the Elm Runtime will update the UI, by applying the updated model to the view.
+
+The `update` function needs two things to know what to do: The so-called message (`msg`), which specifies _what_ to do, and the `model` to change, depending on the `msg`:
+
+```
+-- ...
+-- ...
+```
+
+Elm needs to know we've written the `update` function, so let's update the call to `main`:
+
+```
+import Browser
+
+-- other code...
+
+main =
+    Browser.sandbox
+        { init = initialModel
+        , view = view
+        , update = update
+        }
+```
+
+We've imported `Browser`, and assign `Browser.sandbox` to `main`. This is Elm's way to indicate an app is interactive.
+
+Notice how, with this change, we only pass `initialModel`, `view`, and `update`. The Elm Runtime will do the wiring for us, and keep everything in sync now. Here is how you see all of the parts of the Elm Architecture coming together.
+
+### Conclusion
+
+...
+...
+...

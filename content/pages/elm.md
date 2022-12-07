@@ -11,7 +11,14 @@ title: Elm
 
 # What is Elm?
 
-...
+- Web applications
+- Compiles to JavaScript
+- A functional language
+- Statically typed + inference
+- All data is immutable
+- All functions are pure (a function _does_ nothing, no side effects)
+- no `null`, `undefined`, or exceptions
+- Functions are curried to allow partial application
 
 # Language syntax
 

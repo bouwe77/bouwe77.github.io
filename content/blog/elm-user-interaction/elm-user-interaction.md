@@ -51,7 +51,7 @@ view model =
 
 We have a heading saying `"Let's Help Santa! 🎅🏻🙏🏻"`, and a bunch of `div`s: A `container`, which has 2 children, `"workshop"` and `"sleigh"`. Then there are 3 buttons, which are the "presents". `"present-1"` is already on the sleigh (child of the `"sleigh"` `div`), and the other two presents are still in the workshop, i.e. a child of the `"workshop"` `div`.
 
-There is a bit of unnecessary duplication going on for the "presents", so let's create a function called `present` that renders the present `button`, and sets the `presentId` argument as the `id` attribute:
+There is a bit of unnecessary duplication going on for the "presents", so let's create a function called `renderPresent` that renders the present `button`, and sets the `presentId` argument as the `id` attribute:
 
 ```
 renderPresent presentId =
@@ -74,7 +74,7 @@ If you read my previous blog post, you might notice a slight difference: Here. t
 
 ### The initial model
 
-The next part of the Elm Architecture is the model, which is the state of our application. In our case, it's a list of presents, and their location:
+The next part of the Elm Architecture is the model, which is the _state_ of our application. In our case, it's a list of presents, and their location:
 
 ```
 type Location
@@ -92,7 +92,7 @@ initialModel =
     ]
 ```
 
-The `initialModel` is a list of `Present` records, where the `location` is either `Workshop` or `Sleigh`.
+The `initialModel` is a `List` of `Present` records (objects), where the `location` is of the `Location` type, which is either the `Workshop` or the `Sleigh`.
 
 ### Rendering the initial model
 
@@ -109,15 +109,13 @@ view model =
         ]
 ```
 
-Notice how the hard-coded lists of presents have been replace by a call to `renderPresents`, which receives 2 arguments, the `model` (all of the presents), and a `Location` type to filter on of either `Workshop` or `Sleigh`.
+Notice how the hard-coded lists of presents have been replaced by a call to `renderPresents`, which receives 2 arguments, the `model` (all of the presents), and a `Location` type to filter on either `Workshop` or `Sleigh`.
 
 This is the `renderPresents` function:
 
 ```
 renderPresents presents locationFilter =
-    List.map
-        (\p -> renderPresent p.id)
-        (List.filter (\p -> p.location == locationFilter) presents)
+    List.map (\p -> renderPresent p.id) (List.filter (\p -> p.location == locationFilter) presents)
 ```
 
 It receives the `presents`, which it filters with `List.filter` on the given `locationFilter`. The filtered presents is passed as the second argument to `List.map`, which only keeps the `id` of the present, because that's the only thing the `renderPresent` needs.
@@ -132,23 +130,119 @@ We've used two list functions here, `List.filter` and `List.map`. There are a fe
 
 - The first argument of both functions is an anonymous function which defines what to apply on every item in the list. In Elm, anonymous functions start with a `\` (backslash), and we use the arrow `->` before returning.
 
-### Updating the model
+### Preparing the `update`
 
-The third part of The Elm Architecture, next to View and Model, is Update. This of course is also a function, called `update`, which receives all of the information to update the model. After the model is updated, the Elm Runtime will update the UI, by applying the updated model to the view.
+The third part of The Elm Architecture, next to View and Model, is Update. This of course is also a function, which receives all of the information to update the model. After the model is updated, the Elm Runtime will update the UI, by applying the updated model to the view.
 
-The `update` function needs two things to know what to do: The so-called message (`msg`), which specifies _what_ to do, and the `model` that needs to change, depending on the `msg`:
+The `update` function needs to two arguments, and the first one is the message (`msg`), which has all the information to update the model with, and the second argument is the `model` itself. Let's first look at the type definition for the `msg` argument:
 
 ```
--- ...
--- ...
+type Msg
+    = MoveTo String Location
 ```
+
+This says that for the `MoveTo` message it needs a `String` (the present id), and the `Location` to move the present to.
+
+You could see this messages as being _actions_ you can perform on the model. `Msg` is a union type, so you could add more message using a pipe:
+
+```
+type Msg
+    = MoveTo String Location
+    | Unwrap String
+```
+
+Now that we have defined which message we can use, lets add an `onClick` to the button in `renderPresent`:
+
+```
+renderPresent presentId =
+    button
+        [ id presentId
+        , class "present"
+        , onClick
+            (MoveTo presentId Sleigh)
+        ]
+        []
+```
+
+The `onClick` expects a message, so that is why we call the `MoveTo`, and supply it with the present we want to move, and `Sleigh` as the location.
+
+Now that we have defined a message, and a user action to trigger it, let's start with creating the `update` function to actually update the model:
+
+```
+update msg presents =
+    case msg of
+        MoveTo presentId location ->
+            presents
+```
+
+The `update` function receives two arguments, the `msg`, and the `presents` model. It then checks the `msg`, and if it's `MoveTo`, it receives the `presentId` and `location` sent by the `onClick`. However, it does not do anything with it yet, it just returns the unchanged 'presents` again.
+
+This is a switch/case statement, but if the `Msg` union type would still have the `Unwrap` message, this code would not compile, because it is not implemented yet in the case statement. So let's remove `Unwrap`, because we won't use it. 
+
+### Implementing the `update`
+
+The `update` function needs to be changed, so that it finds the present to update, and then changes the location of that present:
+
+```
+update msg presents =
+    case msg of
+        MoveTo presentId location ->
+            let
+                updatedPresents =
+                    List.map
+                        (\present ->
+                            if present.id == presentId then
+                                { present | location = location }
+
+                            else
+                                present
+                        )
+                        presents
+            in
+            updatedPresents
+```
+
+There is a lot going one here, so let's start reading from the inside out: There is a `List.map` to find the present by `presentId`, and change the `location`. The result of the map is being assigned to `updatedPresents`, which is inside a `let` to ... ... ... ... ... ... .... 
+
+The `updatedPresents` are returned, as being the new, updated model.
+
+This `update` function can change the location of a present to any `Location`, while in the `onClick` we said it should always go to the `Sleigh`. So let's improve `renderPresent` so that presents in the workshop go to the sleigh, but also vice versa:
+
+```
+renderPresent present =
+    button
+        [ id present.id
+        , class "present"
+        , onClick
+            (MoveTo present.id
+                (if present.location == Sleigh then
+                    Workshop
+
+                 else
+                    Sleigh
+                )
+            )
+        ]
+        []
+```
+
+Note how `renderPresent` no longer only receives `presentId`, but instead the whole `present`. With this we can check the current location, and pass the new location to `MoveTo`.
+
+This also simplifies the `renderPresents` functions, because the `List.map` can now just pass the whole present:
+
+```
+renderPresents presents locationFilter =
+    List.map renderPresent (List.filter (\p -> p.location == locationFilter) presents)
+```
+
+### Wiring it all together
 
 Elm needs to know we've written the `update` function, so let's update the call to `main`:
 
 ```
 import Browser
 
--- other code...
+-- <<< skip all the other code >>>
 
 main =
     Browser.sandbox
@@ -158,9 +252,11 @@ main =
         }
 ```
 
-We've imported `Browser`, and assign `Browser.sandbox` to `main`. This is Elm's way to indicate an app is interactive.
+We've imported `Browser`, and assign `Browser.sandbox` to `main`. This is Elm's way to indicate an app is _interactive_, as in, it has a model that can change by user interaction, and the view has to reflect that.
 
 Notice how, with this change, we only pass `initialModel`, `view`, and `update`. All of the parts of the Elm Architecture come together here as we hand them over the Elm Runtime, which will keep everything in sync now.
+
+Nowhere in our code you actually see we pass the model to the view and update, that's what Elm Runtime is doing for us. We only need to pass the things from our own code that only we know, to show and update the right thing.
 
 ### Conclusion
 

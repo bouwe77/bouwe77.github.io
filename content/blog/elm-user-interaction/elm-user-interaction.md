@@ -19,7 +19,7 @@ For Elm this means we have to look into the so-called Elm Architecture, which de
 
 Let's build a very simple interactive app, while explaining and adhering to The Elm Architecture.
 
-It's December, so let's build an Xmas app. Santa is preparing to leave to deliver presents, however, all presents are still in his workshop, and need to be loaded on his sleigh...
+It's December, so let's build an XMAS app. Santa is preparing to leave to deliver presents, however, all presents are still in his workshop, and need to be loaded on his sleigh...
 
 <img alt="Demo of the Let's Help Santa Elm app" src="/santa-demo.gif" width="672"/>
 
@@ -75,7 +75,7 @@ main =
   view "todo"
 ```
 
-If you read my previous blog post, you might notice a slight difference: Here. the HTML is defined in a function called `view`, that receives a `model` argument. It returns an HTML structure, kind of like we did before. We don't use the `model` argument yet, because we haven't defined it yet. So that is why, for now, we pass a string of `"todo"` as a dummy model to `view`.
+If you read my previous blog post, you might notice a slight difference: Here, the HTML is defined in a function called `view`, that receives a `model` argument. It returns an HTML structure, kind of like we did before. In `view` we are not using the `model` argument yet, because it does not exist yet. So that is why, for now, we pass a string of `"todo"` as a dummy model to `view`.
 
 
 ### The initial model
@@ -102,6 +102,11 @@ initialModel =
 ```
 
 The `initialModel` is a `List` of `Present` records (objects), where the `location` is of the `Location` type, which is either the `Workshop` or the `Sleigh`.
+
+> If you look closely, I use both `type` and `type alias`, what is the difference?
+> type defines and names a new type (which behaves like an enum with data attached), and type alias gives a name to an existing type.
+> type alias isn’t creating a distinct type, it is literally just giving a name to an existing type. A type alias will save you keystrokes, but do nothing more. 
+> Source: [Elm FAQ](https://faq.elm-community.org/#what-is-the-difference-between-type-and-type-alias), see also [Elm docs](https://guide.elm-lang.org/types/type_aliases.html).
 
 ### Rendering the initial model
 
@@ -186,7 +191,7 @@ update msg presents =
 
 The `update` function receives two arguments, the `msg`, and the `presents` model. It then checks the `msg`, and if it's `MoveTo`, it receives the `presentId` and `location` sent by the `onClick`. However, it does not do anything with it yet, it just returns the unchanged 'presents` again.
 
-This is a switch/case statement, but if the `Msg` union type would still have the `Unwrap` message, this code would not compile, because it is not implemented yet in the switch/case. So let's remove `Unwrap`, because we won't use it. For the same reason a switch/case in Elm never needs a default block.
+This is a switch/case statement, but if the `Msg` union type would still have the `Unwrap` message, this code would not compile, because it is not implemented yet in the switch/case. So let's remove `Unwrap`, because we won't use it. For the same reason a switch/case in Elm never needs a default block because you just have to implement all possibilities.
 
 ### Implementing the `update`
 

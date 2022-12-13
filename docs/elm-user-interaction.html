@@ -92,7 +92,7 @@
           <a href="/elm-user-interaction">Elm: User interaction</a>
         </h2>
         <div class="blog-meta">
-          Dec 13, 2022  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>  · 9 minute read
+          Dec 13, 2022  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>  · 10 minute read
         </div>
       </div>
 
@@ -102,7 +102,7 @@
 <p>For Elm this means we have to look into the so-called Elm Architecture, which defines how to structure Elm apps so the Elm Runtime can take care of updating the UI when the state changes.</p>
 <h3>Let's build an app</h3>
 <p>Let's build a very simple interactive app, while explaining and adhering to The Elm Architecture.</p>
-<p>It's December, so let's build an Xmas app. Santa is preparing to leave to deliver presents, however, all presents are still in his workshop, and need to be loaded on his sleigh...</p>
+<p>It's December, so let's build an XMAS app. Santa is preparing to leave to deliver presents, however, all presents are still in his workshop, and need to be loaded on his sleigh...</p>
 <img alt="Demo of the Let's Help Santa Elm app" src="/santa-demo.gif" width="672"/>
 <p>As you can see (right? 😏), on the left there the presents that are still in Santa's workshop, while on the right, there's Santa's sleigh, where all the presents should go.</p>
 <p>By clicking on a present, it moves from the workshop to the sleigh, and vice versa.</p>
@@ -145,7 +145,7 @@ view model =
 main =
   view "todo"
 </code></pre>
-<p>If you read my previous blog post, you might notice a slight difference: Here. the HTML is defined in a function called <code>view</code>, that receives a <code>model</code> argument. It returns an HTML structure, kind of like we did before. We don't use the <code>model</code> argument yet, because we haven't defined it yet. So that is why, for now, we pass a string of <code>"todo"</code> as a dummy model to <code>view</code>.</p>
+<p>If you read my previous blog post, you might notice a slight difference: Here, the HTML is defined in a function called <code>view</code>, that receives a <code>model</code> argument. It returns an HTML structure, kind of like we did before. In <code>view</code> we are not using the <code>model</code> argument yet, because it does not exist yet. So that is why, for now, we pass a string of <code>"todo"</code> as a dummy model to <code>view</code>.</p>
 <h3>The initial model</h3>
 <p>The next part of the Elm Architecture is the model, which is the <em>state</em> of our application. In our case, it's a list of presents, and their location:</p>
 <pre><code>type Location
@@ -166,6 +166,12 @@ initialModel =
   ]
 </code></pre>
 <p>The <code>initialModel</code> is a <code>List</code> of <code>Present</code> records (objects), where the <code>location</code> is of the <code>Location</code> type, which is either the <code>Workshop</code> or the <code>Sleigh</code>.</p>
+<blockquote>
+<p>If you look closely, I use both <code>type</code> and <code>type alias</code>, what is the difference?
+type defines and names a new type (which behaves like an enum with data attached), and type alias gives a name to an existing type.
+type alias isn’t creating a distinct type, it is literally just giving a name to an existing type. A type alias will save you keystrokes, but do nothing more.
+Source: <a href="https://faq.elm-community.org/#what-is-the-difference-between-type-and-type-alias">Elm FAQ</a>, see also <a href="https://guide.elm-lang.org/types/type_aliases.html">Elm docs</a>.</p>
+</blockquote>
 <h3>Rendering the initial model</h3>
 <p>Now that we have an initial model, let's render that instead of the hard-coded elements:</p>
 <pre><code>view model =
@@ -226,7 +232,7 @@ initialModel =
       presents
 </code></pre>
 <p>The <code>update</code> function receives two arguments, the <code>msg</code>, and the <code>presents</code> model. It then checks the <code>msg</code>, and if it's <code>MoveTo</code>, it receives the <code>presentId</code> and <code>location</code> sent by the <code>onClick</code>. However, it does not do anything with it yet, it just returns the unchanged 'presents` again.</p>
-<p>This is a switch/case statement, but if the <code>Msg</code> union type would still have the <code>Unwrap</code> message, this code would not compile, because it is not implemented yet in the switch/case. So let's remove <code>Unwrap</code>, because we won't use it. For the same reason a switch/case in Elm never needs a default block.</p>
+<p>This is a switch/case statement, but if the <code>Msg</code> union type would still have the <code>Unwrap</code> message, this code would not compile, because it is not implemented yet in the switch/case. So let's remove <code>Unwrap</code>, because we won't use it. For the same reason a switch/case in Elm never needs a default block because you just have to implement all possibilities.</p>
 <h3>Implementing the <code>update</code></h3>
 <p>The <code>update</code> function needs to be changed, so that it finds the present to update, and then changes the location of that present:</p>
 <pre><code>update : Msg -> Presents -> Presents

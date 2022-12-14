@@ -161,6 +161,6 @@ Cool, we covered a few basics about Elm, I learned a lot, and I hope you too! Th
 
 Thanks for reading!
 
-
+Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog1.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog1.elm)
 
 

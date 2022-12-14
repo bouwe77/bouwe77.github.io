@@ -1,6 +1,6 @@
 ---
 date: "2022-12-04"
-title: "Elm baby steps"
+title: "Elm baby steps: The language"
 summary: ""
 categories:
   - "Functional programming"

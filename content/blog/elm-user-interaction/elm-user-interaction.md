@@ -279,3 +279,5 @@ Man, figuring out the Elm Architecure, and implement it, while writing this blog
 There are of course many things to improve here, and of course many other things to still find out, but I am really starting to understand and like (!) Elm.
 
 I hope you found this interesting, and please let me know if you have anything to add or ask.
+
+Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog3.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog3.elm)

@@ -13,9 +13,8 @@ Developers tend to throw errors in their code to notify themselves, their fellow
 
 Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.
 
-Throwing errors is almost always a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well. Something that should be fixed instead of using errors as an escape hatch.
 
-### Do you haz teh codez?
+### Let's take a walk
 
 A common example is a function that accepts arguments, and if you pass the wrong ones, the function throws an error.
 
@@ -76,7 +75,7 @@ Which, in my opinion, is already much beter than handling a terrible error somew
 
 As soon as someone supplies a `direction` that is not supported, they will notice nothing happens. And then they will build it.
 
-### But we don't trust anyone
+### But we don't trust anyone!
 
 But what if the `direction` comes from outside of our code? From a user, or another app calling our code? Then we might want to let them know something is not right.
 
@@ -109,6 +108,16 @@ With tests and type safety, we only need to test what can and should happen. If 
 
 This way, tests and types are almost like a manual of how to use our code, just look at them, and you know how it works. No errors, because they will only make it less clear and make you wonder why it is in there: When and why can it go wrong, giving you a suspicious feeling.
 
+### Errors to control the flow of your code
+
+Another very common reason for throwing errors is using it as a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well. Something that should be fixed instead of using errors as an escape hatch.
+
+```
+// example...
+```
+
+
+
 ### When to throw errors
 
 Whether or not you agree with me throwing errors is not always necessary, there are, however, situations where throwing errors might be necessary.
@@ -132,19 +141,6 @@ divide(2, 0); // returns Infinity...
 Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for either throwing an error, or making sure (and testing that) it is not called when the second argument is 0.
 
 However, this is an exception. In many other cases, there is nothing wrong with just doing nothing. You will notice, and fix it, when that is not what you want. Throwing errors is only for situations that are really unexpected, exceptions to the rule, from which you can not recover, or can not respond to in a useful way.
-
-### Don't throw, but return something different
-
-Suppose you have a function that throws errors in specific situations, how can you know it does? You can check the source code, look at code comments, etc., but it is not always very clear. Some languages, such as Java, require you to annotate functions with the exception(s) it throws. And also, in the stack of functions that call that function, there must be one that catches the exception.
-
-However, in most languages, the return type and the possible error(s) it could throw is not clear when you look at the return types.
-
-There is, however, a very elegant way to not have your function throw errors, but just defining different return types depending on a successful or unsuccessful execution of the function.
-
-This way, you consider either a happy or unhappy flow to be something you can expect, and just handle.
-
-> TODO Either Left/Right pattern? Gewoon noemen, niet uitweiden, is artikel op zich...
-> Link toevoegen naar een artikel en/of NPM library.
 
 ### Conclusion
 

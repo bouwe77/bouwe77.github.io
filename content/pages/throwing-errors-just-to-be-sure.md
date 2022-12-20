@@ -9,12 +9,11 @@ categories:
 
 ### Introduction
 
-> Beginnen met throwing errors to control the flow of your code en waarom men dat doet.
-> En dan zeggen dat ik een bepaalce categorie daarvan hier behandel
+Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, that they are doing something wrong.
 
-Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, they are doing something wrong.
+Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.
 
-Throwing errors is too rigorous, while you could just solve the problem by making your code more meaningful, and of course, test your code.
+Throwing errors is almost always a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well. Something that should be fixed instead of using errors as an escape hatch.
 
 ### Do you haz teh codez?
 
@@ -71,7 +70,9 @@ function walk(position, direction) {
 }
 ```
 
-And as a bonus, because it's a pure, immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed. Which, in my opinion, is already much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.
+And as a bonus, because it's a pure, immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed. Think of React that only will rerender when value is a new reference, which in the case of an unchanged position is not the case.
+
+Which, in my opinion, is already much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.
 
 As soon as someone supplies a `direction` that is not supported, they will notice nothing happens. And then they will build it.
 
@@ -128,7 +129,7 @@ divide(10, 2); // returns 5
 divide(2, 0); // returns Infinity...
 ```
 
-Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for throwing an error because this function can not do anything meaningful otherwise.
+Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for either throwing an error, or making sure (and testing that) it is not called when the second argument is 0.
 
 However, this is an exception. In many other cases, there is nothing wrong with just doing nothing. You will notice, and fix it, when that is not what you want. Throwing errors is only for situations that are really unexpected, exceptions to the rule, from which you can not recover, or can not respond to in a useful way.
 
@@ -142,9 +143,7 @@ There is, however, a very elegant way to not have your function throw errors, bu
 
 This way, you consider either a happy or unhappy flow to be something you can expect, and just handle.
 
-...
-...
-...
+> TODO Either Left/Right pattern?
 
 ### Conclusion
 
@@ -152,4 +151,4 @@ My point is: Don't just throw errors all over the place. First think: Is this re
 
 Which other things can I do gain more trust in my code? Perhaps a good test suite is already sufficient?
 
-I think it depends on the situation whether throwing errors is really necessary, and that it is quite often not necessary at all.
+I think it depends on the situation whether throwing errors is really necessary, but that it is almost always not necessary at all.

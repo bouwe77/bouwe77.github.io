@@ -92,12 +92,9 @@
       </div>
 
       <div><h3>Introduction</h3>
-<blockquote>
-<p>Beginnen met throwing errors to control the flow of your code en waarom men dat doet.
-En dan zeggen dat ik een bepaalce categorie daarvan hier behandel</p>
-</blockquote>
-<p>Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, they are doing something wrong.</p>
-<p>Throwing errors is too rigorous, while you could just solve the problem by making your code more meaningful, and of course, test your code.</p>
+<p>Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, that they are doing something wrong.</p>
+<p>Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.</p>
+<p>Throwing errors is almost always a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well. Something that should be fixed instead of using errors as an escape hatch.</p>
 <h3>Do you haz teh codez?</h3>
 <p>A common example is a function that accepts arguments, and if you pass the wrong ones, the function throws an error.</p>
 <p>Suppose I am creating a 2D game and use the following <code>walk</code> function to determine the new <code>position</code> X and Y coordinate by supplying both the current <code>position</code>, and a <code>direction</code>:</p>
@@ -135,7 +132,8 @@ position = walk(position, "northeast");
   return position;
 }
 </code></pre>
-<p>And as a bonus, because it's a pure, immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed. Which, in my opinion, is already much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.</p>
+<p>And as a bonus, because it's a pure, immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed. Think of React that only will rerender when value is a new reference, which in the case of an unchanged position is not the case.</p>
+<p>Which, in my opinion, is already much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.</p>
 <p>As soon as someone supplies a <code>direction</code> that is not supported, they will notice nothing happens. And then they will build it.</p>
 <h3>But we don't trust anyone</h3>
 <p>But what if the <code>direction</code> comes from outside of our code? From a user, or another app calling our code? Then we might want to let them know something is not right.</p>
@@ -169,20 +167,20 @@ function walk(position: Position, direction: Direction) {
 divide(10, 2); // returns 5
 divide(2, 0); // returns Infinity...
 </code></pre>
-<p>Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for throwing an error because this function can not do anything meaningful otherwise.</p>
+<p>Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for either throwing an error, or making sure (and testing that) it is not called when the second argument is 0.</p>
 <p>However, this is an exception. In many other cases, there is nothing wrong with just doing nothing. You will notice, and fix it, when that is not what you want. Throwing errors is only for situations that are really unexpected, exceptions to the rule, from which you can not recover, or can not respond to in a useful way.</p>
 <h3>Don't throw, but return something different</h3>
 <p>Suppose you have a function that throws errors in specific situations, how can you know it does? You can check the source code, look at code comments, etc., but it is not always very clear. Some languages, such as Java, require you to annotate functions with the exception(s) it throws. And also, in the stack of functions that call that function, there must be one that catches the exception.</p>
 <p>However, in most languages, the return type and the possible error(s) it could throw is not clear when you look at the return types.</p>
 <p>There is, however, a very elegant way to not have your function throw errors, but just defining different return types depending on a successful or unsuccessful execution of the function.</p>
 <p>This way, you consider either a happy or unhappy flow to be something you can expect, and just handle.</p>
-<p>...
-...
-...</p>
+<blockquote>
+<p>TODO Either Left/Right pattern?</p>
+</blockquote>
 <h3>Conclusion</h3>
 <p>My point is: Don't just throw errors all over the place. First think: Is this really a bad situation that I need to know of, and can't prevent? Errors should indicate something bad has happened, so by throwing a lot of errors you give the impression to other developers a lot of bad and dangerous things can and will happen. But is that really the case?</p>
 <p>Which other things can I do gain more trust in my code? Perhaps a good test suite is already sufficient?</p>
-<p>I think it depends on the situation whether throwing errors is really necessary, and that it is quite often not necessary at all.</p>
+<p>I think it depends on the situation whether throwing errors is really necessary, but that it is almost always not necessary at all.</p>
 </div>
 
             <div>

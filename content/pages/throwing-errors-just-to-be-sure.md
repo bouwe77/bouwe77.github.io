@@ -13,10 +13,11 @@ Developers tend to throw errors in their code to notify themselves, their fellow
 
 Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.
 
+> To be clear, I am talking about errors you throw in your own code, and not runtime errors that might occur because of calling someone else's code or API.
 
 ### Let's take a walk
 
-A common example is a function that accepts arguments, and if you pass the wrong ones, the function throws an error.
+A common example is a function that accepts arguments, and if you pass the wrong ones, it throws an error.
 
 Suppose I am creating a 2D game and use the following `walk` function to determine the new `position` X and Y coordinate by supplying both the current `position`, and a `direction`:
 
@@ -53,7 +54,7 @@ Now my question is: Is it really necessary to throw an error when the direction 
 
 ### Just do nothing
 
-You can teach a dog to sit when you say "Sit!". But what would it do when you say "Fly!"? Probably nothing. It would look at you and wait for you saying something it does understand. Until then, it probably does nothing or just walks to the next tree.
+You can teach a dog to sit when you say "Sit!". But what would it do when you say "Fly!"? Probably nothing. It would look at you and wait for you saying something it does understand. Until then, it probably does nothing.
 
 Let's apply this to our code as well. So when the `direction` is not supported, the `walk` function should just do nothing. Well, except for just returning the current position again, because that's what the calling code expects:
 
@@ -69,11 +70,11 @@ function walk(position, direction) {
 }
 ```
 
-And as a bonus, because it's a pure, immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed. Think of React that only will rerender when value is a new reference, which in the case of an unchanged position is not the case.
+And as a bonus, because it's a pure and immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed.
 
-Which, in my opinion, is already much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.
+This is in my opinion much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.
 
-As soon as someone supplies a `direction` that is not supported, they will notice nothing happens. And then they will build it.
+As soon as someone supplies a `direction` that is not supported, they will notice nothing happens. And then they will fix it.
 
 ### But we don't trust anyone!
 
@@ -83,7 +84,9 @@ That's where input validation is for. So before you call the `walk` function, yo
 
 This way, the `walk` function will do what its name implies, just walk. If it can not walk in a specific direction, it is not called. So instead of throwing an error, you just prevent something unexpected to happen in the first place. It is important each function does only one thing and it does it well. This makes your code easy to reason about, maintainable, and testable.
 
-This might mean the function becomes (too) dependent of another function that acts as a safeguard. It depends on your situation and preference whether you think this it's a good idea the function does not do its own validation too.
+This might mean the function becomes (too) dependent of another function that acts as a safeguard. An integration test which uses both functions together might make sense in that case.
+
+It depends on your situation and preference whether you think this it's a good idea the function does not do its own validation too.
 
 ### Testing and type safety
 
@@ -110,13 +113,18 @@ This way, tests and types are almost like a manual of how to use our code, just 
 
 ### Errors to control the flow of your code
 
-Another very common reason for throwing errors is using it as a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well. Something that should be fixed instead of using errors as an escape hatch.
+Another very common reason for throwing errors is using it as a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well.
+
+```
+// example of an API request handler that validates the input, queries the DB, and throws
+// errors for everything that is not a happy flow, so 400 Bad Request, 404 Not Found, etc.
+```
+
+Let's just fix it, instead of using errors as an escape hatch.
 
 ```
 // example...
 ```
-
-
 
 ### When to throw errors
 

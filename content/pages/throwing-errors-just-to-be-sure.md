@@ -143,7 +143,8 @@ There is, however, a very elegant way to not have your function throw errors, bu
 
 This way, you consider either a happy or unhappy flow to be something you can expect, and just handle.
 
-> TODO Either Left/Right pattern?
+> TODO Either Left/Right pattern? Gewoon noemen, niet uitweiden, is artikel op zich...
+> Link toevoegen naar een artikel en/of NPM library.
 
 ### Conclusion
 

@@ -120,7 +120,7 @@ Another very common reason for throwing errors is using it as a way to control t
 // errors for everything that is not a happy flow, so 400 Bad Request, 404 Not Found, etc.
 ```
 
-Let's just fix it, instead of using errors as an escape hatch.
+Instead of using errors as an escape hatch, let's just fix it. All of the situations where the code is throwing errors are functional situations you know will happen, so why not just return early?
 
 ```
 // example...

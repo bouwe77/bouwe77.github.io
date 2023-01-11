@@ -163,7 +163,7 @@ function walk(position: Position, direction: Direction) {
 <pre><code>// example of an API request handler that validates the input, queries the DB, and throws
 // errors for everything that is not a happy flow, so 400 Bad Request, 404 Not Found, etc.
 </code></pre>
-<p>Let's just fix it, instead of using errors as an escape hatch.</p>
+<p>Instead of using errors as an escape hatch, let's just fix it. All of the situations where the code is throwing errors are functional situations you know will happen, so why not just return early?</p>
 <pre><code>// example...
 </code></pre>
 <h3>When to throw errors</h3>

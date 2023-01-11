@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>What is a state machine?</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="What is a state machine?" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+          </div>
+        </div>
+      </header>
+  
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/what-is-a-finite-state-machine">What is a state machine?</a>
+        </h2>
+        <div class="blog-meta">
+          Jan 11, 2023  · <a href="/categories/state-machines">State machines</a>  · 4 minute read
+        </div>
+      </div>
+
+      <div><h3>Introduction</h3>
+<p>A finite state machine is a way of organizing and implementing logic.</p>
+<p>I use state machines a lot at work for implementing complex logic and handling side effects. It's super fun to build them, and I am fascinated by how they work.</p>
+<p>But first, let's take a step back and answer the question: What is a finite state machine and how do they work?</p>
+<h3>State</h3>
+<p>For the logic to know when and what should be done, a state machine always is in a specific mode or condition at any moment in time, called a <em>state</em>.</p>
+<p>So if we would implement a light switch as a state machine, at any moment in time, the state is either <code>on</code> or <code>off</code>. It can not be <code>on</code> <em>and</em> <code>off</code>, and it can also not be something else than <code>on</code> or <code>off</code>: The fact that we defined only these two limited and fixed states, makes it finite.</p>
+<p>Let's start using our light switch state machine, which is <code>off</code> at the moment, so the current state is <code>off</code>. We can ask for the current state of the machine through the <code>state</code> property:</p>
+<pre><code>const lightSwitch = new LightSwitch()
+console.log(lightSwitch.state) // OFF
+</code></pre>
+<blockquote>
+<p>The code samples in this blog post are written in TypeScript and use classes, because I think (and hope) it's most simple and clear. However, you can use any language and paradigm to build state machines. More on this in my next blog post.</p>
+</blockquote>
+<h3>Transitions and events</h3>
+<p>How can we switch it <code>on</code>?</p>
+<p>Changing the state from one to the other is called a <em>transition</em>. Transitions only happen inside the machine, they are encapsulated. The only way for the outside world to communicate with the machine is through sending events.</p>
+<p>Sending events to a machine is a way to give it instructions. So in this case we could give it a <code>switch</code> event, so that the state becomes <code>on</code>. Just like with state, events are also fixed and predefined in the state machine. Because we use classes, <code>switch</code> is a method on our object:</p>
+<pre><code>const lightSwitch = new LightSwitch()
+console.log(lightSwitch.state) // OFF
+
+// Let's send the "switch" event:
+lightSwitch.switch()
+
+console.log(lightSwitch.state) // ON
+
+// Of course we can call it again:
+lightSwitch.switch()
+console.log(lightSwitch.state) // OFF
+</code></pre>
+<p>What happens, or even if something happens at all when an event is sent to the machine is up to you, and can be done in many ways. Let me give you two examples of how to implement the light switch:</p>
+<p>We could have one event, <code>switch</code>, to do two different state transitions. When it's <code>on</code>, the <code>switch</code> event transitions to <code>off</code>, and vice versa.</p>
+<p>We could also have named our event <code>switchOn</code>, but then it would only apply (be implemented) in the <code>off</code> state. Then we'd need an additional <code>switchOff</code> event, which is only implemented in the <code>on</code> state:</p>
+<pre><code>const lightSwitch = new LightSwitch()
+console.log(lightSwitch.state) // OFF
+
+// Let's turn the switch on:
+lightSwitch.switchOn()
+
+console.log(lightSwitch.state) // ON
+
+// Of course we can switch it off again:
+lightSwitch.switchOff()
+console.log(lightSwitch.state) // OFF
+</code></pre>
+<p>Using the <code>switchOn</code> and <code>switchOff</code> events is very explicit, compared to just <code>switch</code>, so depending on the use case we could choose either one of them. Or just both of course!</p>
+<h3>Keep it simple</h3>
+<p>But what would happen if the state is <code>off</code> and you send the event <code>switchOff</code>?</p>
+<pre><code>const lightSwitch = new LightSwitch()
+console.log(lightSwitch.state) // OFF
+
+// Let's turn the switch off:
+lightSwitch.switchOff()
+console.log(lightSwitch.state) // OFF
+
+// Let's turn the switch off again:
+lightSwitch.switchOff()
+console.log(lightSwitch.state) // OFF
+</code></pre>
+<p>As you can see, nothing! Well, unless you implement something of course, but the idea with state machines is to implement what should happen, and not what should not happen. This makes the behavior and design of the state machine consistent and simple.</p>
+<p>If you want to prevent your software to send events that are not applicable, you can implement your UI, or whatever interface, to not do or allow that. Look at the real world, if your light is on, there is no physical way to turn it on again, or "more" on. The same can be achieved in your code, while still keeping the state machine nice and simple.</p>
+<h3>Do you haz teh codez?</h3>
+<p>Here is the state machine implementation that would make all of the code above work:</p>
+<pre><code>type LightSwitchState = "on" | "off";
+
+class LightSwitch {
+  private _state: LightSwitchState;
+
+  constructor() {
+    this._state = "off";
+  }
+
+  public switch() {
+    if (this._state === "on") this._state = "off"
+    else this._state = "on"
+    return this._state
+  }
+  
+  public switchOn() {
+    if (this._state !== "on") this._state = "on";
+    return this._state
+  }
+
+  public switchOff() {
+    if (this._state !== "off") this._state = "off";
+    return this._state
+  }
+
+  public get state() {
+    return this._state;
+  }
+}
+</code></pre>
+<p>You can also check out the code on this repl: https://replit.com/@bouwe77/WornTrickySoftwareengineer#index.ts or on GitHub: https://github.com/bouwe77/light-switch-state-machine</p>
+<p>The fact we are using a class here is a way to enable an important aspect of state machines: There is a distinction between the abstract definition of a state machine, and a running version of it, in this case the object instance of this class. The same can be achieved when not using classes, as I will explain in my next blog post.</p>
+<p>This is just one way of implementing a state machine, but there are many more. In a next blog post I want to dive deeper into the various ways of how to implement state machines. There are a few patterns for it, and depending on your current codebase and preference you might favor one over the other.</p>
+<h3>Conclusion</h3>
+<p>Now, you might wonder, why in the world would I implement a light switch as a state machine? Probably you would not, but I think it's a nice way to explain some concepts.</p>
+<p>Designing state machines is great, but can be challenging. Having a good understanding of how state machines work is essential for designing and building logic that might need a state machine.</p>
+<p>I hope you found this interesting, and if you have any questions or remarks, please reach out to me on Twitter, thanks very much!</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=What is a state machine?&url=https://bouwe.io/what-is-a-finite-state-machine&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/what-is-a-finite-state-machine"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/what-is-a-finite-state-machine/what-is-a-finite-state-machine.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+
+    </div>
+
+  </body>
+</html>

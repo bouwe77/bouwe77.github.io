@@ -16,7 +16,7 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2023, Bouwe Westerdijk</rights>
     <entry>
-        <title type="html"><![CDATA[What is a state machine?]]></title>
+        <title type="html"><![CDATA[What is a finite state machine?]]></title>
         <id>https://bouwe.io/what-is-a-finite-state-machine</id>
         <link href="https://bouwe.io/what-is-a-finite-state-machine"/>
         <updated>2023-01-11T00:00:00.000Z</updated>

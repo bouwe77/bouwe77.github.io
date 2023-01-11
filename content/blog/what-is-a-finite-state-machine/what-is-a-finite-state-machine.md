@@ -1,6 +1,6 @@
 ---
 date: "2023-01-11"
-title: "What is a state machine?"
+title: "What is a finite state machine?"
 summary: ""
 categories:
   - "State machines"
@@ -130,7 +130,7 @@ class LightSwitch {
 }
 ```
 
-You can also check out the code on this repl: https://replit.com/@bouwe77/WornTrickySoftwareengineer#index.ts or on GitHub: https://github.com/bouwe77/light-switch-state-machine
+You can also check out the code on this repl: [https://replit.com/@bouwe77/WornTrickySoftwareengineer#index.ts](https://replit.com/@bouwe77/WornTrickySoftwareengineer#index.ts) or on GitHub: [https://github.com/bouwe77/light-switch-state-machine](https://github.com/bouwe77/light-switch-state-machine)
 
 The fact we are using a class here is a way to enable an important aspect of state machines: There is a distinction between the abstract definition of a state machine, and a running version of it, in this case the object instance of this class. The same can be achieved when not using classes, as I will explain in my next blog post.
 

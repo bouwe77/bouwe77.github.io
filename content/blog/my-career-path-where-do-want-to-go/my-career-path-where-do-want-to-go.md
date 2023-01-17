@@ -23,7 +23,7 @@ I consider myself being a communicative developer, I really enjoy working and in
 
 But only after my 40s I accepted from myself that I am not shy and insecure, and am just good enough to share the things I know and learn. So only since recent years I do active content creation. In fact, I now even have the courage to share things I am still learning, because by sharing what you are currently learning, you learn faster and better. No need to wait until you are an expert.
 
-In 2019 I started learning React in my free time, organized workshops so I could teach it to other people, and now work with React fulltime. I also do [blogging](https://bouwe.io/blog), [live coding streams](https://bouwe.io/videos), and recently started a webcast called [Curious Coders](https://curouscoderscommunity.github.io), together with a fellow curious coder.
+In 2019 I started learning React in my free time, organized workshops so I could teach it to other people, and now work with React fulltime. I also do [blogging](https://bouwe.io/blog), [live coding streams](https://bouwe.io/videos), and recently started a webcast called [Curious Coders](https://curiouscoderscommunity.github.io), together with a fellow curious coder.
 
 My content creation is always about things I feel I do not fully understand yet, but after sharing (investigating) it, I do. That is why I do content creation mainly for myself, because I am sure I benefit from it. But of course I hope others do too.
 
@@ -33,7 +33,7 @@ So my career at the moment, and also in the near future, will be about building 
 
 On the other hand, if you would tell me 5 years ago I would be doing this now, I would not have believed you. So that is why I think it's good and interesting to think about a next step, and if that would be something else than (or not only) developing and content creation.
 
-On one hand I feel I am not suitable and excited enough about softer roles such as PO, CTO, or whatever, but on the other hand, why not, if you see where I am coming from and where I am now. So yeah, let's find out!
+On one hand I feel I am not suitable for (and excited enough about) softer roles such as PO, CTO, or whatever, but on the other hand, why not, if you see where I am coming from and where I am now. So yeah, let's find out!
 
 P.S. I saw other people mention their preferred tech stack. Mine currently is JS/TS, React, XState, Remix, but also Elm.
 

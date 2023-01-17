@@ -31,7 +31,7 @@ For this year I plan on speaking at a meetup or even a conference for the first 
 
 So my career at the moment, and also in the near future, will be about building cool applications with nice people and tech, and on the side do content creation, because it makes me feel good. And sometimes I think that's just who I am.
 
-On the other hand, if you would tell me 5 years ago I would be doing this now, I would not have believed you. So that is why I think it's good and interesting to think about a next step, and if that would be something else than (or not only) developing and content creation.
+On the other hand, if you would have told me 5 years ago I would be doing this now, I would not have believed you. So that is why I think it's good and interesting to think about a next step, and if that would be something else than (or not only) developing and content creation.
 
 On one hand I feel I am not suitable for (and excited enough about) softer roles such as PO, CTO, or whatever, but on the other hand, why not, if you see where I am coming from and where I am now. So yeah, let's find out!
 

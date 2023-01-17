@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bouwe.io</id>
     <title>bouwe.io</title>
-    <updated>2023-01-12T00:00:00.000Z</updated>
+    <updated>2023-01-17T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Bouwe Westerdijk</name>
@@ -15,6 +15,17 @@
     <logo>https://bouwe.io/bouwe-react-amsterdam.png</logo>
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2023, Bouwe Westerdijk</rights>
+    <entry>
+        <title type="html"><![CDATA[My career path - Where do I want to go?]]></title>
+        <id>https://bouwe.io/my-career-path-where-do-want-to-go</id>
+        <link href="https://bouwe.io/my-career-path-where-do-want-to-go"/>
+        <updated>2023-01-17T00:00:00.000Z</updated>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[What is a finite state machine?]]></title>
         <id>https://bouwe.io/what-is-a-finite-state-machine</id>

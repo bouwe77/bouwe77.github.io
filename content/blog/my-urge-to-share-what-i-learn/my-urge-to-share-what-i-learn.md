@@ -7,6 +7,7 @@ categories:
   - "Personal"
   - "Workshops"
   - "Teaching"
+  - "Career"
 ---
 
 ### Learn by sharing

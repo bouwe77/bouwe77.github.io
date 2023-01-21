@@ -20,6 +20,7 @@
         <id>https://bouwe.io/my-career-path-where-do-want-to-go</id>
         <link href="https://bouwe.io/my-career-path-where-do-want-to-go"/>
         <updated>2023-01-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[My reflection on my career and what a possible next step could be.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -31,6 +32,7 @@
         <id>https://bouwe.io/what-is-a-finite-state-machine</id>
         <link href="https://bouwe.io/what-is-a-finite-state-machine"/>
         <updated>2023-01-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's talk about state machines, a very nice way to structure application logic.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -42,6 +44,7 @@
         <id>https://bouwe.io/elm-user-interaction</id>
         <link href="https://bouwe.io/elm-user-interaction"/>
         <updated>2022-12-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A web app is not a web app if you can not interact with it. Let's build an app that handles user input!]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -53,6 +56,7 @@
         <id>https://bouwe.io/elm-rendering-html</id>
         <link href="https://bouwe.io/elm-rendering-html"/>
         <updated>2022-12-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How do we render HTML with Elm, the functional language for creating web applications?]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -64,6 +68,7 @@
         <id>https://bouwe.io/elm-baby-steps</id>
         <link href="https://bouwe.io/elm-baby-steps"/>
         <updated>2022-12-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Before building a real app with Elm, let's look at the language first.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -75,6 +80,7 @@
         <id>https://bouwe.io/expected-and-unexpected-errors</id>
         <link href="https://bouwe.io/expected-and-unexpected-errors"/>
         <updated>2022-01-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Runtime errors can be expected. Not all of them of course, but most can. Let me explain.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -86,6 +92,7 @@
         <id>https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts</id>
         <link href="https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts"/>
         <updated>2021-10-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[I use voice recording to brainstorm with myself, and it's super helpful for me!]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -97,6 +104,7 @@
         <id>https://bouwe.io/what-is-a-reducer</id>
         <link href="https://bouwe.io/what-is-a-reducer"/>
         <updated>2021-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let me explain how a reducer converts an array to any type of value. Oh, and what the useReducer hook has got to do with it.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -108,6 +116,7 @@
         <id>https://bouwe.io/composition-with-currying</id>
         <link href="https://bouwe.io/composition-with-currying"/>
         <updated>2021-03-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's use partial application to compose curried functions together.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -119,6 +128,7 @@
         <id>https://bouwe.io/currying-what-is-it</id>
         <link href="https://bouwe.io/currying-what-is-it"/>
         <updated>2021-03-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Discovering a confusing, but very cool functional programming concept: Currying.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -130,6 +140,7 @@
         <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3</id>
         <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3"/>
         <updated>2021-01-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We improve the simple calculation game by using the useReducer hook.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -141,6 +152,7 @@
         <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</id>
         <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2"/>
         <updated>2020-12-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[By using the useEffect hook we can make our app a lot more interesting.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -152,6 +164,7 @@
         <id>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</id>
         <link href="https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1"/>
         <updated>2020-12-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's learn React, by using JSX, conditional rendering, event handling, and the useState hook]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -163,6 +176,7 @@
         <id>https://bouwe.io/my-urge-to-share-what-i-learn</id>
         <link href="https://bouwe.io/my-urge-to-share-what-i-learn"/>
         <updated>2020-11-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Sharing what you learn, while you learn, is the most effective way to learn net things.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -174,6 +188,7 @@
         <id>https://bouwe.io/goodbye-gatsby-hello-static-site-generator</id>
         <link href="https://bouwe.io/goodbye-gatsby-hello-static-site-generator"/>
         <updated>2020-10-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Why and how I switched from Gatsby to my own solution for publishing my blog.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -185,6 +200,7 @@
         <id>https://bouwe.io/using-twitter-for-blog-commenting</id>
         <link href="https://bouwe.io/using-twitter-for-blog-commenting"/>
         <updated>2020-04-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's not implement our own blog commenting system, but just use Twitter for that.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -196,6 +212,7 @@
         <id>https://bouwe.io/useeffect-for-handling-side-effects</id>
         <link href="https://bouwe.io/useeffect-for-handling-side-effects"/>
         <updated>2020-03-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's learn about the useEffect hook!]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -207,6 +224,7 @@
         <id>https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training</id>
         <link href="https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training"/>
         <updated>2019-09-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Deze training geeft jou het fundament om een goede React developer te worden.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -218,6 +236,7 @@
         <id>https://bouwe.io/render-props-part-4</id>
         <link href="https://bouwe.io/render-props-part-4"/>
         <updated>2019-09-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Part IV of discovering the render props pattern.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -229,6 +248,7 @@
         <id>https://bouwe.io/my-own-react-presentation-tool</id>
         <link href="https://bouwe.io/my-own-react-presentation-tool"/>
         <updated>2019-06-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's build a React app to render presentation slides.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -240,6 +260,7 @@
         <id>https://bouwe.io/render-props-part-3</id>
         <link href="https://bouwe.io/render-props-part-3"/>
         <updated>2019-05-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Part III of discovering the render props pattern.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -251,6 +272,7 @@
         <id>https://bouwe.io/render-props-part-2</id>
         <link href="https://bouwe.io/render-props-part-2"/>
         <updated>2019-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Part II of discovering the render props pattern.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -262,6 +284,7 @@
         <id>https://bouwe.io/5-days-of-code</id>
         <link href="https://bouwe.io/5-days-of-code"/>
         <updated>2019-05-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Evaluating my first 5 days of my 100 Days of Code challenge.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -273,6 +296,7 @@
         <id>https://bouwe.io/day-4-render-props</id>
         <link href="https://bouwe.io/day-4-render-props"/>
         <updated>2019-05-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Render what? Render props! Let's discover this React pattern.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -284,6 +308,7 @@
         <id>https://bouwe.io/day-3-switched-to-another-gatsby-starter</id>
         <link href="https://bouwe.io/day-3-switched-to-another-gatsby-starter"/>
         <updated>2019-05-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Switching templates for my Gatsby blog.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -295,6 +320,7 @@
         <id>https://bouwe.io/day-2-publishing-my-first-blog-posts</id>
         <link href="https://bouwe.io/day-2-publishing-my-first-blog-posts"/>
         <updated>2019-05-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Finally I publish my first blog post!]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -306,6 +332,7 @@
         <id>https://bouwe.io/my-react-workshops</id>
         <link href="https://bouwe.io/my-react-workshops"/>
         <updated>2019-05-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This year I started giving React workshops. In this blog post I want to share with you how I got into this and why and how I am doing this.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -317,6 +344,7 @@
         <id>https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify</id>
         <link href="https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify"/>
         <updated>2019-05-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's create a blog with Gatsby and go live!]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>
@@ -328,6 +356,7 @@
         <id>https://bouwe.io/day-0-a-new-challenge-100-days-of-code</id>
         <link href="https://bouwe.io/day-0-a-new-challenge-100-days-of-code"/>
         <updated>2019-05-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Who am I and what are my goals for my 100 Days of Code challenge.]]></summary>
         <author>
             <name>Bouwe Westerdijk</name>
             <email>bouwe@bouwe.nl</email>

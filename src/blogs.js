@@ -5,7 +5,7 @@ export function getBlogsHtml(blogs) {
       <h4>
           <a href="/{{ slug }}">{{ title }}</a>
       </h4>
-      {{ summary }}
+      <p>{{ summary }}</p>
     </div>
 </div>`;
 

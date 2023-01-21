@@ -1,7 +1,7 @@
 ---
 date: "2023-01-17"
 title: "My career path - Where do I want to go?"
-summary: ""
+summary: "My reflection on my career and what a possible next step could be."
 categories:
   - "Personal"
   - "Career"

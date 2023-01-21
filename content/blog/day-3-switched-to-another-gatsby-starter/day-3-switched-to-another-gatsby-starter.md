@@ -1,7 +1,7 @@
 ---
 date: "2019-05-16"
 title: "Day 3 - Switched to another Gatsby starter"
-summary: ""
+summary: "Switching templates for my Gatsby blog."
 categories:
   - "100 days of code"
   - "Gatsby"

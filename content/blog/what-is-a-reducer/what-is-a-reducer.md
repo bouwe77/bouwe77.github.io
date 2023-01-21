@@ -1,7 +1,7 @@
 ---
 date: "2021-03-25"
 title: "What is a reducer?"
-summary: ""
+summary: "Let me explain how a reducer converts an array to any type of value. Oh, and what the useReducer hook has got to do with it."
 categories:
   - "JavaScript"
   - "useReducer"

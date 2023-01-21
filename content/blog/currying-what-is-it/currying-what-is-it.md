@@ -1,7 +1,7 @@
 ---
 date: "2021-03-14"
 title: "Currying: What is it?"
-summary: ""
+summary: "Discovering a confusing, but very cool functional programming concept: Currying."
 categories:
   - "JavaScript"
   - "Functional programming"

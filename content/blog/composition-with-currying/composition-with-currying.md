@@ -1,7 +1,7 @@
 ---
 date: "2021-03-23"
 title: "Composition with currying"
-summary: ""
+summary: "Let's use partial application to compose curried functions together."
 categories:
   - "Functional programming"
   - "JavaScript"

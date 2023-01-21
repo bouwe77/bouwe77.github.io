@@ -1,7 +1,7 @@
 ---
 date: "2019-05-30"
 title: "Render Props Part III - A flexible and reusable Toggle component"
-summary: ""
+summary: "Part III of discovering the render props pattern."
 categories:
   - "React"
   - "render props"

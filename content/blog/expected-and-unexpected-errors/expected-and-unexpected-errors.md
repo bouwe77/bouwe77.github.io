@@ -1,7 +1,7 @@
 ---
 date: "2022-01-09"
 title: "Expected and Unexpected Errors"
-summary: ""
+summary: "Runtime errors can be expected. Not all of them of course, but most can. Let me explain."
 categories:
   - "Architecture"
   - "Testing"

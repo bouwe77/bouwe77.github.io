@@ -1,7 +1,7 @@
 ---
 date: "2020-12-22"
 title: "Learn React basics by creating a simple calculation game (Part 1)"
-summary: ""
+summary: "Let's learn React, by using JSX, conditional rendering, event handling, and the useState hook"
 categories:
   - "React"
   - "simple calculation game"
@@ -215,13 +215,11 @@ return (
 
 Well, not entirely.
 
-Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my next blog post I will fix that using the `useEffect` hook.
+Although the app supports the infinite flow of answering a question, resetting it and trying again after either a correct or incorrect answer, it shows the same question every time, which is pretty boring of course. In my [next blog post] I will fix that using the `useEffect` hook.
 
-~~So stay tuned for Part 2! 😃~~ Part 2 is finished, so [continue reading].
-
-The source code for this app is on my GitHub: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js
+The source code for this app is on my GitHub: [https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js](https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/v1/App.js)
 
 [create react app]: https://create-react-app.dev
 [on my github]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css
 [modal]: https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/Modal.js
-[continue reading]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2
+[next blog post]: /learn-react-basics-by-creating-a-simple-calculation-game-part-2

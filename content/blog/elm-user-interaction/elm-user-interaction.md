@@ -1,7 +1,7 @@
 ---
 date: "2022-12-13"
 title: "Elm: User interaction"
-summary: ""
+summary: "A web app is not a web app if you can not interact with it. Let's build an app that handles user input!"
 categories:
   - "Functional programming"
   - "Elm"

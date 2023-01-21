@@ -1,7 +1,7 @@
 ---
 date: "2019-05-17"
 title: "Day 4 - Render props"
-summary: ""
+summary: "Render what? Render props! Let's discover this React pattern."
 categories:
   - "100 days of code"
   - "React"

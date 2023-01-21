@@ -1,7 +1,7 @@
 ---
 date: "2019-09-18"
 title: "Render Props Part IV - Keep It Simple Stupid"
-summary: ""
+summary: "Part IV of discovering the render props pattern."
 categories:
   - "React"
   - "render props"

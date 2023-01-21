@@ -1,7 +1,7 @@
 ---
 date: "2023-01-11"
 title: "What is a finite state machine?"
-summary: ""
+summary: "Let's talk about state machines, a very nice way to structure application logic."
 categories:
   - "State machines"
 ---

@@ -1,7 +1,7 @@
 ---
 date: "2019-05-13"
 title: "Day 0 - A new challenge - 100 Days of Code"
-summary: ""
+summary: "Who am I and what are my goals for my 100 Days of Code challenge."
 categories:
   - "100 days of code"
   - "Personal"

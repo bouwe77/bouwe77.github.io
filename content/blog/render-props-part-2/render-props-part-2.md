@@ -1,7 +1,7 @@
 ---
 date: "2019-05-20"
 title: "Render Props Part II: using the Toggle component"
-summary: ""
+summary: "Part II of discovering the render props pattern."
 categories:
   - "React"
   - "render props"

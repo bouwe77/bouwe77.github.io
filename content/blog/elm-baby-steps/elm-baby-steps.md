@@ -1,7 +1,7 @@
 ---
 date: "2022-12-04"
 title: "Elm baby steps: The language"
-summary: ""
+summary: "Before building a real app with Elm, let's look at the language first."
 categories:
   - "Functional programming"
   - "Elm"

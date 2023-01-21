@@ -1,7 +1,7 @@
 ---
 date: "2019-05-15"
 title: "Day 2 - Publishing my first blog posts"
-summary: ""
+summary: "Finally I publish my first blog post!"
 categories:
   - "100 days of code"
   - "Gatsby"

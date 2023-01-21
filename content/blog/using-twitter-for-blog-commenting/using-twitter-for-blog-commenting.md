@@ -1,7 +1,7 @@
 ---
 date: "2020-04-18"
 title: "Using Twitter for blog commenting"
-summary: ""
+summary: "Let's not implement our own blog commenting system, but just use Twitter for that."
 categories:
   - "Blogging"
 ---

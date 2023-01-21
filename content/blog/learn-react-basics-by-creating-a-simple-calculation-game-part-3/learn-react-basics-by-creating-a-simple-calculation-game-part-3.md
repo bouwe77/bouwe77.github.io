@@ -1,7 +1,7 @@
 ---
 date: "2021-01-07"
 title: "Learn React basics by creating a simple calculation game (part 3)"
-summary: ""
+summary: "We improve the simple calculation game by using the useReducer hook."
 categories:
   - "React"
   - "simple calculation game"

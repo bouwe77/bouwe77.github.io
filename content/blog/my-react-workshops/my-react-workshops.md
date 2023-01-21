@@ -1,7 +1,8 @@
 ---
 date: "2019-05-15"
 title: "My React workshops"
-summary: ""
+summary: "This year I started giving React workshops. In this blog post I want to share with
+you how I got into this and why and how I am doing this."
 categories:
   - "React"
   - "Workshops"

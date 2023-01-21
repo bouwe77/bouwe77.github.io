@@ -1,7 +1,7 @@
 ---
 date: "2021-10-07"
 title: "How I sort out my ideas and thoughts"
-summary: ""
+summary: "I use voice recording to brainstorm with myself, and it's super helpful for me!"
 categories:
   - "Personal"
 ---

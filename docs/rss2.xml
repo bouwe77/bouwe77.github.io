@@ -19,6 +19,7 @@
             <link>https://bouwe.io/my-career-path-where-do-want-to-go</link>
             <guid>https://bouwe.io/my-career-path-where-do-want-to-go</guid>
             <pubDate>Tue, 17 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[My reflection on my career and what a possible next step could be.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -26,6 +27,7 @@
             <link>https://bouwe.io/what-is-a-finite-state-machine</link>
             <guid>https://bouwe.io/what-is-a-finite-state-machine</guid>
             <pubDate>Wed, 11 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's talk about state machines, a very nice way to structure application logic.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -33,6 +35,7 @@
             <link>https://bouwe.io/elm-user-interaction</link>
             <guid>https://bouwe.io/elm-user-interaction</guid>
             <pubDate>Tue, 13 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[A web app is not a web app if you can not interact with it. Let's build an app that handles user input!]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -40,6 +43,7 @@
             <link>https://bouwe.io/elm-rendering-html</link>
             <guid>https://bouwe.io/elm-rendering-html</guid>
             <pubDate>Mon, 05 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[How do we render HTML with Elm, the functional language for creating web applications?]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -47,6 +51,7 @@
             <link>https://bouwe.io/elm-baby-steps</link>
             <guid>https://bouwe.io/elm-baby-steps</guid>
             <pubDate>Sun, 04 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Before building a real app with Elm, let's look at the language first.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -54,6 +59,7 @@
             <link>https://bouwe.io/expected-and-unexpected-errors</link>
             <guid>https://bouwe.io/expected-and-unexpected-errors</guid>
             <pubDate>Sun, 09 Jan 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Runtime errors can be expected. Not all of them of course, but most can. Let me explain.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -61,6 +67,7 @@
             <link>https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts</link>
             <guid>https://bouwe.io/how-i-sort-out-my-ideas-and-thoughts</guid>
             <pubDate>Thu, 07 Oct 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[I use voice recording to brainstorm with myself, and it's super helpful for me!]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -68,6 +75,7 @@
             <link>https://bouwe.io/what-is-a-reducer</link>
             <guid>https://bouwe.io/what-is-a-reducer</guid>
             <pubDate>Thu, 25 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let me explain how a reducer converts an array to any type of value. Oh, and what the useReducer hook has got to do with it.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -75,6 +83,7 @@
             <link>https://bouwe.io/composition-with-currying</link>
             <guid>https://bouwe.io/composition-with-currying</guid>
             <pubDate>Tue, 23 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's use partial application to compose curried functions together.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -82,6 +91,7 @@
             <link>https://bouwe.io/currying-what-is-it</link>
             <guid>https://bouwe.io/currying-what-is-it</guid>
             <pubDate>Sun, 14 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Discovering a confusing, but very cool functional programming concept: Currying.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -89,6 +99,7 @@
             <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3</link>
             <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-3</guid>
             <pubDate>Thu, 07 Jan 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[We improve the simple calculation game by using the useReducer hook.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -96,6 +107,7 @@
             <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</link>
             <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-2</guid>
             <pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[By using the useEffect hook we can make our app a lot more interesting.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -103,6 +115,7 @@
             <link>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</link>
             <guid>https://bouwe.io/learn-react-basics-by-creating-a-simple-calculation-game-part-1</guid>
             <pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's learn React, by using JSX, conditional rendering, event handling, and the useState hook]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -110,6 +123,7 @@
             <link>https://bouwe.io/my-urge-to-share-what-i-learn</link>
             <guid>https://bouwe.io/my-urge-to-share-what-i-learn</guid>
             <pubDate>Wed, 04 Nov 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Sharing what you learn, while you learn, is the most effective way to learn net things.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -117,6 +131,7 @@
             <link>https://bouwe.io/goodbye-gatsby-hello-static-site-generator</link>
             <guid>https://bouwe.io/goodbye-gatsby-hello-static-site-generator</guid>
             <pubDate>Wed, 28 Oct 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Why and how I switched from Gatsby to my own solution for publishing my blog.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -124,6 +139,7 @@
             <link>https://bouwe.io/using-twitter-for-blog-commenting</link>
             <guid>https://bouwe.io/using-twitter-for-blog-commenting</guid>
             <pubDate>Sat, 18 Apr 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's not implement our own blog commenting system, but just use Twitter for that.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -131,6 +147,7 @@
             <link>https://bouwe.io/useeffect-for-handling-side-effects</link>
             <guid>https://bouwe.io/useeffect-for-handling-side-effects</guid>
             <pubDate>Tue, 17 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's learn about the useEffect hook!]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -138,6 +155,7 @@
             <link>https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training</link>
             <guid>https://bouwe.io/wat-je-leert-in-mijn-react-foundation-training</guid>
             <pubDate>Wed, 25 Sep 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Deze training geeft jou het fundament om een goede React developer te worden.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -145,6 +163,7 @@
             <link>https://bouwe.io/render-props-part-4</link>
             <guid>https://bouwe.io/render-props-part-4</guid>
             <pubDate>Wed, 18 Sep 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Part IV of discovering the render props pattern.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -152,6 +171,7 @@
             <link>https://bouwe.io/my-own-react-presentation-tool</link>
             <guid>https://bouwe.io/my-own-react-presentation-tool</guid>
             <pubDate>Sat, 29 Jun 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's build a React app to render presentation slides.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -159,6 +179,7 @@
             <link>https://bouwe.io/render-props-part-3</link>
             <guid>https://bouwe.io/render-props-part-3</guid>
             <pubDate>Thu, 30 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Part III of discovering the render props pattern.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -166,6 +187,7 @@
             <link>https://bouwe.io/render-props-part-2</link>
             <guid>https://bouwe.io/render-props-part-2</guid>
             <pubDate>Mon, 20 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Part II of discovering the render props pattern.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -173,6 +195,7 @@
             <link>https://bouwe.io/5-days-of-code</link>
             <guid>https://bouwe.io/5-days-of-code</guid>
             <pubDate>Sat, 18 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Evaluating my first 5 days of my 100 Days of Code challenge.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -180,6 +203,7 @@
             <link>https://bouwe.io/day-4-render-props</link>
             <guid>https://bouwe.io/day-4-render-props</guid>
             <pubDate>Fri, 17 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Render what? Render props! Let's discover this React pattern.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -187,6 +211,7 @@
             <link>https://bouwe.io/day-3-switched-to-another-gatsby-starter</link>
             <guid>https://bouwe.io/day-3-switched-to-another-gatsby-starter</guid>
             <pubDate>Thu, 16 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Switching templates for my Gatsby blog.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -194,6 +219,7 @@
             <link>https://bouwe.io/day-2-publishing-my-first-blog-posts</link>
             <guid>https://bouwe.io/day-2-publishing-my-first-blog-posts</guid>
             <pubDate>Wed, 15 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Finally I publish my first blog post!]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -201,6 +227,7 @@
             <link>https://bouwe.io/my-react-workshops</link>
             <guid>https://bouwe.io/my-react-workshops</guid>
             <pubDate>Wed, 15 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[This year I started giving React workshops. In this blog post I want to share with you how I got into this and why and how I am doing this.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -208,6 +235,7 @@
             <link>https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify</link>
             <guid>https://bouwe.io/day-1-setting-up-a-gatsby-blog-on-netlify</guid>
             <pubDate>Tue, 14 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Let's create a blog with Gatsby and go live!]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
         <item>
@@ -215,6 +243,7 @@
             <link>https://bouwe.io/day-0-a-new-challenge-100-days-of-code</link>
             <guid>https://bouwe.io/day-0-a-new-challenge-100-days-of-code</guid>
             <pubDate>Mon, 13 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Who am I and what are my goals for my 100 Days of Code challenge.]]></description>
             <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
         </item>
     </channel>

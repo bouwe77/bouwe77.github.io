@@ -2,9 +2,10 @@ export function getBlogsHtml(blogs) {
   const template = `
 <div>
     <div>
-    <h4>
-        <a href="/{{ slug }}">{{ title }}</a>
-    </h4>
+      <h4>
+          <a href="/{{ slug }}">{{ title }}</a>
+      </h4>
+      {{ summary }}
     </div>
 </div>`;
 

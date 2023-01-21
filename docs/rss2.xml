@@ -4,7 +4,7 @@
         <title>bouwe.io</title>
         <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
-        <lastBuildDate>Wed, 14 Dec 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 21 Jan 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -13,7 +13,21 @@
             <url>https://bouwe.io/bouwe-react-amsterdam.png</url>
             <link>https://bouwe.io</link>
         </image>
-        <copyright>All rights reserved 2019 - 2022, Bouwe Westerdijk</copyright>
+        <copyright>All rights reserved 2019 - 2023, Bouwe Westerdijk</copyright>
+        <item>
+            <title><![CDATA[My career path - Where do I want to go?]]></title>
+            <link>https://bouwe.io/my-career-path-where-do-want-to-go</link>
+            <guid>https://bouwe.io/my-career-path-where-do-want-to-go</guid>
+            <pubDate>Tue, 17 Jan 2023 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[What is a finite state machine?]]></title>
+            <link>https://bouwe.io/what-is-a-finite-state-machine</link>
+            <guid>https://bouwe.io/what-is-a-finite-state-machine</guid>
+            <pubDate>Wed, 11 Jan 2023 00:00:00 GMT</pubDate>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
         <item>
             <title><![CDATA[Elm: User interaction]]></title>
             <link>https://bouwe.io/elm-user-interaction</link>

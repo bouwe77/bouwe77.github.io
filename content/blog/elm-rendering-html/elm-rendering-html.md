@@ -1,7 +1,7 @@
 ---
 date: "2022-12-05"
 title: "Elm: Rendering HTML"
-summary: ""
+summary: "How do we render HTML with Elm, the functional language for creating web applications?"
 categories:
   - "Functional programming"
   - "Elm"

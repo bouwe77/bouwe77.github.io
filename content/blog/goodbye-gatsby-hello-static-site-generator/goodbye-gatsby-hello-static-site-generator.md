@@ -1,7 +1,7 @@
 ---
 date: "2020-10-28"
 title: "Goodbye Gatsby, hello static site generator"
-summary: ""
+summary: "Why and how I switched from Gatsby to my own solution for publishing my blog."
 categories:
   - "Blogging"
   - "Gatsby"

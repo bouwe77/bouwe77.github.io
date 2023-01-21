@@ -1,7 +1,7 @@
 ---
 date: "2019-09-25"
 title: "Wat je leert in mijn React Foundation training"
-summary: ""
+summary: "Deze training geeft jou het fundament om een goede React developer te worden."
 categories:
   - "React"
   - "Workshops"

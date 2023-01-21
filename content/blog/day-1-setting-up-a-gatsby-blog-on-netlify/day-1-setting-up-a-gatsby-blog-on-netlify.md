@@ -1,7 +1,7 @@
 ---
 date: "2019-05-14"
 title: "Day 1 - Setting up a Gatsby blog on Netlify"
-summary: ""
+summary: "Let's create a blog with Gatsby and go live!"
 categories:
   - "100 days of code"
   - "React"

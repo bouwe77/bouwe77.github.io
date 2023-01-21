@@ -1,12 +1,13 @@
 ---
 date: "2020-11-04"
 title: "My urge to share what I learn"
-summary: ""
+summary: "Sharing what you learn, while you learn, is the most effective way to learn net things."
 categories:
   - "Blogging"
   - "Personal"
   - "Workshops"
   - "Teaching"
+  - "Career"
 ---
 
 ### Learn by sharing

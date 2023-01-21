@@ -1,7 +1,7 @@
 ---
 date: "2020-03-17"
 title: "useEffect for handling side effects"
-summary: ""
+summary: "Let's learn about the useEffect hook!"
 categories:
   - "React"
   - "useEffect"

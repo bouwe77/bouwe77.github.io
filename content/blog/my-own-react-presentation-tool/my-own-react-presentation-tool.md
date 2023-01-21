@@ -1,7 +1,7 @@
 ---
 date: "2019-06-29"
 title: "My own React presentation tool"
-summary: ""
+summary: "Let's build a React app to render presentation slides."
 categories:
   - "React"
   - "Workshops"

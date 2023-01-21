@@ -1,7 +1,7 @@
 ---
 date: "2020-12-29"
 title: "Learn React basics by creating a simple calculation game (Part 2)"
-summary: ""
+summary: "By using the useEffect hook we can make our app a lot more interesting."
 categories:
   - "React"
   - "useEffect"

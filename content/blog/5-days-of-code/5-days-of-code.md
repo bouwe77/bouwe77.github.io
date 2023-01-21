@@ -1,7 +1,7 @@
 ---
 date: "2019-05-18"
 title: "5 Days of Code"
-summary: ""
+summary: "Evaluating my first 5 days of my 100 Days of Code challenge."
 categories:
   - "100 days of code"
   - "Personal"

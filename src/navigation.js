@@ -1,14 +1,14 @@
-export function getNavigationHtml(currentPage = "") {
-  const pages = ["about", "blog", "videos", "contact"];
+export function getNavigationHtml(currentPage = '') {
+  const pages = ['about', 'blog', 'videos', 'contact']
 
-  let html = "<ul class='nav-list'>";
+  let html = "<ul class='nav-list'>"
   pages.forEach((page) => {
     html += `<li class='nav-item'><a href="/${page}" ${
       page === currentPage ? "class='nav-active'" : "class='nav-inactive'"
-    }>${page}</a></li>`;
-  });
+    }>${page}</a></li>`
+  })
 
-  html += "</ul>";
+  html += '</ul>'
 
-  return html;
+  return html
 }

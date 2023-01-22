@@ -7,15 +7,15 @@ export function getBlogsHtml(blogs) {
       </h4>
       <p style="margin:0">{{ summary }}</p>
     </div>
-</div>`;
+</div>`
 
-  let html = "";
+  let html = ''
   blogs.forEach((blog) => {
     html += template
-      .replace(new RegExp("{{ slug }}", "g"), blog.slug)
-      .replace(new RegExp("{{ title }}", "g"), blog.attributes.title)
-      .replace(new RegExp("{{ summary }}", "g"), blog.attributes.summary);
-  });
+      .replace(new RegExp('{{ slug }}', 'g'), blog.slug)
+      .replace(new RegExp('{{ title }}', 'g'), blog.attributes.title)
+      .replace(new RegExp('{{ summary }}', 'g'), blog.attributes.summary)
+  })
 
-  return html;
+  return html
 }

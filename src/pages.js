@@ -3,17 +3,17 @@ export function getHtmlForPagesPage(pages) {
     <div>
         <b><a href="/{{ slug }}">{{ title }}</a></b>
     </div>
-</div>`;
+</div>`
 
-  let html = "";
+  let html = ''
   pages.forEach((page) => {
-    let pageHtml = "";
+    let pageHtml = ''
     pageHtml += template
-      .replace(new RegExp("{{ slug }}", "g"), page.slug)
-      .replace(new RegExp("{{ title }}", "g"), page.title);
+      .replace(new RegExp('{{ slug }}', 'g'), page.slug)
+      .replace(new RegExp('{{ title }}', 'g'), page.title)
 
-    html += pageHtml;
-  });
+    html += pageHtml
+  })
 
-  return html;
+  return html
 }

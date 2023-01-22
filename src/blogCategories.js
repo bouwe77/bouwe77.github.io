@@ -1,28 +1,28 @@
-import { createSlug } from "./utils";
+import { createSlug } from './utils'
 
 export function getBlogCategoriesHtmlForHomepage(blogCategories) {
   const template = `<span 
   ><a href="categories/{{ slug }}"
     >{{ name }} ({{ count }})</a
   ></span
-  >`;
+  >`
 
-  let html = "";
-  let first = true;
+  let html = ''
+  let first = true
   blogCategories.forEach((cat) => {
-    let categoryHtml = "";
+    let categoryHtml = ''
     categoryHtml += template
-      .replace(new RegExp("{{ slug }}", "g"), cat.slug)
-      .replace(new RegExp("{{ name }}", "g"), cat.name)
-      .replace(new RegExp("{{ count }}", "g"), cat.count);
+      .replace(new RegExp('{{ slug }}', 'g'), cat.slug)
+      .replace(new RegExp('{{ name }}', 'g'), cat.name)
+      .replace(new RegExp('{{ count }}', 'g'), cat.count)
 
-    if (!first) categoryHtml = " · " + categoryHtml;
-    first = false;
+    if (!first) categoryHtml = ' · ' + categoryHtml
+    first = false
 
-    html += categoryHtml;
-  });
+    html += categoryHtml
+  })
 
-  return html;
+  return html
 }
 
 export function getBlogCategoriesHtmlForCategoryListPage(blogCategories) {
@@ -32,35 +32,33 @@ export function getBlogCategoriesHtmlForCategoryListPage(blogCategories) {
         <b><a href="/categories/{{ slug }}">{{ name }} ({{ count }})</a></b>
     </h3>
     </div>
-</div>`;
+</div>`
 
-  let html = "";
+  let html = ''
   blogCategories.forEach((cat) => {
-    let categoryHtml = "";
+    let categoryHtml = ''
     categoryHtml += template
-      .replace(new RegExp("{{ slug }}", "g"), cat.slug)
-      .replace(new RegExp("{{ name }}", "g"), cat.name)
-      .replace(new RegExp("{{ count }}", "g"), cat.count);
+      .replace(new RegExp('{{ slug }}', 'g'), cat.slug)
+      .replace(new RegExp('{{ name }}', 'g'), cat.name)
+      .replace(new RegExp('{{ count }}', 'g'), cat.count)
 
-    html += categoryHtml;
-  });
+    html += categoryHtml
+  })
 
-  return html;
+  return html
 }
 
 export function getBlogCategoriesHtmlForBlogPost(blogCategories) {
-  let categoriesHtml = "";
+  let categoriesHtml = ''
   if (blogCategories) {
-    categoriesHtml += " · ";
-    let first = true;
+    categoriesHtml += ' · '
+    let first = true
     blogCategories.forEach((category) => {
-      if (!first) categoriesHtml += ", ";
-      first = false;
-      categoriesHtml += `<a href="/categories/${createSlug(
-        category
-      )}">${category}</a>`;
-    });
+      if (!first) categoriesHtml += ', '
+      first = false
+      categoriesHtml += `<a href="/categories/${createSlug(category)}">${category}</a>`
+    })
   }
 
-  return categoriesHtml;
+  return categoriesHtml
 }

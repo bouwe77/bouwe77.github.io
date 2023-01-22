@@ -1,111 +1,107 @@
-import inquirer from "inquirer";
-import path from "path";
-import fs from "fs";
+import inquirer from 'inquirer'
+import path from 'path'
+import fs from 'fs'
 
-import allCategories from "./allCategories.json";
+import allCategories from './allCategories.json'
 
-import { createSlug } from "./utils";
+import { createSlug } from './utils'
 
-const __dirname = path.resolve();
-const blogDirectory = "content/blog";
-const pagesDirectory = "content/pages";
+const __dirname = path.resolve()
+const blogDirectory = 'content/blog'
+const pagesDirectory = 'content/pages'
 
 const message = `
 ==========================
 Create a blog post or page
 ==========================
-`;
+`
 
-console.log(message);
+console.log(message)
 
-askGeneralQuestions();
+askGeneralQuestions()
 
 function askGeneralQuestions() {
   const generalQuestions = [
     {
-      name: "type",
-      type: "list",
-      message: "What?",
-      choices: ["Blog post", "Page"],
+      name: 'type',
+      type: 'list',
+      message: 'What?',
+      choices: ['Blog post', 'Page'],
     },
     {
-      name: "title",
-      type: "input",
-      message: "Title:",
+      name: 'title',
+      type: 'input',
+      message: 'Title:',
       validate: (title) => {
-        if (title && title.length > 0) return true;
-        return "Please enter a title";
+        if (title && title.length > 0) return true
+        return 'Please enter a title'
       },
     },
-  ];
+  ]
 
   inquirer
     .prompt(generalQuestions)
     .then(async (answers) => {
-      if (answers.type === "Blog post") askBlogQuestions(answers);
+      if (answers.type === 'Blog post') askBlogQuestions(answers)
       else {
-        await createPage(answers);
+        await createPage(answers)
       }
     })
     .catch((error) => {
-      console.error(error);
-    });
+      console.error(error)
+    })
 }
 
 function askBlogQuestions(generalAnswers) {
   const blogQuestions = [
     {
-      name: "date",
-      type: "input",
-      message: "Date:",
-      default: new Date().toISOString().split("T")[0],
+      name: 'date',
+      type: 'input',
+      message: 'Date:',
+      default: new Date().toISOString().split('T')[0],
     },
     {
-      name: "summary",
-      type: "input",
-      message: "Summary:",
-      default: "",
+      name: 'summary',
+      type: 'input',
+      message: 'Summary:',
+      default: '',
     },
     {
-      name: "categories",
-      type: "checkbox",
-      message: "Categories:",
+      name: 'categories',
+      type: 'checkbox',
+      message: 'Categories:',
       choices: allCategories.map((category) => {
         return {
           name: category,
-        };
+        }
       }),
     },
     {
-      name: "additionalCategories",
-      type: "input",
-      message: "Additional categories:",
+      name: 'additionalCategories',
+      type: 'input',
+      message: 'Additional categories:',
     },
-  ];
+  ]
 
   inquirer.prompt(blogQuestions).then(async (answers) => {
-    const blogData = { ...generalAnswers, ...answers };
+    const blogData = { ...generalAnswers, ...answers }
 
     const additionalCategories =
-      blogData.additionalCategories.length > 0
-        ? blogData.additionalCategories.split(",")
-        : [];
+      blogData.additionalCategories.length > 0 ? blogData.additionalCategories.split(',') : []
 
-    blogData.categories = [...blogData.categories, ...additionalCategories];
-    blogData.additionalCategories = undefined;
+    blogData.categories = [...blogData.categories, ...additionalCategories]
+    blogData.additionalCategories = undefined
 
-    await createBlog(blogData);
-  });
+    await createBlog(blogData)
+  })
 }
 
 async function createBlog(blogData) {
-  const slug = createSlug(blogData.title.trim());
-  const filename = slug + ".md";
+  const slug = createSlug(blogData.title.trim())
+  const filename = slug + '.md'
 
-  let categories = "";
-  blogData.categories.forEach(
-    (category) => (categories += '  - "' + category.trim() + '"\n')
-  );
+  let categories = ''
+  blogData.categories.forEach((category) => (categories += '  - "' + category.trim() + '"\n'))
 
   const text = `---
 date: "${blogData.date}"
@@ -114,34 +110,34 @@ summary: "${blogData.summary}"
 categories:
 ${categories}---
 
-This is a blog about ${blogData.title}...`;
+This is a blog about ${blogData.title}...`
 
-  const folderPath = path.join(__dirname, blogDirectory, slug);
-  const filePath = path.join(folderPath, filename);
+  const folderPath = path.join(__dirname, blogDirectory, slug)
+  const filePath = path.join(folderPath, filename)
 
   if (fs.existsSync(folderPath)) {
-    throw new Error(`Folder ${folderPath} already exists`);
+    throw new Error(`Folder ${folderPath} already exists`)
   }
 
-  fs.mkdirSync(folderPath);
+  fs.mkdirSync(folderPath)
 
-  await fs.promises.writeFile(filePath, String(text));
+  await fs.promises.writeFile(filePath, String(text))
 
-  console.log("\n✓ Done!\n");
+  console.log('\n✓ Done!\n')
 }
 
 async function createPage(pageData) {
-  const filename = createSlug(pageData.title) + ".md";
+  const filename = createSlug(pageData.title) + '.md'
   const text = `---
 title: ${pageData.title}
 ---
 
-This is a page about ${pageData.title}...`;
+This is a page about ${pageData.title}...`
 
-  const filePath = path.join(__dirname, pagesDirectory, filename);
+  const filePath = path.join(__dirname, pagesDirectory, filename)
 
   // The "wx" flag makes sure existing files are not overwritten.
-  await fs.promises.writeFile(filePath, String(text), { flag: "wx" });
+  await fs.promises.writeFile(filePath, String(text), { flag: 'wx' })
 
-  console.log("\n✓ Done!\n");
+  console.log('\n✓ Done!\n')
 }

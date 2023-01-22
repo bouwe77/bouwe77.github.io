@@ -4,7 +4,7 @@ const __dirname = path.resolve()
 const blogDirectory = 'content/blog'
 const pagesDirectory = 'content/pages'
 const staticDirectory = 'content/static'
-const publishDirectory = 'docs'
+export const publishDirectory = 'docs'
 const publishCategoriesDirectory = 'docs/categories'
 const templatesDirectory = 'templates'
 

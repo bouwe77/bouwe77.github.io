@@ -8,9 +8,7 @@ export function getHtmlForPagesPage(pages) {
   let html = ''
   pages.forEach((page) => {
     let pageHtml = ''
-    pageHtml += template
-      .replace(new RegExp('{{ slug }}', 'g'), page.slug)
-      .replace(new RegExp('{{ title }}', 'g'), page.title)
+    pageHtml += template.replaceAll('{{ slug }}', page.slug).replaceAll('{{ title }}', page.title)
 
     html += pageHtml
   })

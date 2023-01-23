@@ -2,7 +2,7 @@ import slugify from 'slugify'
 
 export function replaceTokens(html, data) {
   for (const token of Object.keys(data)) {
-    html = html.replace(new RegExp(`{{ ${token} }}`, 'g'), data[token])
+    html = html.replaceAll(`{{ ${token} }}`, data[token])
   }
 
   return html

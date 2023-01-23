@@ -28,7 +28,7 @@ export async function createRedirectHtmlPages() {
   for (const redirect of redirects) {
     let html = await readFileContents(filepaths.getRedirectTemplateFilePath())
 
-    html = html.replace(new RegExp('{{ redirect_to }}', 'g'), redirect.to)
+    html = html.replaceAll('{{ redirect_to }}', redirect.to)
 
     await createFile(filepaths.getRedirectPublishFilePath(redirect.from), html)
   }

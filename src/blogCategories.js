@@ -12,9 +12,9 @@ export function getBlogCategoriesHtmlForHomepage(blogCategories) {
   blogCategories.forEach((cat) => {
     let categoryHtml = ''
     categoryHtml += template
-      .replace(new RegExp('{{ slug }}', 'g'), cat.slug)
-      .replace(new RegExp('{{ name }}', 'g'), cat.name)
-      .replace(new RegExp('{{ count }}', 'g'), cat.count)
+      .replaceAll('{{ slug }}', cat.slug)
+      .replaceAll('{{ name }}', cat.name)
+      .replaceAll('{{ count }}', cat.count)
 
     if (!first) categoryHtml = ' · ' + categoryHtml
     first = false
@@ -38,9 +38,9 @@ export function getBlogCategoriesHtmlForCategoryListPage(blogCategories) {
   blogCategories.forEach((cat) => {
     let categoryHtml = ''
     categoryHtml += template
-      .replace(new RegExp('{{ slug }}', 'g'), cat.slug)
-      .replace(new RegExp('{{ name }}', 'g'), cat.name)
-      .replace(new RegExp('{{ count }}', 'g'), cat.count)
+      .replaceAll('{{ slug }}', cat.slug)
+      .replaceAll('{{ name }}', cat.name)
+      .replaceAll('{{ count }}', cat.count)
 
     html += categoryHtml
   })

@@ -6,13 +6,13 @@ title: CFP - The Wonders of Content Creation
 
 ### "The Wonders of Content Creation"
 
-Als IT professionals maken we veel gebruik van content, gecreëerd door anderen. Maar ben jij ook iemand die zelf content creëert? Misschien wel, of misschien niet, maar laten we het daar eens over hebben.
+Als IT professionals maken we veel gebruik van content, gecreëerd door anderen. Maar ben jij zelf ook iemand die content creëert? Misschien wel, of misschien niet, maar laten we het daar eens over hebben.
 
 Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, vanwege allerlei redenen.
 
-Bouwe neemt je in deze sessie mee in de wondere wereld van content creati. Waarom zou jij tóch content creatie doen? Wat levert je dat op? En hoe begin je?
+Bouwe neemt je in deze sessie mee in de wondere wereld van content creatie. Waarom zou jij tóch content creatie doen? Wat levert je dat op? En hoe begin je?
 
-> ENGLISH (translated by deepl)
+> ENGLISH (poorly translated)
 >
 > "As IT professionals, we use a lot of content created by others. But are you also someone who creates your own content? Maybe you are, or maybe you aren't, but let's talk about that.
 >
@@ -24,7 +24,7 @@ Bouwe neemt je in deze sessie mee in de wondere wereld van content creati. Waaro
 
 Bouwe is software engineer bij WebinarGeek met meer dan 20 jaar ervaring in het bouwen van front- en backends in .NET, TypeScript en React. Nieuwe kennis opdoen vindt hij het mooiste dat er is. Het delen ervan is volgens hem de beste manier om ook zelf continu in ontwikkeling te blijven. Hij geeft workshops, podcasts, en streamt en blogt regelmatig.
 
-> ENGLISH (translated by deepl)
+> ENGLISH (poorly translated)
 >
 > "Bouwe is a software engineer at WebinarGeek with more than 20 years of experience building front and backends in .NET, TypeScript and React. Gaining new knowledge is what he likes best. Sharing it, according to him, is the best way to stay in continuous development himself as well. He gives workshops, podcasts, and regularly streams and blogs."
 

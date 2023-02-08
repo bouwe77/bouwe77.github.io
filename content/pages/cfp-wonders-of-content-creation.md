@@ -6,19 +6,19 @@ title: CFP - The Wonders of Content Creation
 
 ### "The Wonders of Content Creation"
 
-Als IT professionals maken we veel gebruik van content, gecreëerd door anderen. Maar ben jij zelf ook iemand die content creëert? Misschien wel, of misschien niet, maar laten we het daar eens over hebben.
+Als IT professionals consumeren wij veel content, gecreëerd door anderen. Maar ben jij zelf ook iemand die content creëert?
 
-Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, vanwege allerlei redenen.
+Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, terwijl ze het misschien toch wel willen, of in ieder geval benieuwd zijn.
 
-Bouwe neemt je in deze sessie mee in de wondere wereld van content creatie. Waarom zou jij tóch content creatie doen? Wat levert je dat op? En hoe begin je?
+Bouwe neemt je in deze sessie mee in de wondere wereld van content creatie. Op basis van zijn eigen ervaringen geeft hij antwoord op vragen zoals: Waarom zou je content creëeren, wat is je doel? Wat levert het op, wat zijn de voordelen? En natuurlijk: Hoe begin je?
 
 > ENGLISH (poorly translated)
 >
-> "As IT professionals, we use a lot of content created by others. But are you also someone who creates your own content? Maybe you are, or maybe you aren't, but let's talk about that.
+> "As IT professionals, we consume a lot of content created by others. But are you someone who creates content yourself?
 >
-> Content creation adds an extra dimension to your work as an IT professional. You learn an awful lot from it and it can boost your career. Yet many people don't do it, for a variety of reasons.
->
-> In this session Bouwe takes you into the wonderful world of content creation. Why should you do content creation? What does it give you? And how do you start?"
+> Content creation adds an extra dimension to your work as an IT professional. You learn a lot from it and it can boost your career. Yet many people don't do it, even though they might want to, or at least are curious about it.
+> 
+> In this session, Bouwe takes you into the wonderful world of content creation. Based on his own experiences, he answers questions such as: Why create content, what is your goal? What does it deliver, what are the benefits? And of course: How do you get started?"
 
 ### Bio - Bouwe Westerdijk
 

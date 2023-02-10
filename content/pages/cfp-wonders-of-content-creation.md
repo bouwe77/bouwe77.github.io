@@ -8,7 +8,7 @@ title: CFP - The Wonders of Content Creation
 
 Als IT professionals consumeren wij veel content, gecreëerd door anderen. Maar ben jij zelf ook iemand die content creëert?
 
-Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, waarom is dat? Het kost natuurlijk tijd. En het kan best spannend zijn.
+Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost geven aan je carrière. Toch doen veel mensen het niet, waarom is dat? Het kost natuurlijk tijd. En het kan best spannend zijn.
 
 In deze sessie neemt Bouwe je mee in de wondere wereld van content creatie. Op basis van zijn eigen ervaringen geeft hij antwoord op vragen zoals: Waarom zou je content creëeren? Wat kun je ermee bereiken? En natuurlijk: Hoe begin je?
 
@@ -26,7 +26,7 @@ Dus of je nog moet beginnen of al content creëert, laten we samen het wonderlij
 
 ### Bio - Bouwe Westerdijk
 
-Bouwe is software engineer bij WebinarGeek met meer dan 20 jaar ervaring in het bouwen van front- en backends in .NET, TypeScript en React. Nieuwe kennis opdoen vindt hij het mooiste dat er is. Het delen ervan is volgens hem de beste manier om ook zelf continu in ontwikkeling te blijven. Hij geeft workshops, podcasts, en streamt en blogt regelmatig.
+Bouwe is software engineer bij WebinarGeek. Nieuwe kennis opdoen vindt hij het mooiste dat er is. Het delen ervan is volgens hem de beste manier om ook zelf continu in ontwikkeling te blijven. Hij geeft workshops, podcasts, en streamt en blogt regelmatig.
 
 > ENGLISH (poorly translated)
 >

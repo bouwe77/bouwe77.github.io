@@ -8,17 +8,21 @@ title: CFP - The Wonders of Content Creation
 
 Als IT professionals consumeren wij veel content, gecreëerd door anderen. Maar ben jij zelf ook iemand die content creëert?
 
-Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, terwijl ze het misschien toch wel willen, of in ieder geval benieuwd zijn.
+Content creatie geeft een extra dimensie aan je werk als IT professional. Je leert er ontzettend veel van en het kan een boost aan je carrière geven. Toch doen veel mensen het niet, waarom is dat? Het kost natuurlijk tijd. En het kan best spannend zijn.
 
-Bouwe neemt je in deze sessie mee in de wondere wereld van content creatie. Op basis van zijn eigen ervaringen geeft hij antwoord op vragen zoals: Waarom zou je content creëeren, wat is je doel? Wat levert het op, wat zijn de voordelen? En natuurlijk: Hoe begin je?
+In deze sessie neemt Bouwe je mee in de wondere wereld van content creatie. Op basis van zijn eigen ervaringen geeft hij antwoord op vragen zoals: Waarom zou je content creëeren? Wat kun je ermee bereiken? En natuurlijk: Hoe begin je?
+
+Dus of je nog moet beginnen of al content creëert, laten we samen het wonderlijke creatieve proces van content creatie ervaren!
 
 > ENGLISH (poorly translated)
 >
 > "As IT professionals, we consume a lot of content created by others. But are you someone who creates content yourself?
 >
-> Content creation adds an extra dimension to your work as an IT professional. You learn a lot from it and it can boost your career. Yet many people don't do it, even though they might want to, or at least are curious about it.
-> 
-> In this session, Bouwe takes you into the wonderful world of content creation. Based on his own experiences, he answers questions such as: Why create content, what is your goal? What does it deliver, what are the benefits? And of course: How do you get started?"
+> Content creation adds an extra dimension to your work as an IT professional. You learn a lot from it and it can boost your career. Yet many people don't do it; why is that? It takes time, of course. And it can be quite exciting.
+>
+> In this session Bouwe takes you into the wonderful world of content creation. Based on his own experiences, he answers questions such as: Why should you create content? What can you achieve with it? And of course: How do you start?
+>
+> So whether you have yet to start or are already creating content, let's experience the wonderful creative process of content creation together!"
 
 ### Bio - Bouwe Westerdijk
 

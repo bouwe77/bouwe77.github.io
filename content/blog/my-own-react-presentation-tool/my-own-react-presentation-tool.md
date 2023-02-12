@@ -5,6 +5,7 @@ summary: "Let's build a React app to render presentation slides."
 categories:
   - "React"
   - "Workshops"
+  - "Content creation"
 ---
 
 ### Introduction

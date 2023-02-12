@@ -4,6 +4,7 @@ title: "How I sort out my ideas and thoughts"
 summary: "I use voice recording to brainstorm with myself, and it's super helpful for me!"
 categories:
   - "Personal"
+  - "Content creation"
 ---
 
 Whenever I have thoughts on something I am working on, or things that worry me, or just something that might be very cool to do, I press the record button on my phone's voice recorder app and start talking.

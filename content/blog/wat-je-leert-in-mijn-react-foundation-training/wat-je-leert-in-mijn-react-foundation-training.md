@@ -6,6 +6,7 @@ categories:
   - "React"
   - "Workshops"
   - "Nederlands"
+  - "Content creation"
 ---
 
 ### Waarom deze training?

@@ -8,6 +8,7 @@ categories:
   - "Workshops"
   - "Personal"
   - "Teaching"
+  - "Content creation"
 ---
 
 This year I started giving React workshops. In this blog post I want to share with

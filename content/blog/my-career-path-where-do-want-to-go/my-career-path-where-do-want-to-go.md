@@ -5,6 +5,7 @@ summary: "My reflection on my career and what a possible next step could be."
 categories:
   - "Personal"
   - "Career"
+  - "Content creation"
 ---
 
 Today I joined a community where senior developers discuss and coach each other into defining their career goals. Think of sharing experiences, help and motivate each other to reach their goals, and hold each other accountable.

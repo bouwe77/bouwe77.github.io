@@ -8,6 +8,7 @@ categories:
   - "Workshops"
   - "Teaching"
   - "Career"
+  - "Content creation"
 ---
 
 ### Learn by sharing

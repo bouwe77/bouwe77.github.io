@@ -1,8 +1,17 @@
 ---
+date: "2023-02-13"
 title: How to start with content creation
+summary: "How (and why!) should you start with creating content."
+categories:
+  - "Blogging"
+  - "Personal"
+  - "Workshops"
+  - "Teaching"
+  - "Career"
+  - "Content creation"
 ---
 
-Content creation is a great way to level up, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers. You are a communitive developer, which shows your seniority, and indicates there is more than just coding.
+Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers. You show you are a communitive developer, a sign of seniority, and indicates there is more than just coding.
 
 Next to content creation, contributing to open source, and being active in communities are also activities that can have similar results. Or even better, combine these things.
 

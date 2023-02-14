@@ -11,9 +11,9 @@ categories:
   - "Content creation"
 ---
 
-Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers. You show you are a communicative developer, a sign of seniority, and indicate there is more than just coding. Next to content creation, contributing to open source, and being active in communities are also activities that can have similar results. Or even better, combine these things.
+Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers, because you show you are a communicative developer, which is a sign of seniority, and indicate there is more than just coding. Next to content creation, contributing to open source, mentoring, and being active in communities are also activities that can have similar results. Or even better, combine these things.
 
-Whether you think these things are important for you, there is another, and for me personally the biggest reason to do content creation, and that is learning new tech and skills. I always write content about things I want to learn and understand. For me content creation is taking a step back, look at things from a distance, structure the things that I think are important to understand, and then try to explain them.
+Whether or not you think leveling up is important for you, there is another, and for me personally the biggest reason to do content creation, and that is learning new tech and skills. I always write content about things I want to learn and understand. For me content creation is taking a step back, look at things from a distance, structure what I think is important to understand, and then try to explain them.
 
 People always say, build things. And of course that is important, but next to that, creating content about it is next level. By only building things you tend to focus more on making things work, and not always to fully understand why. Creating content forces to go deeper, and really grasp and solidify it. If you can not explain it, it might mean you don't understand it yet.
 
@@ -43,10 +43,10 @@ Writing a simple HTML page with your first blog post on day 1 is better than sta
 
 Once you started publishing stuff, it can feel pretty intimidating to put it out there. However, rest assured, the internet is a big place, so no one will probably notice (or care) for your content anyway...
 
-But if you are curious what others think, and want some feedback, ask friends or colleagues whom you trust and are rooting for you. In my experience, these people find it super cool you are even doing this, regardless of how interesting or good they think it is what you are sharing. I mean, look at yourself, if a friend is creating content, how would you respond to that?
+But if you are curious what others think, and want some feedback, ask friends or colleagues whom you trust and are rooting for you. In my experience, these people find it super cool you are even doing this, regardless of how interesting or good they think it is what you are sharing. I mean, look at yourself, if a friend is creating content, how would you respond to that? And worst case, you can even create content just for yourself, as a mechanism to learn, and have a nice place of structured notes, you can always look up.
 
-As you improve and continue creating content, the fear of other people's reaction will probably become less. Especially because you will find your own unique way of sharing content as you go.
+As you improve and continue creating content, the fear of other people's reaction will probably become less. Especially because you will find your own unique way of sharing content, as you go.
 
-Finally, it is important to realize that every person is unique, and therefore also everyone's content creation is unique. The topics you choose, the way you communicate them, all based on your experience, perspective and opinion, is unique. Which is why it does not matter where you create content about. If I would ask 10 content creators to write a blog post with the title "Is HTML a programming language?", I would get 10 very different blog posts. Not only their answer to the question, but also their reasoning and approach.
+This uniqueness of you, and your content, is very important to realize. The topics you choose, the way you communicate them, all based on your experience, perspective and opinion, is unique. Which is why it does not matter you are not the first to create content about a topic. If I would ask 10 content creators to write a blog post with the title "Is HTML a programming language?", I would get 10 very different blog posts. Not only their answer to the question, but also their reasoning and approach.
 
-So go ahead, and start creating your first piece of content, and before you know it you are a content creator...
+So go ahead, and start creating your first piece of content now, and before you know it you are a content creator...

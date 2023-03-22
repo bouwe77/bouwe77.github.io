@@ -42,13 +42,24 @@ Scary
 
 However, once you posted your first blog post, who is going to read it?
 
-(NOBODY!)
+(crickets... NOBODY!)
 
 So you share it with some people you know, that feels safe
 
 then when you have some experience and confidnce, you start sharing bigger)
 
 You can also start blogging on Medium right away of course, but then still nobody might see/read it. But it is more out in the open than on your own blog
+
+---
+
+Why I wasn't afraid to give the React workshop
+
+- React was so exciting, people gotta know
+- I know and like these people 
+- I know they hardly know anything about it
+- And it's fun doing something together: beer, pizza
+
+(deze slide moet ergens anders natuurlijk)
 
 ---
 

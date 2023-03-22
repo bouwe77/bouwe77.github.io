@@ -119,6 +119,18 @@ update msg model =
             )
 ```
 
-... ...
+...bla...
+...bla...
+...bla...
+
+```
+-- code
+-- code
+-- code
+```
+
+To be clear, in your code, generating the random number, and handling the result of that, is not directly called, it is called by the Elm runtime. You only specify what and how it should be done.
+
+Generating a random number can not fail, which is why you only have to provide the message to be sent when the random number is generated. However, if you would call a REST API, it could fail, which is why in that case you also have to provide an implementation for handling errors. But more on that in a future blog post.
 
 

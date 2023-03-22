@@ -8,7 +8,7 @@ INTRO
 
 * Experience with other languages?
 
-* First and foremost: TS is a developer tool
+* First and foremost: TS is a developer tool, an end user will not directly run it
 
 JS vs TS
 
@@ -28,9 +28,12 @@ COMPILATION / TRANSPILATION
 * TS compiles to JS before it can run somewhere
 (users only benefit from TS implicitely)
 
+* Compilation happens once, either locally or on CI
+
 * Compile time (TS) vs runtime (JS)
 
 * Types get deleted when transpiled to JS
+  (if your code has type errors it won't compile, so if it compiles it must be (kinda) good...)
 
 * The JS target version is configured
 

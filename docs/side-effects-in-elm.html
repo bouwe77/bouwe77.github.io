@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Side effects in Elm</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe-react-amsterdam.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      property="og:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Side effects in Elm" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta
+      name="twitter:image"
+      content="https://bouwe.io/bouwe-react-amsterdam.png"
+    />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+          </div>
+        </div>
+      </header>
+  
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/side-effects-in-elm">Side effects in Elm</a>
+        </h2>
+        <div class="blog-meta">
+          Mar 14, 2023  · <a href="/categories/functional-programming">Functional programming</a>, <a href="/categories/elm">Elm</a>  · 4 minute read
+        </div>
+      </div>
+
+      <div><h3>Introduction</h3>
+<p>This is my fourth blog post about Elm. In the 3 previous articles I wrote about the language, rendering HTML, and handling user interaction.</p>
+<p>These apps had no side effects, because they only use pure functions, and were safely running in Elm's sandbox. The sandbox makes sure an app can not communicate with the outside world, so the only thing these apps do is run the app's code, which, when compiled successfully will not have any technical problems, such as runtime errors.</p>
+<p>The only thing that can go wrong is that it functionally does not work as expected, but that would be a bug, caused by misunderstanding the desired functionality, or any other human mistake.</p>
+<p>However, most apps are not very useful if they do not communicate with the outside world, for example calling an HTTP API, or even working with the current time, or randomization. So let's discover how you can build an Elm app that does communicate with the outside world. And how it is possible that it then still will not throw runtime errors.</p>
+<p>To keep it simple, we will build an app that generates a random number.</p>
+<h3>Wiring up the app</h3>
+<p>Let's start with the initial model, and architect the app around it as we go:</p>
+<pre><code>type alias Model =
+    Int
+
+init : Model
+init =
+    0
+</code></pre>
+<p>The type of our <code>Model</code> is an <code>Int</code>, and the initial value is not (yet) random, but just <code>0</code> for now.</p>
+<p>Let's have a view that displays the number, and a button to generate a new number:</p>
+<pre><code>view : Model -> Html Msg
+view model =
+    div []
+        [ h1 [] [ text (String.fromInt model) ]
+        , button [ onClick GenerateRandomNumber ] [ text "🔁" ]
+        ]
+</code></pre>
+<p>The <code>model</code> is passed to the view by the Elm runtime, but in order to display it as the <code>text</code> of the <code>h1</code> element, we convert it to a string with <code>String.fromInt</code>. When the button is clicked, we send the <code>GenerateRandomNumber</code> message.</p>
+<p>Let's implement the <code>GenerateRandomNumber</code> message now, by (for now) just incrementing the number:</p>
+<pre><code>type Msg
+    = GenerateRandomNumber
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        GenerateRandomNumber ->
+            model + 1
+</code></pre>
+<p>So when we click the button, the Elm runtime passes the current model to the <code>update</code>, and when the message is <code>GenerateRandomNumber</code> it returns a new model, where the model is incremented. By the way, we don't need to account for any other messages, because there aren't any. This code compiles, so it is guaranteed that nowhere in our code we are using a message that does not exist.</p>
+<p>As we do not yet communicate with the outside world, we run the app sandboxed:</p>
+<pre><code>main : Program () Model Msg
+main =
+    Browser.sandbox { init = init, update = update, view = view }
+</code></pre>
+<p>Here we tell Elm to initialize the model with our <code>init</code> function, to call the <code>update</code> function we created whenever we send a message, and which <code>view</code> to render.</p>
+<h3>Leaving the sandbox</h3>
+<p>Finally it's time for our app to leave the safe sandbox and start communicating with the bad and dangerous outside world 😱. We do this by switching our app from <code>Browser.sandbox</code> to <code>Browser.element</code>:</p>
+<pre><code>main : Program () Model Msg
+main =
+    Browser.element
+        { init = init
+        , update = update
+        , view = view
+        , subscriptions = \_ -> Sub.none
+        }
+</code></pre>
+<p>Note how we added <code>subscriptions</code> to the record we pass to <code>Browser.element</code>, which you can use to listen to things like the current time, web socket messages, etc. We don't do that now, so we tell Elm to don't listen to anything.</p>
+<p>The second change we need to do is making it possible for <em>flags</em> being passed to our app when it's being initialized. Flags are values that originate from outside of your Elm app, but you want to pass into it, for example environment variables. These flags would be received in the <code>init</code> function, so we need to change it so it looks like this:</p>
+<pre><code>init : () -> ( Model, Cmd Msg )
+init _ =
+    ( 0
+    , Cmd.none
+    )
+</code></pre>
+<p><code>init</code> does not receive arguments (flags), still has the initial value of <code>0</code>, and there are no additional commands (<code>Cmd.none</code>) to be executed when initialized.</p>
+<h3>Generating random numbers</h3>
+<p>The only thing left to do is changing the <code>update</code> function to generate a random number instead of incrementing it.</p>
+<p>The concept of having side effects in an Elm app is to tell the Elm <em>what and how</em> to do something, and giving it the function to call back when that is done. This way, things like generating random numbers, but also calling an HTTP API happen outside of your code, in the Elm runtime, so that your code keeps on only having pure functions.</p>
+<p>The first step to change the <code>update</code> function is ... ...</p>
+<pre><code>update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        GenerateRandomNumber ->
+            ( model
+            , Random.generate RandomNumberGenerated (Random.int 1 6)
+            )
+</code></pre>
+<p>...bla...
+...bla...
+...bla...</p>
+<pre><code>-- code
+-- code
+-- code
+</code></pre>
+<p>To be clear, in your code, generating the random number, and handling the result of that, is not directly called, it is called by the Elm runtime. You only specify what and how it should be done.</p>
+<p>Generating a random number can not fail, which is why you only have to provide the message to be sent when the random number is generated. However, if you would call a REST API, it could fail, which is why in that case you also have to provide an implementation for handling errors. But more on that in a future blog post.</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Side effects in Elm&url=https://bouwe.io/side-effects-in-elm&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/side-effects-in-elm"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/side-effects-in-elm/side-effects-in-elm.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+
+    </div>
+
+    <!-- Default Statcounter code for bouwe.io https://bouwe.io -->
+    <script type="text/javascript">
+    var sc_project=12847572; 
+    var sc_invisible=1; 
+    var sc_security="f729e1b5"; 
+    </script>
+    <script type="text/javascript"
+    src="https://www.statcounter.com/counter/counter.js" async></script>
+    <noscript><div class="statcounter"><a title="Web Analytics"
+    href="https://statcounter.com/" target="_blank"><img class="statcounter"
+    src="https://c.statcounter.com/12847572/0/f729e1b5/1/" alt="Web Analytics"
+    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
+    
+  </body>
+</html>

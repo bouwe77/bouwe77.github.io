@@ -4,7 +4,7 @@
         <title>bouwe.io</title>
         <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
-        <lastBuildDate>Sun, 12 Feb 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 Mar 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,22 @@
             <link>https://bouwe.io</link>
         </image>
         <copyright>All rights reserved 2019 - 2023, Bouwe Westerdijk</copyright>
+        <item>
+            <title><![CDATA[Side effects in Elm]]></title>
+            <link>https://bouwe.io/side-effects-in-elm</link>
+            <guid>https://bouwe.io/side-effects-in-elm</guid>
+            <pubDate>Tue, 14 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[... ... ...]]></description>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
+        <item>
+            <title><![CDATA[How (and why!) to start with content creation]]></title>
+            <link>https://bouwe.io/how-and-why-to-start-with-content-creation</link>
+            <guid>https://bouwe.io/how-and-why-to-start-with-content-creation</guid>
+            <pubDate>Mon, 13 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[...]]></description>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
         <item>
             <title><![CDATA[My career path - Where do I want to go?]]></title>
             <link>https://bouwe.io/my-career-path-where-do-want-to-go</link>

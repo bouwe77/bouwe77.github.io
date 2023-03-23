@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>Blog posts about "Workshops"</title>
+    <title>TypeScript notes</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe-react-amsterdam.png" />
     <meta property="og:locale" content="en_US" />
@@ -23,7 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="Blog posts about "Workshops"" />
+    <meta name="twitter:title" content="TypeScript notes" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -87,58 +87,115 @@
   
           <div class="main">
       <div class="container">
-              <div><a href="/categories">&laquo; All categories</a></div>
-
-      <div>
-        <h2>Blog posts about "Workshops"</h2>
+              <div>
+        <h2 class="page-title">TypeScript notes</h2>
       </div>
 
-      <div><div>
-    <div>
-      <h4>
-          <a href="/how-and-why-to-start-with-content-creation">How (and why!) to start with content creation</a>
-      </h4>
-      <p style="margin:0">...</p>
-      <p style="margin:0"><i>Feb 13, 2023 · 4 minute read</i></p>
-    </div>
+      <div><p>INTRO</p>
+<ul>
+<li>
+<p>Experience with TS?</p>
+</li>
+<li>
+<p>Experience with other languages?</p>
+</li>
+<li>
+<p>First and foremost: TS is a developer tool, an end user will not directly run it</p>
+</li>
+</ul>
+<p>JS vs TS</p>
+<ul>
+<li>
+<p>JS is dynamically typed and interpreted</p>
+</li>
+<li>
+<p>TS is statically typed and compiled</p>
+</li>
+<li>
+<p>Nominal (C#/Java) vs structural (TS, even classes) typing</p>
+</li>
+<li>
+<p>You can but not always must the type: inference
+Explicit vs implicit type definitions</p>
+</li>
+<li>
+<p>Write as little TS as possible</p>
+</li>
+</ul>
+<p>COMPILATION / TRANSPILATION</p>
+<ul>
+<li>
+<p>TS compiles to JS before it can run somewhere
+(users only benefit from TS implicitely)</p>
+</li>
+<li>
+<p>Compilation happens once, either locally or on CI</p>
+</li>
+<li>
+<p>Compile time (TS) vs runtime (JS)</p>
+</li>
+<li>
+<p>Types get deleted when transpiled to JS
+(if your code has type errors it won't compile, so if it compiles it must be (kinda) good...)</p>
+</li>
+<li>
+<p>The JS target version is configured</p>
+</li>
+</ul>
+<p>BENEFITS of TS</p>
+<ul>
+<li>
+<p>Better understanding of your code</p>
+</li>
+<li>
+<p>Prevent bugs at compile time</p>
+</li>
+<li>
+<p>Improves tooling, for example navigation and intellisense in VS Code</p>
+</li>
+<li>
+<p>But it has a learning curve</p>
+</li>
+<li>
+<p>Job security</p>
+</li>
+</ul>
+<p>STARTING / MIGRATING</p>
+<ol>
+<li>Install typescript as dev dependency</li>
+<li><code>tsc --init</code> (creates tsconfig.json)</li>
+<li>Notable settings:
+<ul>
+<li>Target</li>
+<li>AllowJs</li>
+</ul>
+</li>
+<li>commands in package.json</li>
+<li>eslint</li>
+</ol>
+<p>RUNNING YOUR APP</p>
+<ul>
+<li>
+<p>TS can "lie" when using external systems</p>
+</li>
+<li>
+<p>Input checking (runtime)</p>
+</li>
+</ul>
 </div>
-<div>
-    <div>
-      <h4>
-          <a href="/my-urge-to-share-what-i-learn">My urge to share what I learn</a>
-      </h4>
-      <p style="margin:0">Sharing what you learn, while you learn, is the most effective way to learn new things.</p>
-      <p style="margin:0"><i>Nov 4, 2020 · 3 minute read</i></p>
-    </div>
-</div>
-<div>
-    <div>
-      <h4>
-          <a href="/wat-je-leert-in-mijn-react-foundation-training">Wat je leert in mijn React Foundation training</a>
-      </h4>
-      <p style="margin:0">Deze training geeft jou het fundament om een goede React developer te worden.</p>
-      <p style="margin:0"><i>Sep 25, 2019 · 4 minute read</i></p>
-    </div>
-</div>
-<div>
-    <div>
-      <h4>
-          <a href="/my-own-react-presentation-tool">My own React presentation tool</a>
-      </h4>
-      <p style="margin:0">Let's build a React app to render presentation slides.</p>
-      <p style="margin:0"><i>Jun 29, 2019 · 6 minute read</i></p>
-    </div>
-</div>
-<div>
-    <div>
-      <h4>
-          <a href="/my-react-workshops">My React workshops</a>
-      </h4>
-      <p style="margin:0">This year I started giving React workshops. In this blog post I want to share with you how I got into this and why and how I am doing this.</p>
-      <p style="margin:0"><i>May 15, 2019 · 3 minute read</i></p>
-    </div>
-</div>
-</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=TypeScript notes&url=https://bouwe.io/typescript&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/typescript"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/typescript.md">Edit on GitHub</a>
+      </div>
 
       </div>
     </div>

@@ -16,18 +16,6 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2023, Bouwe Westerdijk</rights>
     <entry>
-        <title type="html"><![CDATA[Side effects in Elm]]></title>
-        <id>https://bouwe.io/side-effects-in-elm</id>
-        <link href="https://bouwe.io/side-effects-in-elm"/>
-        <updated>2023-03-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[... ... ...]]></summary>
-        <author>
-            <name>Bouwe Westerdijk</name>
-            <email>bouwe@bouwe.nl</email>
-            <uri>https://bouwe.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[How (and why!) to start with content creation]]></title>
         <id>https://bouwe.io/how-and-why-to-start-with-content-creation</id>
         <link href="https://bouwe.io/how-and-why-to-start-with-content-creation"/>

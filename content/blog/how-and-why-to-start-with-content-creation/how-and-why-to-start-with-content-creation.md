@@ -1,7 +1,7 @@
 ---
 date: "2023-02-13"
 title: "How (and why!) to start with content creation"
-summary: "..."
+summary: "Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers."
 categories:
   - "Blogging"
   - "Personal"
@@ -11,11 +11,13 @@ categories:
   - "Content creation"
 ---
 
-Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers, because you show you are a communicative developer, which is a sign of seniority, and indicate there is more than just coding. Next to content creation, contributing to open source, mentoring, and being active in communities are also activities that can have similar results. Or even better, combine these things.
+Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers, because you show you are a communicative developer, which is a sign of seniority, and indicate there is more than just coding.
+
+Next to content creation, contributing to open source, mentoring, and being active in communities are also activities that can have similar results. Or even better, combine these things.
 
 Whether or not you think leveling up is important for you, there is another, and for me personally the biggest reason to do content creation, and that is learning new tech and skills. I always write content about things I want to learn and understand. For me content creation is taking a step back, look at things from a distance, structure what I think is important to understand, and then try to explain them.
 
-People always say, build things. And of course that is important, but next to that, creating content about it is next level. By only building things you tend to focus more on making things work, and not always to fully understand why. Creating content forces to go deeper, and really grasp and solidify it. If you can not explain it, it might mean you don't understand it yet.
+People always say, build things. And of course that is important, but next to that, creating content about it is next level. By only building things you tend to focus more on making things work, and not always to fully understand why. Creating content forces to go deeper, and really grasp and solidify it. If you can not explain it, it might mean you don't understand it yet. The ideal combination, however, is build, learn, and share content about it at the same time: Learn in public.
 
 Content creation may sound big, time consuming, scary, and "not for me", however, there are many forms of content creation, and you can make it as big and scary as you like. Let's talk about how to start, and how to find a way of content creation that fits you. 
 
@@ -29,7 +31,7 @@ Being intrinsically motivated because you are super enthusiastic of the content,
 
 If you like talking, but the idea of you being visible on someone else's screen is intimidating, start podcasting.
 
-> A free, and very nice and simple platform is [Anchor.fm](https://anchor.fm). Me and [Rich](https://richstone.io) use it for our [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, and it's great.
+> A free, and very nice and simple platform is [Anchor.fm](https://anchor.fm). Me and [Rich](https://richstone.io) use it for our [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, and it's great. It automates distributing your podcast to all of the well known platforms. To record your podcast you can just use local recording software, online meeting tools, or more dedicated tools like [Riverside](https://riverside.fm).
 
 And [YouTube](https://youtube.com) or [Twitch](https://twitch.com) are great for video content of course, either live, or for edited video on demand.
 
@@ -39,7 +41,9 @@ And if your company does not have a knowledge sharing culture, initiating one is
 
 You can be up and running with all of these ways of content creation within 5 minutes. However, whatever form and platform you choose, it is very important to start shipping content right away. 
 
-Writing a simple HTML page with your first blog post on day 1 is better than starting blogging after 3 months because you had to build a website first. Or for video and audio content, yes, a good microphone and camera is nice, but please, just start, no need to invest in anything right away. Well, except for investing in your content itself of course. Many people that want to start creating content, procrastinate by building stuff first. However, from the moment you publish your first piece of content, magic happens. It gives you a direction of what about and how you want to share your content. Just. Do. It.
+Writing a simple HTML page with your first blog post on day 1 is better than first building your enterprise blogging application, which takes half a year, before you finally can start blogging, if it even will still happen by then... Or for video and audio content, yes, a good microphone and camera is nice, but please, just start, no need to invest in anything right away. Well, except for investing in your content itself of course. Many people that want to start creating content, procrastinate by building stuff first. However, from the moment you publish your first piece of content, magic happens. It gives you a direction of what about and how you want to share your content. 
+
+Just. Ship. It.
 
 Once you started publishing stuff, it can feel pretty intimidating to put it out there. However, rest assured, the internet is a big place, so no one will probably notice (or care) for your content anyway...
 
@@ -47,6 +51,6 @@ But if you are curious what others think, and want some feedback, ask friends or
 
 As you improve and continue creating content, the fear of other people's reaction will probably become less. Especially because you will find your own unique way of sharing content, as you go.
 
-This uniqueness of you, and your content, is very important to realize. The topics you choose, the way you communicate them, all based on your experience, perspective and opinion, is unique. Which is why it does not matter you are not the first to create content about a topic. If I would ask 10 content creators to write a blog post with the title "Is HTML a programming language?", I would get 10 very different blog posts. Not only their answer to the question, but also their reasoning and approach.
+This uniqueness of _you_, and _your_ content, is very important to realize. The topics you choose, the way you communicate them, all based on your experience, perspective and opinion, is unique. Which is why it does not matter you are not the first to create content about a topic. If I would ask 10 content creators to write a blog post with the title "Is HTML a programming language?", I would get 10 very different blog posts. Not only their answer to the question, but also their reasoning and approach.
 
 So go ahead, and start creating your first piece of content now, and before you know it you are a content creator...

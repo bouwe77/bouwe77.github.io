@@ -32,8 +32,8 @@ Being intrinsically motivated because you are super enthusiastic of the content,
 If you like talking, but the idea of you being visible on someone else's screen is intimidating, start podcasting.
 
 > A free, and very nice and simple platform is [Anchor.fm](https://anchor.fm). Me and [Rich](https://richstone.io) use it for our [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, and it's great. It automates distributing your podcast to all of the well known platforms. To record your podcast you can just use local recording software, online meeting tools, or more dedicated tools like [Riverside](https://riverside.fm).
-
-And [YouTube](https://youtube.com) or [Twitch](https://twitch.com) are great for video content of course, either live, or for edited video on demand.
+>
+> And [YouTube](https://youtube.com) or [Twitch](https://twitch.com) are great for video content of course, either live, or for edited video on demand.
 
 By the way, another nice and safe way of content creation might be joining or creating channels on your company's Slack, and start sharing stuff there, either by writing, speaking, or creating short videos. For example, at [WebinarGeek](https://webinargeek.com) we have Slack channels such as `#react`, `#typescript`, `#xstate`, and `#til`, where we ask questions and share our learnings.
 

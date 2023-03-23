@@ -1,5 +1,5 @@
 ---
-date: "2023-02-13"
+date: "2023-03-23"
 title: "How (and why!) to start with content creation"
 summary: "Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers."
 categories:

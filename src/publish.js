@@ -17,6 +17,8 @@ import { readFileContents, readFilesInFolder, copyFile, createFile, createFolder
 import { getNavigationHtml } from './navigation'
 import { createRedirectHtmlPages } from './redirects'
 
+const ignorePrefixes = ['.', '_']
+
 const navigationHtml = getNavigationHtml()
 const navigationHtmlBlogPages = getNavigationHtml('blog')
 
@@ -77,11 +79,12 @@ async function getBlogData() {
     categories: [],
   }
 
-  let blogSubFolders = await readFilesInFolder(filepaths.getBlogDirectory())
+  let blogSubFolders = (await readFilesInFolder(filepaths.getBlogDirectory())).filter(
+    (subFolder) => !ignorePrefixes.some((prefix) => subFolder.startsWith(prefix)),
+  )
+
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
-      if (subFolder.startsWith('.')) return
-
       const subFolderPath = filepaths.getBlogSubFolder(subFolder)
       let files = await readFilesInFolder(subFolderPath)
 
@@ -145,11 +148,11 @@ async function getBlogData() {
 async function getPageData() {
   const pageData = { template: filepaths.getPageTemplateFilePath(), pages: [] }
 
-  let pages = await readFilesInFolder(filepaths.getPagesDirectory())
+  let pages = (await readFilesInFolder(filepaths.getPagesDirectory())).filter((filename) =>
+    ignorePrefixes.every((prefix) => !filename.startsWith(prefix)),
+  )
   await Promise.all(
     pages.map(async (filename) => {
-      if (filename.startsWith('.')) return
-
       let fileContents = await readFileContents(filepaths.getPageContentFilePath(filename))
 
       const slug = filename.replace('.md', '')

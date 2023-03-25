@@ -25,7 +25,9 @@ Oh, and let's not forget to have fun. If you are having a lot of fun, the reason
 
 Or give a talk where I demo my open source project for building slide decks, where I create the slides for my presentation during the presentation... And when I create a React workshop, are we going to build a TO DO app? No of course not! We are building spaceships and travel through space.
 
-Being intrinsically motivated because you are super enthusiastic of the content, and the way you are sharing it, is essential for giving it a fair chance of trying and keep on doing it. How do you find your preferred form(s) of content creation? I would say, start small, and maybe even try different ways of content creation. For example, if you like writing, just tweet stuff out there, or start a blog. And no need to write long epistels, just short texts, or publishing some notes is perfectly fine to start with.
+Being intrinsically motivated because you are super enthusiastic of the content, and the way you are sharing it, is essential for giving it a fair chance of trying and keep on doing it.
+
+So how do you find your preferred form(s) of content creation? I would say, start small, and maybe even try different ways of content creation. For example, if you like writing, just tweet stuff out there, or start a blog. And no need to write long epistels, just short texts, or publishing some notes is perfectly fine to start with.
 
 > A great way to start blogging is [GitHub Pages](https://pages.github.com/), as you are probably on GitHub anyway. I use it for my blog, and although I've built something custom, that is absolutely not necessary.
 

@@ -10,6 +10,10 @@ From the moment I started learning React I also started teaching React to others
 
 Blog posts about my workshops are filed under the [Workshops category].
 
+### Podcast
+
+Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, where we talk about the things we are curious about, such as coding, architecture, content creation, and career.
+
 ### Upcoming events
 
 (none at the moment)

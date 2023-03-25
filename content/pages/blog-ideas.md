@@ -2,6 +2,17 @@
 title: Blog ideas
 ---
 
+# Elm
+
+- Side effects: Randomization
+
+- Side effects: API calls
+
+- Maybe and related types
+
+# State machines
+
+- Different ways of implementing: patterns, libraries
 
 # Content creation
 

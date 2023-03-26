@@ -9,11 +9,11 @@ categories:
 
 ### Introduction
 
-Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, that they are doing something wrong.
+No one likes errors occurring in an application. So that is why I think it's a bad idea to throw errors in your own code yourself, as a convenience, or just to be sure, because someone in the future might be using your code wrong.
 
-Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.
+Throwing errors is too rigorous, because errors are for bad things. Instead, you could just _solve the problem_ by making your code more meaningful, and of course, test your code.
 
-> To be clear, I am talking about errors you throw in your own code, and not runtime errors that might occur because of calling someone else's code or API.
+> To be clear, I am talking about errors you throw in your own code, and not runtime errors that might occur because of something external, like an API. Runtime errors are there for a reason, but that's another story. Which I wrote about before, by the way: [Expected and Unexpected Errors](/expected-and-unexpected-errors)
 
 ### Let's take a walk
 
@@ -74,7 +74,7 @@ And as a bonus, because it's a pure and immutable function, the calling code cou
 
 This is in my opinion much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.
 
-As soon as someone supplies a `direction` that is not supported, they will notice nothing happens. And then they will fix it.
+As soon as someone supplies a `direction` that is not supported, they will notice nothing happens, by testing it. And then they will fix it.
 
 ### But we don't trust anyone!
 
@@ -107,7 +107,7 @@ function walk(position: Position, direction: Direction) {
 }
 ```
 
-With tests and type safety, we only need to test what can and should happen. If later more directions are added, we add them to our type definitions and into our test suite. 
+With tests and type safety, we only need to test what can and should happen. If later more directions are added, we add them to our type definitions and to our test suite. 
 
 This way, tests and types are almost like a manual of how to use our code, just look at them, and you know how it works. No errors, because they will only make it less clear and make you wonder why it is in there: When and why can it go wrong, giving you a suspicious feeling.
 
@@ -126,34 +126,14 @@ Instead of using errors as an escape hatch, let's just fix it. All of the situat
 // example...
 ```
 
-### When to throw errors
-
-Whether or not you agree with me throwing errors is not always necessary, there are, however, situations where throwing errors might be necessary.
-
-Check out the following function that divides the given numbers:
-
-```js
-function divide(a, b) {
-  return a / b;
-}
-```
-
-Let's call that function:
-
-```js
-divide(1, 1); // returns 1
-divide(10, 2); // returns 5
-divide(2, 0); // returns Infinity...
-```
-
-Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for either throwing an error, or making sure (and testing that) it is not called when the second argument is 0.
-
-However, this is an exception. In many other cases, there is nothing wrong with just doing nothing. You will notice, and fix it, when that is not what you want. Throwing errors is only for situations that are really unexpected, exceptions to the rule, from which you can not recover, or can not respond to in a useful way.
-
 ### Conclusion
 
-My point is: Don't just throw errors all over the place. First think: Is this really a bad situation that I need to know of, and can't prevent? Errors should indicate something bad has happened, so by throwing a lot of errors you give the impression to other developers a lot of bad and dangerous things can and will happen. But is that really the case?
+My point is: Don't just throw errors all over the place. First think: Is this really a bad situation that I need to know of, and can't prevent? 
 
-Which other things can I do gain more trust in my code? Perhaps a good test suite is already sufficient?
+Errors should indicate something bad has happened, so by throwing a lot of errors you give the impression to other developers a lot of bad and dangerous things can and will happen. But is that really the case?
+
+Which other things can I do to gain more trust in my code? Perhaps a good test suite is already sufficient?
 
 I think it depends on the situation whether throwing errors is really necessary, but that it is almost always not necessary at all.
+
+Or am I missing a reason to do it? Please let me know, I want to learn!

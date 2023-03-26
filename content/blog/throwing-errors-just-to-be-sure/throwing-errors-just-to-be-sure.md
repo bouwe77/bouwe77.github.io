@@ -1,7 +1,7 @@
 ---
-date: "2022-02-15"
+date: "2023-03-26"
 title: "Throwing errors, just to be sure"
-summary: ""
+summary: "Why I think it's a bad idea to throw errors in your own code yourself, as a convenience, or just to be sure..."
 categories:
   - "Error handling"
   - "Testing"
@@ -115,16 +115,15 @@ This way, tests and types are almost like a manual of how to use our code, just 
 
 Another very common reason for throwing errors is using it as a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well.
 
-```
-// example of an API request handler that validates the input, queries the DB, and throws
-// errors for everything that is not a happy flow, so 400 Bad Request, 404 Not Found, etc.
-```
-
 Instead of using errors as an escape hatch, let's just fix it. All of the situations where the code is throwing errors are functional situations you know will happen, so why not just return early?
 
-```
-// example...
-```
+It could be that returning early does not make sense, because what valid value should you return?
+
+A possible solution for this is to use the `Either` pattern, that makes sure a function either returns a value, or an alternative value, which could indicate a failure, or just any other value, so the calling code can act accordingly.
+
+> A great blog post about the `Either` pattern is [Stop catching errors in TypeScript; Use the Either type to make your code predictable](https://antman-does-software.com/stop-catching-errors-in-typescript-use-the-either-type-to-make-your-code-predictable) by Anthony Manning-Franklin:
+>
+> "The above "exceptions" or "errors" aren't really exceptions or errors at all. They are outcomes. They are predictable, reasonable parts of our system. My heuristic is, if they are something a good product manager would care about, they are not exceptions and you shouldn't throw them!" 💯
 
 ### Conclusion
 
@@ -136,4 +135,4 @@ Which other things can I do to gain more trust in my code? Perhaps a good test s
 
 I think it depends on the situation whether throwing errors is really necessary, but that it is almost always not necessary at all.
 
-Or am I missing a reason to do it? Please let me know, I want to learn!
+Or am I missing a reason to still do it sometimes? Please let me know, I want to learn!

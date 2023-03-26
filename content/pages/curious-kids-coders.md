@@ -12,3 +12,12 @@ INTRO
 
 - Where have you been curious about lately?
 
+TOPICS
+
+- Scratch
+
+- What is programming in Roblox like? And what can you build with it?
+
+- How can we introduce programming to people who don't know they might like it and could be talented? There is a parallel with music, there are so many musical people, but some did not have the opportunity or whatever to start with it...
+
+- What is in it for us professionals, to enthuse and teach other people to do programming?

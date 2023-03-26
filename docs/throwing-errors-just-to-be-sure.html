@@ -80,7 +80,7 @@
                 >
               </h1>
             </div>
-            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-inactive'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
+            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li><li class='nav-item'><a href="/contact" class='nav-inactive'>contact</a></li></ul></div>
           </div>
         </div>
       </header>
@@ -88,14 +88,19 @@
           <div class="main">
       <div class="container">
               <div>
-        <h2 class="page-title">Throwing errors, just to be sure</h2>
+        <h2 class="blog-title">
+          <a href="/throwing-errors-just-to-be-sure">Throwing errors, just to be sure</a>
+        </h2>
+        <div class="blog-meta">
+          Mar 26, 2023  · <a href="/categories/error-handling">Error handling</a>, <a href="/categories/testing">Testing</a>  · 5 minute read
+        </div>
       </div>
 
       <div><h3>Introduction</h3>
-<p>Developers tend to throw errors in their code to notify themselves, their fellow developers, or their users, that they are doing something wrong.</p>
-<p>Throwing errors is too rigorous, while instead, you could just solve the problem by making your code more meaningful, and of course, test your code.</p>
+<p>No one likes errors occurring in an application. So that is why I think it's a bad idea to throw errors in your own code yourself, as a convenience, or just to be sure, because someone in the future might be using your code wrong.</p>
+<p>Throwing errors is too rigorous, because errors are for bad things. Instead, you could just <em>solve the problem</em> by making your code more meaningful, and of course, test your code.</p>
 <blockquote>
-<p>To be clear, I am talking about errors you throw in your own code, and not runtime errors that might occur because of calling someone else's code or API.</p>
+<p>To be clear, I am talking about errors you throw in your own code, and not runtime errors that might occur because of something external, like an API. Runtime errors are there for a reason, but that's another story. Which I wrote about before, by the way: <a href="/expected-and-unexpected-errors">Expected and Unexpected Errors</a></p>
 </blockquote>
 <h3>Let's take a walk</h3>
 <p>A common example is a function that accepts arguments, and if you pass the wrong ones, it throws an error.</p>
@@ -136,7 +141,7 @@ position = walk(position, "northeast");
 </code></pre>
 <p>And as a bonus, because it's a pure and immutable function, the calling code could even optimize what it will (or will not) do when it determines the position (reference) has not changed.</p>
 <p>This is in my opinion much beter than handling a terrible error somewhere else in the code for something that is not terrible at all.</p>
-<p>As soon as someone supplies a <code>direction</code> that is not supported, they will notice nothing happens. And then they will fix it.</p>
+<p>As soon as someone supplies a <code>direction</code> that is not supported, they will notice nothing happens, by testing it. And then they will fix it.</p>
 <h3>But we don't trust anyone!</h3>
 <p>But what if the <code>direction</code> comes from outside of our code? From a user, or another app calling our code? Then we might want to let them know something is not right.</p>
 <p>That's where input validation is for. So before you call the <code>walk</code> function, you validate the input. If the <code>direction</code> is not expected, let the user or caller know.</p>
@@ -156,34 +161,23 @@ function walk(position: Position, direction: Direction) {
   if (direction === "south") return { ...position, y: position.y - 1 };
 }
 </code></pre>
-<p>With tests and type safety, we only need to test what can and should happen. If later more directions are added, we add them to our type definitions and into our test suite.</p>
+<p>With tests and type safety, we only need to test what can and should happen. If later more directions are added, we add them to our type definitions and to our test suite.</p>
 <p>This way, tests and types are almost like a manual of how to use our code, just look at them, and you know how it works. No errors, because they will only make it less clear and make you wonder why it is in there: When and why can it go wrong, giving you a suspicious feeling.</p>
 <h3>Errors to control the flow of your code</h3>
 <p>Another very common reason for throwing errors is using it as a way to control the flow of your code, for example to exit early, while it actually indicates your code is not structured well.</p>
-<pre><code>// example of an API request handler that validates the input, queries the DB, and throws
-// errors for everything that is not a happy flow, so 400 Bad Request, 404 Not Found, etc.
-</code></pre>
 <p>Instead of using errors as an escape hatch, let's just fix it. All of the situations where the code is throwing errors are functional situations you know will happen, so why not just return early?</p>
-<pre><code>// example...
-</code></pre>
-<h3>When to throw errors</h3>
-<p>Whether or not you agree with me throwing errors is not always necessary, there are, however, situations where throwing errors might be necessary.</p>
-<p>Check out the following function that divides the given numbers:</p>
-<pre><code class="language-js">function divide(a, b) {
-  return a / b;
-}
-</code></pre>
-<p>Let's call that function:</p>
-<pre><code class="language-js">divide(1, 1); // returns 1
-divide(10, 2); // returns 5
-divide(2, 0); // returns Infinity...
-</code></pre>
-<p>Division by zero is probably not very useful, so if you would follow my proposal to then just "do nothing", what would the correct return value be? There is none! In other words, this is a case for either throwing an error, or making sure (and testing that) it is not called when the second argument is 0.</p>
-<p>However, this is an exception. In many other cases, there is nothing wrong with just doing nothing. You will notice, and fix it, when that is not what you want. Throwing errors is only for situations that are really unexpected, exceptions to the rule, from which you can not recover, or can not respond to in a useful way.</p>
+<p>It could be that returning early does not make sense, because what valid value should you return?</p>
+<p>A possible solution for this is to use the <code>Either</code> pattern, that makes sure a function either returns a value, or an alternative value, which could indicate a failure, or just any other value, so the calling code can act accordingly.</p>
+<blockquote>
+<p>A great blog post about the <code>Either</code> pattern is <a href="https://antman-does-software.com/stop-catching-errors-in-typescript-use-the-either-type-to-make-your-code-predictable">Stop catching errors in TypeScript; Use the Either type to make your code predictable</a> by Anthony Manning-Franklin:</p>
+<p>"The above "exceptions" or "errors" aren't really exceptions or errors at all. They are outcomes. They are predictable, reasonable parts of our system. My heuristic is, if they are something a good product manager would care about, they are not exceptions and you shouldn't throw them!" 💯</p>
+</blockquote>
 <h3>Conclusion</h3>
-<p>My point is: Don't just throw errors all over the place. First think: Is this really a bad situation that I need to know of, and can't prevent? Errors should indicate something bad has happened, so by throwing a lot of errors you give the impression to other developers a lot of bad and dangerous things can and will happen. But is that really the case?</p>
-<p>Which other things can I do gain more trust in my code? Perhaps a good test suite is already sufficient?</p>
+<p>My point is: Don't just throw errors all over the place. First think: Is this really a bad situation that I need to know of, and can't prevent?</p>
+<p>Errors should indicate something bad has happened, so by throwing a lot of errors you give the impression to other developers a lot of bad and dangerous things can and will happen. But is that really the case?</p>
+<p>Which other things can I do to gain more trust in my code? Perhaps a good test suite is already sufficient?</p>
 <p>I think it depends on the situation whether throwing errors is really necessary, but that it is almost always not necessary at all.</p>
+<p>Or am I missing a reason to still do it sometimes? Please let me know, I want to learn!</p>
 </div>
 
             <div>
@@ -196,7 +190,7 @@ divide(2, 0); // returns Infinity...
           >Discuss on Twitter</a
         >
         ·
-        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/pages/throwing-errors-just-to-be-sure.md">Edit on GitHub</a>
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/throwing-errors-just-to-be-sure/throwing-errors-just-to-be-sure.md">Edit on GitHub</a>
       </div>
 
       </div>

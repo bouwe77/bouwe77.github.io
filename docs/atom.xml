@@ -16,6 +16,18 @@
     <icon>https://bouwe.io/favicon.ico</icon>
     <rights>All rights reserved 2019 - 2023, Bouwe Westerdijk</rights>
     <entry>
+        <title type="html"><![CDATA[Throwing errors, just to be sure]]></title>
+        <id>https://bouwe.io/throwing-errors-just-to-be-sure</id>
+        <link href="https://bouwe.io/throwing-errors-just-to-be-sure"/>
+        <updated>2023-03-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Why I think it's a bad idea to throw errors in your own code yourself, as a convenience, or just to be sure...]]></summary>
+        <author>
+            <name>Bouwe Westerdijk</name>
+            <email>bouwe@bouwe.nl</email>
+            <uri>https://bouwe.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[How (and why!) to start with content creation]]></title>
         <id>https://bouwe.io/how-and-why-to-start-with-content-creation</id>
         <link href="https://bouwe.io/how-and-why-to-start-with-content-creation"/>

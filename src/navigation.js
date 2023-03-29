@@ -1,5 +1,5 @@
 export function getNavigationHtml(currentPage = '') {
-  const pages = ['about', 'blog', 'videos', 'contact']
+  const pages = ['about', 'blog', 'videos']
 
   let html = "<ul class='nav-list'>"
   pages.forEach((page) => {

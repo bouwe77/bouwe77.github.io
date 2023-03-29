@@ -9,3 +9,7 @@ I like learning new technologies and sharing my learning by <a href="/blog">blog
 <a href="/speaking">speaking</a>.
 
 Currently, I am working with <a href="/react">React</a>, TypeScript, XState, and React Testing Library.
+
+You can contact me on
+<a href="https://twitter.com/bouwe">Twitter</a>, check out my <a href="https://www.linkedin.com/in/bkwesterdijk">LinkedIn profile</a> or find my code on
+<a href="https://github.com/bouwe77">GitHub</a>.

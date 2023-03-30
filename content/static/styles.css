@@ -4,12 +4,37 @@ I got the following color scheme by searching for the pink color via https://www
 - Blue: #2ec8d0
 - Green: #2ed036 (I do not use this color yet though)
 
-I added these colors myself
-- Anthracite #2d2d2d (Font color)
-- Lightgray #f0f0f0 (Welcome panel background color)
-- Anthracite #2f2f2f (Footer dark background color)
-- Anthracite #222222 (Footer even darker background color)
+I added a few colors myself
 */
+
+:root {
+  /* Primary link and text colors */
+  --link: #d02e77;
+  --fontColor: #2d2d2d;
+
+  /* Logo colors */
+  --logoFontColor1: #fff;
+  --logoFontColor2: #2d2d2d;
+
+  /* Header colors */
+  --headerBg: #2ec8d0;
+  --navInactive: #fff;
+  --navActive: #2d2d2d;
+
+  /* Hero colors */
+  --heroBg: #f0f0f0;
+
+  /* Footer colors */
+  --footerBg: #2f2f2f;
+  --footerBg2: #222222;
+  --footerText: #fff;
+
+  /* Misc content colors */
+  --codeBg: #282c34;
+  --blockquoteBorder: rgba(0, 0, 0, 0.25);
+  --inlineCodeBg: #f4f3fa;
+  --inlineCodeFontColor: #000;
+}
 
 body {
   margin: 0;

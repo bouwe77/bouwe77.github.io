@@ -49,12 +49,19 @@ More and more resources and roles appear...
 
 ```js
 const visitorResources =  [ 'home', 'products', 'contact', 'help', 'cart', ]
-const customerResources = [ ...visitorResources, 'orders', ]
+const customerResources = [ 'orders', 'acount' ]
 const productManagerResources = [ 'order-mgt', 'product-mgt', 'content-mgt', ] 
-const adminResources = [ ...productManagementResources, 'users', 'settings', 'analytics', ]
+const adminResources = [ 'users', 'settings', 'analytics', ]
+
+const authorizations: {
+  visitor: visitorResources,
+  customer: [...visitorResources, ...customerResources],
+  productManager: [...visitorResources, ...customerResources, ...productManagerResources],
+  admin: [...visitorResources, ...customerResources, ...productManagerResources, ...adminResources],
+}
 
 function isRoleAuthorizedForResource(role, resource) {
-  // TO DO...
+  return authorizations[role].includes(resource)
 }
 ```
 

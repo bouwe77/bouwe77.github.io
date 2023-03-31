@@ -45,6 +45,40 @@ I added these colors myself
   --inlineCodeFontColor: #000;
 }
 
+/* ================ Dark Mode ============ */
+
+.dark {
+  /* Primary link and text colors */
+  --linkColor: #2ec8d0;
+  --fontColor: #fff;
+  --bodyBg: #2f2f2f;
+
+  /* Logo colors */
+  --logoFontColor1: #fff;
+  --logoFontColor2: #2ec8d0;
+
+  /* Header colors */
+  --headerBg: #1f1f1f;
+  --navInactive: #fff;
+  --navActive: #2ec8d0;
+  --navHover: #2ec8d0;
+
+  /* Hero colors */
+  --heroBg: #222222;
+
+  /* Footer colors */
+  --footerBg: #222222;
+  --footerBg2: #1f1f1f;
+  --footerText: #fff;
+  --footerLink: #2ec8d0;
+
+  /* Misc content colors */
+  --codeBg: #282c34;
+  --blockquoteBorder: rgba(0, 0, 0, 0.25);
+  --inlineCodeBg: #1f1f1f;
+  --inlineCodeFontColor: #f4f3fa;
+}
+
 /* ================ General ============ */
 
 body {

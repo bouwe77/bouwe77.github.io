@@ -11,14 +11,96 @@ I added these colors myself
 - Anthracite #222222 (Footer even darker background color)
 */
 
+/* ================ Light Mode ============ */
+
+:root {
+  /* Primary link and text colors */
+  --linkColor: #d02e77;
+  --fontColor: #2d2d2d;
+  --bodyBg: #fff;
+
+  /* Logo colors */
+  --logoFontColor1: #fff;
+  --logoFontColor2: #2d2d2d;
+
+  /* Header colors */
+  --headerBg: #2ec8d0;
+  --navInactive: #fff;
+  --navActive: #2d2d2d;
+  --navHover: #2d2d2d;
+
+  /* Hero colors */
+  --heroBg: #f0f0f0;
+
+  /* Footer colors */
+  --footerBg: #2f2f2f;
+  --footerBg2: #222222;
+  --footerText: #fff;
+  --footerLink: #2ec8d0;
+
+  /* Misc content colors */
+  --codeBg: #282c34;
+  --blockquoteBorder: rgba(0, 0, 0, 0.25);
+  --inlineCodeBg: #f4f3fa;
+  --inlineCodeFontColor: #000;
+}
+
+/* ================ Dark Mode ============ */
+
+.dark {
+  /* Primary link and text colors */
+  --linkColor: #2ec8d0;
+  --fontColor: #fff;
+  --bodyBg: #2f2f2f;
+
+  /* Logo colors */
+  --logoFontColor1: #fff;
+  --logoFontColor2: #2ec8d0;
+
+  /* Header colors */
+  --headerBg: #1f1f1f;
+  --navInactive: #fff;
+  --navActive: #2ec8d0;
+  --navHover: #2ec8d0;
+
+  /* Hero colors */
+  --heroBg: #222222;
+
+  /* Footer colors */
+  --footerBg: #222222;
+  --footerBg2: #1f1f1f;
+  --footerText: #fff;
+  --footerLink: #2ec8d0;
+
+  /* Misc content colors */
+  --codeBg: #282c34;
+  --blockquoteBorder: rgba(0, 0, 0, 0.25);
+  --inlineCodeBg: #1f1f1f;
+  --inlineCodeFontColor: #f4f3fa;
+}
+
+/* ================ General ============ */
+
+* {box-sizing: border-box;}
+
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
-  color: #2d2d2d;
+  color: var(--fontColor);
+  background-color: var(--bodyBg);
+  transition: background 0.2s linear;
 }
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* ================ Headings ============ */
 
 h2 {
   font-size: 22px;
@@ -34,10 +116,12 @@ h5 {
   margin-bottom: 0;
 }
 
+/* ================ Links ============ */
+
 a:link,
 a:visited {
   text-decoration: none;
-  color: #d02e77;
+  color: var(--linkColor);
 }
 
 a:hover {
@@ -46,17 +130,13 @@ a:hover {
 
 a:active {
   text-decoration: none;
-  color: #d02e77;
+  color: var(--linkColor);
 }
 
-.container {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 10px;
-}
+/* ================ Header ============ */
 
 .header {
-  background-color: #2ec8d0;
+  background-color: var(--headerBg);
   padding: 10px;
 }
 
@@ -66,24 +146,7 @@ a:active {
   justify-content: space-between;
 }
 
-.welcome {
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-
-.welcome-container {
-  margin: 0 auto;
-  text-align: center;
-  max-width: 600px;
-}
-
-.welcome-container h1 {
-  font-size: 24px;
-}
-
-.main {
-  padding: 10px;
-}
+/* ================ Logo ============ */
 
 .logo > h1 {
   display: inline;
@@ -101,14 +164,14 @@ a:link .logo-part1,
 a:visited .logo-part1,
 a:hover .logo-part1,
 a:active .logo-part1 {
-  color: #fff;
+  color: var(--logoFontColor1)
 }
 
 a:link .logo-part2,
 a:visited .logo-part2,
 a:hover .logo-part2,
 a:active .logo-part2 {
-  color: #2d2d2d;
+  color: var(--logoFontColor2)
 }
 
 .nav {
@@ -129,21 +192,21 @@ li.nav-item {
 
 a:link.nav-inactive,
 a:visited.nav-inactive {
-  color: #fff;
+  color: var(--navInactive)
 }
 
 a:hover.nav-inactive {
-  color: #2d2d2d;
+  color: var(--navHover);
   text-decoration: none;
 }
 
 a:active.nav-inactive {
-  color: #fff;
+  color: var(--navInactive)
 }
 
 a:link.nav-active,
 a:visited.nav-active {
-  color: #2d2d2d;
+  color: var(--navActive)
 }
 
 a:hover.nav-active {
@@ -151,25 +214,49 @@ a:hover.nav-active {
 }
 
 a:active.nav-active {
-  color: #2d2d2d;
+  color: var(--navActive)
 }
 
+/* ============== Welcome =========== */
+/* Rename Welcome to Hero */
+
+.welcome {
+  background-color: var(--heroBg);
+  padding: 10px;
+}
+
+.welcome-container {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 600px;
+}
+
+.welcome-container h1 {
+  font-size: 24px;
+}
+
+.main {
+  padding: 10px;
+}
+
+/* ================ Content ============ */
+
 blockquote {
-  border-left: 7px solid rgba(0, 0, 0, 0.25);
+  border-left: 7px solid var(--blockquoteBorder);
   margin: 1.5em 10px;
   padding: 1px 10px;
   font-style: italic;
 }
 
 code {
-  background-color: #f4f3fa;
-  color: Black;
+  background-color: var(--inlineCodeBg);
+  color: var(--inlineCodeFontColor);
   padding: 2px 4px;
 }
 
 /* This pre styling is used for code blocks that are syntax highlighted by highlight.js */
 pre {
-  background: #282c34;
+  background: var(--codeBg);
   padding: 7px;
   border-radius: 5px;
 }
@@ -185,16 +272,18 @@ pre {
   margin-top: 10px;
 }
 
+/* ================ Footer ============ */
+
 footer {
-  color: #fff;
+  color: var(--footerText)
 }
 
 .footer-row1 {
-  background-color: #2f2f2f;
+  background-color: var(--footerBg)
 }
 
 .footer-row2 {
-  background-color: #222222;
+  background-color: var(--footerBg2);
   font-size: 12px;
 }
 
@@ -233,6 +322,45 @@ ul.sitemap {
 .column a:visited,
 .column a:hover,
 .column a:active {
-  color: #2ec8d0;
+  color: var(--footerLink); 
   font-size: 14px;
+}
+
+/* ================ Light/Dark mode toggle ============ */
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
 }

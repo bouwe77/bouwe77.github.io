@@ -4,7 +4,7 @@ title: "How (and why!) to start with content creation"
 summary: "Content creation is a great way to level up as a developer, and improve your hard and soft skills. It makes you more visible, and distinguishes you from other developers."
 categories:
   - "Blogging"
-  - "Personal"
+  - "About me"
   - "Workshops"
   - "Teaching"
   - "Career"

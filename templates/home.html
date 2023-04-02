@@ -76,6 +76,16 @@
               </ul>
             </div>
             <div class="column">
+
+              <div>
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                  <span class="ball"></span>
+                </label>
+              </div>
+  
               <h1>About this website</h1>
               <p>
                 This is the place where I show my work, the things I am learning
@@ -104,3 +114,10 @@
         </div>
       </div>
     </footer>
+
+    <script type="text/javascript">
+      const checkbox = document.getElementById("checkbox");
+      checkbox.addEventListener("change", () => {
+        document.body.classList.toggle("dark");
+      });
+    </script>

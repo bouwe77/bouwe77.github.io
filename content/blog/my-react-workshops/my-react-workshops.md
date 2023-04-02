@@ -6,7 +6,7 @@ you how I got into this and why and how I am doing this."
 categories:
   - "React"
   - "Workshops"
-  - "Personal"
+  - "About me"
   - "Teaching"
   - "Content creation"
 ---

@@ -2,6 +2,10 @@
 title: Blog ideas
 ---
 
+# Misc
+
+- Things I Don't Know (https://alvin.codes/writing/things-I-dont-know-2021)
+
 # Elm
 
 - Side effects: Randomization

@@ -32,4 +32,12 @@ title: Blog ideas
 
 - useState updater form (kan ik een bug bedenken en hiermee fixen?)
 
+- useRef (zie ToDoist links)
+
+- Custom Hooks + composition
+
+- useEffect deel 2 (alhoewel het sentiment en de mogelijkheden inmiddels zijn veranderd...)
+
+
+
 

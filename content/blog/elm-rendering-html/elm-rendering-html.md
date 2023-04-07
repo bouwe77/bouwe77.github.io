@@ -143,5 +143,5 @@ Of course there is a lot more to say about HTML, but that's for another time. A 
 
 Thanks for reading, and if you have questions or remarks, please let me know!
 
-Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog2.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog2.elm)
+Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/Blog2.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/Blog2.elm)
 

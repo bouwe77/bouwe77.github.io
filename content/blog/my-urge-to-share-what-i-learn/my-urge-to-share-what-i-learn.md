@@ -4,7 +4,7 @@ title: "My urge to share what I learn"
 summary: "Sharing what you learn, while you learn, is the most effective way to learn new things."
 categories:
   - "Blogging"
-  - "Personal"
+  - "About me"
   - "Workshops"
   - "Teaching"
   - "Career"

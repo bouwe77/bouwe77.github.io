@@ -280,4 +280,4 @@ There are of course many things to improve here, and of course many other things
 
 I hope you found this interesting, and please let me know if you have anything to add or ask.
 
-Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog3.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/src/Blog3.elm)
+Check out the code from this blog post here: [https://github.com/bouwe77/elm-blog-posts/blob/main/Blog3.elm](https://github.com/bouwe77/elm-blog-posts/blob/main/Blog3.elm)

@@ -2,6 +2,10 @@
 title: Blog ideas
 ---
 
+# Misc
+
+- Things I Don't Know (https://alvin.codes/writing/things-I-dont-know-2021)
+
 # Elm
 
 - Side effects: Randomization
@@ -31,5 +35,13 @@ title: Blog ideas
 - Optimization without memoization
 
 - useState updater form (kan ik een bug bedenken en hiermee fixen?)
+
+- useRef (zie ToDoist links)
+
+- Custom Hooks + composition
+
+- useEffect deel 2 (alhoewel het sentiment en de mogelijkheden inmiddels zijn veranderd...)
+
+
 
 

@@ -4,7 +4,7 @@ title: "5 Days of Code"
 summary: "Evaluating my first 5 days of my 100 Days of Code challenge."
 categories:
   - "100 days of code"
-  - "Personal"
+  - "About me"
 ---
 
 After one week of blogging every day as part of my 100 Days of Code challenge

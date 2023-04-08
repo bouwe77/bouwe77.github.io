@@ -1,28 +1,10 @@
 ---
-title: "React"
+title: Bookmarks
 ---
 
-### Introduction
+The links on this page are my personal collection of great resources for learning, including blogs, websites, talks, and videos. I often revisit them multiple times because I always learn something new.
 
-I have committed myself to learning React. And not by just copy and pasting another one's code
-and hoping it works, but by really learning the basics and the idea behind React. And the best way
-to do that is by teaching it to others. I do that by blogging on this website and by giving workshops.
-
-### Blog posts
-
-My React blog posts are filed under the [React category] page.
-
-### Workshops
-
-I am giving React workshops, check the [Speaking page] for more information.
-
-### Resources
-
-Here is a list of links that I consider being essential for me (and maybe for you too!) to learn React.
-Many of the links I have watched or read many times, and I can keep on watching or reading them because
-every time I hear something new.
-
-I will keep updating this list as it is a note to self in the first place.
+#### React
 
 - [React: Rethinking best practices] by [Pete Hunt]
 - [Simply React] by [Kent C. Dodds]
@@ -35,8 +17,32 @@ I will keep updating this list as it is a note to self in the first place.
 - [A Complete Guide to useEffect] by [Dan Abramov]
 - [Refactoring React: Which component pattern can improve your codebase?] by [Siddharth Kshetrapal]
 
-Other links I keep on my [Links page].
+#### JavaScript
 
+- [JavaScript Promises in Depth], a great free course on Egghead.
+- [The Evolution of Async JavaScript: From Callbacks, to Promises, to Async/Await], a cool video by Tyler McGinnis
+
+#### Programming
+
+- [Imperative vs Declarative Programming], a blog post by Tyler McGinnis
+
+#### GraphQL
+
+- [Everything You Need to Know About GraphQL in 3 Components], a funny and very interactive talk by Eve Procello
+
+#### Learning, teaching, and speaking
+
+- [How To Talk To Developers], a hilarious talk with great presentational tips by Ben Orenstein
+- [Rubber Duck Debugging - How to Solve a Problem], by Coder Foundry about how explaining things helps you understand better
+- [Why it is important for developers to teach], great insights on why everyone can and should teach by MPJ of Fun Fun Function
+
+[why it is important for developers to teach]: https://youtu.be/RleN-6uMF04
+[how to talk to developers]: https://youtu.be/l9JXH7JPjR4
+[rubber duck debugging - how to solve a problem]: https://youtu.be/NBgIHOrjSxs
+[everything you need to know about graphql in 3 components]: https://youtu.be/F_M8v6MK0Sc
+[javascript promises in depth]: https://egghead.io/courses/javascript-promises-in-depth
+[the evolution of async javascript: from callbacks, to promises, to async/await]: https://youtu.be/gB-OmN1egV8
+[imperative vs declarative programming]: https://ui.dev/imperative-vs-declarative-programming/
 [dan abramov]: https://twitter.com/dan_abramov
 [kent c. dodds]: https://twitter.com/kentcdodds
 [cory house]: https://twitter.com/housecor
@@ -53,11 +59,7 @@ Other links I keep on my [Links page].
 [using composition in react to avoid "prop drilling"]: https://youtu.be/3XaXKiXtNjw
 [the beginner's guide to react]: https://egghead.io/courses/the-beginner-s-guide-to-react
 [a complete guide to useeffect]: https://overreacted.io/a-complete-guide-to-useeffect
-[react category]: /categories/react
-[speaking page]: /speaking
-[links page]: /links
 [refactoring react: which component pattern can improve your codebase?]: https://youtu.be/2Dw8gA60d_k
 [siddharth kshetrapal]: https://sid.st
 [react is fiction]: https://youtu.be/kqh4lz2Lkzs
 [jenn creighton]: https://twitter.com/gurlcode
- 

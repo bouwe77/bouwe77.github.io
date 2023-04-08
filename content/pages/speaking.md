@@ -2,23 +2,23 @@
 title: "Speaking"
 ---
 
-### Introduction
+#### Introduction
 
 From the moment I started learning React I also started teaching React to others by blogging and giving workshops and talks.
 
-### Blog posts
+#### Blog posts
 
 Blog posts about my workshops are filed under the [Workshops category].
 
-### Podcast
+#### Podcast
 
 Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, where we talk about the things we are curious about, such as coding, architecture, content creation, and career.
 
-### Upcoming events
+#### Upcoming events
 
 (none at the moment)
 
-### Past events
+#### Past events
 
 - Jan 27, 2023 **lightning talk** about a (possible) conference talk @ WebinarGeek
 - Oct 21, 2022 **lightning talk** about manual vs automated End-to-End testing @ WebinarGeek
@@ -36,7 +36,7 @@ Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles
 - Feb 28, 2020 **Talk** on "Scrum for the Workplace" @ LakeHub Academy, Kenya (remote)
 - Feb 21, 2020 "Travelling Through Space with React"
   React beginner **workshop** @ Frontend Devs Groningen meetup
-  https://www.meetup.com/Groningen-Frontend-Devs/events/267685648/
+  [https://www.meetup.com/Groningen-Frontend-Devs/events/267685648/](https://www.meetup.com/Groningen-Frontend-Devs/events/267685648/)
 - Feb 12, 2020 **Talk** on Code Reviews @ LakeHub Academy, Kenya (remote)
 - Feb 6, 2020 "Travelling Through Space with React"
   React beginner **workshop** @ KPN GroSkills
@@ -48,7 +48,7 @@ Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles
 - May 9, 2019 React beginner **workshop** @ New Nexus
 - Mar 12, 2019 React beginner **workshop** @ New Nexus (private event)
 
-### Interested in a workshop or talk?
+#### Interested in a workshop or talk?
 
 That would be awesome! 😃 Contact me on [Twitter]!
 

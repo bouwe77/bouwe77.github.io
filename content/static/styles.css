@@ -6,7 +6,7 @@ I got the following color scheme by searching for the pink color via https://www
 
 I added these colors myself
 - Anthracite #2d2d2d (Font color)
-- Lightgray #f0f0f0 (Welcome panel background color)
+- Lightgray #f0f0f0 (Hero panel background color)
 - Anthracite #2f2f2f (Footer dark background color)
 - Anthracite #222222 (Footer even darker background color)
 */
@@ -219,21 +219,20 @@ a:active.nav-active {
   color: var(--navActive)
 }
 
-/* ============== Welcome =========== */
-/* TODO Rename Welcome to Hero */
+/* ============== Hero =========== */
 
-.welcome {
+.hero {
   background-color: var(--heroBg);
   padding: 10px;
 }
 
-.welcome-container {
+.hero-container {
   margin: 0 auto;
   text-align: center;
   max-width: 600px;
 }
 
-.welcome-container h1 {
+.hero-container h1 {
   font-size: 24px;
 }
 

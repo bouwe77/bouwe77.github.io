@@ -15,10 +15,7 @@
       property="og:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
     />
-    <meta
-      property="og:image"
-      content="https://bouwe.io/bouwe1.png"
-    />
+    <meta property="og:image" content="https://bouwe.io/bouwe1.png" />
     <meta property="og:image:alt" content="Bouwe Westerdijk" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
@@ -28,10 +25,7 @@
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
     />
-    <meta
-      name="twitter:image"
-      content="https://bouwe.io/bouwe1.png"
-    />
+    <meta name="twitter:image" content="https://bouwe.io/bouwe1.png" />
     <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -49,10 +43,13 @@
       rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
     />
+
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
     </script>
+    <script src="/toggle-light-dark-mode.js"></script>
+
     <link
       href="/rss2.xml"
       type="application/rss+xml"
@@ -80,11 +77,86 @@
                 >
               </h1>
             </div>
-            <div class="nav"><ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-inactive'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li></ul></div>
+            <nav>
+              <div>
+                <ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-inactive'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li></ul>
+              </div>
+              <div>
+                <button
+                  onclick="toggleLightDarkMode()"
+                  class="toggle-light-dark-mode"
+                  title="Toggle light/dark mode"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="sun-moon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="black"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="transform: rotate(90deg);"
+                    >
+                      <mask id="mask">
+                        <rect
+                          x="0"
+                          y="0"
+                          width="100%"
+                          height="100%"
+                          fill="white"
+                        />
+                        <circle cx="18" cy="8" r="9" fill="black" />
+                      </mask>
+                      <circle
+                        fill="black"
+                        cx="12"
+                        cy="12"
+                        r="9"
+                        mask="url(#mask)"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="24"
+                      y="0"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle fill="white" cx="12" cy="12" r="5" />
+                      <g stroke="white">
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                      </g>
+                    </svg>
+                  </svg>
+                </button>
+              </div>
+            </nav>
           </div>
         </div>
       </header>
-  
+
           <div class="main">
       <div class="container">
               <div>
@@ -150,22 +222,29 @@
 
     <footer></footer>
   
-
     </div>
 
     <!-- Default Statcounter code for bouwe.io https://bouwe.io -->
     <script type="text/javascript">
-    var sc_project=12847572; 
-    var sc_invisible=1; 
-    var sc_security="f729e1b5"; 
+      var sc_project = 12847572;
+      var sc_invisible = 1;
+      var sc_security = "f729e1b5";
     </script>
-    <script type="text/javascript"
-    src="https://www.statcounter.com/counter/counter.js" async></script>
-    <noscript><div class="statcounter"><a title="Web Analytics"
-    href="https://statcounter.com/" target="_blank"><img class="statcounter"
-    src="https://c.statcounter.com/12847572/0/f729e1b5/1/" alt="Web Analytics"
-    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <script
+      type="text/javascript"
+      src="https://www.statcounter.com/counter/counter.js"
+      async
+    ></script>
+    <noscript
+      ><div class="statcounter">
+        <a title="Web Analytics" href="https://statcounter.com/" target="_blank"
+          ><img
+            class="statcounter"
+            src="https://c.statcounter.com/12847572/0/f729e1b5/1/"
+            alt="Web Analytics"
+            referrerpolicy="no-referrer-when-downgrade"
+        /></a></div
+    ></noscript>
     <!-- End of Statcounter Code -->
-    
   </body>
 </html>

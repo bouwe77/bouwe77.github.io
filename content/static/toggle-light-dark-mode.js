@@ -9,16 +9,26 @@ mediaQueryList.addEventListener('change', (event) => {
 
 // Initialize the theme when opening the page
 function initLightDarkMode() {
-  const isDark = mediaQueryList.matches
+  let isDark = true
+
+  // Check if a preference is set in localStorage.
+  // If not, check if the system is set to dark mode.
+  const theme = localStorage.getItem('theme')
+  if (theme === 'light') isDark = false
+  else isDark = mediaQueryList.matches
+
   setTheme(isDark ? 'dark' : 'light')
   setToggleIcon(isDark ? 'sun' : 'moon')
 }
 
 // Toggle the light and dark themes when clicking the toggle button
 function toggleLightDarkMode() {
-  const isDark = document.body.classList.contains('dark')
-  setTheme(isDark ? 'light' : 'dark')
-  setToggleIcon(isDark ? 'moon' : 'sun')
+  const willBecomeLight = document.body.classList.contains('dark')
+
+  localStorage.setItem('theme', willBecomeLight ? 'light' : 'dark')
+
+  setTheme(willBecomeLight ? 'light' : 'dark')
+  setToggleIcon(willBecomeLight ? 'moon' : 'sun')
 }
 
 function setToggleIcon(icon) {

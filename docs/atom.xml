@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bouwe.io</id>
     <title>bouwe.io</title>
-    <updated>2023-04-08T00:00:00.000Z</updated>
+    <updated>2023-05-14T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Bouwe Westerdijk</name>

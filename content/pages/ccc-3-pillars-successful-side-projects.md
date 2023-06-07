@@ -1,4 +1,6 @@
-The 3 Pillars of Successful Side Projects
+---
+title: The 3 Pillars of Successful Side Projects
+---
 
 # Successful?
 

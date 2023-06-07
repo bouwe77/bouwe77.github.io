@@ -357,7 +357,7 @@ async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
 async function createPagesPage(pageData) {
   const pages = pageData.pages
     .map((page) => ({
-      title: page.attributes?.title ?? page.slug,
+      title: page.attributes.title ? page.attributes.title : page.slug,
       slug: page.slug,
     }))
     .sort(function (a, b) {

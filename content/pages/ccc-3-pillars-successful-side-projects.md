@@ -1,7 +1,3 @@
----
-title: The 3 Pillars of Successful Side Projects
----
-
 # Successful?
 
 - Shipping a product, get people to use it, make money?

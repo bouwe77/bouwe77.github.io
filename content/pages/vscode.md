@@ -36,6 +36,14 @@ Selection into new file
 
 ### Navigating cursor
 
+To beginning of the file
+
+> ⌘ ⇧
+
+To end of the file
+
+> ⌘ ⇩
+
 To beginning of the line
 
 > ⌘ ⇦
@@ -52,6 +60,18 @@ Previous word
 
 > ALT ⇦
 
+### Scrolling
+
+Without moving the cursor
+
+Scroll up
+
+> ⌘ PGUP
+
+Scroll down
+
+> ⌘ PGDN
+
 ### Selecting / replacing
 
 Select word
@@ -63,6 +83,11 @@ Select word
 Select line
 
 > ⌘ L
+
+Select all matches
+(possibly combining with selecting a word first with `⌘ D` and then selecting all occurrences of that word and replace them all together)
+
+> ⌘ SHIFT L
 
 ### Moving/duplicating
 

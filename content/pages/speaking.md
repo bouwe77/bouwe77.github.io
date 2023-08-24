@@ -20,6 +20,7 @@ Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles
 
 #### Past events
 
+- Jul 28, 2023 **lightning talk** demonstrating my side project [Temba] @ WebinarGeek
 - Jan 27, 2023 **lightning talk** about a (possible) conference talk @ WebinarGeek
 - Oct 21, 2022 **lightning talk** about manual vs automated End-to-End testing @ WebinarGeek
 - May 27, 2022 **lightning talk** demoing my side project [Holodeck] by creating MDX slides during the talk @ WebinarGeek
@@ -60,3 +61,4 @@ That would be awesome! 😃 Contact me on [Twitter]!
 [twitter]: https://twitter.com/bouwe
 [react query]: https://react-query.tanstack.com
 [remix]: https://remix.run
+[temba]: https://github.com/bouwe77/temba#readme

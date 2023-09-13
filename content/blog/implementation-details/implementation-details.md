@@ -26,7 +26,9 @@ This also makes you tests resiliant to change, as we improve the implementation 
 
 This only really works if you write integration tests at a functional level, so only test the bigger functional blocks in your application. In those tests you verify the requirements of that functionality, without caring (and testing) too much all of the functions that are used to meet those requirements.
 
-This is why I think unit testing each and every function because of code coverage is a waste of time, because these functions could be gone soon, and also don't really say much about whether a user is able to use our software.
+This is why I think unit testing each and every function because of code coverage is a waste of time, because these functions don't really say much about whether a user is able to use our software. And if we are already testing that, then testing those implementation details are redundant tests.
+
+Of course, considering what to test, where this border lies depends, but having a top-down approach on testing, starting at the functional level, and only the implementation details when really necessary, saves a lot of time and effort, while it most likely does not influence the quality negatively.
 
 ### Coding
 

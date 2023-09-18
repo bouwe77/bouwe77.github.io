@@ -22,7 +22,10 @@ const redirects = [
     from: 'currying-what-is-it-and-what-is-it-good-for',
     to: '/currying-what-is-it',
   },
-  { from: 'piethond',to:'https://dev1.qwebinar.nl/watch/f6INrZrVb51vwlOt4-i_RuDNiWQN1ejhiKTyIrxGLt0/' }
+  { 
+    from: 'piethond',
+    to: 'https://dev1.qwebinar.nl/watch/f6INrZrVb51vwlOt4-i_RuDNiWQN1ejhiKTyIrxGLt0/' 
+  }
 ]
 
 export async function createRedirectHtmlPages() {

@@ -4,7 +4,7 @@
         <title>bouwe.io</title>
         <link>https://bouwe.io</link>
         <description>bouwe.io, a blog by Bouwe Westerdijk</description>
-        <lastBuildDate>Thu, 24 Aug 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 Sep 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,6 +14,14 @@
             <link>https://bouwe.io</link>
         </image>
         <copyright>All rights reserved 2019 - 2023, Bouwe Westerdijk</copyright>
+        <item>
+            <title><![CDATA[Implementation details]]></title>
+            <link>https://bouwe.io/implementation-details</link>
+            <guid>https://bouwe.io/implementation-details</guid>
+            <pubDate>Tue, 12 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[...]]></description>
+            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
+        </item>
         <item>
             <title><![CDATA[Throwing errors, just to be sure]]></title>
             <link>https://bouwe.io/throwing-errors-just-to-be-sure</link>

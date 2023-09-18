@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <title>bouwe.io, a blog by Bouwe Westerdijk</title>
+    <title>Implementation details</title>
     <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
     <meta name="image" content="/bouwe1.png" />
     <meta property="og:locale" content="en_US" />
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@bouwe" />
     <meta name="twitter:url" content="https://bouwe.io" />
-    <meta name="twitter:title" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="twitter:title" content="Implementation details" />
     <meta
       name="twitter:description"
       content="bouwe.io, a blog by Bouwe Westerdijk"
@@ -160,146 +160,48 @@
           <div class="main">
       <div class="container">
               <div>
-        <h2>All blog categories</h2>
-        <div>
-    <div>
-    <h3>
-        <b><a href="/categories/100-days-of-code">100 days of code (6)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/about-me">About me (7)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/architecture">Architecture (2)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/blogging">Blogging (4)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/career">Career (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/content-creation">Content creation (7)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/currying">Currying (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/elm">Elm (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/error-handling">Error handling (2)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/functional-programming">Functional programming (6)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/gatsby">Gatsby (4)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/javascript">JavaScript (4)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/nederlands">Nederlands (1)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/netlify">Netlify (1)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/react">React (12)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/state-machines">State machines (2)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/teaching">Teaching (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/testing">Testing (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/workshops">Workshops (5)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/render-props">render props (4)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/simple-calculation-game">simple calculation game (3)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/useeffect">useEffect (4)</a></b>
-    </h3>
-    </div>
-</div><div>
-    <div>
-    <h3>
-        <b><a href="/categories/usereducer">useReducer (2)</a></b>
-    </h3>
-    </div>
+        <h2 class="blog-title">
+          <a href="/implementation-details">Implementation details</a>
+        </h2>
+        <div class="blog-meta">
+          Sep 12, 2023  · <a href="/categories/architecture">Architecture</a>, <a href="/categories/testing">Testing</a>, <a href="/categories/state-machines">State machines</a>  · 3 minute read
+        </div>
+      </div>
+
+      <div><p>When developing software, but even more so when <em>testing</em> software, you don't always need to know all of the details of how things work, and what exactly happens under the hood.</p>
+<p>These things that you don't know (or care) how they work are the <em>implementation details</em> of the thing that you <em>do</em> know (or care) about.</p>
+<p>Of course the border between these things depends, and might even be different depending on what kind of task you are working on, but looking at software like this really ... ... ...</p>
+<h3>Testing</h3>
+<p>This is for a big part how <em>testing</em> works. When testing, you verify if the software meets the requirements. You don't need to (or maybe not even should) know how it exactly works, also to have a .... This often helps to improve the quality of software, as you might think of things to verify, that the developers forgot because they were so into all of the implementation details.</p>
+<p>An example of this is UI testing a web application, which verifies if users see the expected things and can interact with it. Probably HTML, CSS, and Javascript and/or some kind of framework is used to implement that. However, from a testing perspective this does not matter, we just want to test whether the UI and behavior is as expected. This is why it is important why we should not test which CSS classes are used, or which functions are being called. (dit moet wat korter)</p>
+<p>A way of preventing this is by using Test Driven Development, because then tests are less likely to be polluted with implementation details, because there aren't any yet. As you build the test and the implementation, and you go from <em>red</em> to <em>green</em>, the test is done. When you then change the implementation details in the <em>refactor</em> step, your black box test will keep on showing it still works, without knowing the details of how that is achieved.</p>
+<p>This also makes you tests resiliant to change, as we improve the implementation details in the future, and have the tests as a safeguard to tell us if it still works.</p>
+<p>This only really works if you write integration tests at a functional level, so only test the bigger functional blocks in your application. In those tests you verify the requirements of that functionality, without caring (and testing) too much all of the functions that are used to meet those requirements.</p>
+<p>This is why I think unit testing each and every function because of code coverage is a waste of time, because these functions don't really say much about whether a user is able to use our software. And if we are already testing that, then testing those implementation details are redundant tests.</p>
+<p>Of course, considering what to test, where this border lies depends, but having a top-down approach on testing, starting at the functional level, and only the implementation details when really necessary, saves a lot of time and effort, while it most likely does not influence the quality negatively.</p>
+<h3>Coding</h3>
+<p>When coding, this principle also applies. For example, when creating abstractions. By creating functions or classes that implement some behavior, you can call them elsewhere, which basically makes those abstractions black boxes from the caller's point of view. You can look into the implementation details, but don't really need to, because by looking at the name, arguments and type definition of that abstraction, you can already figure out what it does.</p>
+<p>...</p>
+<p>(iets over dat deze grens kan verschuiven, afhankelijk van waar je mee bezig bent e waarschijnlijk hoe technisch dit is)</p>
+<h3>Why is this useful?</h3>
+<ul>
+<li>Je kunt niet alles weten 🤯</li>
+<li>Focus</li>
+<li>Ready for change</li>
+</ul>
 </div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Implementation details&url=https://bouwe.io/implementation-details&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/implementation-details"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/implementation-details/implementation-details.md">Edit on GitHub</a>
       </div>
 
       </div>

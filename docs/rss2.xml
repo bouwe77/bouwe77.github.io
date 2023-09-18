@@ -15,14 +15,6 @@
         </image>
         <copyright>All rights reserved 2019 - 2023, Bouwe Westerdijk</copyright>
         <item>
-            <title><![CDATA[Implementation details]]></title>
-            <link>https://bouwe.io/implementation-details</link>
-            <guid>https://bouwe.io/implementation-details</guid>
-            <pubDate>Tue, 12 Sep 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[...]]></description>
-            <author>bouwe@bouwe.nl (Bouwe Westerdijk)</author>
-        </item>
-        <item>
             <title><![CDATA[Throwing errors, just to be sure]]></title>
             <link>https://bouwe.io/throwing-errors-just-to-be-sure</link>
             <guid>https://bouwe.io/throwing-errors-just-to-be-sure</guid>

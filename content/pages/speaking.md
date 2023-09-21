@@ -10,13 +10,16 @@ From the moment I started learning React I also started teaching React to others
 
 Blog posts about my workshops are filed under the [Workshops category].
 
-#### Podcast
+#### Podcasts
 
-Together with [Rich](https://richstone.io) I host the [Curious Coders Chronicles](https://anchor.fm/curious-coder) podcast, where we talk about the things we are curious about, such as coding, architecture, content creation, and career.
+I host 2 podcasts about coding, testing, architecture, content creation, career, etc.:
+
+1. [Bouwe's Briefs](https://anchor.fm/bouwe77) is my own podcast, where I ramble, and try to keep it short.
+2. [Curious Coders Chronicles](https://anchor.fm/curious-coder) is a podcast I host together with [Rich](https://richstone.io), where we, and our ocassional guests, talk about the things we are curious about.
 
 #### Upcoming events
 
-(none at the moment)
+- Oct 12, 2023 **Talk** The Wonders of Content Creation @ [Frontend Devs Groningen meetup](https://www.meetup.com/groningen-frontend-devs/events/296030439/)
 
 #### Past events
 

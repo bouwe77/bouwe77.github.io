@@ -19,17 +19,18 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 
 #### Upcoming events
 
-- Oct 12, 2023 **Talk** The Wonders of Content Creation @ [Frontend Devs Groningen meetup](https://www.meetup.com/groningen-frontend-devs/events/296030439/)
+- Nov 24, 2023 Introduction to Elm @ WebinarGeek
 
 #### Past events
 
-- Jul 28, 2023 **lightning talk** demonstrating my side project [Temba] @ WebinarGeek
-- Jan 27, 2023 **lightning talk** about a (possible) conference talk @ WebinarGeek
-- Oct 21, 2022 **lightning talk** about manual vs automated End-to-End testing @ WebinarGeek
-- May 27, 2022 **lightning talk** demoing my side project [Holodeck] by creating MDX slides during the talk @ WebinarGeek
-- Jan 28, 2022 **lightning talk** on Expected and Unexpected Errors @ WebinarGeek
-- Nov 26, 2021 [REMIX] **lightning talk** @ WebinarGeek
-- Sep 24, 2021 [React Query] **lightning talk** @ WebinarGeek
+- Oct 12, 2023 **Talk** The Wonders of Content Creation @ [Frontend Devs Groningen meetup](https://www.meetup.com/groningen-frontend-devs/events/296030439/)
+- Jul 28, 2023 Demonstrating my side project [Temba] @ WebinarGeek
+- Jan 27, 2023 A talk about a (possible) conference talk @ WebinarGeek
+- Oct 21, 2022 My thoughts about Manual vs automated End-to-End testing @ WebinarGeek
+- May 27, 2022 Demoing my side project [Holodeck] by creating MDX slides during the talk @ WebinarGeek
+- Jan 28, 2022 My thoughts on expected and unexpected Errors @ WebinarGeek
+- Nov 26, 2021 Intro to [REMIX] @ WebinarGeek
+- Sep 24, 2021 Intro to [React Query] @ WebinarGeek
 - Mar 5, 2021 React Foundation **workshop** (part 3) @ LakeHub Academy, Kenya (remote)
 - Feb 19, 2021 React Foundation **workshop** (part 2) @ LakeHub Academy, Kenya (remote)
 - Jan 29, 2021 React Foundation **workshop** (part 1) @ LakeHub Academy, Kenya (remote)

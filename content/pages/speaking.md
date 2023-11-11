@@ -20,6 +20,7 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 #### Upcoming events
 
 - Nov 24, 2023 Introduction to Elm @ WebinarGeek
+- Dec 7, 2023 **Talk** The Wonders of Content Creation @ New Nexus meetup
 
 #### Past events
 

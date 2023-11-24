@@ -19,7 +19,7 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 
 #### Upcoming events
 
-- Dec 7, 2023 **Talk** The Wonders of Content Creation @ New Nexus meetup
+- Dec 7, 2023 **Talk** The Wonders of Content Creation @ [New Nexus Appy Devs meetup](https://meetu.ps/e/MFCcl/BzT2z/i)
 
 #### Past events
 

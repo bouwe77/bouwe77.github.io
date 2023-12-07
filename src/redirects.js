@@ -23,7 +23,7 @@ const redirects = [
     to: '/currying-what-is-it',
   },
   {
-    from: 'ffd',
+    from: 'fdd',
     to: 'https://join.slack.com/t/fundrivendevelopment/shared_invite/zt-28hktap45-9W2LPbgyUxn9sfuZdELpyw',
   },
 ]

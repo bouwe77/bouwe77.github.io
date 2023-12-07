@@ -22,6 +22,10 @@ const redirects = [
     from: 'currying-what-is-it-and-what-is-it-good-for',
     to: '/currying-what-is-it',
   },
+  {
+    from: 'ffd',
+    to: 'https://join.slack.com/t/fundrivendevelopment/shared_invite/zt-28hktap45-9W2LPbgyUxn9sfuZdELpyw',
+  },
 ]
 
 export async function createRedirectHtmlPages() {

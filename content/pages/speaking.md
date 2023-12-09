@@ -19,10 +19,11 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 
 #### Upcoming events
 
-- Dec 7, 2023 **Talk** The Wonders of Content Creation @ [New Nexus Appy Devs meetup](https://meetu.ps/e/MFCcl/BzT2z/i)
+(none at the moment)
 
 #### Past events
 
+- Dec 7, 2023 **Talk** The Wonders of Content Creation @ [New Nexus Appy Devs meetup](https://meetu.ps/e/MFCcl/BzT2z/i)
 - Nov 24, 2023 Introduction to Elm @ WebinarGeek
 - Oct 12, 2023 **Talk** The Wonders of Content Creation @ [Frontend Devs Groningen meetup](https://www.meetup.com/groningen-frontend-devs/events/296030439/)
 - Jul 28, 2023 Demonstrating my side project [Temba] @ WebinarGeek

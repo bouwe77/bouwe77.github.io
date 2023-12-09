@@ -169,7 +169,6 @@
 
   <script>
     const contentTypes = [
-      'none',
       'blog',
       'livestream',
       'podcast',
@@ -179,10 +178,9 @@
     ]
     const squares = document.querySelector('.squares')
     for (var i = 1; i < 365; i++) {
-      const level = Math.floor(Math.random() * 10)
-      if (level <= contentTypes.length - 1) {
-        squares.insertAdjacentHTML('beforeend', `<li data-content-type="${contentTypes[level]}"></li>`)
-      }
+      const level = Math.floor(Math.random() * 20)
+      const dataContentType = level <= contentTypes.length - 1 ? contentTypes[level] : "none"
+      squares.insertAdjacentHTML('beforeend', `<li data-content-type="${dataContentType}"></li>`)
     }
   </script>
 </body>

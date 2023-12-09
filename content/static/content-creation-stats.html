@@ -129,11 +129,11 @@
       margin: 0;
     }
 
-    legend {
+    .legend {
       display: flex;
     }
 
-    .legend > div {
+    .legend-item {
       width: var(--square-size);
       height: var(--square-size);
     }
@@ -186,7 +186,7 @@
     // Draw the legend
     const legend = document.querySelector('.legend')
     for (const contentType of contentTypes) {
-      squares.insertAdjacentHTML('beforeend', `<div><div data-content-type="${dataContentType}"></div> ${dataContentType}</div>`)
+      squares.insertAdjacentHTML('beforeend', `<div><div class="legend-item" data-content-type="${dataContentType}"></div> ${dataContentType}</div>`)
     }
 
     // Draw a colored square for every day content was created

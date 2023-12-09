@@ -176,7 +176,7 @@
     for (var i = 1; i < 365; i++) {
       const level = Math.floor(Math.random() * 10)
       if (level <= contentTypes.length - 1) {
-        squares.insertAdjacentHTML('beforeend', `<li data-content-type="${contentType[level]}"></li>`)
+        squares.insertAdjacentHTML('beforeend', `<li data-content-type="${contentTypes[level]}"></li>`)
       }
     }
   </script>

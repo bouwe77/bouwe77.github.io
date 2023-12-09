@@ -95,31 +95,31 @@
       background-color: #ebedf0;
     }
 
-    .squares li[data-content-type='none'] {
+    [data-content-type='none'] {
       background-color: lightgray;
     }
 
-    .squares li[data-content-type='blog'] {
+    [data-content-type='blog'] {
       background-color: blueviolet;
     }
 
-    .squares li[data-content-type='podcast'] {
+    [data-content-type='podcast'] {
       background-color: brown;
     }
 
-    .squares li[data-content-type='talk-virtual'] {
+    [data-content-type='talk-virtual'] {
       background-color: chartreuse;
     }
 
-    .squares li[data-content-type='talk-irl'] {
+    [data-content-type='talk-irl'] {
       background-color: darkgreen;
     }
 
-    .squares li[data-content-type='workshop'] {
+    [data-content-type='workshop'] {
       background-color: darkblue;
     }
 
-    .squares li[data-content-type='livestream'] {
+    [data-content-type='livestream'] {
       background-color: goldenrod
     }
 
@@ -128,10 +128,22 @@
       padding: 0;
       margin: 0;
     }
+
+    legend {
+      display: flex;
+    }
+
+    .legend > div {
+      width: var(--square-size);
+      height: var(--square-size);
+    }
   </style>
 </head>
 
 <body>
+  <div class="legend">
+    <!-- added via javascript -->
+  </div>
   <div class="graph">
     <ul class="months">
       <li>Jan</li>
@@ -170,6 +182,14 @@
       'talk-irl',
       'workshop',
     ]
+
+    // Draw the legend
+    const legend = document.querySelector('.legend')
+    for (const contentType of contentTypes) {
+      squares.insertAdjacentHTML('beforeend', `<div><div data-content-type="${dataContentType}"></div> ${dataContentType}</div>`)
+    }
+
+    // Draw a colored square for every day content was created
     const squares = document.querySelector('.squares')
     for (var i = 1; i < 365; i++) {
       const level = Math.floor(Math.random() * 20)

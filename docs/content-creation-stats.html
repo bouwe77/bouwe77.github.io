@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bouwe's Content Creation Stats</title>
   <style>
-    /* Article - https://bitsofco.de/github-contribution-graph-css-grid/ */
-
-    /* Grid-related CSS */
-
     :root {
       --square-size: 15px;
       --square-gap: 5px;
@@ -20,10 +16,6 @@
       grid-area: months;
     }
 
-    .days {
-      grid-area: days;
-    }
-
     .squares {
       grid-area: squares;
     }
@@ -32,7 +24,7 @@
       display: inline-grid;
       grid-template-areas:
         'empty months'
-        'days squares';
+        'squares';
       grid-template-columns: auto 1fr;
       grid-gap: 10px;
     }
@@ -67,7 +59,6 @@
       ;
     }
 
-    .days,
     .squares {
       display: grid;
       grid-gap: var(--square-gap);
@@ -79,8 +70,6 @@
       grid-auto-columns: var(--square-size);
     }
 
-    /* Other styling */
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -91,10 +80,6 @@
       padding: 20px;
       border: 1px #e1e4e8 solid;
       margin: 20px;
-    }
-
-    .days li:nth-child(odd) {
-      visibility: hidden;
     }
 
     .squares li {
@@ -152,15 +137,6 @@
       <li>Oct</li>
       <li>Nov</li>
       <li>Dec</li>
-    </ul>
-    <ul class="days">
-      <li>Sun</li>
-      <li>Mon</li>
-      <li>Tue</li>
-      <li>Wed</li>
-      <li>Thu</li>
-      <li>Fri</li>
-      <li>Sat</li>
     </ul>
     <ul class="squares">
       <!-- added via javascript -->

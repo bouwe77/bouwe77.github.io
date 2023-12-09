@@ -101,16 +101,28 @@
       background-color: #ebedf0;
     }
 
-    .squares li[data-level='1'] {
-      background-color: #c6e48b;
+    .squares li[data-content-type='blog'] {
+      background-color: lightpink;
     }
 
-    .squares li[data-level='2'] {
-      background-color: #7bc96f;
+    .squares li[data-content-type='podcast'] {
+      background-color: lightblue;
     }
 
-    .squares li[data-level='3'] {
-      background-color: #196127;
+    .squares li[data-content-type='talk-virtual'] {
+      background-color: lightgreen;
+    }
+
+    .squares li[data-content-type='talk-irl'] {
+      background-color: greenyellow
+    }
+
+    .squares li[data-content-type='workshop'] {
+      background-color: lightyellow;
+    }
+
+    .squares li[data-content-type='livestream'] {
+      background-color: lightgoldenrodyellow;
     }
 
     ul {
@@ -152,12 +164,20 @@
   </div>
 
   <script>
-    // Add squares
-
+    const contentTypes = [
+      'blog',
+      'livestream',
+      'podcast',
+      'talk-virtual',
+      'talk-irl',
+      'workshop',
+    ]
     const squares = document.querySelector('.squares')
     for (var i = 1; i < 365; i++) {
-      const level = Math.floor(Math.random() * 3)
-      squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`)
+      const level = Math.floor(Math.random() * 10)
+      if (level <= contentTypes.length - 1) {
+        squares.insertAdjacentHTML('beforeend', `<li data-content-type="${contentType[level]}"></li>`)
+      }
     }
   </script>
 </body>

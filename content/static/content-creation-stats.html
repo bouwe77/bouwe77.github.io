@@ -101,6 +101,10 @@
       background-color: #ebedf0;
     }
 
+    .squares li[data-content-type='none'] {
+      background-color: lightgray;
+    }
+
     .squares li[data-content-type='blog'] {
       background-color: lightpink;
     }
@@ -165,6 +169,7 @@
 
   <script>
     const contentTypes = [
+      'none',
       'blog',
       'livestream',
       'podcast',

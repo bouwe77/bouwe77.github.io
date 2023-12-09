@@ -16,6 +16,10 @@
       grid-area: months;
     }
 
+    .days {
+      grid-area: days;
+    }
+
     .squares {
       grid-area: squares;
     }
@@ -24,7 +28,7 @@
       display: inline-grid;
       grid-template-areas:
         'empty months'
-        'squares';
+        'days squares';
       grid-template-columns: auto 1fr;
       grid-gap: 10px;
     }
@@ -59,6 +63,7 @@
       ;
     }
 
+    .days,
     .squares {
       display: grid;
       grid-gap: var(--square-gap);
@@ -80,6 +85,10 @@
       padding: 20px;
       border: 1px #e1e4e8 solid;
       margin: 20px;
+    }
+
+    .days li {
+      visibility: hidden;
     }
 
     .squares li {
@@ -137,6 +146,15 @@
       <li>Oct</li>
       <li>Nov</li>
       <li>Dec</li>
+    </ul>
+    <ul class="days">
+      <li>Sun</li>
+      <li>Mon</li>
+      <li>Tue</li>
+      <li>Wed</li>
+      <li>Thu</li>
+      <li>Fri</li>
+      <li>Sat</li>
     </ul>
     <ul class="squares">
       <!-- added via javascript -->

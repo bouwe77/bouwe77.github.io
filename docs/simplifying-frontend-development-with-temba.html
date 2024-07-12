@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Simplifying Frontend Development with Temba: A Quick Backend Solution</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe1.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta property="og:image" content="https://bouwe.io/bouwe1.png" />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="Simplifying Frontend Development with Temba: A Quick Backend Solution" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta name="twitter:image" content="https://bouwe.io/bouwe1.png" />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script src="/toggle-light-dark-mode.js"></script>
+
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <nav>
+              <div>
+                <ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li></ul>
+              </div>
+              <div>
+                <button
+                  onclick="toggleLightDarkMode()"
+                  class="toggle-light-dark-mode"
+                  title="Toggle light/dark mode"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="sun-moon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="black"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="transform: rotate(90deg);"
+                    >
+                      <mask id="mask">
+                        <rect
+                          x="0"
+                          y="0"
+                          width="100%"
+                          height="100%"
+                          fill="white"
+                        />
+                        <circle cx="18" cy="8" r="9" fill="black" />
+                      </mask>
+                      <circle
+                        fill="black"
+                        cx="12"
+                        cy="12"
+                        r="9"
+                        mask="url(#mask)"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="24"
+                      y="0"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle fill="white" cx="12" cy="12" r="5" />
+                      <g stroke="white">
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                      </g>
+                    </svg>
+                  </svg>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/simplifying-frontend-development-with-temba">Simplifying Frontend Development with Temba: A Quick Backend Solution</a>
+        </h2>
+        <div class="blog-meta">
+          Jul 12, 2024  · <a href="/categories/temba">Temba</a>, <a href="/categories/apis">APIs</a>  · 3 minute read
+        </div>
+      </div>
+
+      <div><p>As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, <a href="https://bouwe.io/temba">Temba</a>, comes into play.</p>
+<h3>What is Temba?</h3>
+<p><a href="https://bouwe.io/temba">Temba</a> is a library I created to help developers like you quickly spin up a backend web API, allowing you to concentrate on building the frontend. It's available on <a href="https://www.npmjs.com/package/temba">NPM</a>, and it's designed to be simple and straightforward to use.</p>
+<p>With <a href="https://bouwe.io/temba">Temba</a>, you can create a local HTTP server running on Node with just one command in the terminal. This means you can get back to focusing on your frontend while <a href="https://bouwe.io/temba">Temba</a> handles the backend.</p>
+<blockquote>
+<p><a href="https://bouwe.io/temba">Temba</a> is an alternative for <a href="https://github.com/typicode/json-server#readme">json-server</a>. However, next to JSON file storage, <a href="https://bouwe.io/temba">Temba</a> also supports MongoDB databases.</p>
+</blockquote>
+<h3>Example</h3>
+<p>Running the following JavaScript with Node is all you need to get your server running:</p>
+<pre><code class="language-js">import { create } from "temba";
+
+const server = create();
+
+server.start();
+</code></pre>
+<h3>How Does Temba Work?</h3>
+<p>Once you've got your HTTP server running, you can start issuing HTTP requests for <strong>any resource</strong> using the standard methods <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, and <code>DELETE</code>.</p>
+<p>For example, you can send a <code>POST</code> request to the <code>/products</code> resource with a JSON payload representing a product. When you <code>GET</code> the <code>/products</code> resource again, you'll see the product you added in the response.</p>
+<h3>Flexibility and Customization</h3>
+<p><a href="https://bouwe.io/temba">Temba</a> is incredibly flexible. You can create any resource you need, not just products. This flexibility allows you to tailor your backend to the specific needs of your frontend application. The data is stored in <strong>memory</strong> by default, which means it's temporary and will be lost when you restart the server. However, if you need to persist data, you have options to save it to a <strong>JSON file</strong> or even a <strong>MongoDB database</strong>.</p>
+<p>Let's store our data in MongoDB:</p>
+<pre><code class="language-js">const config = {
+  connectionString: 'mongodb://localhost:27017/myDatabase',
+}
+
+const server = temba.create(config)
+
+server.start();
+</code></pre>
+<h3>Configuration and Control</h3>
+<p>While <a href="https://bouwe.io/temba">Temba</a> works out of the box without any configuration, you have the option to customize it further. You can:</p>
+<ul>
+<li><strong>Restrict Resources</strong>: Limit the server to only handle specific resources, like products. Any other resource requests will then return a 404 error: <a href="https://github.com/bouwe77/temba/blob/main/README.md#allowing-specific-resources-only">Docs</a></li>
+<li><strong>Validate Data</strong>: Define <strong>JSON Schema</strong> for your resources to ensure that the data meets certain criteria before it's accepted: <a href="https://github.com/bouwe77/temba/blob/main/README.md#json-schema-request-body-validation">Docs</a></li>
+<li><strong>Intercept Requests and Responses</strong>: Modify or validate the request body before it hits the database, or alter the response body before it's sent back to the client: <a href="https://github.com/bouwe77/temba/blob/main/README.md#intercepting-requests">Docs</a></li>
+</ul>
+<h3>Hosting and Deployment</h3>
+<p><a href="https://bouwe.io/temba">Temba</a> also supports hosting your server alongside your frontend application. By configuring the location of your static site within <a href="https://bouwe.io/temba">Temba</a>, you can deploy both the frontend and backend together on fullstack platforms like Heroku or Fly.</p>
+<h3>When to Use Temba</h3>
+<p><a href="https://bouwe.io/temba">Temba</a> is ideal for learning, prototyping, or when you're focused on the frontend and don't want to be bogged down by backend concerns. It's not an enterprise solution but rather a convenient tool for getting started quickly on small projects. As your project grows, you might transition to a more robust backend, but <a href="https://bouwe.io/temba">Temba</a> is a great starting point.</p>
+<h3>My Personal Use Case</h3>
+<p>I use <a href="https://bouwe.io/temba">Temba</a> as the backend for my own To Do app, which helps me track tasks for home, garden, and personal projects. It's been a valuable tool for me, and I draw inspiration for <a href="https://bouwe.io/temba">Temba</a>'s <a href="roadmap">https://github.com/bouwe77/temba/issues</a> from my own experiences and needs.</p>
+<h3>Extensibility</h3>
+<p>If <a href="https://bouwe.io/temba">Temba</a> doesn't meet your specific needs, you can extend it with <strong>Express routers</strong>. This allows you to add custom routes and functionality to your <a href="https://bouwe.io/temba">Temba</a> server.</p>
+<h3>Open Source</h3>
+<p>Of course <a href="https://bouwe.io/temba">Temba</a> is open source and available on <a href="https://github.com/bouwe77/temba#readme">GitHub</a>, so you're welcome to contribute or suggest improvements.</p>
+<h3>Conclusion</h3>
+<p><a href="https://bouwe.io/temba">Temba</a> is a practical alternative to <a href="https://github.com/typicode/json-server#readme">json-server</a> with the added benefit of database storage. It's designed to keep things simple and let you focus on what you do best: building amazing frontend experiences. Give <a href="https://bouwe.io/temba">Temba</a> a try, and let me know how it works for you. Your <strong>feedback</strong> is invaluable in shaping the future of this project.</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=Simplifying Frontend Development with Temba: A Quick Backend Solution&url=https://bouwe.io/simplifying-frontend-development-with-temba&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/simplifying-frontend-development-with-temba"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/simplifying-frontend-development-with-temba/simplifying-frontend-development-with-temba.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+    </div>
+
+    <!-- Initialize light/dark mode -->
+    <script type="text/javascript">
+      initLightDarkMode()
+    </script>
+
+    <!-- Default Statcounter code for bouwe.io https://bouwe.io -->
+    <script type="text/javascript">
+      var sc_project = 12847572;
+      var sc_invisible = 1;
+      var sc_security = "f729e1b5";
+    </script>
+    <script
+      type="text/javascript"
+      src="https://www.statcounter.com/counter/counter.js"
+      async
+    ></script>
+    <noscript
+      ><div class="statcounter">
+        <a title="Web Analytics" href="https://statcounter.com/" target="_blank"
+          ><img
+            class="statcounter"
+            src="https://c.statcounter.com/12847572/0/f729e1b5/1/"
+            alt="Web Analytics"
+            referrerpolicy="no-referrer-when-downgrade"
+        /></a></div
+    ></noscript>
+    <!-- End of Statcounter Code -->
+  </body>
+</html>

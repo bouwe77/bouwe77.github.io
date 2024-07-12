@@ -69,7 +69,7 @@ While [Temba][temba] works out of the box without any configuration, you have th
 
 ### My Personal Use Case
 
-I use [Temba][temba] as the backend for my own To Do app, which helps me track tasks for home, garden, and personal projects. It's been a valuable tool for me, and I draw inspiration for [Temba][temba]'s [https://github.com/bouwe77/temba/issues](roadmap) from my own experiences and needs.
+I use [Temba][temba] as the backend for my own To Do app, which helps me track tasks for home, garden, and personal projects. It's been a valuable tool for me, and I draw inspiration for [Temba's roadmap](https://github.com/bouwe77/temba/issues) from my own experiences and needs.
 
 ### Extensibility
 

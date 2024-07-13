@@ -177,11 +177,11 @@
 </blockquote>
 <h3>Example</h3>
 <p>Running the following JavaScript with Node is all you need to get your server running:</p>
-<pre><code class="language-js">import { create } from "temba";
+<pre><code class="language-js">import { create } from "temba"
 
-const server = create();
+const server = create()
 
-server.start();
+server.start()
 </code></pre>
 <h3>How Does Temba Work?</h3>
 <p>Once you've got your HTTP server running, you can start issuing HTTP requests for <strong>any resource</strong> using the standard methods <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, and <code>DELETE</code>.</p>
@@ -193,7 +193,7 @@ server.start();
   connectionString: 'mongodb://localhost:27017/myDatabase',
 }
 
-const server = temba.create(config)
+const server = create(config)
 
 server.start();
 </code></pre>

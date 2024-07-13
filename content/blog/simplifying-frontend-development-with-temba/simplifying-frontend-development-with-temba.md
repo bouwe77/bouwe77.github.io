@@ -22,11 +22,11 @@ With [Temba][temba], you can create a local HTTP server running on Node with jus
 Running the following JavaScript with Node is all you need to get your server running:
 
 ```js
-import { create } from "temba";
+import { create } from "temba"
 
-const server = create();
+const server = create()
 
-server.start();
+server.start()
 ```
 
 ### How Does Temba Work?
@@ -46,7 +46,7 @@ const config = {
   connectionString: 'mongodb://localhost:27017/myDatabase',
 }
 
-const server = temba.create(config)
+const server = create(config)
 
 server.start();
 ```

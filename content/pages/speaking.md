@@ -19,8 +19,8 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 
 #### Upcoming events
 
-- Sep 24, 2024 **Talk** So Fresh and So Clean with Etags @ WebinarGeek
-- Nov 29, 2024 **Talk** Get Your API Swag On: The Power of OpenAPI @ WebinarGeek
+- Sep 27, 2024 **Talk** So Fresh and So Clean with Etags @ WebinarGeek
+- Nov 29, 2024 **Talk** Get Your API Swag On: The Power of Open API @ WebinarGeek
 
 #### Past events
 

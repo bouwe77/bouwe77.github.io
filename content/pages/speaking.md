@@ -19,11 +19,12 @@ I host 2 podcasts about coding, testing, architecture, content creation, career,
 
 #### Upcoming events
 
-- Sep 27, 2024 **Talk** So Fresh and So Clean with Etags @ WebinarGeek
-- Nov 29, 2024 **Talk** Get Your API Swag On: The Power of Open API @ WebinarGeek
+None at the moment...
 
 #### Past events
 
+- Nov 29, 2024 **Talk** Introducing Conzo, my productivity tool side project @ WebinarGeek
+- Sep 27, 2024 **Talk** So Fresh and So Clean with Etags @ WebinarGeek
 - Dec 7, 2023 **Talk** The Wonders of Content Creation @ [New Nexus Appy Devs meetup](https://meetu.ps/e/MFCcl/BzT2z/i)
 - Nov 24, 2023 Introduction to Elm @ WebinarGeek
 - Oct 12, 2023 **Talk** The Wonders of Content Creation @ [Frontend Devs Groningen meetup](https://www.meetup.com/groningen-frontend-devs/events/296030439/)

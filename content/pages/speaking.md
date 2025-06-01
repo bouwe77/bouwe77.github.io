@@ -23,6 +23,7 @@ None at the moment...
 
 #### Past events
 
+- May 30, 2025 **Talk** about OpenAPI, demonstrating it with Temba @ WebinarGeek
 - Nov 29, 2024 **Talk** Introducing Conzo, my productivity tool side project @ WebinarGeek
 - Sep 27, 2024 **Talk** So Fresh and So Clean with Etags @ WebinarGeek
 - Dec 7, 2023 **Talk** The Wonders of Content Creation @ [New Nexus Appy Devs meetup](https://meetu.ps/e/MFCcl/BzT2z/i)

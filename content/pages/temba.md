@@ -4,5 +4,5 @@ title: "Temba"
 
 #### Temba
 
-* [GitHub](https://github.com/bouwe77/temba#readme)
+* [GitHub](https://temba.bouwe.io)
 * [NPM](https://www.npmjs.com/package/temba)

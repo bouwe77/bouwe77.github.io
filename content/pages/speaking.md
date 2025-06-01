@@ -70,4 +70,4 @@ That would be awesome! 😃 Contact me on [Twitter]!
 [twitter]: https://twitter.com/bouwe
 [react query]: https://react-query.tanstack.com
 [remix]: https://remix.run
-[temba]: https://github.com/bouwe77/temba#readme
+[temba]: https://temba.bouwe.io

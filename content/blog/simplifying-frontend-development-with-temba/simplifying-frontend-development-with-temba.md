@@ -77,10 +77,10 @@ If [Temba][temba] doesn't meet your specific needs, you can extend it with **Exp
 
 ### Open Source
 
-Of course [Temba][temba] is open source and available on [GitHub](https://github.com/bouwe77/temba#readme), so you're welcome to contribute or suggest improvements.
+Of course [Temba][temba] is open source and available on [GitHub](https://temba.bouwe.io), so you're welcome to contribute or suggest improvements.
 
 ### Conclusion
 
 [Temba][temba] is a practical alternative to [json-server](https://github.com/typicode/json-server#readme) with the added benefit of database storage. It's designed to keep things simple and let you focus on what you do best: building amazing frontend experiences. Give [Temba][temba] a try, and let me know how it works for you. Your **feedback** is invaluable in shaping the future of this project.
 
-[temba]: https://bouwe.io/temba
+[temba]: https://temba.bouwe.io

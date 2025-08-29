@@ -168,12 +168,12 @@
         </div>
       </div>
 
-      <div><p>As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, <a href="https://bouwe.io/temba">Temba</a>, comes into play.</p>
+      <div><p>As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, <a href="https://temba.bouwe.io">Temba</a>, comes into play.</p>
 <h3>What is Temba?</h3>
-<p><a href="https://bouwe.io/temba">Temba</a> is a library I created to help developers like you quickly spin up a backend web API, allowing you to concentrate on building the frontend. It's available on <a href="https://www.npmjs.com/package/temba">NPM</a>, and it's designed to be simple and straightforward to use.</p>
-<p>With <a href="https://bouwe.io/temba">Temba</a>, you can create a local HTTP server running on Node with just one command in the terminal. This means you can get back to focusing on your frontend while <a href="https://bouwe.io/temba">Temba</a> handles the backend.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> is a library I created to help developers like you quickly spin up a backend web API, allowing you to concentrate on building the frontend. It's available on <a href="https://www.npmjs.com/package/temba">NPM</a>, and it's designed to be simple and straightforward to use.</p>
+<p>With <a href="https://temba.bouwe.io">Temba</a>, you can create a local HTTP server running on Node with just one command in the terminal. This means you can get back to focusing on your frontend while <a href="https://temba.bouwe.io">Temba</a> handles the backend.</p>
 <blockquote>
-<p><a href="https://bouwe.io/temba">Temba</a> is an alternative for <a href="https://github.com/typicode/json-server#readme">json-server</a>. However, next to JSON file storage, <a href="https://bouwe.io/temba">Temba</a> also supports MongoDB databases.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> is an alternative for <a href="https://github.com/typicode/json-server#readme">json-server</a>. However, next to JSON file storage, <a href="https://temba.bouwe.io">Temba</a> also supports MongoDB databases.</p>
 </blockquote>
 <h3>Example</h3>
 <p>Running the following JavaScript with Node is all you need to get your server running:</p>
@@ -187,7 +187,7 @@ server.start()
 <p>Once you've got your HTTP server running, you can start issuing HTTP requests for <strong>any resource</strong> using the standard methods <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, and <code>DELETE</code>.</p>
 <p>For example, you can send a <code>POST</code> request to the <code>/products</code> resource with a JSON payload representing a product. When you <code>GET</code> the <code>/products</code> resource again, you'll see the product you added in the response.</p>
 <h3>Flexibility and Customization</h3>
-<p><a href="https://bouwe.io/temba">Temba</a> is incredibly flexible. You can create any resource you need, not just products. This flexibility allows you to tailor your backend to the specific needs of your frontend application. The data is stored in <strong>memory</strong> by default, which means it's temporary and will be lost when you restart the server. However, if you need to persist data, you have options to save it to a <strong>JSON file</strong> or even a <strong>MongoDB database</strong>.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> is incredibly flexible. You can create any resource you need, not just products. This flexibility allows you to tailor your backend to the specific needs of your frontend application. The data is stored in <strong>memory</strong> by default, which means it's temporary and will be lost when you restart the server. However, if you need to persist data, you have options to save it to a <strong>JSON file</strong> or even a <strong>MongoDB database</strong>.</p>
 <p>Let's store our data in MongoDB:</p>
 <pre><code class="language-js">const config = {
   connectionString: 'mongodb://localhost:27017/myDatabase',
@@ -198,24 +198,24 @@ const server = create(config)
 server.start();
 </code></pre>
 <h3>Configuration and Control</h3>
-<p>While <a href="https://bouwe.io/temba">Temba</a> works out of the box without any configuration, you have the option to customize it further. You can:</p>
+<p>While <a href="https://temba.bouwe.io">Temba</a> works out of the box without any configuration, you have the option to customize it further. You can:</p>
 <ul>
 <li><strong>Restrict Resources</strong>: Limit the server to only handle specific resources, like products. Any other resource requests will then return a 404 error: <a href="https://github.com/bouwe77/temba/blob/main/README.md#allowing-specific-resources-only">Docs</a></li>
 <li><strong>Validate Data</strong>: Define <strong>JSON Schema</strong> for your resources to ensure that the data meets certain criteria before it's accepted: <a href="https://github.com/bouwe77/temba/blob/main/README.md#json-schema-request-body-validation">Docs</a></li>
 <li><strong>Intercept Requests and Responses</strong>: Modify or validate the request body before it hits the database, or alter the response body before it's sent back to the client: <a href="https://github.com/bouwe77/temba/blob/main/README.md#intercepting-requests">Docs</a></li>
 </ul>
 <h3>Hosting and Deployment</h3>
-<p><a href="https://bouwe.io/temba">Temba</a> also supports hosting your server alongside your frontend application. By configuring the location of your static site within <a href="https://bouwe.io/temba">Temba</a>, you can deploy both the frontend and backend together on fullstack platforms like Heroku or Fly.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> also supports hosting your server alongside your frontend application. By configuring the location of your static site within <a href="https://temba.bouwe.io">Temba</a>, you can deploy both the frontend and backend together on fullstack platforms like Heroku or Fly.</p>
 <h3>When to Use Temba</h3>
-<p><a href="https://bouwe.io/temba">Temba</a> is ideal for learning, prototyping, or when you're focused on the frontend and don't want to be bogged down by backend concerns. It's not an enterprise solution but rather a convenient tool for getting started quickly on small projects. As your project grows, you might transition to a more robust backend, but <a href="https://bouwe.io/temba">Temba</a> is a great starting point.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> is ideal for learning, prototyping, or when you're focused on the frontend and don't want to be bogged down by backend concerns. It's not an enterprise solution but rather a convenient tool for getting started quickly on small projects. As your project grows, you might transition to a more robust backend, but <a href="https://temba.bouwe.io">Temba</a> is a great starting point.</p>
 <h3>My Personal Use Case</h3>
-<p>I use <a href="https://bouwe.io/temba">Temba</a> as the backend for my own To Do app, which helps me track tasks for home, garden, and personal projects. It's been a valuable tool for me, and I draw inspiration for <a href="https://github.com/bouwe77/temba/issues">Temba's roadmap</a> from my own experiences and needs.</p>
+<p>I use <a href="https://temba.bouwe.io">Temba</a> as the backend for my own To Do app, which helps me track tasks for home, garden, and personal projects. It's been a valuable tool for me, and I draw inspiration for <a href="https://github.com/bouwe77/temba/issues">Temba's roadmap</a> from my own experiences and needs.</p>
 <h3>Extensibility</h3>
-<p>If <a href="https://bouwe.io/temba">Temba</a> doesn't meet your specific needs, you can extend it with <strong>Express routers</strong>. This allows you to add custom routes and functionality to your <a href="https://bouwe.io/temba">Temba</a> server.</p>
+<p>If <a href="https://temba.bouwe.io">Temba</a> doesn't meet your specific needs, you can extend it with <strong>Express routers</strong>. This allows you to add custom routes and functionality to your <a href="https://temba.bouwe.io">Temba</a> server.</p>
 <h3>Open Source</h3>
-<p>Of course <a href="https://bouwe.io/temba">Temba</a> is open source and available on <a href="https://github.com/bouwe77/temba#readme">GitHub</a>, so you're welcome to contribute or suggest improvements.</p>
+<p>Of course <a href="https://temba.bouwe.io">Temba</a> is open source and available on <a href="https://temba.bouwe.io">GitHub</a>, so you're welcome to contribute or suggest improvements.</p>
 <h3>Conclusion</h3>
-<p><a href="https://bouwe.io/temba">Temba</a> is a practical alternative to <a href="https://github.com/typicode/json-server#readme">json-server</a> with the added benefit of database storage. It's designed to keep things simple and let you focus on what you do best: building amazing frontend experiences. Give <a href="https://bouwe.io/temba">Temba</a> a try, and let me know how it works for you. Your <strong>feedback</strong> is invaluable in shaping the future of this project.</p>
+<p><a href="https://temba.bouwe.io">Temba</a> is a practical alternative to <a href="https://github.com/typicode/json-server#readme">json-server</a> with the added benefit of database storage. It's designed to keep things simple and let you focus on what you do best: building amazing frontend experiences. Give <a href="https://temba.bouwe.io">Temba</a> a try, and let me know how it works for you. Your <strong>feedback</strong> is invaluable in shaping the future of this project.</p>
 </div>
 
             <div>

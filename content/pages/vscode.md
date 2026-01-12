@@ -70,15 +70,29 @@ Next position:
 
 ### Scrolling
 
+While also moving the cursor
+
+Scroll up:
+
+> Fn  ⇧
+
+Scroll down:
+
+> Fn ⇩
+
 Without moving the cursor
 
 Scroll up:
 
 > ⌘ PGUP
+> 
+> or: Fn Ctrl ⇧
 
 Scroll down:
 
 > ⌘ PGDN
+> 
+> or: Fn Ctrl ⇩
 
 ### Selecting / replacing
 

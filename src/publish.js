@@ -1,4 +1,4 @@
-import remark from 'remark'
+import { remark } from 'remark'
 import html from 'remark-html'
 import fm from 'front-matter'
 
@@ -6,16 +6,16 @@ import {
   getBlogCategoriesHtmlForHomepage,
   getBlogCategoriesHtmlForBlogPost,
   getBlogCategoriesHtmlForCategoryListPage,
-} from './blogCategories'
-import { getHtmlForPagesPage } from './pages'
-import { getBlogsHtml } from './blogs'
-import { replaceTokens, createSlug, formatDate, getReadingTime } from './utils'
-import { createFeeds } from './feeds'
-import { constants } from './constants'
-import { filepaths } from './filepaths'
-import { readFileContents, readFilesInFolder, copyFile, createFile, createFolder, deleteFolder } from './fileSystem'
-import { getNavigationHtml } from './navigation'
-import { createRedirectHtmlPages } from './redirects'
+} from './blogCategories.js'
+import { getHtmlForPagesPage } from './pages.js'
+import { getBlogsHtml } from './blogs.js'
+import { replaceTokens, createSlug, formatDate, getReadingTime } from './utils.js'
+import { createFeeds } from './feeds.js'
+import { constants } from './constants.js'
+import { filepaths } from './filepaths.js'
+import { readFileContents, readFilesInFolder, copyFile, createFile, createFolder, deleteFolder } from './fileSystem.js'
+import { getNavigationHtml } from './navigation.js'
+import { createRedirectHtmlPages } from './redirects.js'
 
 const ignorePrefixes = ['.', '_']
 
@@ -304,21 +304,10 @@ async function createCategoryPages(blogData) {
 }
 
 async function toHtml(makeHtmlBody, markdown) {
-  return new Promise(async (resolve, reject) => {
-    // add remark plugins here for syntax highlighting, etc.
-    remark()
-      .use(html)
-      .process(String(markdown), async (err, markup) => {
-        if (err) {
-          console.error(err)
-          reject(err)
-        }
+  // Markdown content is repo-authored and intentionally contains raw HTML.
+  const markup = await remark().use(html, { sanitize: false }).process(String(markdown))
 
-        const htmlBody = makeHtmlBody(markup)
-
-        resolve(htmlBody)
-      })
-  })
+  return makeHtmlBody(String(markup))
 }
 
 function getEditOnGitHubUrl(relativeFilePath) {

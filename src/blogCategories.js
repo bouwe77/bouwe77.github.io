@@ -1,4 +1,4 @@
-import { createSlug } from './utils'
+import { createSlug } from './utils.js'
 
 export function getBlogCategoriesHtmlForHomepage(blogCategories) {
   const template = `<span 

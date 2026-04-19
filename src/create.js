@@ -2,13 +2,12 @@ import inquirer from 'inquirer'
 import path from 'path'
 import fs from 'fs'
 
-import allCategories from './allCategories.json'
-
-import { createSlug } from './utils'
+import { createSlug } from './utils.js'
 
 const __dirname = path.resolve()
 const blogDirectory = 'content/blog'
 const pagesDirectory = 'content/pages'
+const allCategoriesPath = path.join(__dirname, 'src', 'allCategories.json')
 
 const message = `
 ==========================
@@ -24,7 +23,7 @@ function askGeneralQuestions() {
   const generalQuestions = [
     {
       name: 'type',
-      type: 'list',
+      type: 'select',
       message: 'What?',
       choices: ['Blog post', 'Page'],
     },
@@ -53,6 +52,7 @@ function askGeneralQuestions() {
 }
 
 function askBlogQuestions(generalAnswers) {
+  const allCategories = JSON.parse(fs.readFileSync(allCategoriesPath, 'utf8'))
   const blogQuestions = [
     {
       name: 'date',

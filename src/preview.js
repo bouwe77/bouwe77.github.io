@@ -1,6 +1,6 @@
 import path from 'path'
 import express from 'express'
-import { publishDirectory } from './filepaths'
+import { publishDirectory } from './filepaths.js'
 const app = express()
 
 const __dirname = path.resolve()

@@ -1,5 +1,5 @@
-import { filepaths } from './filepaths'
-import { readFileContents, createFile } from './fileSystem'
+import { filepaths } from './filepaths.js'
+import { readFileContents, createFile } from './fileSystem.js'
 
 const redirects = [
   {

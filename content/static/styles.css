@@ -28,6 +28,7 @@ I added these colors myself
   --navInactive: #fff;
   --navActive: #2d2d2d;
   --navHover: #2d2d2d;
+  --toggleColor: #fff;
 
   /* Hero colors */
   --heroBg: #f0f0f0;
@@ -62,6 +63,7 @@ I added these colors myself
   --navInactive: #fff;
   --navActive: #2ec8d0;
   --navHover: #2ec8d0;
+  --toggleColor: #fff;
 
   /* Hero colors */
   --heroBg: #222222;
@@ -178,6 +180,19 @@ nav {
   padding-top: 15px;
   min-width: 240px;
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+nav > div:first-child {
+  flex: 1 1 auto;
+}
+
+nav > div:last-child {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 ul.nav-list {
@@ -330,7 +345,23 @@ ul.sitemap {
 /* ================ Light/Dark mode toggle ============ */
 
 .toggle-light-dark-mode {
-  border:0;
+  border: 0;
   background: transparent;
+  color: var(--toggleColor);
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  appearance: none;
+}
+
+.toggle-light-dark-mode svg {
+  width: 24px;
+  height: 24px;
+  display: block;
 }

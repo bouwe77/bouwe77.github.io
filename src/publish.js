@@ -1,6 +1,8 @@
 import { remark } from 'remark'
+import gfm from 'remark-gfm'
 import html from 'remark-html'
 import fm from 'front-matter'
+import { fileURLToPath } from 'url'
 
 import {
   getBlogCategoriesHtmlForHomepage,
@@ -18,13 +20,13 @@ import { getNavigationHtml } from './navigation.js'
 import { createRedirectHtmlPages } from './redirects.js'
 
 const ignorePrefixes = ['.', '_']
+const ignoredBlogFolderPrefixes = ['.']
+const unlistedBlogFolderPrefix = '_'
 
 const navigationHtml = getNavigationHtml()
 const navigationHtmlBlogPages = getNavigationHtml('blog')
 
-publish()
-
-async function publish() {
+export async function publish() {
   deleteFolder(filepaths.getPublishDirectory())
   createFolder(filepaths.getPublishDirectory())
   createFolder(filepaths.getPublishCategoriesDirectory())
@@ -72,19 +74,25 @@ async function publish() {
   console.log('\n\n')
 }
 
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  publish()
+}
+
 async function getBlogData() {
   const blogData = {
     template: filepaths.getBlogTemplateFilePath(),
     pages: [],
+    listedPages: [],
     categories: [],
   }
 
   let blogSubFolders = (await readFilesInFolder(filepaths.getBlogDirectory())).filter(
-    (subFolder) => !ignorePrefixes.some((prefix) => subFolder.startsWith(prefix)),
+    (subFolder) => !ignoredBlogFolderPrefixes.some((prefix) => subFolder.startsWith(prefix)),
   )
 
   await Promise.all(
     blogSubFolders.map(async (subFolder) => {
+      const isUnlisted = subFolder.startsWith(unlistedBlogFolderPrefix)
       const subFolderPath = filepaths.getBlogSubFolder(subFolder)
       let files = await readFilesInFolder(subFolderPath)
 
@@ -108,14 +116,19 @@ async function getBlogData() {
         parsedFrontMatterAndMarkdown.slug = slug
         parsedFrontMatterAndMarkdown.url = `${constants.siteUrl}/${slug}`
         parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
-          filepaths.getRelativeBlogContentFilePath(subFolder),
+          filepaths.getRelativeBlogContentFilePath(subFolder, filename),
         )
         parsedFrontMatterAndMarkdown.readingTime = getReadingTime(parsedFrontMatterAndMarkdown.body)
         parsedFrontMatterAndMarkdown.isBlog = true
+        parsedFrontMatterAndMarkdown.isUnlisted = isUnlisted
 
         if (!parsedFrontMatterAndMarkdown.attributes.categories) parsedFrontMatterAndMarkdown.attributes.categories = []
 
         blogData.pages.push(parsedFrontMatterAndMarkdown)
+
+        if (isUnlisted) continue
+
+        blogData.listedPages.push(parsedFrontMatterAndMarkdown)
 
         parsedFrontMatterAndMarkdown.attributes.categories.forEach((categoryName) => {
           var existingCategory = blogData.categories.find((category) => category.name === categoryName)
@@ -136,6 +149,12 @@ async function getBlogData() {
 
   // Sort the blogs on date descending and then by title ascending.
   blogData.pages = blogData.pages.sort(function (a, b) {
+    if (a.attributes.date === b.attributes.date) {
+      return a.attributes.title > b.attributes.title ? 1 : -1
+    }
+    return b.attributes.date > a.attributes.date ? 1 : -1
+  })
+  blogData.listedPages = blogData.listedPages.sort(function (a, b) {
     if (a.attributes.date === b.attributes.date) {
       return a.attributes.title > b.attributes.title ? 1 : -1
     }
@@ -162,6 +181,7 @@ async function getPageData() {
       parsedFrontMatterAndMarkdown.editOnGitHubUrl = getEditOnGitHubUrl(
         filepaths.getRelativePageContentFilePath(filename),
       )
+      parsedFrontMatterAndMarkdown.stylesheets = parsedFrontMatterAndMarkdown.attributes.stylesheets || []
 
       pageData.pages.push(parsedFrontMatterAndMarkdown)
     }),
@@ -185,7 +205,7 @@ async function createHomePage(blogData) {
   const numberOfBlogPosts = 5
 
   const data = {
-    blogs: getBlogsHtml(blogData.pages.slice(0, numberOfBlogPosts)),
+    blogs: getBlogsHtml(blogData.listedPages.slice(0, numberOfBlogPosts)),
     blogCategories: getBlogCategoriesHtmlForHomepage(blogData.categories),
     gitHubRepoUrl: constants.gitHubRepoUrl,
     yearNow: new Date().getFullYear(),
@@ -198,13 +218,19 @@ async function createHomePage(blogData) {
   await createFile(filepaths.getHomePublishFilePath(), html)
 }
 
-async function createPage(pageSpecificHtml, navigation, publishToFilePath, title = constants.siteDescription) {
+async function createPage(
+  pageSpecificHtml,
+  navigation,
+  publishToFilePath,
+  title = constants.siteDescription,
+  extraStylesheets = '',
+) {
   const htmlBodyTemplate = await readFileContents(filepaths.getBodyTemplateFilePath())
 
   const bodyData = { page: pageSpecificHtml }
   const htmlBody = replaceTokens(htmlBodyTemplate, bodyData)
 
-  const html = await getContainerHtml(htmlBody, title, navigation)
+  const html = await getContainerHtml(htmlBody, title, navigation, extraStylesheets)
 
   await createFile(publishToFilePath, html)
 }
@@ -213,7 +239,7 @@ async function createBlogListPage(blogData) {
   let pageTemplate = await readFileContents(filepaths.getBlogListTemplateFilePath())
 
   const data = {
-    blogs: getBlogsHtml(blogData.pages),
+    blogs: getBlogsHtml(blogData.listedPages),
   }
 
   const pageSpecificHtml = replaceTokens(pageTemplate, data)
@@ -236,36 +262,40 @@ async function createCategoryListPage(blogData) {
 async function createPages(data) {
   const pageTemplate = await readFileContents(data.template)
 
-  data.pages.forEach(async (page) => {
-    const navigationHtml = page.isBlog ? navigationHtmlBlogPages : getNavigationHtml(page.slug)
+  await Promise.all(
+    data.pages.map(async (page) => {
+      const navigationHtml = page.isBlog ? navigationHtmlBlogPages : getNavigationHtml(page.slug)
 
-    const interactivityHtml = await getInteractivityHtml(page.attributes.title, page.slug, page.editOnGitHubUrl)
+      const interactivityHtml = await getInteractivityHtml(page.attributes.title, page.slug, page.editOnGitHubUrl)
 
-    const makeHtmlBody = (content) => {
-      const data = {
-        title: page.attributes.title,
-        date: page.attributes.date ? formatDate(page.attributes.date) : undefined,
-        categories: getBlogCategoriesHtmlForBlogPost(page.attributes.categories),
-        readingTime: ` · ${page.readingTime} minute read`,
-        content,
-        slug: page.slug,
-        interactivity: interactivityHtml,
+      const makeHtmlBody = (content) => {
+        const data = {
+          title: page.attributes.title,
+          date: page.attributes.date ? formatDate(page.attributes.date) : undefined,
+          categories: getBlogCategoriesHtmlForBlogPost(page.attributes.categories),
+          readingTime: ` · ${page.readingTime} minute read`,
+          content,
+          slug: page.slug,
+          interactivity: interactivityHtml,
+          extraStylesheets: getStylesheetLinksHtml(page.stylesheets),
+        }
+
+        const htmlBody = replaceTokens(pageTemplate, data)
+
+        return htmlBody
       }
 
-      const htmlBody = replaceTokens(pageTemplate, data)
+      const pageSpecificHtml = await toHtml(makeHtmlBody, page.body)
 
-      return htmlBody
-    }
-
-    let pageSpecificHtml = await toHtml(makeHtmlBody, page.body)
-
-    await createPage(
-      pageSpecificHtml,
-      navigationHtml,
-      filepaths.getPublishFilePathForMarkdown(page.filename),
-      page.attributes.title,
-    )
-  })
+      await createPage(
+        pageSpecificHtml,
+        navigationHtml,
+        filepaths.getPublishFilePathForMarkdown(page.filename),
+        page.attributes.title,
+        getStylesheetLinksHtml(page.stylesheets),
+      )
+    }),
+  )
 }
 
 async function createCategoryPages(blogData) {
@@ -273,30 +303,32 @@ async function createCategoryPages(blogData) {
 
   const allCategories = []
 
-  blogData.categories.forEach(async (cat) => {
-    allCategories.push(cat.name)
+  await Promise.all(
+    blogData.categories.map(async (cat) => {
+      allCategories.push(cat.name)
 
-    const slug = createSlug(cat.name)
-    const title = `${constants.categoryPageTitle} "${cat.name}"`
+      const slug = createSlug(cat.name)
+      const title = `${constants.categoryPageTitle} "${cat.name}"`
 
-    const makePageSpecificHtml = (content) => {
-      const data = {
-        title: title,
-        content: content,
-        slug: slug,
+      const makePageSpecificHtml = (content) => {
+        const data = {
+          title: title,
+          content: content,
+          slug: slug,
+        }
+
+        const htmlBody = replaceTokens(pageTemplate, data)
+
+        return htmlBody
       }
 
-      const htmlBody = replaceTokens(pageTemplate, data)
+      const blogsHtml = getBlogsHtml(blogData.listedPages.filter((p) => p.attributes.categories.includes(cat.name)))
 
-      return htmlBody
-    }
+      const pageSpecificHtml = await toHtml(makePageSpecificHtml, blogsHtml)
 
-    const blogsHtml = getBlogsHtml(blogData.pages.filter((p) => p.attributes.categories.includes(cat.name)))
-
-    const pageSpecificHtml = await toHtml(makePageSpecificHtml, blogsHtml)
-
-    await createPage(pageSpecificHtml, navigationHtml, filepaths.getCategoryPageFilePath(slug), title)
-  })
+      await createPage(pageSpecificHtml, navigationHtml, filepaths.getCategoryPageFilePath(slug), title)
+    }),
+  )
 
   // Create a JSON file with all the blog categories, because we need them elsewhere too.
   const categoriesJson = JSON.stringify(allCategories)
@@ -305,7 +337,7 @@ async function createCategoryPages(blogData) {
 
 async function toHtml(makeHtmlBody, markdown) {
   // Markdown content is repo-authored and intentionally contains raw HTML.
-  const markup = await remark().use(html, { sanitize: false }).process(String(markdown))
+  const markup = await remark().use(gfm).use(html, { sanitize: false }).process(String(markdown))
 
   return makeHtmlBody(String(markup))
 }
@@ -314,18 +346,25 @@ function getEditOnGitHubUrl(relativeFilePath) {
   return `${constants.gitHubEditUrl}${relativeFilePath}`
 }
 
-async function getContainerHtml(body, title, navigation) {
+async function getContainerHtml(body, title, navigation, extraStylesheets = '') {
   let template = await readFileContents(filepaths.getContainerTemplateFilePath())
 
   const data = {
     title,
     body,
     navigation,
+    extraStylesheets,
   }
 
   let html = replaceTokens(template, data)
 
   return html
+}
+
+function getStylesheetLinksHtml(stylesheets = []) {
+  return stylesheets
+    .map((stylesheetPath) => `    <link rel="stylesheet" href="${stylesheetPath}" />`)
+    .join('\n')
 }
 
 async function getInteractivityHtml(title, slug, editOnGitHubUrl) {

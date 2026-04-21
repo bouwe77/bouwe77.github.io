@@ -4,7 +4,8 @@ import { constants } from './constants.js'
 import { filepaths } from './filepaths.js'
 
 export async function createFeeds(blogData) {
-  const updated = getFeedUpdatedDate(blogData.pages)
+  const posts = blogData.listedPages || blogData.pages.filter((post) => !post.isUnlisted)
+  const updated = getFeedUpdatedDate(posts)
 
   const feed = new Feed({
     title: constants.siteName,
@@ -27,7 +28,7 @@ export async function createFeeds(blogData) {
     },
   })
 
-  blogData.pages.forEach((post) => {
+  posts.forEach((post) => {
     feed.addItem({
       title: post.attributes.title,
       id: post.url,

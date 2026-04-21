@@ -18,7 +18,7 @@ export const filepaths = {
   getBlogDirectory: () => path.join(__dirname, blogDirectory),
   getBlogSubFolder: (subFolder) => path.join(__dirname, blogDirectory, subFolder),
   getBlogContentFilePath: (subFolder, filename) => path.join(__dirname, blogDirectory, subFolder, filename),
-  getRelativeBlogContentFilePath: (subFolder) => path.join(blogDirectory, subFolder, subFolder + '.md'),
+  getRelativeBlogContentFilePath: (subFolder, filename = subFolder + '.md') => path.join(blogDirectory, subFolder, filename),
   getPublishFilePath: (filename) => path.join(__dirname, publishDirectory, filename),
   getPagesDirectory: () => path.join(__dirname, pagesDirectory),
   getPageContentFilePath: (filename) => path.join(__dirname, pagesDirectory, filename),

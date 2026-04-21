@@ -7,6 +7,8 @@ categories:
   - "APIs"
 ---
 
+> Disclaimer: This post was created and refined by AI from a voice recording I made about Temba. I’ve polished it myself, but the style is a bit different from how I usually write.
+
 As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, [Temba][temba], comes into play.
 
 ### What is Temba?

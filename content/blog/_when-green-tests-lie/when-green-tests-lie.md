@@ -6,13 +6,13 @@ categories:
   - "Testing"
 ---
 
-When writing a test, you are testing a **subject**.
+When writing a test, we are testing a **subject**.
 
-That subject can be a function, a component, an API endpoint, a whole feature, or even the complete application, i.e. anything from the actual implementation you want to verify. 
+That subject can be a function, a component, an API endpoint, a whole feature, or even the complete application, i.e. anything from the actual implementation we want to verify. 
 
-The subject should be the only thing your test imports from the implementation, acting as the single point of contact between your test and your code.
+The subject should be the only thing the test imports from the implementation, acting as the single point of contact between the test and the code.
 
-In your test you verify requirements. Requirements describe **what** the subject is expected to do. And **how** the subject does this, your test should not know or care about.
+In the test we verify requirements. Requirements describe **what** the subject is expected to do. And **how** the subject does this, the test should not know or care about.
 
 That sounds obvious, but I think this is where a lot of tests slowly become less useful. Not because people don't care about testing, but because some things are just very convenient when writing tests.
 
@@ -51,7 +51,7 @@ test("a user can access the products page", () => {
 })
 ```
 
-These tests don't know how `canAccessPage` works. They only know what the subject should do, based on requirements we came up with when defining what are app should do.
+These tests don't know how `canAccessPage` works. They only know what the subject should do, based on requirements we came up with when defining what our app should do.
 
 ### The subject is the boundary
 
@@ -83,9 +83,9 @@ export function canAccessPage(role, page) {
 
 Now when writing tests, it can feel convenient to import `adminPages` as well.
 
-Maybe you want to run the same test for all admin pages. Or maybe you don't want to repeat the list of pages in the test, because duplication feels wrong.
+Maybe we want to run the same test for all admin pages. Or maybe we don't want to repeat the list of pages in the test, because duplication feels wrong.
 
-So you write something like:
+It is incredibly tempting to write something like:
 
 ```js
 import { adminPages, canAccessPage } from "./canAccessPage"
@@ -95,11 +95,11 @@ test.each(adminPages)("an admin can access the %s page", (page) => {
 })
 ```
 
-This looks nice, is short and easy to maintain. If you add a new admin page, the test automatically includes it. But that is also the problem. The test now uses the implementation to determine the requirement.
+This looks nice, is short and easy to maintain. If we add a new admin page, the test automatically includes it. But that is also the problem. The test now uses the implementation to determine the requirement.
 
 We prioritized the convenience of "don't repeat yourself" over the actual purpose of the test: catching mistakes in the implementation.
 
-When a requirement changes, you should update the test first. This forces a deliberate acknowledgement of the new rule before any code changes. Treating the test as the leading authority ensures the implementation follows the requirement, rather than the other way around.
+When a requirement changes, we should update the test first. This forces a deliberate acknowledgement of the new rule before any code changes. Treating the test as the leading authority ensures the implementation follows the requirement, rather than the other way around.
 
 ### Requirements in the wrong place
 
@@ -129,9 +129,9 @@ This is one of the worst situations in testing: tests are passing, but they are 
 
 The test suite should give confidence, but that confidence is not justified anymore.
 
-So you run the tests, everything is green, you deploy, and later users complain that admins can no longer open the settings page. At that moment the test suite did not protect you.
+So we run the tests, everything is green, we deploy, and later users complain that admins can no longer open the settings page. At that moment the test suite did not protect us.
 
-In fact, the test implicitely changed the requirements, because you changed things in the wrong order: Requirements always come first.
+In fact, the test implicitely changed the requirements, because we changed things in the wrong order: Requirements always come first.
 
 ### Duplication is not always bad
 
@@ -143,7 +143,7 @@ If the requirement is "an admin can access the settings page", then it is perfec
 
 Yes, that value might also exist in the implementation, but in the test it has another meaning. In the implementation it is used to make the code work. In the test it describes what the code should do.
 
-So I would not call this implementation duplication. I would call it specification redundancy. And that redundancy is useful, because it makes the test an independent authority.
+So I would not call this implementation duplication, but a specification redundancy. And that redundancy is useful, because it makes the test an independent authority.
 
 "But what if we rename `settings` to `preferences`? Then I have to update it in ten tests, isn't that brittle?" Yes, maybe. But in this case that brittleness is useful. If the requirement changed, I want the tests to make me stop and think: Is this really a requirement change? Are all these tests still correct? Is it safe for users? If the tests update automatically because they import the implementation, that mental check can disappear completely.
 
@@ -155,27 +155,27 @@ When someone reads the test, they should understand what the subject is expected
 
 I think this problem often happens when tests are written after the implementation.
 
-You already built the code. You know which constants exist. You know which helper functions are available. You know how the logic is structured.
+We already built the code. We know which constants exist. We know which helper functions are available. We know how the logic is structured.
 
-And then you start writing tests.
+And then we start writing tests.
 
-Of course you see the convenient things you can reuse. They are right there. Import the list, use it with `test.each`, and the test is done.
+Of course we see the convenient things we can reuse. They are right there. Import the list, use it with `test.each`, and the test is done.
 
-The test passes, but did you really test the requirement? Or did you mostly test that the implementation agrees with itself?
+The test passes, but did we really test the requirement? Or did we mostly test that the implementation agrees with itself?
 
 That is the question I think we should ask more often.
 
 ### TDD
 
-If you would write the test first, this probably would not happen as easily. Because before the implementation exists, there are no implementation details to import.
+If we would write the test first, this probably would not happen as easily. Because before the implementation exists, there are no implementation details to import.
 
-You have to think about the requirement. You have to write down what the subject should do. You have to decide what the outside of the subject looks like.
+We have to think about the requirement. We have to write down what the subject should do. We have to decide what the outside of the subject looks like.
 
-That is one of the things I like about TDD. Not because it magically creates better code, but because it forces you to reason from the outside: First the requirement, then the test, then the implementation.
+That is one of the things I like about TDD. Not because it magically creates better code, but because it forces us to reason from the outside: First the requirement, then the test, then the implementation.
 
-And while implementing, you can still create all the helpers, constants, mappings, and data structures you want. The test does not care. As long as the subject still behaves according to the requirements, the test passes.
+And while implementing, we can still create all the helpers, constants, mappings, and data structures we want. The test does not care. As long as the subject still behaves according to the requirements, the test passes.
 
-That gives you freedom to refactor. And more importantly, it gives you tests that actually mean something.
+That gives us freedom to refactor. And more importantly, it gives us tests that actually mean something.
 
 ### Conclusion
 

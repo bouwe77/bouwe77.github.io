@@ -1,6 +1,6 @@
 ---
 date: "2026-04-21"
-title: "Requirements belong in your tests"
+title: "When green tests lie"
 summary: "Tests should verify requirements, not reuse implementation details from the code they are testing."
 categories:
   - "Testing"
@@ -135,13 +135,21 @@ In fact, the test implicitely changed the requirements, because you changed thin
 
 ### Duplication is not always bad
 
-I think this is also where the fear of duplication can get in the way. Developers often try to avoid duplication, and usually that is a good thing. But tests are different.
+I think this is also where the fear of duplication can get in the way. Developers often try to avoid duplication, and usually that is a good thing. In implementation code, repeating the same knowledge in multiple places can absolutely be a code smell.
+
+But tests are different.
 
 If the requirement is "an admin can access the settings page", then it is perfectly fine to write `"settings"` in the test.
 
-Yes, that value might also exist in the implementation, but in the test it has another meaning. In the implementation it is used to make the code work. In the test it describes what the code should do. That is not the same duplication.
+Yes, that value might also exist in the implementation, but in the test it has another meaning. In the implementation it is used to make the code work. In the test it describes what the code should do.
 
-The test is the place where the requirement should be visible. When someone reads the test, they should understand what the subject is expected to do, without having to inspect the implementation.
+So I would not call this implementation duplication. I would call it specification redundancy. And that redundancy is useful, because it makes the test an independent authority.
+
+"But what if we rename `settings` to `preferences`? Then I have to update it in ten tests, isn't that brittle?" Yes, maybe. But in this case that brittleness is useful. If the requirement changed, I want the tests to make me stop and think: Is this really a requirement change? Are all these tests still correct? Is it safe for users? If the tests update automatically because they import the implementation, that mental check can disappear completely.
+
+The test should not be a mirror that reflects whatever the implementation currently says. The test should say what must be true, so it can catch the implementation when it is wrong.
+
+When someone reads the test, they should understand what the subject is expected to do, without having to inspect the implementation.
 
 ### Tests after code
 

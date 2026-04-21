@@ -35,9 +35,10 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/styles.css" />
+    
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open Sans"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
     />
     <link
       rel="stylesheet"
@@ -86,6 +87,7 @@
                   onclick="toggleLightDarkMode()"
                   class="toggle-light-dark-mode"
                   title="Toggle light/dark mode"
+                  aria-label="Toggle light/dark mode"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,63 +95,7 @@
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="black"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      style="transform: rotate(90deg);"
-                    >
-                      <mask id="mask">
-                        <rect
-                          x="0"
-                          y="0"
-                          width="100%"
-                          height="100%"
-                          fill="white"
-                        />
-                        <circle cx="18" cy="8" r="9" fill="black" />
-                      </mask>
-                      <circle
-                        fill="black"
-                        cx="12"
-                        cy="12"
-                        r="9"
-                        mask="url(#mask)"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="24"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle fill="white" cx="12" cy="12" r="5" />
-                      <g stroke="white">
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                      </g>
-                    </svg>
-                  </svg>
+                  ></svg>
                 </button>
               </div>
             </nav>
@@ -173,7 +119,7 @@
 <h3>Demo</h3>
 <img alt="screenshot of the simple calculation game" src="/demo.png" width="350" style="border:1px solid #ccc"/>
 <p>The objective of the game is to select (click) the numbers in the box on the left that add up to the given number. When you made a mistake, click the numbers in the box on the right to move them back to the left. When ready (de)selecting numbers, click Done and the app will tell whether your attempt was correct or incorrect. To start all over again while playing, click the Reset button.</p>
-<p>Wanna give it a try yourself? https://react-simple-calculation-game.netlify.app.</p>
+<p>Wanna give it a try yourself? <a href="https://react-simple-calculation-game.netlify.app">https://react-simple-calculation-game.netlify.app</a>.</p>
 <h3>Let's start building</h3>
 <p>I'll build this app using <a href="https://create-react-app.dev">Create React App</a>. In this blog post I won't go into CSS styling, but if you're interested, the CSS stylesheet I'll use can be found <a href="https://github.com/bouwe77/react-simple-calculation-game/blob/main/src/simple-calculation-game/App.module.css">on my GitHub</a>.</p>
 <p>To keep it simple the app will consist of one component, the <code>App</code> component. Let's start with some basic plumbing of the different sections of the game and apply the CSS I've prepared:</p>
@@ -230,7 +176,7 @@ export default function App() {
 </code></pre>
 <p>I added a <code>key</code> prop to each button so React can uniquely identify each element and prevent the warning "Each child in a list should have a unique "key" prop.". In the <code>choices</code> array the numbers are (and will always be) unique, because that is how the app works. However, the numbers in the <code>selected</code> array are not guaranteed to be unique as you are allowed to select the same number multiple times. That is why I use an <code>index</code> here, which is fine for my code, but not always is a good idea.</p>
 <blockquote>
-<p>Check out this <em>egghead.io</em> lesson to learn more about the <code>key</code> prop and using indexes: https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react</p>
+<p>Check out this <em>egghead.io</em> lesson to learn more about the <code>key</code> prop and using indexes: <a href="https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react">https://egghead.io/lessons/react-use-the-key-prop-when-rendering-a-list-with-react</a></p>
 </blockquote>
 <p>Next, when clicking a number in the left box we want to have it appear in the right box and when clicking a number in the right box we want to have it disappear again. Technically this means a number from the <code>choices</code> array is added or removed from the <code>selected</code> array. To reflect changes to the <code>selected</code> array in the UI, we need to change that array from a hard-coded constant to a stateful value with the <code>useState</code> hook:</p>
 <pre><code class="language-js">const answer = 3;

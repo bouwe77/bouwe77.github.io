@@ -35,9 +35,10 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/styles.css" />
+    
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open Sans"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
     />
     <link
       rel="stylesheet"
@@ -86,6 +87,7 @@
                   onclick="toggleLightDarkMode()"
                   class="toggle-light-dark-mode"
                   title="Toggle light/dark mode"
+                  aria-label="Toggle light/dark mode"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,63 +95,7 @@
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="black"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      style="transform: rotate(90deg);"
-                    >
-                      <mask id="mask">
-                        <rect
-                          x="0"
-                          y="0"
-                          width="100%"
-                          height="100%"
-                          fill="white"
-                        />
-                        <circle cx="18" cy="8" r="9" fill="black" />
-                      </mask>
-                      <circle
-                        fill="black"
-                        cx="12"
-                        cy="12"
-                        r="9"
-                        mask="url(#mask)"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="24"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle fill="white" cx="12" cy="12" r="5" />
-                      <g stroke="white">
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                      </g>
-                    </svg>
-                  </svg>
+                  ></svg>
                 </button>
               </div>
             </nav>
@@ -205,7 +151,7 @@ const logError = (message) => log(new Date().toISOString(), "ERROR", message);
 <p>JavaScript technically speaking, with this abstractions I created some <em>closures</em>.</p>
 <blockquote>
 <p><em>A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.</em></p>
-<p>MDN Web Docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures</p>
+<p>MDN Web Docs <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures</a></p>
 </blockquote>
 <p>Everywhere I need to log, based on the severity I want I choose the applicable function so I only need to pass the <code>message</code>:</p>
 <pre><code class="language-js">logInfo("This is an informational message!");
@@ -260,7 +206,7 @@ logError("An exception occurred!");
 }
 </code></pre>
 <blockquote>
-<p>Check out this video by Derick where he creates this <code>curry</code> function and explains how it works: https://youtu.be/jJAxhVxaHMM</p>
+<p>Check out this video by Derick where he creates this <code>curry</code> function and explains how it works: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
 </blockquote>
 <p>Next, let's create a <code>curriedLog</code> function by calling the <code>curry</code> function and passing the <code>log</code> function:</p>
 <pre><code class="language-js">let curriedLog = curry(log);
@@ -305,10 +251,10 @@ const logError = log(datetime)("ERROR");
 <p>If you want to know more you can check out some of the links below.</p>
 <h3>Acknowledgements and tips</h3>
 <p>A read quite a few articles and watched many videos to learn currying.</p>
-<p>The first video that made it click for me was this step by step video by Steve Griffith: https://youtu.be/F_N97iovVbQ</p>
+<p>The first video that made it click for me was this step by step video by Steve Griffith: <a href="https://youtu.be/F_N97iovVbQ">https://youtu.be/F_N97iovVbQ</a></p>
 <p>A great article about currying with JavaScript that inspired me to use the logging example is <a href="https://javascript.info/currying-partials">Currying Partials</a>.</p>
-<p>The <code>curry</code> function I showed you I got from this video where Derick explains how to write it: https://youtu.be/jJAxhVxaHMM</p>
-<p>MPJ of Fun Fun Function also does a great (and funny as always) job explaining currying: https://youtu.be/iZLP4qOwY8I</p>
+<p>The <code>curry</code> function I showed you I got from this video where Derick explains how to write it: <a href="https://youtu.be/jJAxhVxaHMM">https://youtu.be/jJAxhVxaHMM</a></p>
+<p>MPJ of Fun Fun Function also does a great (and funny as always) job explaining currying: <a href="https://youtu.be/iZLP4qOwY8I">https://youtu.be/iZLP4qOwY8I</a></p>
 </div>
 
             <div>

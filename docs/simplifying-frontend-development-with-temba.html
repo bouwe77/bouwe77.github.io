@@ -35,9 +35,10 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="/styles.css" />
+    
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open Sans"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
     />
     <link
       rel="stylesheet"
@@ -86,6 +87,7 @@
                   onclick="toggleLightDarkMode()"
                   class="toggle-light-dark-mode"
                   title="Toggle light/dark mode"
+                  aria-label="Toggle light/dark mode"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,63 +95,7 @@
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="black"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      style="transform: rotate(90deg);"
-                    >
-                      <mask id="mask">
-                        <rect
-                          x="0"
-                          y="0"
-                          width="100%"
-                          height="100%"
-                          fill="white"
-                        />
-                        <circle cx="18" cy="8" r="9" fill="black" />
-                      </mask>
-                      <circle
-                        fill="black"
-                        cx="12"
-                        cy="12"
-                        r="9"
-                        mask="url(#mask)"
-                      />
-                    </svg>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="24"
-                      y="0"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <circle fill="white" cx="12" cy="12" r="5" />
-                      <g stroke="white">
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                      </g>
-                    </svg>
-                  </svg>
+                  ></svg>
                 </button>
               </div>
             </nav>
@@ -168,7 +114,10 @@
         </div>
       </div>
 
-      <div><p>As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, <a href="https://temba.bouwe.io">Temba</a>, comes into play.</p>
+      <div><blockquote>
+<p>Disclaimer: This post was drafted by AI from a voice recording I made about Temba. I’ve polished it myself, but the style is a bit different from how I usually write.</p>
+</blockquote>
+<p>As a frontend developer, you're often focused on crafting the perfect client-side experience. Whether you're working with React, Vue, Svelte, or any other framework, sometimes the last thing you want to deal with is setting up a backend. Maybe you're experimenting with an app idea, learning a new frontend technology, or just need a place to store data temporarily. That's where my project, <a href="https://temba.bouwe.io">Temba</a>, comes into play.</p>
 <h3>What is Temba?</h3>
 <p><a href="https://temba.bouwe.io">Temba</a> is a library I created to help developers like you quickly spin up a backend web API, allowing you to concentrate on building the frontend. It's available on <a href="https://www.npmjs.com/package/temba">NPM</a>, and it's designed to be simple and straightforward to use.</p>
 <p>With <a href="https://temba.bouwe.io">Temba</a>, you can create a local HTTP server running on Node with just one command in the terminal. This means you can get back to focusing on your frontend while <a href="https://temba.bouwe.io">Temba</a> handles the backend.</p>

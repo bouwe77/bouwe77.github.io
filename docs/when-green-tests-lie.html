@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>When green tests lie</title>
+    <meta name="description" content="bouwe.io, a blog by Bouwe Westerdijk" />
+    <meta name="image" content="/bouwe1.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bouwe.io" />
+    <meta property="og:url" content="https://bouwe.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="bouwe.io" />
+    <meta
+      property="og:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta property="og:image" content="https://bouwe.io/bouwe1.png" />
+    <meta property="og:image:alt" content="Bouwe Westerdijk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@bouwe" />
+    <meta name="twitter:url" content="https://bouwe.io" />
+    <meta name="twitter:title" content="When green tests lie" />
+    <meta
+      name="twitter:description"
+      content="bouwe.io, a blog by Bouwe Westerdijk"
+    />
+    <meta name="twitter:image" content="https://bouwe.io/bouwe1.png" />
+    <meta name="twitter:image:alt" content="Bouwe Westerdijk" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/styles.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/atom-one-dark-reasonable.min.css"
+    />
+
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script src="/toggle-light-dark-mode.js"></script>
+
+    <link
+      href="/rss2.xml"
+      type="application/rss+xml"
+      rel="alternate"
+      title="bouwe.io RSS Feed"
+    />
+    <link
+      href="/atom.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title="bouwe.io Atom feed"
+    />
+  </head>
+
+  <body>
+    <div>
+      <header class="header">
+        <div class="container">
+          <div class="header-container">
+            <div class="logo">
+              <h1>
+                <a href="/"
+                  ><span class="logo-part1">bouwe</span
+                  ><span class="logo-part2">.io</span></a
+                >
+              </h1>
+            </div>
+            <nav>
+              <div>
+                <ul class='nav-list'><li class='nav-item'><a href="/about" class='nav-inactive'>about</a></li><li class='nav-item'><a href="/blog" class='nav-active'>blog</a></li><li class='nav-item'><a href="/videos" class='nav-inactive'>videos</a></li></ul>
+              </div>
+              <div>
+                <button
+                  onclick="toggleLightDarkMode()"
+                  class="toggle-light-dark-mode"
+                  title="Toggle light/dark mode"
+                  aria-label="Toggle light/dark mode"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="sun-moon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  ></svg>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+          <div class="main">
+      <div class="container">
+              <div>
+        <h2 class="blog-title">
+          <a href="/when-green-tests-lie">When green tests lie</a>
+        </h2>
+        <div class="blog-meta">
+          Apr 21, 2026  · <a href="/categories/testing">Testing</a>  · 6 minute read
+        </div>
+      </div>
+
+      <div><p>When writing a test, we are testing a <strong>subject</strong>.</p>
+<p>That subject can be a function, a component, an API endpoint, a whole feature, or even the complete application, i.e. anything from the actual implementation we want to verify.</p>
+<p>The subject should be the only thing the test imports from the implementation, acting as the single point of contact between the test and the code.</p>
+<p>In the test we verify requirements. Requirements describe <strong>what</strong> the subject is expected to do. And <strong>how</strong> the subject does this, the test should not know or care about.</p>
+<p>That sounds obvious, but I think this is where a lot of tests slowly become less useful. Not because people don't care about testing, but because some things are just very convenient when writing tests.</p>
+<h3>An example</h3>
+<p>Suppose you have a function that checks if a user is allowed to see a page:</p>
+<pre><code class="language-js">export function canAccessPage(role, page) {
+  if (page === "products") return true
+  return role === "admin"
+}
+</code></pre>
+<p>Then the subject of the test is <code>canAccessPage</code>.</p>
+<p>So the test should call <code>canAccessPage</code>, and verify what it returns for the requirements we know:</p>
+<pre><code class="language-js">import { canAccessPage } from "./canAccessPage"
+
+test("an admin can access the settings page", () => {
+  expect(canAccessPage("admin", "settings")).toBe(true)
+})
+
+test("a user can not access the settings page", () => {
+  expect(canAccessPage("user", "settings")).toBe(false)
+})
+
+test("an admin can access the products page", () => {
+  expect(canAccessPage("admin", "products")).toBe(true)
+})
+
+test("a user can access the products page", () => {
+  expect(canAccessPage("user", "products")).toBe(true)
+})
+</code></pre>
+<p>These tests don't know how <code>canAccessPage</code> works. They only know what the subject should do, based on requirements we came up with when defining what our app should do.</p>
+<h3>The subject is the boundary</h3>
+<p>The subject is the only thing from the actual code the test should access.</p>
+<p>Of course the test can use test utilities, builders, fake data, mocks, and whatever makes the test readable and useful. But from the actual implementation code, the test should only access the subject.</p>
+<p>If the subject uses other functions, constants, arrays, objects, config files, or classes internally, then those things are <strong>implementation details</strong>, which the test should not import.</p>
+<p>Because by doing so, the test starts to know <em>how</em> the subject works. The test is no longer only testing the outside, but also reaches inside the subject.</p>
+<h3>Convenience</h3>
+<p>This often happens when the implementation grows. For example, the authorization logic might become more elaborate:</p>
+<pre><code class="language-js">const publicPages = ["home", "products", "contact"]
+export const adminPages = ["settings", "users"]
+
+const pagesByRole = {
+  user: publicPages,
+  admin: [...publicPages, ...adminPages],
+}
+
+export function canAccessPage(role, page) {
+  return pagesByRole[role].includes(page)
+}
+</code></pre>
+<p>Now when writing tests, it can feel convenient to import <code>adminPages</code> as well.</p>
+<p>Maybe we want to run the same test for all admin pages. Or maybe we don't want to repeat the list of pages in the test, because duplication feels wrong.</p>
+<p>It is incredibly tempting to write something like:</p>
+<pre><code class="language-js">import { adminPages, canAccessPage } from "./canAccessPage"
+
+test.each(adminPages)("an admin can access the %s page", (page) => {
+  expect(canAccessPage("admin", page)).toBe(true)
+})
+</code></pre>
+<p>This looks nice, is short and easy to maintain. If we add a new admin page, the test automatically includes it. But that is also the problem. The test now uses the implementation to determine the requirement.</p>
+<p>We prioritized the convenience of "don't repeat yourself" over the actual purpose of the test: catching mistakes in the implementation.</p>
+<p>When a requirement changes, we should update the test first. This forces a deliberate acknowledgement of the new rule before any code changes. Treating the test as the leading authority ensures the implementation follows the requirement, rather than the other way around.</p>
+<h3>Requirements in the wrong place</h3>
+<p>The requirement is not in the test anymore. The requirement is now in <code>adminPages</code>, which is part of the actual code.</p>
+<p>And the test only verifies that the code behaves according to another piece of the same code. That might still be useful in some situations, but it is not the same as testing requirements.</p>
+<p>Because what happens when someone changes this?</p>
+<pre><code class="language-js">export const adminPages = ["users"]
+</code></pre>
+<p>Maybe <code>settings</code> was removed by accident. Maybe during a refactor. Maybe because someone misunderstood the feature. Maybe because the code was moved around and the list was changed without realizing what it meant.</p>
+<p>The test still passes.</p>
+<p>Why?</p>
+<p>Because the test imports <code>adminPages</code>, and <code>settings</code> is not in that list anymore. So the test no longer checks that admins can access settings.</p>
+<p>The requirement silently disappeared and that is dangerous.</p>
+<h3>Passing tests based on nothing</h3>
+<p>This is one of the worst situations in testing: tests are passing, but they are passing based on incorrect or non-existing requirements: False positives.</p>
+<p>The test suite should give confidence, but that confidence is not justified anymore.</p>
+<p>So we run the tests, everything is green, we deploy, and later users complain that admins can no longer open the settings page. At that moment the test suite did not protect us.</p>
+<p>In fact, the test implicitely changed the requirements, because we changed things in the wrong order: Requirements always come first.</p>
+<h3>Duplication is not always bad</h3>
+<p>I think this is also where the fear of duplication can get in the way. Developers often try to avoid duplication, and usually that is a good thing. In implementation code, repeating the same knowledge in multiple places can absolutely be a code smell.</p>
+<p>But tests are different.</p>
+<p>If the requirement is "an admin can access the settings page", then it is perfectly fine to write <code>"settings"</code> in the test.</p>
+<p>Yes, that value might also exist in the implementation, but in the test it has another meaning. In the implementation it is used to make the code work. In the test it describes what the code should do.</p>
+<p>So I would not call this implementation duplication, but a specification redundancy. And that redundancy is useful, because it makes the test an independent authority.</p>
+<p>"But what if we rename <code>settings</code> to <code>preferences</code>? Then I have to update it in ten tests, isn't that brittle?" Yes, maybe. But in this case that brittleness is useful. If the requirement changed, I want the tests to make me stop and think: Is this really a requirement change? Are all these tests still correct? Is it safe for users? If the tests update automatically because they import the implementation, that mental check can disappear completely.</p>
+<p>The test should not be a mirror that reflects whatever the implementation currently says. The test should say what must be true, so it can catch the implementation when it is wrong.</p>
+<p>When someone reads the test, they should understand what the subject is expected to do, without having to inspect the implementation.</p>
+<h3>Tests after code</h3>
+<p>I think this problem often happens when tests are written after the implementation.</p>
+<p>We already built the code. We know which constants exist. We know which helper functions are available. We know how the logic is structured.</p>
+<p>And then we start writing tests.</p>
+<p>Of course we see the convenient things we can reuse. They are right there. Import the list, use it with <code>test.each</code>, and the test is done.</p>
+<p>The test passes, but did we really test the requirement? Or did we mostly test that the implementation agrees with itself?</p>
+<p>That is the question I think we should ask more often.</p>
+<h3>TDD</h3>
+<p>If we would write the test first, this probably would not happen as easily. Because before the implementation exists, there are no implementation details to import.</p>
+<p>We have to think about the requirement. We have to write down what the subject should do. We have to decide what the outside of the subject looks like.</p>
+<p>That is one of the things I like about TDD. Not because it magically creates better code, but because it forces us to reason from the outside: First the requirement, then the test, then the implementation.</p>
+<p>And while implementing, we can still create all the helpers, constants, mappings, and data structures we want. The test does not care. As long as the subject still behaves according to the requirements, the test passes.</p>
+<p>That gives us freedom to refactor. And more importantly, it gives us tests that actually mean something.</p>
+<h3>Conclusion</h3>
+<p>When writing tests, try to be strict about the boundary: The test accesses the subject, and verifies requirements.</p>
+<p>Everything behind the subject is implementation detail.</p>
+<p>So if you feel the urge to import something from the actual code to make testing easier, take a moment and ask yourself: Am I still testing what the subject should do? Or am I now using how it works to decide what should be true?</p>
+<p>Requirements belong in your tests. Implementation details belong in your implementation.</p>
+</div>
+
+            <div>
+        <a
+          href="https://twitter.com/intent/tweet?text=When green tests lie&url=https://bouwe.io/when-green-tests-lie&via=bouwe"
+          >Share on Twitter</a
+        >
+        ·
+        <a href="https://twitter.com/search?q=https://bouwe.io/when-green-tests-lie"
+          >Discuss on Twitter</a
+        >
+        ·
+        <a href="https://github.com/bouwe77/bouwe.io/edit/master/content/blog/_when-green-tests-lie/when-green-tests-lie.md">Edit on GitHub</a>
+      </div>
+
+      </div>
+    </div>
+
+    <footer></footer>
+  
+    </div>
+
+    <!-- Initialize light/dark mode -->
+    <script type="text/javascript">
+      initLightDarkMode()
+    </script>
+
+    <!-- Default Statcounter code for bouwe.io https://bouwe.io -->
+    <script type="text/javascript">
+      var sc_project = 12847572;
+      var sc_invisible = 1;
+      var sc_security = "f729e1b5";
+    </script>
+    <script
+      type="text/javascript"
+      src="https://www.statcounter.com/counter/counter.js"
+      async
+    ></script>
+    <noscript
+      ><div class="statcounter">
+        <a title="Web Analytics" href="https://statcounter.com/" target="_blank"
+          ><img
+            class="statcounter"
+            src="https://c.statcounter.com/12847572/0/f729e1b5/1/"
+            alt="Web Analytics"
+            referrerpolicy="no-referrer-when-downgrade"
+        /></a></div
+    ></noscript>
+    <!-- End of Statcounter Code -->
+  </body>
+</html>

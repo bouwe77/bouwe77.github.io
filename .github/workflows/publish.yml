@@ -1,23 +1,34 @@
-name: Publish Markdown and static assets to 'docs' folder
+name: Publish to GitHub Pages
 
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
-  # Allows you to run this workflow manually from the Actions tab:
   workflow_dispatch:
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[publish]')"
+    # Keep your [publish] trigger logic
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      contains(github.event.head_commit.message, '[publish]')
 
     steps:
       - name: Check-out the repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         run: npm ci
@@ -25,12 +36,11 @@ jobs:
       - name: Publish Markdown to HTML
         run: npm run publish
 
-      # When the docs haven't changed, use "skip ci" in the commit message to prevent an error here.
-      - name: Commit and push
-        run: |
-          git config --global user.name 'Bouwe K. Westerdijk'
-          git config --global user.email 'bouwe77@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add docs/*
-          git commit -am "Publish Markdown to HTML"
-          git push
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

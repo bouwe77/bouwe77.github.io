@@ -1,8 +1,0 @@
-{
-  "status": 200,
-  "message": "a message?",
-  "data": {
-    "title": "Hello, World!",
-    "body": "This is a test"
-  }
-}

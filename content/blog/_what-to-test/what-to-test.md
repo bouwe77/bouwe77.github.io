@@ -1,58 +1,99 @@
 ---
-date: "2026-04-21"
+date: "2026-04-23"
 title: "What to test"
-summary: "Lorem ipsum"
+summary: "Start testing at the public boundary of your system, where users actually interact with it, and only move inward when there is a concrete reason."
 categories:
   - "Testing"
 ---
 
-This is a blog about What and how to test...
+We write tests because we want confidence that our software works for users.
 
-Why are we testing? We are testing because we want to know the app or whatever solution we built works for our users. To determine what users can do with our app we define requirements, which explain WHAT they can do with it.
+That sounds obvious, but it has a big consequence: the first thing we should test is not our internal code structure, but the public boundary of the system. The UI, the API, the function exposed by a library, whatever users or other systems actually use.
 
-And tests should check requirements, i.e. the WHAT, and not the HOW of the implementation details.
+That boundary is the subject.
 
-The question is what (part of the code) do we have to test, when writing automated tests?
+Everything behind it, like helper functions, reducers, mappers, selectors, hooks, classes, and configuration objects, is implementation detail. Important implementation detail of course, but still detail.
 
-People say code coverage is important, so that we know that ALL the code we built works.
+## Start where the requirement lives
 
-Testing all the code means creating unit tests for every function that can be called by other modules within the application code. We treat those functions as the public API of that module and so we test those so that we know that when other code calls it, it does what it should do.
+Suppose you build a shopping cart. A requirement could be:
 
-But one can wonder what that means: "it really works" when you unit test almost all your code.
+> When a user adds a product to the cart, the cart total should update.
 
-And as we keep on adding, refactoring, updating, deleting our code, we also constantly have to update the tests along with it. So that is a lot of works and we have to be sure it is really worth all that effort.
+That requirement does not say anything about which functions should exist internally, whether you use a reducer, whether prices are mapped first, or whether totals are calculated in three small helpers or one big function.
 
-So I say instead of unit testing the "code", we should test the "functionality", how the user uses our app/code. So if it's a UI, we'll test the UI. If it's an API we will test calling that API. An API can be an HTTP endpoint, but also a function they can call on a library or SDK.
+So the first useful test is also not about those things.
 
-That way we treat our code as a means to an end, which is it should work for our users.
+The first useful test is one that adds a product through the public boundary and checks whether the total updates. If that test passes, you know something meaningful: the cart works for the user in that situation.
 
-We build our app for our users and we want to be sure it works for them, and keeps on working: Regression testing.
+If instead you unit test five helper functions behind the cart, you might get five green tests and still not know whether adding a product actually updates the cart total in the real flow.
 
-Users use the "outside" (UI/public interface/API) of our app/code, so when creating tests, we always start with testing that outside as well.
+That is the difference between testing code and testing functionality.
 
-And then MAYBE also unit test some other things inside our code, but as little as possible.
+## Why internal coverage can be misleading
 
-And we can do this with an integration test where you test as much of the code behind as well, but maybe mocking away a few things if that is convenient. Or do an end-to-end test where even the DB and all other external dependencies are used.
+A lot of teams talk about coverage as if it proves the system works. It does not. It only proves code was executed while tests were running.
 
-> * Unit test = test every modules's of class' public interface in all layers of the application code.
-> * Integrtion test = Test a bigger part of our code, often a specific functionality, like chat, shopping cart, search filter, etc. Or even the whole app if it's not big. And extenral dependencies like databases or APIs are often mocked.
-> * E2E Test the whole app inlcuding a real DB or API
+You can have high coverage and still miss the thing that matters.
 
-Between testing the public interface of our app and unit testing each and every module's or class' public function is another approach, which is a common pattern in frontend testing where we would test specific parts of the functionality, like a chat module or a shopping cart. The app normally would render multiple modules at the same time, but in such a test you render the DOM with only that module, as if the page only has a chat box. Then still you test (and use) it as a real user would, but you make the test a little bit more self-contained and focused.
+Imagine the shopping cart uses these internal steps:
 
-"But what about code coverage?" This is a nice metric to check you did not cover all your code. And that could mean you just add more of those functional public API tests, or it might show that it is not really doable because there are simply way to many variables. And ONLY THEN you decide to create unit tests for those parts.
+1. map the product to a cart line
+2. merge duplicate lines
+3. calculate subtotal
+4. calculate VAT
+5. calculate total
 
-...TODO example...
+You could unit test every one of these functions and reach very high coverage. But if the button in the UI no longer dispatches the right event, or the API sends the wrong field, or the total is no longer rendered, all those tests can still stay green.
 
-"But integration tests and e2e tests are slow" Yes they are, but their VALUE matters, not how long you have to wait for them. You can also use waiting as a nice opportunity to take e break, chat to a colleague or work on something else. To me it's nonsense to say we will create unit tests because they are quick, while their value (remember, it should work for users) is very low as it does not guarantee enything. So what good is a quick test that doesn't say much...
+The internal code may work in isolation while the feature is broken as a whole.
 
-Having tests that do not test implementation details open the door for refactoring, and security and performance improvements, where the tests serve as a safeguard for screwing up. In most cases you will only change the code and run the tests to see it still works. It saves so much effort for something that is not useful.
+That is why broad internal unit coverage often creates a false sense of safety. It is expensive to maintain, but the confidence you get back is often smaller than people think.
 
-I've seen devs being annoyed by writing and updating unit tests because it's so much work, with every little piece of code you change. The result is it becomes an afterthought where no one bothers with TDD, and instead fix the test AFTER changing the code, not caring about the test qulity and only doing it because they "have to acoording to the rules"...
+## The maintenance cost is not accidental
 
-...TODO TDD works super well for integration and e2e tests...
+There is another problem with testing many internal details: those tests tend to break when you improve the implementation.
 
-It also allows for building apps in a super agile way: If you have the requirements, build tests for it, but take a few shortcuts in the code just to make a first version as a minimal viable product you can move really quick. You created the minimal test suite to show it really works for users according to the specs, can ship, and in the meantime improve the implementation, and build further on the functionality. Moving quick when also creating unit tests is a lot of work, and holds you back when you are still figuring out the best code structure and patterns.
+That is annoying, but more importantly, it is a sign the test was coupled to how the code works instead of what the code should do.
 
+If you refactor the shopping cart from several helpers to one reducer, or from one reducer to a small state machine, the requirement is still the same: adding a product should update the total.
 
+A boundary-focused test survives that kind of refactor.
 
+A test suite full of internal unit tests often does not. Then the tests become friction. Instead of acting as a safety net, they start punishing healthy refactoring.
+
+## Slower tests can still be better tests
+
+People often defend low-level unit tests by saying they are fast.
+
+That is true, but speed is not the main metric. Value is.
+
+A slower test that verifies a real requirement is usually more valuable than a very fast test that only proves a helper returns the same shape you already told it to return.
+
+Of course, this does not mean every test should become a huge end-to-end test. The point is simpler: start at the outside, where the requirement is visible, and choose the smallest test that still verifies something meaningful.
+
+Sometimes that will be an end-to-end test. Sometimes an integration test is enough. Sometimes the public boundary is just a function in a library. The exact test level matters less than whether you are testing the real contract.
+
+## When should you test deeper?
+
+This does not mean lower-level tests are wrong.
+
+Sometimes a boundary test is too broad, too slow, or too hard to set up for a specific rule. Sometimes a piece of logic is complex enough that giving it a focused test is simply useful. In that case, testing deeper is fine.
+
+But that should be a conscious choice to support the boundary tests, not the default starting point.
+
+So before writing a lower-level test, I think the useful question is:
+
+> Which requirement becomes easier or clearer to verify by testing this part directly?
+
+If there is no good answer, the test probably does not need to exist.
+
+## Start at the outside
+
+If tests are there to give us confidence for users, we should begin where users meet the system.
+
+Test the page, the endpoint, the public function, the visible behavior.
+
+Only move inward when there is a concrete reason.
+
+That way your tests stay close to the requirements, give more realistic confidence, and keep their value when the implementation changes underneath them.

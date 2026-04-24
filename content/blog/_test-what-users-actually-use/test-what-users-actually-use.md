@@ -6,13 +6,15 @@ categories:
   - "Testing"
 ---
 
-We write tests because we want confidence that our software works for users. That confidence does not live in our helpers, reducers, or classes. It lives at the public boundary, where a user clicks a button, calls an endpoint, or uses a function from our library.
+We write tests because we want confidence that our software works for users.
 
-That is why testing should start there as well. The public boundary is the mandatory starting point, because that is where requirements become visible and where users discover whether the software actually works.
+And where can we see whether it works for users? At the public boundary. That is where a user clicks a button, calls an endpoint, or uses a function from our library.
+
+That is why I think testing should always start there. The public boundary is the mandatory starting point, because that is where requirements become visible and where users discover whether the software actually works.
 
 That boundary is the subject.
 
-Everything behind it, like helper functions, reducers, mappers, selectors, hooks, classes, and configuration objects, is implementation detail. Important implementation detail of course, but still detail.
+Everything behind it, like helper functions, reducers, mappers, selectors, hooks, classes, and configuration objects, is implementation detail. Important of course, but still detail.
 
 ## Start where the requirement lives
 
@@ -24,7 +26,7 @@ That requirement does not say anything about which functions should exist intern
 
 So the first useful test is also not about those things.
 
-The first useful test is one that adds a product through the public boundary and checks whether the total updates. If that test passes, you know something meaningful: the cart works for the user in that situation.
+The first useful test is one that adds a product through the public boundary and checks whether the total updates. If that test passes, you know something meaningful. You know the cart works for the user in that situation.
 
 This boundary test is the first source of truth. It proves the requirement in the place where the requirement matters.
 
@@ -32,7 +34,7 @@ You might still add lower-level tests later. But they should support this bounda
 
 ## Why the boundary comes first
 
-A lot of teams talk about coverage as if it proves the system works. It does not. It only proves code was executed while tests were running.
+A lot of teams talk about coverage as if it proves the system works. But it does not. It only proves code was executed while tests were running.
 
 You can have high coverage and still miss the thing that matters.
 
@@ -48,45 +50,45 @@ You could unit test every one of these functions and reach very high coverage. B
 
 The internal code may work in isolation while the feature is broken as a whole.
 
-This is not an argument against lower-level tests. It is an argument for order. First prove the requirement at the boundary. Only after that decide whether testing deeper adds something useful.
+This is not an argument against lower-level tests. It is an argument about order. First prove the requirement at the boundary. Only after that decide whether testing deeper adds something useful.
 
 ## Deeper tests are a tactical choice
 
 There is another problem with testing many internal details: those tests tend to break when you improve the implementation.
 
-That is not automatically wrong. It just means such tests are more implementation-coupled. They know more about how the system is built, so they are naturally more sensitive to refactors.
+That is not automatically wrong. It just means such tests are more implementation-coupled. They know more about how the system is built, so they are more sensitive to refactors.
 
 If you refactor the shopping cart from several helpers to one reducer, or from one reducer to a small state machine, the requirement is still the same: adding a product should update the total.
 
 A boundary-focused test survives that kind of refactor.
 
-A deeper test may still be worth it, but it should be pulled into existence by necessity rather than pushed by habit.
+A deeper test may still be worth it, but I think it should be pulled into existence by necessity rather than pushed by habit.
 
 Maybe the pricing logic is complicated enough that verifying every rule through the UI becomes cumbersome. Or maybe you want a faster feedback loop while working on a specific calculation. Those are good reasons to test that logic more directly.
 
-The point is that these tests are a tactical choice. They optimize for clarity, speed, or focus after the requirement has already been anchored at the boundary.
+The point is that these tests are a tactical choice. You add them because they help you with clarity, speed, or focus, after the requirement has already been anchored at the boundary.
 
 ## Speed matters, but value matters first
 
 People often defend low-level unit tests by saying they are fast.
 
-That is a fair point. Speed matters because fast feedback helps you stay productive and iterate with confidence.
+That is a fair point. Speed matters, because fast feedback helps you stay productive and iterate with confidence.
 
 Still, speed is a tool, not the goal. The primary value of a test is that a passing test tells you something important about a requirement.
 
 A slower test that verifies a real requirement is often more valuable than a very fast test that only proves a helper returns the same shape you already told it to return.
 
-Of course, this does not mean every test should become a huge end-to-end test. The point is simpler. Start at the outside, where the requirement is visible, and then choose the smallest additional tests that still verify something meaningful.
+Of course, this does not mean every test should become a huge end-to-end test. My point is simpler. Start at the outside, where the requirement is visible, and then choose the smallest additional tests that still verify something meaningful.
 
 Sometimes that will be an end-to-end test. Sometimes an integration test is enough. Sometimes the public boundary is just a function in a library. The exact test level matters less than whether you are testing the real contract.
 
 ## When should you test deeper?
 
-Testing deeper is a valid optimization once the boundary test exists.
+Testing deeper is a valid optimization, once the boundary test exists.
 
 Sometimes a boundary test is too broad, too slow, or too hard to set up for a specific rule. Sometimes a piece of logic is complex enough that giving it a focused test is simply useful. Sometimes you just need a faster feedback loop while shaping a tricky algorithm.
 
-In those situations, testing deeper is a good move. But it works best as a support layer. The boundary test establishes that the requirement holds for the user. The deeper test helps you work more precisely inside the implementation.
+In those situations, testing deeper is a good move. But I think it works best as a support layer. The boundary test establishes that the requirement holds for the user. The deeper test helps you work more precisely inside the implementation.
 
 So before writing a lower-level test, I think the useful question is:
 
@@ -102,4 +104,4 @@ Test the page, the endpoint, the public function, the visible behavior.
 
 Then move inward only when there is a concrete reason.
 
-That way the boundary remains your primary source of truth, and every deeper test has a clear job to do.
+That way the boundary remains your primary source of truth, and every deeper test has a clear reason to exist.

@@ -1,12 +1,14 @@
 ---
-date: "2026-04-21"
+date: "2026-06-09"
 title: "When green tests lie"
 summary: "Tests should verify requirements instead of reusing implementation details from the code they are testing."
 categories:
   - "Testing"
 ---
 
-A test should only care about the subject, the specific function or component you are verifying. This subject is the boundary. Everything behind it, like constants, helper functions, or configuration objects, are implementation details.
+Aside from test helpers, a test should only import the _subject_, the specific function or component you are verifying. 
+
+This subject is the boundary. The internal implementation code behind or around it, like constants, helpers, or configuration objects, are implementation details, and should NOT be imported.
 
 When a test imports these details, it stops testing requirements and starts testing whether the code agrees with itself.
 

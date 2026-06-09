@@ -28,8 +28,8 @@ stylesheets:
   </tr>
   <tr class="resume-experience-detail">
     <td>
-Engineering the logic and real-time states of a high-concurrency React streaming platform using XState as the core coordinator for a Rails API, Phoenix web sockets, and livestreaming video/audio to ensure a seamless experience for thousands of concurrent users. I am a communicative developer who bridges the gap between deep technical implementation and customer value, whether building automated AI translation workflows or hosting live product demos. I thrive in high-trust, no-nonsense environments that prioritize ownership, transparency and knowledge sharing over rigid ceremonies.<br/>
-Expertise: TypeScript, React, XState, git, FP, TDD, agile 
+Engineering the logic and real-time states of a high-concurrency streaming platform using React, and XState as the core coordinator for a Rails API, Phoenix web sockets, and livestreaming video/audio to ensure a seamless experience for thousands of concurrent users. I am a communicative developer who bridges the gap between deep technical implementation and customer value, whether building automated AI translation workflows or hosting live product demos.<br/>
+Expertise: TypeScript, React, XState, Tailwind, git, FP, TDD, agile 
     </td>
   </tr>
   <tr class="resume-experience">
@@ -37,7 +37,7 @@ Expertise: TypeScript, React, XState, git, FP, TDD, agile
   </tr>
   <tr class="resume-experience-detail">
     <td>
-Completed several long-term assignments at organizations such as KPN, Enexis, Noordhoff, and HZPC. Developed web services and applications for provisioning, internal workflows, and migration and cleanup tooling. Responsibilities covered the full process from technical design and interface documentation to implementation. Worked within Agile teams following established coding standards, peer reviews, and formal testing procedures.
+Completed several long-term assignments at organizations such as KPN, Enexis, Noordhoff Uitgevers, and HZPC. Developed web services and applications for provisioning, internal workflows, and migration and cleanup tooling. Responsibilities covered the full process from technical design and interface documentation to implementation. Worked within Agile teams following established coding standards, peer reviews, and formal testing procedures.
 Actively shared my knowledge and passion for C#, React, and other technical topics through workshops and presentations at internal events, meetups, and a Kenyan bootcamp.
 <br/>
 Expertise: C#, .NET, React, SQL Server, SOAP, REST, OOP, git, Agile/Scrum, TDD
@@ -70,7 +70,7 @@ Expertise: C#, .NET, PHP, XML/XSL/XML Schema, OOP
     <td>
 Specialized in the development of custom web applications and CMS-driven websites. Managed the full project lifecycle from drafting initial proposals to direct client interaction.
 <br />
-Expertise: ASP, VBScript, ASP.NET, C#, PHP, ColdFusion, Delphi, IIS, HTML, CSS, JavaScript, XML/XSL
+Expertise: ASP, VBScript, PHP, ColdFusion, Delphi, SQL Server, IIS, HTML, CSS, JavaScript, XML/XSL
     </td>
   </tr>
 </table>

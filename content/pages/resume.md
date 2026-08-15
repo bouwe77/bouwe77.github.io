@@ -30,7 +30,7 @@ The best parts of my work have always been customer demos, workshops, and knowle
 
 <table  class="resume-table">
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Frontend Software Engineer</strong> @ WebinarGeek (2021 - Present)</td>
+    <td class="nowrap">Frontend Software Engineer @ WebinarGeek (2021 - Present)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -40,7 +40,7 @@ Expertise: TypeScript, React, XState, Tailwind, git, FP, TDD, Agile
     </td>
   </tr>
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Software Engineer</strong> @ New Nexus (2008 - 2021)</td>
+    <td class="nowrap">Software Engineer @ New Nexus (2008 - 2021)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -52,7 +52,7 @@ Expertise: C#, .NET, React, SQL Server, SOAP, REST, OOP, git, Agile/Scrum, TDD
     </td>
   </tr>
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Freelance Software Engineer</strong> @ HPPT (2007 - 2012)</td>
+    <td class="nowrap">Freelance Software Engineer @ HPPT (2007 - 2012)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -62,7 +62,7 @@ Expertise: C#, .NET, PHP, OOP, XML/XSL, jQuery, HTML, CSS, JavaScript
     </td>
   </tr>
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Software Engineer</strong> @ Friesland Bank (2006 - 2008)</td>
+    <td class="nowrap">Software Engineer @ Friesland Bank (2006 - 2008)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -72,7 +72,7 @@ Expertise: C#, .NET, XML/XSL/XML Schema, OOP
     </td>
   </tr>
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Web developer</strong> @ Ibas groep (1999 - 2006)</td>
+    <td class="nowrap">Web developer @ Ibas groep (1999 - 2006)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -82,7 +82,7 @@ Expertise: ASP, VBScript, PHP, ColdFusion, Delphi, SQL Server, IIS, HTML, CSS, J
     </td>
   </tr>
   <tr class="resume-experience">
-    <td class="nowrap"><strong>Graduation internship</strong> @ Pro/Future in Brunssum (1999)</td>
+    <td class="nowrap">Graduation internship @ Pro/Future (1999)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>
@@ -113,7 +113,7 @@ Temba, my open source low-code CRUD API library, comes from a fascination with A
 
 <table  class="resume-table">
   <tr class="resume-experience">
-    <td><strong>Kort-HBO Informatica</strong> @ Hogeschool Limburg in Heerlen (1997 - 1999)</td>
+    <td>Kort-HBO Informatica @ Hogeschool Limburg Heerlen (1997 - 1999)</td>
   </tr>
   <tr class="resume-experience-detail">
     <td>

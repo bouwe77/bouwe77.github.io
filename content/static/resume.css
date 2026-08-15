@@ -7,15 +7,7 @@
 .resume-intro {
   margin: 0 0 32px;
   color: var(--fontColor);
-  opacity: 0.7;
   line-height: 1.5;
-}
-
-/* Match the horizontal padding of .resume-table td, so text in the
-   non-table sections lines up with text in the table sections. */
-.resume-intro,
-.resume-section p {
-  padding-left: 14px;
 }
 
 .resume-table {
@@ -26,10 +18,16 @@
 
 .resume-table td,
 .resume-table th {
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 12px 14px 12px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
   text-align: left;
   vertical-align: top;
+}
+
+/* Lines separate entries, so the last entry of a section does not get one. */
+.resume-table tr:last-child td,
+.resume-table tr:last-child th {
+  border-bottom: 0;
 }
 
 .resume-table td:first-child,

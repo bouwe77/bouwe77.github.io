@@ -251,6 +251,14 @@ a:active.nav-active {
   font-size: 24px;
 }
 
+.hero-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
 .main {
   padding: 10px;
 }

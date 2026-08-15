@@ -4,6 +4,7 @@ stylesheets:
   - "/resume.css"
 ---
 
+<div class="resume-header">
 <p class="resume-intro">
   bouwe@bouwe.nl | +31 6 264 900 27 | Drachten, NL
 <br/>
@@ -12,11 +13,14 @@ bouwe.io | github.com/bouwe77 | twitter.com/bouwe
 Dutch and Frisian (native), English (proficient), German (intermediate)
 </p>
 
+<img class="resume-photo" src="/bouwe-2026.png" alt="Bouwe Klaas Westerdijk" />
+</div>
+
 <div class="resume-section">
   <h4>About me</h4>
 
 <p>
-Thoughtful, precise, and analytical. I ask the questions that get to the real problem, and I want to properly understand something before I solve it. Explaining a subject to others is how I get there, so I often write or speak about topics I do not fully grasp yet. Calm and genuine. I care about a good team atmosphere.
+Thoughtful, precise, and analytical. I ask the questions that get to the real problem, and I want to properly understand something before I solve it. Explaining a subject to others is how I get there, so I often write or speak about topics I do not fully grasp yet. Calm and genuine. I care about and contribute to a good team atmosphere.
 </p>
 
 <p>

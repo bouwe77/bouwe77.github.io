@@ -4,10 +4,46 @@
   color: var(--footerLink);
 }
 
+.resume-header {
+  position: relative;
+  margin-bottom: 32px;
+}
+
 .resume-intro {
-  margin: 0 0 32px;
+  margin: 0;
+  /* Keep the text clear of the photo, which overlaps this section. */
+  padding-right: 240px;
   color: var(--fontColor);
   line-height: 1.5;
+}
+
+/* Taken out of the flow so it can grow into the empty space next to the
+   page title above and the "About me" heading below. */
+.resume-photo {
+  position: absolute;
+  top: -48px;
+  right: 80px;
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* Not enough width to put the photo beside the text, so put it back in the
+   flow, below the contact details. */
+@media (max-width: 800px) {
+  .resume-intro {
+    padding-right: 0;
+  }
+
+  .resume-photo {
+    position: static;
+    display: block;
+    width: 126px;
+    height: 126px;
+    margin: 16px 0 0;
+  }
 }
 
 .resume-table {

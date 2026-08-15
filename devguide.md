@@ -61,13 +61,15 @@ Blog post folders whose names start with `_` are generated but excluded from pub
 
 ## Deployment
 
-The site is hosted with GitHub Pages from the generated `docs` directory. After changing content, templates, or generator code, run:
+The site is hosted with GitHub Pages. The GitHub Actions workflow in `.github/workflows/publish.yml` runs `npm run publish` and deploys the generated `docs` directory. It only runs when the pushed commit message contains `[publish]`.
+
+The `docs` directory is in `.gitignore`, so you only commit the source changes. To check your changes before pushing, run:
 
 ```sh
 npm run publish
 ```
 
-Then commit the source changes and generated `docs` output together.
+or use `npm run preview`.
 
 The helper script `commit-publish.sh` creates an empty `[publish]` commit and pushes it. Use it only when you need to trigger a publish without changing files.
 

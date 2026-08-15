@@ -11,6 +11,13 @@
   line-height: 1.5;
 }
 
+/* Match the horizontal padding of .resume-table td, so text in the
+   non-table sections lines up with text in the table sections. */
+.resume-intro,
+.resume-section p {
+  padding-left: 14px;
+}
+
 .resume-table {
   width: 100%;
   border-collapse: collapse;

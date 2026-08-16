@@ -6,6 +6,18 @@ categories:
   - "Testing"
 ---
 
+> **TODO before publishing — topics to add or expand**
+>
+> 1. **Where is the boundary, exactly?** Every reader will ask this, and the post only waves at it ("sometimes the public boundary is just a function in a library"). In a React app, is it the whole app, one page, or one component? Add a concrete rule of thumb, otherwise the advice is convincing but hard to apply.
+> 2. **Setup cost and faking.** The strongest objection to boundary testing is practical: you need a database, a network, a browser. The post calls it "too hard to set up" but never says what to do. What do you fake, and where do you draw the line? For example, fake the network but not your own code.
+> 3. **"But then I don't know what broke."** The classic defense of unit tests. A failing boundary test says something is wrong, not where. Answer it — a failing boundary test plus a debugger often beats the false confidence of green unit tests.
+> 4. **Testing pyramid vs testing diamond.** Name both. The pyramid is the traditional model readers already carry in their head, and the diamond (few unit tests, many integration tests, few end-to-end tests) is basically what this post argues for. Explain the diamond properly. It gives the post something to push against and pairs well with the coverage point below.
+> 5. **Code coverage as a metric.** Currently only one paragraph, and it serves the boundary argument instead of standing on its own. Coverage is the traditional way to judge whether tests are good, and the point of this post is that it is not. Expand it: coverage targets, gaming the number, and what coverage *is* good for (finding untested code, not proving correctness).
+> 6. **TDD.** There is a real tension the post skips. In classic TDD you write the small unit test first as a design tool, so deeper tests are pushed by habit on purpose. That contradicts "pulled into existence by necessity rather than pushed by habit". Addressing it makes the post stronger, not weaker.
+> 7. **Combinatorics.** Only hinted at with the complex pricing logic. State the rule: test one representative case at the boundary, push the exhaustive matrix of cases down to a focused test. This is probably the most concrete advice in the post, and it is half a sentence right now.
+>
+> Priority: 1 and 2 turn the post from an opinion into something a reader can act on.
+
 We write tests because we want confidence that our software works for users.
 
 And where can we see whether it works for users? At the public boundary. That is where a user clicks a button, calls an endpoint, or uses a function from our library.

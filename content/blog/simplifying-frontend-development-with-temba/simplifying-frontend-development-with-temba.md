@@ -5,6 +5,8 @@ summary: "Temba is a library I created to help developers quickly spin up a back
 categories:
   - "Temba"
   - "APIs"
+stylesheets:
+  - "/ai-transparency.css"
 ---
 
 > Disclaimer: This post was drafted by AI from a voice recording I made about Temba. I’ve polished it myself, but the style is a bit different from how I usually write.

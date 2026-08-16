@@ -1,23 +1,23 @@
+import fm from 'front-matter'
 import { remark } from 'remark'
 import gfm from 'remark-gfm'
 import html from 'remark-html'
-import fm from 'front-matter'
 import { fileURLToPath } from 'url'
 
 import {
-  getBlogCategoriesHtmlForHomepage,
   getBlogCategoriesHtmlForBlogPost,
   getBlogCategoriesHtmlForCategoryListPage,
+  getBlogCategoriesHtmlForHomepage,
 } from './blogCategories.js'
-import { getHtmlForPagesPage } from './pages.js'
 import { getBlogsHtml } from './blogs.js'
-import { replaceTokens, createSlug, formatDate, getReadingTime } from './utils.js'
-import { createFeeds } from './feeds.js'
 import { constants } from './constants.js'
+import { createFeeds } from './feeds.js'
 import { filepaths } from './filepaths.js'
-import { readFileContents, readFilesInFolder, copyFile, createFile, createFolder, deleteFolder } from './fileSystem.js'
+import { copyFile, createFile, createFolder, deleteFolder, readFileContents, readFilesInFolder } from './fileSystem.js'
 import { getNavigationHtml } from './navigation.js'
+import { getHtmlForPagesPage } from './pages.js'
 import { createRedirectHtmlPages } from './redirects.js'
+import { createSlug, formatDate, getReadingTime, replaceTokens } from './utils.js'
 
 const ignorePrefixes = ['.', '_']
 const ignoredBlogFolderPrefixes = ['.']
@@ -267,6 +267,7 @@ async function createPages(data) {
       const navigationHtml = page.isBlog ? navigationHtmlBlogPages : getNavigationHtml(page.slug)
 
       const interactivityHtml = await getInteractivityHtml(page.attributes.title, page.slug, page.editOnGitHubUrl)
+      const aiTransparencyHtml = await getAiTransparencyHtml()
 
       const makeHtmlBody = (content) => {
         const data = {
@@ -278,6 +279,7 @@ async function createPages(data) {
           slug: page.slug,
           interactivity: interactivityHtml,
           extraStylesheets: getStylesheetLinksHtml(page.stylesheets),
+          aiTransparency: aiTransparencyHtml,
         }
 
         const htmlBody = replaceTokens(pageTemplate, data)
@@ -362,9 +364,7 @@ async function getContainerHtml(body, title, navigation, extraStylesheets = '') 
 }
 
 function getStylesheetLinksHtml(stylesheets = []) {
-  return stylesheets
-    .map((stylesheetPath) => `    <link rel="stylesheet" href="${stylesheetPath}" />`)
-    .join('\n')
+  return stylesheets.map((stylesheetPath) => `    <link rel="stylesheet" href="${stylesheetPath}" />`).join('\n')
 }
 
 async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
@@ -379,6 +379,11 @@ async function getInteractivityHtml(title, slug, editOnGitHubUrl) {
   let html = replaceTokens(template, data)
 
   return html
+}
+
+async function getAiTransparencyHtml() {
+  let template = await readFileContents(filepaths.getAiTransparencyTemplateFilePath())
+  return template
 }
 
 // Create a page with links to all pages from the content/pages folder.

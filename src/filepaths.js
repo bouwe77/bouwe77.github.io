@@ -18,7 +18,8 @@ export const filepaths = {
   getBlogDirectory: () => path.join(__dirname, blogDirectory),
   getBlogSubFolder: (subFolder) => path.join(__dirname, blogDirectory, subFolder),
   getBlogContentFilePath: (subFolder, filename) => path.join(__dirname, blogDirectory, subFolder, filename),
-  getRelativeBlogContentFilePath: (subFolder, filename = subFolder + '.md') => path.join(blogDirectory, subFolder, filename),
+  getRelativeBlogContentFilePath: (subFolder, filename = subFolder + '.md') =>
+    path.join(blogDirectory, subFolder, filename),
   getPublishFilePath: (filename) => path.join(__dirname, publishDirectory, filename),
   getPagesDirectory: () => path.join(__dirname, pagesDirectory),
   getPageContentFilePath: (filename) => path.join(__dirname, pagesDirectory, filename),
@@ -50,4 +51,5 @@ export const filepaths = {
   getInteractivityTemplateFilePath: () => path.join(__dirname, templatesDirectory, 'interactivity.html'),
   getPublishRssFilePath: () => path.join(__dirname, publishDirectory, 'rss2.xml'),
   getPublishAtomFilePath: () => path.join(__dirname, publishDirectory, 'atom.xml'),
+  getAiTransparencyTemplateFilePath: () => path.join(__dirname, templatesDirectory, 'ai-transparency.html'),
 }

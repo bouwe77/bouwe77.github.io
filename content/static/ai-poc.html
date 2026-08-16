@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparency Widget Preview</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .blog-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Main Widget Container */
+    .disclosure-widget {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      background-color: #f8fafc;
+      display: inline-block;
+      min-width: 320px;
+    }
+
+    .widget-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Grid Layout with symmetrical spacing rules */
+    .disclosure-bar {
+      display: grid;
+      grid-template-columns: 70px 140px 70px; /* Equal column width on left and right */
+      gap: 12px; /* Uniform gap on both sides of the center bar */
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* Strict left-alignment for both text labels */
+    .label {
+      white-space: nowrap;
+      text-align: left; 
+    }
+
+    .label.human {
+      color: #1e4620;
+    }
+
+    .label.ai {
+      color: #1e3a8a;
+    }
+
+    .track {
+      height: 18px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .segment-human {
+      height: 100%;
+      background-color: #22c55e;
+    }
+
+    .segment-ai {
+      height: 100%;
+      background-color: #3b82f6;
+    }
+
+    /* Info Icon Button Styling */
+    .icon-toggle-btn {
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      border-radius: 50%;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .icon-toggle-btn:hover {
+      background-color: #e2e8f0;
+      color: #334155;
+    }
+
+    .icon-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .icon-toggle-btn.active svg {
+      transform: scale(1.1);
+    }
+
+    /* Expandable Panel */
+    .details-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out, margin-top 0.25s ease;
+    }
+
+    .details-panel.expanded {
+      max-height: 250px;
+      margin-top: 14px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 14px;
+    }
+
+    .panel-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin: 0 0 10px 0;
+      padding-left: 16px; /* Offsets title to match the row indentation below */
+    }
+
+    /* Tier List Grid Layout */
+    .tier-row {
+      display: grid;
+      grid-template-columns: 16px 1fr; /* Separates indicator column from content */
+      align-items: center;
+      margin-bottom: 8px;
+      opacity: 0.35;
+      transition: opacity 0.2s ease;
+    }
+
+    .tier-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .tier-row.active-tier {
+      opacity: 1;
+    }
+
+    .active-indicator {
+      width: 6px;
+      height: 6px;
+      background-color: #0f172a;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .tier-row.active-tier .active-indicator {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blog-container">
+    
+    <div class="disclosure-widget">
+      
+      <div class="widget-header">
+        <div style="padding-left: 16px;">
+          <div class="disclosure-bar">
+            <span class="label human">Me 80%</span>
+            <div class="track">
+              <div class="segment-human" style="width: 80%;"></div>
+              <div class="segment-ai" style="width: 20%;"></div>
+            </div>
+            <span class="label ai">20% AI</span>
+          </div>
+        </div>
+        
+        <button class="icon-toggle-btn" id="widgetToggle" aria-label="Toggle transparency details" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="details-panel" id="widgetPanel">
+        <p class="panel-title">Transparency Tiers</p>
+        
+        <div class="tier-row">
+          <div class="active-indicator"></div>
+          <div class="disclosure-bar">
+            <span class="label human">Me 100%</span>
+            <div class="track">
+              <div class="segment-human" style="width: 100%;"></div>
+              <div class="segment-ai" style="width: 0%;"></div>
+            </div>
+            <span class="label ai">0% AI</span>
+          </div>
+        </div>
+
+        <div class="tier-row active-tier">
+          <div class="active-indicator"></div>
+          <div class="disclosure-bar">
+            <span class="label human">Me 80%</span>
+            <div class="track">
+              <div class="segment-human" style="width: 80%;"></div>
+              <div class="segment-ai" style="width: 20%;"></div>
+            </div>
+            <span class="label ai">20% AI</span>
+          </div>
+        </div>
+
+        <div class="tier-row">
+          <div class="active-indicator"></div>
+          <div class="disclosure-bar">
+            <span class="label human">Me 50%</span>
+            <div class="track">
+              <div class="segment-human" style="width: 50%;"></div>
+              <div class="segment-ai" style="width: 50%;"></div>
+            </div>
+            <span class="label ai">50% AI</span>
+          </div>
+        </div>
+
+        <div class="tier-row">
+          <div class="active-indicator"></div>
+          <div class="disclosure-bar">
+            <span class="label human">Me 20%</span>
+            <div class="track">
+              <div class="segment-human" style="width: 20%;"></div>
+              <div class="segment-ai" style="width: 80%;"></div>
+            </div>
+            <span class="label ai">80% AI</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const widgetToggle = document.getElementById('widgetToggle');
+    const widgetPanel = document.getElementById('widgetPanel');
+
+    widgetToggle.addEventListener('click', () => {
+      const isExpanded = widgetPanel.classList.toggle('expanded');
+      widgetToggle.classList.toggle('active', isExpanded);
+      widgetToggle.setAttribute('aria-expanded', isExpanded);
+    });
+  </script>
+
+</body>
+</html>

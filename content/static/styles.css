@@ -146,6 +146,8 @@ a:active {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  row-gap: 10px;
 }
 
 /* ================ Logo ============ */
@@ -177,7 +179,6 @@ a:active .logo-part2 {
 }
 
 nav {
-  padding-top: 15px;
   min-width: 240px;
   display: flex;
   align-items: center;
@@ -357,8 +358,8 @@ ul.sitemap {
   background: transparent;
   color: var(--toggleColor);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border-radius: 999px;
   display: inline-flex;
@@ -366,10 +367,12 @@ ul.sitemap {
   justify-content: center;
   flex: 0 0 auto;
   appearance: none;
+  position: relative;
+  top: 2px;
 }
 
 .toggle-light-dark-mode svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
